@@ -1,0 +1,1314 @@
+/* =========================================
+   PAWSYNC - MY PETS
+   PAGE-SPECIFIC CSS
+========================================= */
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Inter", sans-serif;
+
+    background: #f4f9f7;
+
+    color: #153b5b;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   PAGE LAYOUT
+========================================= */
+
+/*
+    Navbar and sidebar are now loaded from:
+
+    shared/navbar.html
+    shared/sidebar.html
+
+    Their styling belongs to shared CSS.
+
+    This file only handles My Pets content.
+*/
+
+.page-layout {
+    display: flex;
+
+    min-height: 100vh;
+
+    padding-top: 78px;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    padding: 45px 50px 70px;
+
+    max-width: 1600px;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    gap: 30px;
+
+    margin-bottom: 32px;
+}
+
+
+.eyebrow {
+
+    color: #119486;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 8px;
+}
+
+
+.header-text h1 {
+
+    font-size: 38px;
+
+    line-height: 1.15;
+
+    color: #123b5b;
+
+    margin-bottom: 10px;
+}
+
+
+.header-text p {
+
+    color: #71879a;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    max-width: 650px;
+}
+
+
+/* =========================================
+   ADD PET BUTTON
+========================================= */
+
+.add-pet-button {
+
+    border: none;
+
+    background: #0d9588;
+
+    color: #ffffff;
+
+    padding: 14px 22px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(13, 149, 136, 0.15);
+
+    transition: 0.2s ease;
+
+    text-decoration: none;
+}
+
+
+.add-pet-button:hover {
+
+    transform: translateY(-2px);
+
+    background: #087f78;
+
+}
+
+
+.add-pet-button span {
+
+    font-size: 19px;
+}
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.summary-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 28px;
+}
+
+
+.summary-card {
+
+    background: #ffffff;
+
+    border: 1px solid #dfebe8;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    box-shadow:
+        0 4px 18px rgba(26, 69, 88, 0.04);
+}
+
+
+.summary-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+
+.summary-icon.green {
+
+    background: #e2f5ef;
+}
+
+
+.summary-icon.pink {
+
+    background: #fde9ec;
+}
+
+
+.summary-icon.yellow {
+
+    background: #fff3d5;
+}
+
+
+.summary-number {
+
+    color: #123b5b;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    margin-bottom: 3px;
+}
+
+
+.summary-label {
+
+    color: #7c91a2;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   SEARCH + FILTER
+========================================= */
+
+.controls {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 32px;
+}
+
+
+.search-container {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    height: 48px;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe8e5;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 15px;
+
+    gap: 10px;
+}
+
+
+.search-icon {
+
+    font-size: 17px;
+}
+
+
+.search-container input {
+
+    border: none;
+
+    outline: none;
+
+    width: 100%;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    color: #183e5c;
+
+    background: transparent;
+}
+
+
+.search-container input::placeholder {
+
+    color: #9aabb7;
+}
+
+
+.pet-filter {
+
+    height: 48px;
+
+    padding: 0 15px;
+
+    border-radius: 12px;
+
+    border: 1px solid #dbe8e5;
+
+    background: #ffffff;
+
+    color: #47657a;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    outline: none;
+}
+
+
+/* =========================================
+   PET SECTION
+========================================= */
+
+.pets-section {
+
+    margin-top: 10px;
+}
+
+
+.section-title-row {
+
+    margin-bottom: 20px;
+}
+
+
+.section-title-row h2 {
+
+    color: #123b5b;
+
+    font-size: 23px;
+
+    margin-bottom: 5px;
+}
+
+
+.section-title-row p {
+
+    color: #7b91a2;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   PET GRID
+========================================= */
+
+.pets-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   PET CARD
+========================================= */
+
+.pet-card {
+
+    background: #ffffff;
+
+    border: 1px solid #dfeae7;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 6px 22px rgba(26, 69, 88, 0.05);
+
+    transition: 0.25s ease;
+}
+
+
+.pet-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 30px rgba(26, 69, 88, 0.10);
+}
+
+
+/* =========================================
+   PET IMAGE
+========================================= */
+
+.pet-image-container {
+
+    width: 100%;
+
+    height: 210px;
+
+    background: #eaf5f2;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+.pet-image {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+.pet-status {
+
+    position: absolute;
+
+    top: 14px;
+
+    right: 14px;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #e2f5ec;
+
+    color: #13846e;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   PET CONTENT
+========================================= */
+
+.pet-content {
+
+    padding: 20px;
+}
+
+
+.pet-name {
+
+    color: #123b5b;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    margin-bottom: 5px;
+}
+
+
+.pet-breed {
+
+    color: #71879a;
+
+    font-size: 13px;
+
+    margin-bottom: 17px;
+}
+
+
+/* =========================================
+   PET DETAILS
+========================================= */
+
+.pet-details {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 19px;
+}
+
+
+.pet-detail {
+
+    background: #f3f8f7;
+
+    color: #5c7588;
+
+    padding: 6px 9px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   HEALTH SCORE
+========================================= */
+
+.pet-health {
+
+    margin-bottom: 18px;
+}
+
+
+.pet-health-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+
+    color: #71879a;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.pet-health-row strong {
+
+    color: #13846e;
+
+    font-size: 12px;
+}
+
+
+.pet-health-track {
+
+    width: 100%;
+
+    height: 7px;
+
+    background: #e3ebe8;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+}
+
+
+.pet-health-track span {
+
+    display: block;
+
+    height: 100%;
+
+    background: #20a980;
+
+    border-radius: inherit;
+}
+
+
+/* =========================================
+   VIEW PET BUTTON
+========================================= */
+
+.view-pet-button {
+
+    width: 100%;
+
+    height: 42px;
+
+    border-radius: 10px;
+
+    border: 1px solid #0d9588;
+
+    background: #ffffff;
+
+    color: #087f78;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.view-pet-button:hover {
+
+    background: #087f78;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+
+    background: #ffffff;
+
+    border: 1px dashed #c9dcd8;
+
+    border-radius: 20px;
+
+    padding: 60px 20px;
+
+    text-align: center;
+
+    display: none;
+}
+
+
+.empty-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 12px;
+}
+
+
+.empty-state h3 {
+
+    color: #123b5b;
+
+    font-size: 21px;
+
+    margin-bottom: 8px;
+}
+
+
+.empty-state p {
+
+    color: #7c91a2;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   ADD PET MODAL
+========================================= */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(15, 45, 60, 0.45);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    z-index: 3000;
+
+    backdrop-filter: blur(4px);
+}
+
+
+/* =========================================
+   MODAL BOX
+========================================= */
+
+.add-pet-modal {
+
+    width: 100%;
+
+    max-width: 680px;
+
+    max-height: 90vh;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 70px rgba(20, 55, 70, 0.2);
+
+    overflow-y: auto;
+
+    animation:
+        modalAppear 0.2s ease;
+}
+
+
+@keyframes modalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.98);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    padding: 25px 28px 20px;
+
+    border-bottom:
+        1px solid #e5efec;
+}
+
+
+.modal-header h2 {
+
+    color: #123b5b;
+
+    font-size: 23px;
+
+    font-weight: 800;
+
+    margin-bottom: 6px;
+}
+
+
+.modal-header p {
+
+    color: #8295a3;
+
+    font-size: 13px;
+}
+
+
+.modal-close {
+
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f2f7f6;
+
+    color: #60798a;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.2s ease;
+}
+
+
+.modal-close:hover {
+
+    background: #e6f2ef;
+
+    color: #087f78;
+}
+
+
+/* =========================================
+   PHOTO UPLOAD
+========================================= */
+
+.photo-upload-area {
+
+    margin: 22px 28px;
+
+    padding: 18px;
+
+    background: #f5faf8;
+
+    border: 1px solid #dcece8;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.photo-preview {
+
+    width: 82px;
+
+    height: 82px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #dff2ec;
+
+    color: #087f78;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+    overflow: hidden;
+}
+
+
+.photo-preview img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+.photo-upload-content h3 {
+
+    color: #123b5b;
+
+    font-size: 15px;
+
+    margin-bottom: 4px;
+}
+
+
+.photo-upload-content p {
+
+    color: #8396a3;
+
+    font-size: 12px;
+
+    margin-bottom: 11px;
+}
+
+
+.choose-photo-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 8px 13px;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    border: 1px solid #bcded7;
+
+    color: #087f78;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.choose-photo-button:hover {
+
+    background: #e9f6f2;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+#addPetForm {
+
+    padding-bottom: 0;
+}
+
+
+.form-grid {
+
+    padding: 0 28px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.form-group.full-width {
+
+    grid-column: 1 / -1;
+}
+
+
+.form-group label {
+
+    color: #39576b;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    height: 45px;
+
+    padding: 0 13px;
+
+    border:
+        1px solid #d6e5e2;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #244b62;
+
+    font-family:
+        "Inter",
+        sans-serif;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+
+.form-group input::placeholder {
+
+    color: #a1b0ba;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #0d9588;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(13, 149, 136, 0.08);
+}
+
+
+/* =========================================
+   MODAL ACTIONS
+========================================= */
+
+.modal-actions {
+
+    margin-top: 26px;
+
+    padding: 18px 28px 25px;
+
+    border-top:
+        1px solid #e5efec;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+}
+
+
+.cancel-button,
+.save-pet-button {
+
+    height: 43px;
+
+    padding: 0 19px;
+
+    border-radius: 10px;
+
+    font-family:
+        "Inter",
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.cancel-button {
+
+    background: #ffffff;
+
+    color: #5d7587;
+
+    border:
+        1px solid #d6e5e2;
+}
+
+
+.cancel-button:hover {
+
+    background: #f3f7f6;
+}
+
+
+.save-pet-button {
+
+    background: #0d9588;
+
+    color: #ffffff;
+
+    border:
+        1px solid #0d9588;
+
+    box-shadow:
+        0 6px 15px
+        rgba(13, 149, 136, 0.15);
+}
+
+
+.save-pet-button:hover {
+
+    background: #087f78;
+
+    border-color: #087f78;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================
+   RESPONSIVE - MY PETS
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .main-content {
+
+        margin-left: 220px;
+
+        width:
+            calc(100% - 220px);
+
+        padding:
+            40px 30px;
+    }
+
+
+    .pets-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .main-content {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding:
+            30px 20px;
+    }
+
+
+    .page-header {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+    }
+
+
+    .summary-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .pets-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .modal-overlay {
+
+        padding: 12px;
+    }
+
+
+    .add-pet-modal {
+
+        max-height: 94vh;
+
+        border-radius: 18px;
+    }
+
+
+    .modal-header {
+
+        padding: 20px;
+    }
+
+
+    .photo-upload-area {
+
+        margin:
+            18px 20px;
+
+        padding: 14px;
+    }
+
+
+    .form-grid {
+
+        padding:
+            0 20px;
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .form-group.full-width {
+
+        grid-column: auto;
+    }
+
+
+    .modal-actions {
+
+        padding:
+            18px 20px 20px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .header-text h1 {
+
+        font-size: 30px;
+    }
+
+
+    .controls {
+
+        flex-direction:
+            column;
+    }
+
+
+    .search-container {
+
+        max-width:
+            none;
+    }
+
+
+    .pet-filter {
+
+        width: 100%;
+    }
+
+}

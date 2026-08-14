@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Appointments | PawSync</title>
+
+
+    <!-- =========================================
+         GOOGLE FONT
+    ========================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         SHARED CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/responsive.css"
+    >
+
+
+    <!-- =========================================
+         APPOINTMENTS PAGE CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="appointments.css"
+    >
+
+</head>
+
+
+<!--
+    IMPORTANT
+
+    ../shared means:
+
+    frontend/
+        appointments/
+        shared/
+
+    So appointments.html can load:
+
+    ../shared/navbar.html
+    ../shared/sidebar.html
+-->
+
+<body data-shared-path="../shared">
+
+
+    <!-- =========================================
+         SHARED NAVBAR
+    ========================================== -->
+
+    <div id="navbar-container"></div>
+
+
+    <!-- =========================================
+         PAGE LAYOUT
+    ========================================== -->
+
+    <div class="page-layout">
+
+
+        <!-- =====================================
+             SHARED SIDEBAR
+        ====================================== -->
+
+        <div id="sidebar-container"></div>
+
+
+        <!-- =====================================
+             MAIN CONTENT
+        ====================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================
+                 PAGE HEADER
+            ================================== -->
+
+            <section class="page-header">
+
+                <div>
+
+                    <div class="eyebrow">
+                        VETERINARY CARE
+                    </div>
+
+                    <h1>
+                        Vet Appointments 🩺
+                    </h1>
+
+                    <p>
+                        Find the right veterinarian and book an
+                        appointment for your pet.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="my-appointments-btn"
+                    id="myAppointmentsButton"
+                >
+                    📅 My Appointments
+                </button>
+
+            </section>
+
+
+            <!-- =================================
+                 SEARCH
+            ================================== -->
+
+            <section class="search-section">
+
+
+                <div class="search-box">
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchVet"
+                        placeholder="Search veterinarian, specialty..."
+                    >
+
+                </div>
+
+
+                <select id="specialtyFilter">
+
+                    <option value="all">
+                        All Specialties
+                    </option>
+
+                    <option value="General Veterinary">
+                        General Veterinary
+                    </option>
+
+                    <option value="Pet Nutrition">
+                        Pet Nutrition
+                    </option>
+
+                    <option value="Veterinary Surgery">
+                        Veterinary Surgery
+                    </option>
+
+                    <option value="Dermatology">
+                        Dermatology
+                    </option>
+
+                </select>
+
+
+                <select id="availabilityFilter">
+
+                    <option value="all">
+                        Any Availability
+                    </option>
+
+                    <option value="today">
+                        Available Today
+                    </option>
+
+                    <option value="tomorrow">
+                        Available Tomorrow
+                    </option>
+
+                </select>
+
+            </section>
+
+
+            <!-- =================================
+                 QUICK INFO
+            ================================== -->
+
+            <section class="appointment-info">
+
+
+                <div class="info-card">
+
+                    <span class="info-icon">
+                        👨‍⚕️
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Verified Veterinarians
+                        </strong>
+
+                        <p>
+                            Qualified veterinary professionals
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <span class="info-icon">
+                        🕐
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Flexible Timings
+                        </strong>
+
+                        <p>
+                            Choose a convenient appointment slot
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <span class="info-icon">
+                        🔒
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Secure Records
+                        </strong>
+
+                        <p>
+                            Your pet's information stays protected
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 AVAILABLE VETERINARIANS
+            ================================== -->
+
+            <section class="vet-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Available Veterinarians
+                        </h2>
+
+                        <p>
+                            Choose a veterinarian for your pet's needs.
+                        </p>
+
+                    </div>
+
+
+                    <span id="vetCount">
+                        6 Veterinarians
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="vet-grid"
+                    id="vetGrid"
+                ></div>
+
+
+                <div
+                    class="empty-state"
+                    id="emptyState"
+                >
+
+                    <div>
+                        🔎
+                    </div>
+
+                    <h3>
+                        No veterinarians found
+                    </h3>
+
+                    <p>
+                        Try changing your search or filters.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         SHARED JS
+    ========================================== -->
+
+    <script src="../shared/js/shared.js"></script>
+
+
+    <!-- =========================================
+         APPOINTMENTS JS
+    ========================================== -->
+
+    <script src="appointments.js"></script>
+
+</body>
+
+</html>

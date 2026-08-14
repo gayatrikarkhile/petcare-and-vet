@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant | PawSync</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="../shared/css/variables.css">
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <link rel="stylesheet" href="../shared/css/responsive.css">
+
+    <!-- AI Assistant CSS -->
+    <link rel="stylesheet" href="ai-assistant.css">
+</head>
+
+<body data-shared-path="../shared">
+
+    <!-- SHARED NAVBAR -->
+    <div id="navbar-container"></div>
+
+    <!-- PAGE LAYOUT -->
+    <div class="page-layout">
+
+        <!-- SHARED SIDEBAR -->
+        <div id="sidebar-container"></div>
+
+        <!-- AI ASSISTANT MAIN CONTENT -->
+        <main class="ai-main">
+            <div class="ai-container">
+
+                <!-- HEADER -->
+                <div class="ai-header">
+                    <div>
+                        <span class="ai-label">SMART PET CARE</span>
+                        <h1>AI Assistant 🤖</h1>
+                        <p>Ask PawSync AI anything about your pet's care and wellbeing.</p>
+                    </div>
+
+                    <!-- PET SELECTOR -->
+                    <div class="ai-pet-selector">
+                        <span>SELECTED PET</span>
+                        <div class="select-wrapper">
+                            <select id="petSelector">
+                                <option value="bruno">🐾 Bruno</option>
+                                <option value="max">🐾 Max</option>
+                                <option value="luna">🐾 Luna</option>
+                            </select>
+                            <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI CHAT CARD -->
+                <section class="ai-chat-card">
+
+                    <!-- Chat Header -->
+                    <div class="chat-header">
+                        <div class="chat-header-info">
+                            <div class="ai-icon">🤖</div>
+                            <div>
+                                <h2>PawSync AI</h2>
+                                <div class="ai-status">
+                                    <span class="status-dot"></span>
+                                    Ready to help
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-header-actions">
+                            <button id="clearChatBtn" class="action-btn" title="Clear Conversation">
+                                🗑️ Clear
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- CHAT MESSAGES -->
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Initial AI Message -->
+                        <div class="message ai-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-bubble">
+                                <p>Hi! I'm PawSync AI 👋</p>
+                                <p>I can help you with general information about your pet's health, nutrition, vaccination, activity, grooming, and dental care.</p>
+                                <span class="message-time">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QUICK SUGGESTIONS INSIDE CHAT -->
+                    <div class="ai-suggestions-bar">
+                        <span class="suggestions-title">Quick Prompts:</span>
+                        <div class="suggestions-scroll">
+                            <button class="suggestion-btn" data-question="What should I feed my pet?">🥗 What to feed?</button>
+                            <button class="suggestion-btn" data-question="When should my pet get vaccinated?">💉 Vaccine schedule</button>
+                            <button class="suggestion-btn" data-question="How much exercise does my pet need?">🎾 Daily exercise</button>
+                            <button class="suggestion-btn" data-question="How often should I groom my pet?">✂️ Grooming tips</button>
+                        </div>
+                    </div>
+
+                    <!-- INPUT WRAPPER -->
+                    <div class="chat-input-wrapper">
+                        <div class="input-container">
+                            <textarea id="chatInput" rows="1" placeholder="Ask something about your pet..."></textarea>
+                        </div>
+                        <button type="button" id="sendButton" class="send-button" aria-label="Send message">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Disclaimer -->
+                    <div class="ai-disclaimer">
+                        <span>💡 AI responses provide general information and are not a replacement for professional veterinary advice.</span>
+                    </div>
+
+                </section>
+
+            </div>
+        </main>
+
+    </div>
+
+    <!-- SHARED JS -->
+    <script src="../shared/js/shared.js"></script>
+
+    <!-- AI ASSISTANT JS -->
+    <script src="ai-assistant.js"></script>
+
+</body>
+
+</html>

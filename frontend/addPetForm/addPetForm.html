@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Your Pet | Pet Registration</title>
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <link rel="stylesheet" href="addPetForm.css">
+</head>
+<body>
+  <main class="page-wrapper">
+    <section class="pet-form-card">
+      
+      <!-- Form Header -->
+      <header class="form-header">
+        <div class="header-title-group">
+          <div class="header-icon">
+            <i data-lucide="paw-print"></i>
+          </div>
+          <h1>ADD YOUR PET</h1>
+        </div>
+        <p class="subtitle">Tell us a little about your pet</p>
+      </header>
+
+      <form id="petRegistrationForm" novalidate>
+        
+        <!-- ================= REQUIRED SECTION ================= -->
+        <div class="form-section">
+          <h2 class="section-title">
+            Required <span class="required-star">*</span>
+          </h2>
+
+          <div class="form-grid">
+            
+            <!-- FIELD 1: Pet Name -->
+            <div class="form-group" id="group-petName">
+              <label for="petName">Pet Name <span class="req">*</span></label>
+              <input 
+                type="text" 
+                id="petName" 
+                name="petName" 
+                placeholder="Enter your pet's name" 
+                maxlength="50"
+                aria-describedby="err-petName"
+              >
+              <span class="error-message" id="err-petName"></span>
+            </div>
+
+            <!-- FIELD 2: Species -->
+            <div class="form-group" id="group-species">
+              <label for="species">Species <span class="req">*</span></label>
+              <div class="select-wrapper">
+                <select id="species" name="species" aria-describedby="err-species">
+                  <option value="" disabled selected>Select species</option>
+                  <option value="Dog">Dog</option>
+                  <option value="Cat">Cat</option>
+                  <option value="Bird">Bird</option>
+                  <option value="Reptile">Reptile</option>
+                  <option value="Fish">Fish</option>
+                  <option value="Horse">Horse</option>
+                  <option value="Exotic">Exotic</option>
+                </select>
+                <i data-lucide="chevron-down" class="select-icon"></i>
+              </div>
+              <span class="error-message" id="err-species"></span>
+            </div>
+
+            <!-- FIELD 3: Breed (Searchable Dropdown) -->
+            <div class="form-group" id="group-breed">
+              <label for="breedSearch">Breed <span class="req">*</span></label>
+              <div class="searchable-select" id="breedSelectContainer">
+                <div class="input-with-icon">
+                  <input 
+                    type="text" 
+                    id="breedSearch" 
+                    placeholder="Select species first" 
+                    autocomplete="off"
+                    disabled
+                    aria-describedby="err-breed"
+                  >
+                  <i data-lucide="search" class="input-icon"></i>
+                </div>
+                <div class="dropdown-list" id="breedDropdown" hidden></div>
+              </div>
+              <input type="hidden" id="breed" name="breed">
+              <span class="error-message" id="err-breed"></span>
+            </div>
+
+            <!-- FIELD 4: Gender -->
+            <div class="form-group" id="group-gender">
+              <label>Gender <span class="req">*</span></label>
+              <div class="segmented-control" role="radiogroup" aria-labelledby="group-gender">
+                <label class="segmented-option">
+                  <input type="radio" name="gender" value="Male">
+                  <span class="segmented-label">
+                    <i data-lucide="mars"></i> Male
+                  </span>
+                </label>
+                <label class="segmented-option">
+                  <input type="radio" name="gender" value="Female">
+                  <span class="segmented-label">
+                    <i data-lucide="venus"></i> Female
+                  </span>
+                </label>
+              </div>
+              <span class="error-message" id="err-gender"></span>
+            </div>
+
+            <!-- FIELD 5: Date of Birth -->
+            <div class="form-group" id="group-dateOfBirth">
+              <label for="dateOfBirth">Date of Birth <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <input 
+                  type="date" 
+                  id="dateOfBirth" 
+                  name="dateOfBirth"
+                  aria-describedby="err-dateOfBirth"
+                >
+                <i data-lucide="calendar" class="input-icon date-icon"></i>
+              </div>
+              <span class="error-message" id="err-dateOfBirth"></span>
+            </div>
+
+            <!-- FIELD 6: Current Weight -->
+            <div class="form-group" id="group-weight">
+              <label for="weightValue">Current Weight <span class="req">*</span></label>
+              <div class="weight-input-group">
+                <input 
+                  type="number" 
+                  id="weightValue" 
+                  name="weightValue" 
+                  placeholder="Enter weight" 
+                  step="0.1" 
+                  min="0"
+                  max="1000"
+                  aria-describedby="err-weight"
+                >
+                <div class="select-wrapper unit-select">
+                  <select id="weightUnit" name="weightUnit" aria-label="Weight Unit">
+                    <option value="kg">kg</option>
+                    <option value="lb">lb</option>
+                  </select>
+                  <i data-lucide="chevron-down" class="select-icon"></i>
+                </div>
+              </div>
+              <span class="error-message" id="err-weight"></span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- ================= OPTIONAL SECTION ================= -->
+        <div class="form-section">
+          <h2 class="section-title optional-title">Optional</h2>
+
+          <div class="form-grid">
+            
+            <!-- FIELD 7: Pet Photo Upload (Full Width) -->
+            <div class="form-group full-width" id="group-photo">
+              <label>Pet Photo</label>
+              <div class="upload-container" id="uploadContainer">
+                <input type="file" id="petPhoto" name="petPhoto" accept="image/jpeg, image/jpg, image/png, image/webp" hidden>
+                
+                <!-- Initial Dropzone View -->
+                <div class="upload-dropzone" id="uploadDropzone">
+                  <div class="upload-icon-circle">
+                    <i data-lucide="upload-cloud"></i>
+                  </div>
+                  <p class="upload-text"><strong>Upload Pet Photo</strong></p>
+                  <p class="upload-subtext">JPG, PNG or WEBP (Max 5MB)</p>
+                </div>
+
+                <!-- Preview State View (Hidden by default) -->
+                <div class="upload-preview" id="uploadPreview" hidden>
+                  <div class="preview-avatar-wrapper">
+                    <img id="previewImage" src="" alt="Pet Preview">
+                  </div>
+                  <div class="preview-actions">
+                    <button type="button" class="btn-change-photo" id="btnChangePhoto">Change Photo</button>
+                    <button type="button" class="btn-remove-photo" id="btnRemovePhoto">Remove</button>
+                  </div>
+                </div>
+              </div>
+              <span class="error-message" id="err-petPhoto"></span>
+            </div>
+
+            <!-- FIELD 8: Color / Markings -->
+            <div class="form-group">
+              <label for="colorMarkings">Color / Markings</label>
+              <input 
+                type="text" 
+                id="colorMarkings" 
+                name="colorMarkings" 
+                placeholder="e.g. White with brown spots"
+                maxlength="100"
+              >
+            </div>
+
+            <!-- FIELD 9: Spayed / Neutered -->
+            <div class="form-group">
+              <label>Spayed / Neutered</label>
+              <div class="segmented-control three-options" role="radiogroup">
+                <label class="segmented-option">
+                  <input type="radio" name="spayedNeutered" value="Yes">
+                  <span class="segmented-label">Yes</span>
+                </label>
+                <label class="segmented-option">
+                  <input type="radio" name="spayedNeutered" value="No">
+                  <span class="segmented-label">No</span>
+                </label>
+                <label class="segmented-option">
+                  <input type="radio" name="spayedNeutered" value="Unknown">
+                  <span class="segmented-label">Unknown</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- FIELD 10: Known Allergies (Tags - Full Width) -->
+            <div class="form-group full-width">
+              <label for="allergyInput">Known Allergies</label>
+              <div class="tag-input-container" id="allergyContainer">
+                <div class="tags-wrapper" id="allergyTags"></div>
+                <input type="text" id="allergyInput" placeholder="Add allergy (press Enter or comma)">
+              </div>
+              <span class="input-hint">Type an allergy and press Enter or comma to add</span>
+            </div>
+
+            <!-- FIELD 11: Existing Medical Conditions (Tags - Full Width) -->
+            <div class="form-group full-width">
+              <label for="conditionInput">Existing Medical Conditions</label>
+              <div class="tag-input-container" id="conditionContainer">
+                <div class="tags-wrapper" id="conditionTags"></div>
+                <input type="text" id="conditionInput" placeholder="Add medical condition (press Enter or comma)">
+              </div>
+              <span class="input-hint">Type a condition and press Enter or comma to add</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Form Footer Actions -->
+        <footer class="form-actions">
+          <button type="button" class="btn-secondary" id="btnCancel">Cancel</button>
+          <button type="submit" class="btn-primary" id="btnSubmit">
+            <span>Add Pet</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </footer>
+
+      </form>
+    </section>
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" id="toastContainer">
+    <div class="toast" id="toast">
+      <div class="toast-icon">
+        <i data-lucide="check-circle-2"></i>
+      </div>
+      <div class="toast-message" id="toastMessage">Pet added successfully!</div>
+    </div>
+  </div>
+
+  <script src="addPetForm.js"></script>
+</body>
+</html>

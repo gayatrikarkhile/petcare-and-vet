@@ -1,0 +1,965 @@
+/* =========================================
+   PAWSYNC - ALERTS
+   PAGE-SPECIFIC CSS
+
+   Navbar + Sidebar are handled by:
+   ../shared/css/common.css
+========================================= */
+
+
+/* =========================================
+   BASE
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        "Inter",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f5faf8;
+
+    color: #173b3a;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================
+   PAGE LAYOUT
+========================================= */
+
+.page-layout {
+    min-height: 100vh;
+}
+
+
+.main-content {
+
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    min-height: 100vh;
+
+    padding:
+        105px 40px 55px;
+
+    transition:
+        margin-left 0.25s ease,
+        width 0.25s ease;
+}
+
+
+/* =========================================
+   ALERTS HEADER
+========================================= */
+
+.alerts-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 28px;
+}
+
+
+.alerts-eyebrow {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #6d928f;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+
+.alerts-header h1 {
+
+    margin: 0 0 8px;
+
+    color: #173b3a;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+
+.alerts-header p {
+
+    margin: 0;
+
+    max-width: 650px;
+
+    color: #7c918f;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   MARK ALL BUTTON
+========================================= */
+
+.mark-all-button {
+
+    border:
+        1px solid #d5e5e2;
+
+    border-radius: 10px;
+
+    padding:
+        10px 15px;
+
+    background: #ffffff;
+
+    color: #287b75;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.mark-all-button:hover {
+
+    border-color:
+        #9dcac5;
+
+    background:
+        #edf7f5;
+}
+
+
+/* =========================================
+   SUMMARY GRID
+========================================= */
+
+.alert-summary-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+
+.summary-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-height: 90px;
+
+    padding: 16px;
+
+    border:
+        1px solid #e0eae8;
+
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 5px 18px
+        rgba(30, 85, 81, 0.035);
+}
+
+
+.summary-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 43px;
+
+    height: 43px;
+
+    flex: 0 0 43px;
+
+    border-radius: 11px;
+
+    font-size: 18px;
+}
+
+
+.summary-icon.warning {
+
+    background: #fff1d8;
+}
+
+
+.summary-icon.reminder {
+
+    background: #e8f5f2;
+}
+
+
+.summary-icon.appointment {
+
+    background: #e9eef9;
+}
+
+
+.summary-icon.unread {
+
+    background: #f4eafa;
+
+    color: #8d5cb3;
+
+    font-size: 18px;
+}
+
+
+.summary-card span {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #879895;
+
+    font-size: 10px;
+}
+
+
+.summary-card strong {
+
+    display: block;
+
+    color: #254643;
+
+    font-size: 22px;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   MAIN ALERT CARD
+========================================= */
+
+.alerts-card {
+
+    overflow: hidden;
+
+    border:
+        1px solid #e0eae8;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 6px 22px
+        rgba(30, 85, 81, 0.04);
+}
+
+
+/* =========================================
+   ALERT TOOLBAR
+========================================= */
+
+.alerts-toolbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding:
+        21px 23px;
+
+    border-bottom:
+        1px solid #edf2f1;
+}
+
+
+.alerts-toolbar h2 {
+
+    margin: 0 0 5px;
+
+    color: #244441;
+
+    font-size: 17px;
+}
+
+
+.alerts-toolbar p {
+
+    margin: 0;
+
+    color: #8a9a98;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.alert-filters {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+}
+
+
+.alert-filter {
+
+    border:
+        1px solid #e0e9e7;
+
+    border-radius: 8px;
+
+    padding:
+        7px 11px;
+
+    background: #ffffff;
+
+    color: #748986;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.alert-filter:hover {
+
+    border-color:
+        #b8d6d2;
+
+    color:
+        #287b75;
+}
+
+
+.alert-filter.active {
+
+    border-color:
+        #1f8a83;
+
+    background:
+        #1f8a83;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   ALERT LIST
+========================================= */
+
+.alerts-list {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =========================================
+   INDIVIDUAL ALERT
+========================================= */
+
+.alert-item {
+
+    display: grid;
+
+    grid-template-columns:
+        46px
+        minmax(0, 1fr)
+        auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding:
+        17px 23px;
+
+    border-bottom:
+        1px solid #edf2f1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.alert-item:last-child {
+
+    border-bottom: 0;
+}
+
+
+.alert-item:hover {
+
+    background:
+        #fafdfc;
+}
+
+
+.alert-item.unread {
+
+    background:
+        #f7fcfa;
+}
+
+
+.alert-item.unread:hover {
+
+    background:
+        #f2faf7;
+}
+
+
+/* =========================================
+   ALERT ICON
+========================================= */
+
+.alert-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 12px;
+
+    font-size: 19px;
+}
+
+
+.alert-icon.warning {
+
+    background: #fff1d8;
+}
+
+
+.alert-icon.vaccination {
+
+    background: #e9f5ef;
+}
+
+
+.alert-icon.appointment {
+
+    background: #e9eef9;
+}
+
+
+.alert-icon.grooming {
+
+    background: #f0e9fb;
+}
+
+
+.alert-icon.health {
+
+    background: #f9e8eb;
+}
+
+
+.alert-icon.activity {
+
+    background: #e8f5f7;
+}
+
+
+/* =========================================
+   ALERT CONTENT
+========================================= */
+
+.alert-content {
+
+    min-width: 0;
+}
+
+
+.alert-title-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 4px;
+}
+
+
+.alert-content h3 {
+
+    margin: 0;
+
+    color: #294744;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.unread-dot {
+
+    width: 6px;
+
+    height: 6px;
+
+    flex: 0 0 6px;
+
+    border-radius: 50%;
+
+    background:
+        #1f8a83;
+}
+
+
+.alert-content p {
+
+    margin: 0 0 6px;
+
+    color: #7d908d;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+.alert-meta {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+.alert-meta span {
+
+    color: #99a8a5;
+
+    font-size: 9px;
+}
+
+
+.alert-meta span:not(:last-child)::after {
+
+    content: "•";
+
+    margin-left: 7px;
+
+    color: #c3cfcd;
+}
+
+
+/* =========================================
+   ALERT TYPE BADGES
+========================================= */
+
+.alert-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding:
+        4px 7px;
+
+    border-radius: 6px;
+
+    font-size: 8px;
+
+    font-weight: 700;
+}
+
+
+.alert-badge.important {
+
+    background: #fff0d7;
+
+    color: #b97c23;
+}
+
+
+.alert-badge.reminder {
+
+    background: #e7f5f1;
+
+    color: #287b75;
+}
+
+
+.alert-badge.appointment {
+
+    background: #e9eef9;
+
+    color: #5873a7;
+}
+
+
+/* =========================================
+   ALERT ACTIONS
+========================================= */
+
+.alert-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.alert-action-button {
+
+    width: 31px;
+
+    height: 31px;
+
+    border:
+        1px solid #e0e9e7;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #728784;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.alert-action-button:hover {
+
+    border-color:
+        #b9d6d2;
+
+    background:
+        #f2f8f6;
+
+    color:
+        #287b75;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.alerts-empty {
+
+    padding:
+        65px 20px;
+
+    text-align: center;
+}
+
+
+.alerts-empty[hidden] {
+
+    display: none;
+}
+
+
+.empty-alert-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 64px;
+
+    height: 64px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius: 17px;
+
+    background:
+        #edf7f5;
+
+    font-size: 25px;
+}
+
+
+.alerts-empty h3 {
+
+    margin: 0 0 7px;
+
+    color: #35514e;
+
+    font-size: 17px;
+}
+
+
+.alerts-empty p {
+
+    margin: 0;
+
+    color: #8a9b98;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   READ STATE
+========================================= */
+
+.alert-item.read {
+
+    background:
+        #ffffff;
+}
+
+
+.alert-item.read .alert-content h3 {
+
+    font-weight: 600;
+
+    color: #516662;
+}
+
+
+.alert-item.read .alert-icon {
+
+    opacity: 0.8;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .alert-summary-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .alerts-toolbar {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .main-content {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding:
+            95px 20px 45px;
+
+    }
+
+
+    .alerts-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .mark-all-button {
+
+        width: 100%;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .main-content {
+
+        padding:
+            90px 15px 35px;
+
+    }
+
+
+    .alert-summary-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .alerts-toolbar {
+
+        padding:
+            18px;
+
+    }
+
+
+    .alert-filters {
+
+        width: 100%;
+
+    }
+
+
+    .alert-filter {
+
+        flex: 1;
+
+        text-align: center;
+
+    }
+
+
+    .alert-item {
+
+        grid-template-columns:
+            42px
+            minmax(0, 1fr);
+
+        gap: 11px;
+
+        padding:
+            15px 18px;
+
+    }
+
+
+    .alert-icon {
+
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 17px;
+
+    }
+
+
+    .alert-actions {
+
+        grid-column: 2;
+
+        justify-content: flex-start;
+
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .alerts-header h1 {
+
+        font-size: 28px;
+
+    }
+
+
+    .alert-filters {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    .alert-filter {
+
+        width: 100%;
+
+    }
+
+}

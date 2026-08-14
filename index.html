@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawSync - AI Pet Healthcare</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            
+            <!-- Left Section: Logo -->
+            <a href="./index.html" class="navbar-brand">
+                <svg class="brand-icon" width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="pawGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0F52BA" />
+                            <stop offset="100%" stop-color="#00A896" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M16 28V20" stroke="url(#pawGradient)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 12L12 16" stroke="url(#pawGradient)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M24 12L20 16" stroke="url(#pawGradient)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M16 22C11.5 22 8 18 8 14.5C8 12.5 10 11 12 11C13.5 11 14.5 12 16 13C17.5 12 18.5 11 20 11C22 11 24 12.5 24 14.5C24 18 20.5 22 16 22Z" fill="url(#pawGradient)"/>
+                    <circle cx="9" cy="7" r="2.5" fill="url(#pawGradient)"/>
+                    <circle cx="15" cy="4" r="2.5" fill="url(#pawGradient)"/>
+                    <circle cx="21" cy="5" r="2.5" fill="url(#pawGradient)"/>
+                    <circle cx="26" cy="9" r="2.5" fill="url(#pawGradient)"/>
+                </svg>
+                <span class="brand-text">PawSync</span>
+            </a>
+
+            <!-- Center Section: Navigation Links (Spotlight Effect) -->
+            <div class="nav-wrapper">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <!-- <li class="nav-item"><a href="#features" class="nav-link">Features</a></li> -->
+                    <li class="nav-item"><a href="#ai-health" class="nav-link">AI Health</a></li>
+                    <!-- <li class="nav-item"><a href="#nutrition" class="nav-link">Nutrition</a></li> -->
+                    <!-- <li class="nav-item"><a href="#veterinarians" class="nav-link">Veterinarians</a></li> -->
+                    <!-- <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li> -->
+                    <li class="nav-item"><a href="#review" class="nav-link">Reviews</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                </ul>
+            </div>
+
+            <!-- Right Section: CTA -->
+            <div class="navbar-actions">
+                <a href="/Frontend/auth/login/login.html" class="btn-primary">Get Started</a>
+            </div>
+
+        </div>
+    </nav>
+
+ 
+
+<section class="hero-section">
+        
+        <!-- ================= FULL-WIDTH CINEMATIC SLIDER ================= -->
+        <div class="slider-wrapper fade-in-up" id="sliderWrapper">
+            
+            <div class="slider-viewport">
+                <div class="slider-track" id="sliderTrack">
+                    
+                    <!-- SLIDE 1 -->
+                    <div class="slide active">
+                        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1600&auto=format&fit=crop');"></div>
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <div class="slide-label">STEP 01 &bull; AI HEALTH ANALYSIS</div>
+                            <h2 class="slide-title">Every Great Diagnosis Begins with Understanding.</h2>
+                            <p class="slide-desc">When your pet shows unusual symptoms, PawSync's AI helps you understand what may be happening. Describe the symptoms or upload a photo, and receive intelligent health insights, urgency detection, and guidance on the next best step within seconds.</p>
+                            <button class="btn-slide">🐾 Start AI Health Scan</button>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 2 -->
+                    <div class="slide">
+                        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1600&auto=format&fit=crop');"></div>
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <div class="slide-label">STEP 02 &bull; SMART MEDICAL RECORDS</div>
+                            <h2 class="slide-title">Every Health Record. Organized Forever.</h2>
+                            <p class="slide-desc">Keep every prescription, vaccination, laboratory report, and treatment history securely stored in one intelligent medical vault. Instantly search, summarize, and share your pet's complete healthcare history whenever it's needed.</p>
+                            <button class="btn-slide">📁 View Medical Vault</button>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 3 -->
+                    <div class="slide">
+                        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop');"></div>
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <div class="slide-label">STEP 03 &bull; EXPERT VETERINARY CARE</div>
+                            <h2 class="slide-title">Professional Care, Connected by Intelligence.</h2>
+                            <p class="slide-desc">Share AI health insights and complete medical records before your consultation, allowing veterinarians to understand your pet's condition faster and provide more informed treatment from the very beginning.</p>
+                            <button class="btn-slide">👨‍⚕️ Book a Vet Consultation</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SLIDER CONTROLS (Dots) -->
+            <div class="slider-controls">
+                <div class="dot-indicators" id="dotIndicators">
+                    <button class="dot active" aria-label="Go to slide 1"></button>
+                    <button class="dot" aria-label="Go to slide 2"></button>
+                    <button class="dot" aria-label="Go to slide 3"></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+<!-- ==========================================================================
+   PAWSYNC - PROBLEMS WE SOLVE (CLEAN PREMIUM GRID)
+   ========================================================================== -->
+<section class="pws-clean-section" id="pwsGridSection">
+    
+    <!-- Subtle Ambient Background Gradient -->
+    <div class="pws-clean-bg"></div>
+
+    <div class="pws-clean-container">
+        
+        <!-- SECTION HEADER -->
+        <header class="pws-clean-header pws-fade-up">
+            <span class="pws-eyebrow">PROBLEMS WE SOLVE</span>
+            <h2 class="pws-heading">Pet Care Shouldn't Feel This Complicated.</h2>
+            <p class="pws-desc">
+                From health concerns and medical records to vaccinations, nutrition, grooming, behavior, and veterinary care, PawSync makes everyday pet care simpler and more organized.
+            </p>
+        </header>
+
+        <!-- 2x4 PROBLEM GRID -->
+        <div class="pws-clean-grid">
+            
+            <!-- 01: HEALTH (Row 1) -->
+            <div class="pws-card pws-fade-up delay-1" style="--card-bg-1: #DCEBFF; --card-bg-2: #CBE0FF; --card-accent: #1559B7;">
+                <div class="pws-card-top">
+                    <span class="pws-num">01</span>
+                    <div class="pws-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                </div>
+                <div class="pws-card-bottom">
+                    <span class="pws-cat">HEALTH</span>
+                    <h3 class="pws-q">Is this symptom serious?</h3>
+                    <span class="pws-sol">AI Health Triage <span class="pws-arrow">&rarr;</span></span>
+                </div>
+            </div>
+
+            <!-- 02: MEDICAL RECORDS (Row 1) -->
+            <div class="pws-card pws-fade-up delay-1" style="--card-bg-1: #DDF7F0; --card-bg-2: #C7EFE4; --card-accent: #087F6B;">
+                <div class="pws-card-top">
+                    <span class="pws-num">02</span>
+                    <div class="pws-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                </div>
+                <div class="pws-card-bottom">
+                    <span class="pws-cat">MEDICAL RECORDS</span>
+                    <h3 class="pws-q">Where's that report?</h3>
+                    <span class="pws-sol">AI Medical Vault <span class="pws-arrow">&rarr;</span></span>
+                </div>
+            </div>
+
+            <!-- 03: VACCINATION (Row 1) -->
+            <div class="pws-card pws-fade-up delay-1" style="--card-bg-1: #E9E0FF; --card-bg-2: #DCD0FF; --card-accent: #6941C6;">
+                <div class="pws-card-top">
+                    <span class="pws-num">03</span>
+                    <div class="pws-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                    </div>
+                </div>
+                <div class="pws-card-bottom">
+                    <span class="pws-cat">VACCINATION</span>
+                    <h3 class="pws-q">When's the booster?</h3>
+                    <span class="pws-sol">Smart Vaccination <span class="pws-arrow">&rarr;</span></span>
+                </div>
+            </div>
+
+            <!-- 04: NUTRITION (Row 1) -->
+            <div class="pws-card pws-fade-up delay-1" style="--card-bg-1: #FFF0D2; --card-bg-2: #FFE6B6; --card-accent: #A16207;">
+                <div class="pws-card-top">
+                    <span class="pws-num">04</span>
+                    <div class="pws-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M3 12a9 9 0 0 1 18 0"/></svg>
+                    </div>
+                </div>
+                <div class="pws-card-bottom">
+                    <span class="pws-cat">NUTRITION</span>
+                    <h3 class="pws-q">Am I feeding right?</h3>
+                    <span class="pws-sol">Smart Nutrition <span class="pws-arrow">&rarr;</span></span>
+                </div>
+            </div>
+
+            <!-- 05: GROOMING (Row 2) -->
+            <div class="pws-card pws-fade-up delay-2" style="--card-bg-1: #FFE1EA; --card-bg-2: #FFD1DF; --card-accent: #BE185D;">
+                <div class="pws-card-top">
+                    <span class="pws-num">05</span>
+                    <div class="pws-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                    </div>
+                </div>
+                <div class="pws-card-bottom">
+                    <span class="pws-cat">GROOMING</span>
+                    <h3 class="pws-q">Who can I trust?</h3>
+                    <span class="pws-sol">Pet Services <span class="pws-arrow">&rarr;</span></span>
+                </div>
+            </div>
+
+            <!-- 06: BEHAVIOR (Row 2) -->
+            <div class="pws-card pws-fade-up delay-2" style="--card-bg-1: #E4EAF2; --card-bg-2: #D6DFEA; --card-accent: #475569;">
+                <div class="pws-card-top">
+                    <span class="pws-num">06</span>
+                    <div class="pws-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Z"/><path d="M14.5 9c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2Z"/><path d="M5 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Z"/><path d="M19 14c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2Z"/><path d="M12 21c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5Z"/></svg>
+                    </div>
+                </div>
+                <div class="pws-card-bottom">
+                    <span class="pws-cat">BEHAVIOR</span>
+                    <h3 class="pws-q">Why did they change?</h3>
+                    <span class="pws-sol">Behavior Insights <span class="pws-arrow">&rarr;</span></span>
+                </div>
+            </div>
+
+            <!-- 07: VETERINARY (Row 2) -->
+            <div class="pws-card pws-fade-up delay-2" style="--card-bg-1: #DCE7FF; --card-bg-2: #C8D7FF; --card-accent: #1D4ED8;">
+                <div class="pws-card-top">
+                    <span class="pws-num">07</span>
+                    <div class="pws-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+                    </div>
+                </div>
+                <div class="pws-card-bottom">
+                    <span class="pws-cat">VETERINARY</span>
+                    <h3 class="pws-q">How do I explain everything?</h3>
+                    <span class="pws-sol">Connected Vet Care <span class="pws-arrow">&rarr;</span></span>
+                </div>
+            </div>
+
+            <!-- 08: EMERGENCY (Row 2) -->
+            <div class="pws-card pws-fade-up delay-2" style="--card-bg-1: #FFE0E0; --card-bg-2: #FFD0D0; --card-accent: #B91C1C;">
+                <div class="pws-card-top">
+                    <span class="pws-num">08</span>
+                    <div class="pws-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                    </div>
+                </div>
+                <div class="pws-card-bottom">
+                    <span class="pws-cat">EMERGENCY</span>
+                    <h3 class="pws-q">Where should I go?</h3>
+                    <span class="pws-sol">Emergency Vet Locator <span class="pws-arrow">&rarr;</span></span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM LINE -->
+        <div class="pws-clean-footer pws-fade-up delay-2">
+            One place for the problems that matter most.
+        </div>
+
+    </div>
+</section>
+
+
+    
+    <!-- ================= SUPPORTED PETS SECTION ================= -->
+<section class="supported-pets" id="supportedPets">
+    <div class="sp-container">
+        
+        <!-- Section Heading -->
+        <header class="sp-header">
+            <div class="sp-label fade-in-up">SUPPORTED PETS</div>
+            <h2 class="sp-title fade-in-up delay-1">Healthcare Designed for Every Companion.</h2>
+            <p class="sp-desc fade-in-up delay-2">
+                Whether they're playful, curious, feathered, aquatic, or exotic, PawSync provides intelligent healthcare tailored to every pet's unique needs.
+            </p>
+        </header>
+
+        <!-- Pet Showcase Row -->
+        <div class="sp-row fade-in-up delay-3">
+            
+           <a href="./dog_pg.html" class="sp-item pet-link" aria-label="Explore Dog Care">
+    <div class="sp-img-wrapper">
+        <img
+            src="https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=300&auto=format&fit=crop"
+            alt="Dog"
+        >
+    </div>
+    <h3 class="sp-name">Dogs</h3>
+</a>
+
+<a href="./cat_pg.html" class="sp-item pet-link" aria-label="Explore Cat Care">
+    <div class="sp-img-wrapper">
+        <img
+            src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=300&auto=format&fit=crop"
+            alt="Cat"
+        >
+    </div>
+    <h3 class="sp-name">Cats</h3>
+</a>
+
+            <div class="sp-item">
+                <div class="sp-img-wrapper">
+                    <!-- Updated Bird Image -->
+                    <img src="https://images.unsplash.com/photo-1452570053594-1b985d6ea890?q=80&w=300&auto=format&fit=crop" alt="Bird">
+                </div>
+                <h3 class="sp-name">Birds</h3>
+            </div>
+
+            <div class="sp-item">
+                <div class="sp-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=300&auto=format&fit=crop" alt="Fish">
+                </div>
+                <h3 class="sp-name">Fish</h3>
+            </div>
+
+        <div class="sp-item">
+    <div class="sp-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=300&auto=format&fit=crop" alt="Reptile">
+    </div>
+    <h3 class="sp-name">Reptiles</h3>
+</div>
+
+            <div class="sp-item">
+                <div class="sp-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=300&auto=format&fit=crop" alt="Horse">
+                </div>
+                <h3 class="sp-name">Horses</h3>
+            </div>
+
+           <div class="sp-item">
+    <div class="sp-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=300&auto=format&fit=crop" alt="Exotic Pet">[cite: 1, 5]
+    </div>
+    <h3 class="sp-name">Exotics</h3>
+</div>
+
+        </div>
+
+        <!-- Bottom Statement -->
+        <!-- <footer class="sp-footer fade-in-up delay-4">
+            <h4 class="sp-footer-text">
+                One Intelligent Platform.<br>
+                Unlimited Care for <span class="text-gradient">Every Companion.</span>
+            </h4>
+        </footer> -->
+
+    </div>
+</section>
+
+
+
+   <section class="ps-journey-section" id="pawSyncJourney">
+    <!-- Ambient Background Effects -->
+    <div class="ps-ambient-bg">
+        <div class="ps-orb orb-1"></div>
+        <div class="ps-orb orb-2"></div>
+        <div class="ps-noise"></div>
+    </div>
+
+    <!-- Section Header -->
+    <header class="ps-header">
+        <div class="ps-glass-badge reveal-elem">⚡ HOW PAWSYNC WORKS</div>
+        <h2 class="ps-title reveal-elem delay-1">
+            One Journey.<br>
+            <span class="text-gradient">Complete Pet Healthcare.</span>
+        </h2>
+        <p class="ps-desc reveal-elem delay-2">
+            Every pet deserves proactive healthcare—from the first symptom to lifelong wellness. PawSync brings AI analysis, organized medical records, and trusted veterinary care into one seamless experience.
+        </p>
+    </header>
+
+    <!-- Main 5-Panel Grid Layout (Uniform Sizing) -->
+    <div class="ps-panels-container">
+        <!-- STEP 1 -->
+        <div class="reveal-wrapper seq-1 wave-low">
+            <div class="float-wrapper float-delay-1">
+                <div class="ps-panel">
+                    <div class="glass-reflection"></div>
+                    <div class="panel-image">
+                        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=600&auto=format&fit=crop" alt="Notice First Signs">
+                    </div>
+                    <div class="panel-content">
+                        <div class="panel-meta">
+                            <span class="step-num">01</span>
+                            <span class="step-label">OBSERVE</span>
+                        </div>
+                        <h3 class="panel-title">Notice the First Signs</h3>
+                        <p class="panel-text">Recognize unusual symptoms early and begin your pet's healthcare journey before small concerns become larger problems.</p>
+                        <a href="#" class="panel-link">Learn More <span class="arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="reveal-wrapper seq-2 wave-mid">
+            <div class="float-wrapper float-delay-2">
+                <div class="ps-panel">
+                    <div class="glass-reflection"></div>
+                    <div class="panel-image">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=600&auto=format&fit=crop" alt="AI Analysis">
+                    </div>
+                    <div class="panel-content">
+                        <div class="panel-meta">
+                            <span class="step-num">02</span>
+                            <span class="step-label">AI ANALYSIS</span>
+                        </div>
+                        <h3 class="panel-title">Intelligent Health Assessment</h3>
+                        <p class="panel-text">Receive AI-powered health insights with urgency detection, confidence scoring, and explainable recommendations.</p>
+                        <a href="#" class="panel-link">Explore AI <span class="arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="reveal-wrapper seq-3 wave-high">
+            <div class="float-wrapper float-delay-3">
+                <div class="ps-panel">
+                    <div class="glass-reflection"></div>
+                    <div class="panel-image">
+                        <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?q=80&w=800&auto=format&fit=crop" alt="Medical Vault">
+                    </div>
+                    <div class="panel-content">
+                        <div class="panel-meta">
+                            <span class="step-num">03</span>
+                            <span class="step-label">MEDICAL VAULT</span>
+                        </div>
+                        <h3 class="panel-title">Beautifully Organized</h3>
+                        <p class="panel-text">Securely store, search, summarize, and instantly share your pet's complete medical history using document management.</p>
+                        <a href="#" class="panel-link">Open Vault <span class="arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="reveal-wrapper seq-4 wave-mid">
+            <div class="float-wrapper float-delay-4">
+                <div class="ps-panel">
+                    <div class="glass-reflection"></div>
+                    <div class="panel-image">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=600&auto=format&fit=crop" alt="Veterinary Care">
+                    </div>
+                    <div class="panel-content">
+                        <div class="panel-meta">
+                            <span class="step-num">04</span>
+                            <span class="step-label">VETERINARY CARE</span>
+                        </div>
+                        <h3 class="panel-title">Connect with Trusted Experts</h3>
+                        <p class="panel-text">Share AI insights and complete medical records before every consultation for faster diagnosis and better treatment.</p>
+                        <a href="#" class="panel-link">Meet Veterinarians <span class="arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="reveal-wrapper seq-5 wave-low">
+            <div class="float-wrapper float-delay-5">
+                <div class="ps-panel">
+                    <div class="glass-reflection"></div>
+                    <div class="panel-image">
+                        <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=600&auto=format&fit=crop" alt="Wellness">
+                    </div>
+                    <div class="panel-content">
+                        <div class="panel-meta">
+                            <span class="step-num">05</span>
+                            <span class="step-label">WELLNESS</span>
+                        </div>
+                        <h3 class="panel-title">A Lifetime of Better Care</h3>
+                        <p class="panel-text">Stay connected with medication reminders, vaccination schedules, wellness tracking, and continuous healthcare insights.</p>
+                        <a href="#" class="panel-link">Begin Journey <span class="arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- ==========================================================================
+   WHY PET OWNERS TRUST PAWSYNC (Cleaned: Video Card Only)
+   ========================================================================== -->
+<section class="paw-trust-section" id="pawTrustSection">
+    
+    <!-- Ambient Background Effects -->
+    <div class="pt-ambient-bg">
+        <div class="pt-glow-orb pt-orb-blue"></div>
+        <div class="pt-glow-orb pt-orb-teal"></div>
+        <div id="ptParticles" class="pt-particles-container"></div>
+    </div>
+
+    <div class="pt-container">
+        
+        <!-- SECTION HEADER -->
+        <header class="pt-header pt-reveal">
+            <div class="pt-glass-badge">✨ WHY PET OWNERS TRUST PAWSYNC</div>
+            <h2 class="pt-title">
+                Everything Your Pet Needs.<br>
+                <span class="pt-text-gradient">One Intelligent Platform.</span>
+            </h2>
+            <p class="pt-desc">
+                PawSync combines intelligent AI, secure medical records, explainable healthcare insights, and licensed veterinary expertise into one beautifully connected platform designed to protect your pet throughout every stage of life.
+            </p>
+        </header>
+
+        <!-- MAIN EXPERIENCE - EDITORIAL LAYOUT (ONLY VIDEO CARD) -->
+        <div class="pt-editorial-wrapper">
+            
+            <!-- CENTERPIECE (Video Card) -->
+            <div class="pt-centerpiece pt-reveal pt-float-main">
+                <div class="pt-centerpiece-bg" style="background-image: url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1600&auto=format&fit=crop');"></div>
+                <div class="pt-centerpiece-overlay"></div>
+                <div class="pt-glass-reflection"></div>
+                
+                <!-- Floating Statistic Widgets -->
+                <div class="pt-stats-group">
+                    <div class="pt-stat-widget pt-float-1">
+                        <span class="pt-stat-val">98%</span>
+                        <span class="pt-stat-label">AI Confidence</span>
+                    </div>
+                    <div class="pt-stat-widget pt-float-2">
+                        <span class="pt-stat-val">24/7</span>
+                        <span class="pt-stat-label">Health Assistance</span>
+                    </div>
+                    <div class="pt-stat-widget pt-float-3">
+                        <span class="pt-stat-val">100%</span>
+                        <span class="pt-stat-label">History Connected</span>
+                    </div>
+                </div>
+
+                <!-- Lower Left Content -->
+                <div class="pt-centerpiece-info">
+                    <div class="pt-mini-label">AI HEALTHCARE ECOSYSTEM</div>
+                    <h3 class="pt-main-heading">One Platform.<br>Every Healthcare Decision.</h3>
+                    <p class="pt-main-desc">From the first symptom to lifelong wellness, PawSync connects intelligent AI, medical intelligence, and licensed veterinarians into one seamless healthcare experience.</p>
+                    <div class="pt-cta-group">
+                        <!-- <a href="#" class="pt-btn-primary">🐾 Explore PawSync</a> -->
+                        <a href="#" class="pt-btn-secondary">▶ Watch Demo</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================================================
+   SMART VACCINATION SECTION (Premium Styling & Dashed Connecting Lines)
+   ========================================================================== -->
+<section class="vac-section" id="vacSection">
+    
+    <!-- Ambient Gradients & Pattern -->
+    <div class="vac-ambient glow-sapphire"></div>
+    <div class="vac-ambient glow-teal"></div>
+    <div class="vac-pattern"></div>
+
+    <div class="vac-container">
+        
+        <!-- SECTION HEADER -->
+        <header class="vac-header vac-reveal">
+            <span class="vac-eyebrow">SMART VACCINATION</span>
+            <h2 class="vac-heading">Stay Ahead of Every Important Dose.</h2>
+            <p class="vac-desc">
+                PawSync keeps your pet's vaccination schedule organized, highlights upcoming doses, and helps you stay on top of preventive care.
+            </p>
+        </header>
+
+        <!-- MAIN VACCINATION INTERFACE -->
+        <div class="vac-dashboard vac-reveal delay-1">
+            
+            <!-- Top Profile Bar -->
+            <div class="vac-dash-top">
+                <div class="vac-profile">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop" alt="Pet Profile" class="vac-avatar">
+                    <div class="vac-profile-info">
+                        <h4>Luna</h4>
+                        <span>Golden Retriever</span>
+                        <div class="vac-status-badge"><span class="dot"></span> Up to date</div>
+                    </div>
+                </div>
+                <div class="vac-summary">
+                    <span class="vac-summary-label">VACCINATION PROFILE</span>
+                    <div class="vac-summary-stats">
+                        <span class="stat completed">3 completed</span>
+                        <span class="stat upcoming">1 upcoming</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Journey -->
+            <div class="vac-journey-wrapper">
+                
+                <!-- Main Dashed Connecting Line (Desktop: Horizontal) -->
+                <div class="vac-dashed-line"></div>
+
+                <!-- Milestones Container -->
+                <div class="vac-milestones">
+                    
+                    <!-- Milestone 1: Completed -->
+                    <div class="vac-milestone is-completed">
+                        <div class="vm-indicator-wrap">
+                            <div class="vm-indicator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+                        </div>
+                        <div class="vm-card">
+                            <span class="vm-status">COMPLETED</span>
+                            <h4 class="vm-label">DHPP</h4>
+                            <span class="vm-date">12 Jan 2026</span>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 2: Completed -->
+                    <div class="vac-milestone is-completed">
+                        <div class="vm-indicator-wrap">
+                            <div class="vm-indicator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+                        </div>
+                        <div class="vm-card">
+                            <span class="vm-status">COMPLETED</span>
+                            <h4 class="vm-label">Rabies</h4>
+                            <span class="vm-date">15 Feb 2026</span>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3: Upcoming (Focal Point) -->
+                    <div class="vac-milestone is-upcoming">
+                        <div class="vm-indicator-wrap">
+                            <div class="vm-center-glow"></div>
+                            <div class="vm-indicator"></div>
+                        </div>
+                        <div class="vm-card focal-card">
+                            <span class="vm-status">UPCOMING</span>
+                            <h4 class="vm-label">RABIES BOOSTER</h4>
+                            <span class="vm-date">18 AUG</span>
+                            <span class="vm-remaining">12 days remaining</span>
+                            <button class="vm-btn">SET REMINDER &rarr;</button>
+                            
+                            <!-- Floating Notification strictly anchored below -->
+                            <div class="vac-floating-notif">
+                                <div class="notif-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+                                <div class="notif-text">
+                                    <strong>REMINDER SET</strong>
+                                    <span>Rabies Booster &bull; 18 Aug</span>
+                                    <p>Remainder before the due date.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 4: Future -->
+                    <div class="vac-milestone is-future">
+                        <div class="vm-indicator-wrap">
+                            <div class="vm-indicator"></div>
+                        </div>
+                        <div class="vm-card">
+                            <span class="vm-status">FUTURE</span>
+                            <h4 class="vm-label">Bordetella</h4>
+                            <span class="vm-date">10 Oct 2026</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPACT BENEFITS ROW -->
+        <div class="vac-benefits vac-reveal delay-2">
+            <div class="vac-benefit-item">
+                <div class="vb-num">01</div>
+                <h4>VACCINATION TIMELINE</h4>
+                <p>See completed and upcoming doses at a glance.</p>
+            </div>
+            <div class="vac-benefit-item">
+                <div class="vb-num">02</div>
+                <h4>SMART REMINDERS</h4>
+                <p>Stay aware of important upcoming vaccinations.</p>
+            </div>
+            <div class="vac-benefit-item">
+                <div class="vb-num">03</div>
+                <h4>COMPLETE HISTORY</h4>
+                <p>Keep vaccination records organized in one place.</p>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <!-- <div class="vac-cta-wrapper vac-reveal delay-3">
+            <a href="#" class="vac-btn-primary">VIEW VACCINATION SCHEDULE &rarr;</a>
+        </div> -->
+
+    </div>
+</section>
+
+
+
+<!-- ==========================================================================
+   PAWSYNC SECTION 1: SMART NUTRITION (Editorial Split Layout)
+   ========================================================================== -->
+<section class="pws-nutrition-section" id="pwsNutrition">
+    
+    <!-- Warm Ambient Background -->
+    <div class="nutri-ambient glow-teal"></div>
+    <div class="nutri-ambient glow-blue"></div>
+    <div class="nutri-ambient glow-amber"></div>
+
+    <div class="nutri-container">
+        
+        <div class="nutri-split-layout">
+            
+            <!-- LEFT: Editorial Visual -->
+            <div class="nutri-visual-col nutri-reveal">
+                <div class="nutri-image-wrapper">
+                    <!-- High-quality pet & food image -->
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=800&auto=format&fit=crop" alt="Healthy dog nutrition" class="nutri-img">
+                    
+                    <!-- Floating Badge -->
+                    <div class="nutri-floating-badge">
+                        <span class="badge-label">DAILY NUTRITION</span>
+                        <div class="badge-content">
+                            <h4>Balanced plan</h4>
+                            <span class="badge-status"><span class="dot"></span> On track</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Content & Data Profile -->
+            <div class="nutri-content-col nutri-reveal delay-1">
+                
+                <header class="nutri-header">
+                    <span class="nutri-eyebrow">SMART NUTRITION</span>
+                    <h2 class="nutri-heading">Know What Your Pet Needs.</h2>
+                    <p class="nutri-desc">Make everyday nutrition decisions with a clearer view of your pet's needs, habits, and wellness goals.</p>
+                </header>
+
+                <!-- Nutrition Data Profile -->
+                <div class="nutri-profile-panel">
+                    <div class="profile-header">
+                        <div class="profile-avatar">L</div>
+                        <div class="profile-info">
+                            <h4>LUNA'S NUTRITION</h4>
+                            <span>Golden Retriever &middot; 3 years</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Indicators -->
+                    <div class="nutri-indicators">
+                        <div class="indicator-item">
+                            <div class="ind-top">
+                                <span class="ind-label">DAILY CALORIES</span>
+                                <span class="ind-val">1,240 kcal</span>
+                            </div>
+                            <div class="ind-track"><div class="ind-progress fill-amber" data-target="75%"></div></div>
+                        </div>
+                        <div class="indicator-item">
+                            <div class="ind-top">
+                                <span class="ind-label">PROTEIN</span>
+                                <span class="ind-val">Balanced</span>
+                            </div>
+                            <div class="ind-track"><div class="ind-progress fill-teal" data-target="90%"></div></div>
+                        </div>
+                        <div class="indicator-item">
+                            <div class="ind-top">
+                                <span class="ind-label">HYDRATION</span>
+                                <span class="ind-val">Good</span>
+                            </div>
+                            <div class="ind-track"><div class="ind-progress fill-blue" data-target="85%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Meal Plan -->
+                <div class="nutri-meal-plan">
+                    <h4 class="meal-plan-title">TODAY'S PLAN</h4>
+                    <div class="meal-list">
+                        <!-- Breakfast -->
+                        <div class="meal-item is-completed">
+                            <div class="meal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M3 12a9 9 0 0 1 18 0"/></svg></div>
+                            <div class="meal-info">
+                                <h5>Breakfast</h5>
+                                <span>Balanced meal</span>
+                            </div>
+                            <div class="meal-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Completed</div>
+                        </div>
+                        <!-- Lunch -->
+                        <div class="meal-item is-upcoming">
+                            <div class="meal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M3 12a9 9 0 0 1 18 0"/></svg></div>
+                            <div class="meal-info">
+                                <h5>Lunch</h5>
+                                <span>Nutrition plan</span>
+                            </div>
+                            <div class="meal-status status-text">Upcoming</div>
+                        </div>
+                        <!-- Dinner -->
+                        <div class="meal-item">
+                            <div class="meal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M3 12a9 9 0 0 1 18 0"/></svg></div>
+                            <div class="meal-info">
+                                <h5>Dinner</h5>
+                                <span>Balanced meal</span>
+                            </div>
+                            <div class="meal-status status-time">7:30 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <a href="#" class="pws-btn btn-primary nutri-reveal delay-2">EXPLORE NUTRITION &rarr;</a> -->
+                
+            </div>
+        </div>
+
+        <!-- Bottom Benefits Strip -->
+        <div class="nutri-benefits-strip nutri-reveal delay-3">
+            <div class="nb-item">
+                <div class="nb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></div>
+                <div class="nb-text">
+                    <h4>Personalized Guidance</h4>
+                    <p>Better understand your pet's everyday nutrition needs.</p>
+                </div>
+            </div>
+            <div class="nb-item">
+                <div class="nb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
+                <div class="nb-text">
+                    <h4>Meal Planning</h4>
+                    <p>Keep daily feeding organized.</p>
+                </div>
+            </div>
+            <div class="nb-item">
+                <div class="nb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                <div class="nb-text">
+                    <h4>Wellness Tracking</h4>
+                    <p>Build healthier routines over time.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================================================
+   PAWSYNC SECTION 2: EVERYDAY GROOMING (Asymmetric Interface Layout)
+   ========================================================================== -->
+<section class="pws-grooming-section" id="pwsGrooming">
+    
+    <!-- Lavender/Pink Ambient Background -->
+    <div class="groom-ambient glow-lavender"></div>
+    <div class="groom-ambient glow-pink"></div>
+    <div class="groom-ambient glow-blue"></div>
+
+    <div class="groom-container">
+        
+        <div class="groom-asymmetric-layout">
+            
+            <!-- LEFT: Service Discovery Interface -->
+            <div class="groom-interface-col groom-reveal">
+                
+                <div class="groom-panel">
+                    <header class="gp-header">
+                        <h3>GROOMING SERVICES</h3>
+                        <span>For Luna</span>
+                    </header>
+
+                    <div class="gp-services-list">
+                        
+                        <!-- Service 1 -->
+                        <div class="gs-item">
+                            <div class="gs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                            <div class="gs-info">
+                                <h4>Bath &amp; Hygiene</h4>
+                                <p>Clean, fresh, comfortable</p>
+                            </div>
+                            <div class="gs-arrow">&rarr;</div>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="gs-item">
+                            <div class="gs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg></div>
+                            <div class="gs-info">
+                                <h4>Hair &amp; Coat</h4>
+                                <p>Brushing and trimming</p>
+                            </div>
+                            <div class="gs-arrow">&rarr;</div>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="gs-item">
+                            <div class="gs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M3 12a9 9 0 0 1 18 0"/></svg></div>
+                            <div class="gs-info">
+                                <h4>Nail Care</h4>
+                                <p>Safe and gentle filing</p>
+                            </div>
+                            <div class="gs-arrow">&rarr;</div>
+                        </div>
+
+                        <!-- Service 4 -->
+                        <div class="gs-item">
+                            <div class="gs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                            <div class="gs-info">
+                                <h4>Ear &amp; Dental Care</h4>
+                                <p>Complete wellness check</p>
+                            </div>
+                            <div class="gs-arrow">&rarr;</div>
+                        </div>
+
+                    </div>
+
+                    <!-- Featured Service Panel -->
+                    <div class="gp-featured">
+                        <span class="feat-label">RECOMMENDED CARE</span>
+                        <div class="feat-content">
+                            <h4>Full Grooming Session</h4>
+                            <div class="feat-tags">
+                                <span>Bath</span><span>Coat care</span><span>Nail trimming</span><span>Ear cleaning</span>
+                            </div>
+                        </div>
+                        <a href="#" class="feat-btn">VIEW SERVICE &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT: Editorial Content & Image -->
+            <div class="groom-hero-col groom-reveal delay-1">
+                
+                <header class="groom-header">
+                    <span class="groom-eyebrow">EVERYDAY CARE</span>
+                    <h2 class="groom-heading">Because Looking Good Is Part of Feeling Good.</h2>
+                    <p class="groom-desc">Make grooming easier to manage and discover the care your pet needs to stay comfortable, clean, and healthy.</p>
+                    <a href="#" class="pws-btn btn-outline">EXPLORE GROOMING &rarr;</a>
+                </header>
+
+                <div class="groom-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800&auto=format&fit=crop" alt="Freshly groomed pet" class="groom-img">
+                    <div class="groom-badge">
+                        <div class="gb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path></svg></div>
+                        <div class="gb-text">
+                            <strong>GROOMING</strong>
+                            <span>Care made easier.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Bottom Grooming Benefits Strip -->
+        <div class="groom-benefits-strip groom-reveal delay-2">
+            <div class="gb-item">
+                <strong>Coat Care</strong>
+                <span>Maintain a healthy-looking coat.</span>
+            </div>
+            <div class="gb-item">
+                <strong>Hygiene</strong>
+                <span>Keep everyday care organized.</span>
+            </div>
+            <div class="gb-item">
+                <strong>Comfort</strong>
+                <span>Support your pet's overall comfort.</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- ==========================================================================
+   PAWSYNC - PREMIUM TESTIMONIAL SECTION
+   ========================================================================== -->
+<section class="paw-testimonials-section" id="pawTestimonials">
+    
+    <!-- Ambient Background Effects -->
+    <div class="testi-ambient-bg">
+        <div class="testi-orb testi-orb-center"></div>
+        <div class="testi-orb testi-orb-left"></div>
+        <div class="testi-orb testi-orb-right"></div>
+    </div>
+
+    <div class="testi-container">
+        
+        <!-- SECTION HEADER -->
+        <header class="testi-header">
+            <div class="testi-glass-badge">💙 TRUSTED WORLDWIDE</div>
+            <h2 class="testi-title">
+                Loved by Pet Owners.<br>
+                Recommended by <span class="testi-text-gradient">Veterinary Professionals.</span>
+            </h2>
+            <p class="testi-desc">
+                Thousands of pet owners trust PawSync to help protect their companions, while veterinary professionals value the intelligent medical insights that make consultations faster, more organized, and more effective.
+            </p>
+        </header>
+
+        <!-- CAROUSEL EXPERIENCE -->
+        <div class="testi-carousel-wrapper" id="testiCarouselWrapper">
+            <div class="testi-track" id="testiTrack">
+                
+                <!-- CARD 1: Pet Owner -->
+                <div class="testi-card-wrapper">
+                    <div class="testi-card-inner">
+                        <div class="testi-glass-reflection"></div>
+                        <div class="testi-card-header">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Sarah Jenkins" class="testi-avatar">
+                            <div class="testi-meta">
+                                <h4 class="testi-name">Sarah Jenkins</h4>
+                                <span class="testi-role-badge">🐾 Pet Owner</span>
+                            </div>
+                        </div>
+                        <div class="testi-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-val">5.0</span>
+                        </div>
+                        <p class="testi-review">
+                            "I never imagined an AI platform could organize my Labrador's medical history so effortlessly. The AI Health Scan gave me confidence before I even visited our veterinarian."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 2: Vet -->
+                <div class="testi-card-wrapper">
+                    <div class="testi-card-inner">
+                        <div class="testi-glass-reflection"></div>
+                        <div class="testi-card-header">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=200&auto=format&fit=crop" alt="Dr. Marcus Thorne" class="testi-avatar">
+                            <div class="testi-meta">
+                                <h4 class="testi-name">Dr. Marcus Thorne</h4>
+                                <span class="testi-role-badge">👨‍⚕️ Veterinary Doctor</span>
+                            </div>
+                        </div>
+                        <div class="testi-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-val">5.0</span>
+                        </div>
+                        <p class="testi-review">
+                            "The ability to review AI-generated health insights before consultations helps me understand each case faster and provide more informed treatment right from the start."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 3: Pet Owner -->
+                <div class="testi-card-wrapper">
+                    <div class="testi-card-inner">
+                        <div class="testi-glass-reflection"></div>
+                        <div class="testi-card-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="David Chen" class="testi-avatar">
+                            <div class="testi-meta">
+                                <h4 class="testi-name">David Chen</h4>
+                                <span class="testi-role-badge">🐾 Pet Owner</span>
+                            </div>
+                        </div>
+                        <div class="testi-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-val">5.0</span>
+                        </div>
+                        <p class="testi-review">
+                            "PawSync transformed the way I manage vaccinations, prescriptions, and medical reports. Everything is beautifully organized and instantly accessible right on my phone."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 4: Vet -->
+               <div class="testi-card-wrapper">
+    <div class="testi-card-inner">
+        <div class="testi-glass-reflection"></div>
+        <div class="testi-card-header">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="Dr. Elena Rostova" class="testi-avatar">
+            <div class="testi-meta">
+                <h4 class="testi-name">Dr. Elena Rostova</h4>
+                <span class="testi-role-badge badge-vet">👨‍⚕️ Veterinary Doctor</span>
+            </div>
+        </div>
+        <div class="testi-rating">
+            <div class="stars">★★★★★</div>
+            <span class="rating-val">5.0</span>
+        </div>
+        <p class="testi-review">
+            "An incredibly elegant solution. Having a complete, well-organized digital medical vault shared by the owner saves us critical time during emergency visits."
+        </p>
+    </div>
+</div>
+
+                <!-- CARD 5: Pet Owner -->
+                <div class="testi-card-wrapper">
+                    <div class="testi-card-inner">
+                        <div class="testi-glass-reflection"></div>
+                        <div class="testi-card-header">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="Maya Williams" class="testi-avatar">
+                            <div class="testi-meta">
+                                <h4 class="testi-name">Maya Williams</h4>
+                                <span class="testi-role-badge">🐾 Pet Owner</span>
+                            </div>
+                        </div>
+                        <div class="testi-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-val">5.0</span>
+                        </div>
+                        <p class="testi-review">
+                            "The symptom checker detected an issue with my cat's eating habits before it became a severe problem. I truly feel like I have a veterinary assistant with me 24/7."
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BOTTOM STATEMENT -->
+        <footer class="testi-bottom-statement">
+            <h2 class="bs-title">Join Thousands of Happy Pet Families.</h2>
+            <p class="bs-desc">Experience intelligent pet healthcare trusted by pet owners and veterinary professionals who believe every companion deserves the very best care.</p>
+            <div class="bs-actions">
+                <a href="#" class="bs-btn-primary">🐾 Start Your PawSync Journey</a>
+                <a href="#" class="bs-btn-secondary">▶ Read More Stories</a>
+            </div>
+        </footer>
+
+    </div>
+</section>
+
+
+<!-- ==========================================================================
+   PAWSYNC - ULTRA PREMIUM FOOTER 
+   ========================================================================== -->
+<footer class="paw-footer" id="pawFooter">
+    
+    <!-- Animated Top Border -->
+    <div class="footer-top-border"></div>
+
+    <!-- Ambient Background Effects -->
+    <div class="footer-ambient-bg">
+        <div class="footer-glow-orb logo-glow"></div>
+        <div id="footerParticles" class="footer-particles-container"></div>
+    </div>
+
+    <div class="footer-container">
+        
+        <!-- MAIN THREE COLUMN LAYOUT -->
+        <div class="footer-main-layout">
+            
+            <!-- COLUMN 1 (LEFT): Brand -->
+            <div class="footer-col col-left footer-reveal reveal-delay-1">
+                <a href="./index.html" class="footer-brand">
+                    <svg class="footer-logo" width="54" height="54" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="footerPawGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#5DAEFF" />
+                                <stop offset="100%" stop-color="#0F52BA" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M16 28V20" stroke="url(#footerPawGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M8 12L12 16" stroke="url(#footerPawGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M24 12L20 16" stroke="url(#footerPawGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M16 22C11.5 22 8 18 8 14.5C8 12.5 10 11 12 11C13.5 11 14.5 12 16 13C17.5 12 18.5 11 20 11C22 11 24 12.5 24 14.5C24 18 20.5 22 16 22Z" fill="url(#footerPawGrad)"/>
+                        <circle cx="9" cy="7" r="2.5" fill="url(#footerPawGrad)"/>
+                        <circle cx="15" cy="4" r="2.5" fill="url(#footerPawGrad)"/>
+                        <circle cx="21" cy="5" r="2.5" fill="url(#footerPawGrad)"/>
+                        <circle cx="26" cy="9" r="2.5" fill="url(#footerPawGrad)"/>
+                    </svg>
+                    <span class="footer-brand-text">PAWSYNC</span>
+                </a>
+                
+                <div class="footer-col-content">
+                    <p class="footer-desc">
+                        PawSync is an AI-powered pet healthcare platform that helps pet owners detect symptoms, organize medical records, connect with licensed veterinarians, and provide lifelong intelligent care for every companion.
+                    </p>
+                    <div class="spacer"></div>
+                </div>
+            </div>
+
+            <!-- COLUMN 2 (CENTER): Quick Links -->
+            <div class="footer-col col-center footer-reveal reveal-delay-2">
+                <h3 class="footer-heading">Quick Links</h3>
+                
+                <div class="footer-col-content">
+                    <ul class="footer-links-list">
+                        <li class="footer-link-item"><a href="#">Home</a></li>
+                        <li class="footer-link-item"><a href="#">AI Health</a></li>
+                        <li class="footer-link-item"><a href="#">Reviews</a></li>
+                        <li class="footer-link-item"><a href="#">About</a></li>
+                        <!-- <li class="footer-link-item"><a href="#">Features</a></li> -->
+                        <!-- <li class="footer-link-item"><a href="#">Nutrition</a></li>
+                        <li class="footer-link-item"><a href="#">Veterinarians</a></li>
+                        <li class="footer-link-item"><a href="#">Pricing</a></li> -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- COLUMN 3 (RIGHT): Contact Us -->
+            <div class="footer-col col-right footer-reveal reveal-delay-3">
+                <h3 class="footer-heading">Contact Us</h3>
+                
+                <div class="footer-col-content">
+                    <div class="contact-cards-wrapper">
+                        
+                        <a href="mailto:support@pawsync.com" class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div class="contact-info">
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">support@pawsync.com</span>
+                            </div>
+                        </a>
+
+                        <a href="tel:+919876543210" class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div class="contact-info">
+                                <span class="contact-label">Phone</span>
+                                <span class="contact-value">+91 98765 43210</span>
+                            </div>
+                        </a>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div class="contact-info">
+                                <span class="contact-label">Address</span>
+                                <span class="contact-value">Pune, Maharashtra, India</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- LIGHT HORIZONTAL LINE & COPYRIGHT -->
+        <!-- BOTTOM DIVIDER -->
+        <div class="footer-bottom-divider"></div>
+
+        <!-- BOTTOM BAR -->
+        <div class="footer-bottom-bar">
+            <div class="bottom-center">
+                &copy; 2026 Pawsync. All rights reserved.
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>

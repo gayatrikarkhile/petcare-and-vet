@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Pets | PawSync</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- SHARED STYLES -->
+<link rel="stylesheet" href="../shared/css/variables.css">
+<link rel="stylesheet" href="../shared/css/common.css">
+<link rel="stylesheet" href="../shared/css/responsive.css">
+
+<!-- MY PETS PAGE STYLES -->
+<link rel="stylesheet" href="pets.css">
+</head>
+<body data-shared-path="../shared">
+
+ <!-- SHARED NAVBAR -->
+    <div id="navbar-container"></div>
+
+
+<div class="page-layout">
+
+
+ <!-- SHARED SIDEBAR -->
+        <div id="sidebar-container"></div>
+    
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <section class="page-header">
+
+            <div class="header-text">
+
+                <div class="eyebrow">
+                    YOUR PET FAMILY
+                </div>
+
+                <h1>
+                    My Pets 🐾
+                </h1>
+
+                <p>
+                    Keep every pet's profile, health information and
+                    care journey organized in one place.
+                </p>
+
+            </div>
+
+
+            <a
+    href="../addPetForm/addPetForm.html"
+    class="add-pet-button"
+>
+    <span>＋</span>
+    Add New Pet
+</a>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-icon green">
+                    🐾
+                </div>
+
+                <div>
+
+                    <div
+                        class="summary-number"
+                        id="petCount"
+                    >
+                        3
+                    </div>
+
+                    <div class="summary-label">
+                        Pets Registered
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon pink">
+                    ♥
+                </div>
+
+                <div>
+
+                    <div class="summary-number">
+                        80%
+                    </div>
+
+                    <div class="summary-label">
+                        Profiles Complete
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon yellow">
+                    📅
+                </div>
+
+                <div>
+
+                    <div class="summary-number">
+                        2
+                    </div>
+
+                    <div class="summary-label">
+                        Upcoming Appointments
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <section class="controls">
+
+            <div class="search-container">
+
+                <span class="search-icon">
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    id="petSearch"
+                    placeholder="Search pets..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <select
+                id="petTypeFilter"
+                class="pet-filter"
+            >
+
+                <option value="all">
+                    All Pets
+                </option>
+
+                <option value="Dog">
+                    Dogs
+                </option>
+
+                <option value="Cat">
+                    Cats
+                </option>
+
+                <option value="Bird">
+                    Birds
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- PETS -->
+
+        <section class="pets-section">
+
+            <div class="section-title-row">
+
+                <h2>
+                    Your Companions
+                </h2>
+
+                <p>
+                    Select a pet to view their complete profile.
+                </p>
+
+            </div>
+
+
+            <div
+                class="pets-grid"
+                id="petsGrid"
+            ></div>
+
+
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
+
+                <div class="empty-icon">
+                    🐶
+                </div>
+
+                <h3>
+                    No pets found
+                </h3>
+
+                <p>
+                    Try another search or add a new pet.
+                </p>
+
+                <button
+                    class="add-pet-button"
+                    id="emptyAddPetButton"
+                    type="button"
+                >
+                    ＋ Add New Pet
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ADD PET MODAL -->
+
+<div
+    class="modal-overlay"
+    id="addPetModal"
+>
+
+    <div class="add-pet-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Add New Pet
+                </h2>
+
+                <p>
+                    Add your pet's basic information.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeAddPetModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="addPetForm">
+
+
+            <div class="photo-upload-area">
+
+                <div
+                    class="photo-preview"
+                    id="petPhotoPreview"
+                >
+                    🐾
+                </div>
+
+                <div class="photo-upload-content">
+
+                    <h3>
+                        Pet Photo
+                    </h3>
+
+                    <p>
+                        Add a photo of your pet.
+                    </p>
+
+                    <label
+                        for="petPhotoInput"
+                        class="choose-photo-button"
+                    >
+                        📷 Choose Photo
+                    </label>
+
+                    <input
+                        type="file"
+                        id="petPhotoInput"
+                        accept="image/jpeg,image/png,image/webp"
+                        hidden
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group full-width">
+
+                    <label for="petName">
+                        Pet Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="petName"
+                        placeholder="e.g. Bruno"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="petType">
+                        Pet Type
+                    </label>
+
+                    <select
+                        id="petType"
+                        required
+                    >
+
+                        <option value="">
+                            Select type
+                        </option>
+
+                        <option value="Dog">
+                            Dog
+                        </option>
+
+                        <option value="Cat">
+                            Cat
+                        </option>
+
+                        <option value="Bird">
+                            Bird
+                        </option>
+
+                        <option value="Rabbit">
+                            Rabbit
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="petBreed">
+                        Breed
+                    </label>
+
+                    <input
+                        type="text"
+                        id="petBreed"
+                        placeholder="e.g. Labrador Retriever"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="petAge">
+                        Age
+                    </label>
+
+                    <input
+                        type="text"
+                        id="petAge"
+                        placeholder="e.g. 2 Years"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="petGender">
+                        Gender
+                    </label>
+
+                    <select
+                        id="petGender"
+                        required
+                    >
+
+                        <option value="">
+                            Select gender
+                        </option>
+
+                        <option value="Male">
+                            Male
+                        </option>
+
+                        <option value="Female">
+                            Female
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="petWeight">
+                        Weight
+                    </label>
+
+                    <input
+                        type="text"
+                        id="petWeight"
+                        placeholder="e.g. 20 kg"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="petColor">
+                        Color
+                    </label>
+
+                    <input
+                        type="text"
+                        id="petColor"
+                        placeholder="e.g. Golden"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelAddPet"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-pet-button"
+                >
+                    Add Pet
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+    <script src="../shared/js/shared.js"></script>
+
+<script src="pets.js"></script>
+
+
+</body>
+</html>

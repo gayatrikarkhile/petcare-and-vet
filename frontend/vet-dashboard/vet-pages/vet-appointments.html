@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Appointments | VetCare</title><link rel="stylesheet" href="../vet-assets/vet-style.css"></head>
+<body data-vetpage="appointments">
+<header class="vet-topbar" id="vet-topbar"></header>
+<aside class="vet-sidebar" id="vet-sidebar"></aside>
+<main class="vet-main">
+<div class="vet-page-head"><div><div class="vet-eyebrow">Schedule</div><h1>Appointments</h1><p class="vet-subtitle">Manage today's visits and upcoming consultations.</p></div><button class="vet-primary" onclick="alert('New appointment form can be connected here.')">+ New Appointment</button></div>
+<section class="vet-card"><div class="vet-card-title"><h2>Today's Schedule</h2><span>8 appointments</span></div><div id="list"></div></section>
+<script>document.addEventListener("DOMContentLoaded",()=>document.getElementById("list").innerHTML=vetAppointmentRows());</script>
+</main>
+<script src="../vet-assets/vet-app.js"></script></body></html>

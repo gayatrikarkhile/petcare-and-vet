@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Nutrition | PawSync</title>
+
+    <!-- Google Font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Shared CSS -->
+    <link
+        rel="stylesheet"
+        href="../shared/css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/responsive.css"
+    >
+
+
+    <!-- Nutrition CSS -->
+    <link
+        rel="stylesheet"
+        href="nutrition.css"
+    >
+
+</head>
+
+
+<body data-shared-path="../shared">
+
+
+    <!-- =====================================================
+         SHARED NAVBAR
+         ===================================================== -->
+
+    <div id="navbar-container"></div>
+
+
+
+    <!-- =====================================================
+         PAGE LAYOUT
+         ===================================================== -->
+
+    <div class="nutrition-layout">
+
+
+        <!-- =================================================
+             SHARED SIDEBAR
+             ================================================= -->
+
+        <div id="sidebar-container"></div>
+
+
+
+        <!-- =================================================
+             MAIN CONTENT
+             ================================================= -->
+
+        <main class="nutrition-main">
+
+
+            <!-- =================================================
+                 PAGE HEADER
+                 ================================================= -->
+
+            <section class="nutrition-header">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        PET WELLNESS
+                    </span>
+
+                    <h1>
+                        Nutrition
+                    </h1>
+
+                    <p>
+                        Track meals, calories, hydration and your pet's daily diet.
+                    </p>
+
+                </div>
+
+
+                <!-- Selected Pet -->
+
+                <div class="selected-pet">
+
+                    <div class="selected-pet-icon">
+                        🐾
+                    </div>
+
+                    <div>
+
+                        <span>
+                            SELECTED PET
+                        </span>
+
+                        <strong id="selectedPetName">
+                            Bruno
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DIET PROFILE
+                 ================================================= -->
+
+            <section class="nutrition-card diet-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Current Diet Profile
+                        </h2>
+
+                        <p id="dietPetName">
+                            Bruno's active nutrition plan
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        id="editDietBtn"
+                    >
+                        Edit Diet
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="diet-grid"
+                    id="dietGrid"
+                >
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 TWO COLUMN SECTION
+                 ================================================= -->
+
+            <section class="nutrition-two-column">
+
+
+                <!-- =============================================
+                     FEEDING LOG
+                     ============================================= -->
+
+                <div class="nutrition-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Today's Feeding Log
+                            </h2>
+
+                            <p>
+                                Meals recorded for today
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="btn-outline"
+                            id="logMealBtn"
+                        >
+                            + Log Meal
+                        </button>
+
+                    </div>
+
+
+                    <div class="feeding-list">
+
+                        <ul
+                            id="feedLogList"
+                            class="clean-list"
+                        >
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     CALORIES
+                     ============================================= -->
+
+                <div class="nutrition-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Today's Calories
+                            </h2>
+
+                            <p>
+                                Consumed vs daily target
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="calorie-content">
+
+
+                        <!-- Ring -->
+
+                        <div class="calorie-ring">
+
+                            <svg
+                                viewBox="0 0 160 160"
+                            >
+
+                                <circle
+                                    class="ring-bg"
+                                    cx="80"
+                                    cy="80"
+                                    r="68"
+                                ></circle>
+
+                                <circle
+                                    id="calorieRingProgress"
+                                    class="ring-progress"
+                                    cx="80"
+                                    cy="80"
+                                    r="68"
+                                ></circle>
+
+                            </svg>
+
+
+                            <div class="ring-text">
+
+                                <strong
+                                    id="calorieConsumedText"
+                                >
+                                    0
+                                </strong>
+
+                                <span>
+                                    /
+                                    <span id="calorieTargetText">
+                                        0
+                                    </span>
+                                    kcal
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Stats -->
+
+                        <div class="calorie-stats">
+
+                            <div>
+
+                                <span>
+                                    CONSUMED
+                                </span>
+
+                                <strong id="statConsumed">
+                                    0 kcal
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    REMAINING
+                                </span>
+
+                                <strong id="statRemaining">
+                                    0 kcal
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    TARGET
+                                </span>
+
+                                <strong id="statTarget">
+                                    0 kcal
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Breakdown -->
+
+                        <div
+                            class="meal-breakdown"
+                            id="mealBreakdown"
+                        >
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 HYDRATION + NUTRIENTS
+                 ================================================= -->
+
+            <section class="nutrition-two-column">
+
+
+                <!-- Hydration -->
+
+                <div class="nutrition-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Hydration
+                            </h2>
+
+                            <p>
+                                Daily water intake
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="btn-outline"
+                            id="logWaterBtn"
+                        >
+                            + Log Water
+                        </button>
+
+                    </div>
+
+
+                    <div class="hydration-content">
+
+                        <div class="hydration-number">
+
+                            <strong id="hydrationIntake">
+                                0.00 L
+                            </strong>
+
+                            <span>
+                                / <span id="hydrationTarget">0.00 L</span>
+                            </span>
+
+                        </div>
+
+
+                        <div class="hydration-track">
+
+                            <div
+                                id="hydrationBarFill"
+                                class="hydration-fill"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="hydration-bottom">
+
+                            <span>
+                                Daily goal
+                            </span>
+
+                            <strong id="hydrationPercent">
+                                0%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Nutrients -->
+
+                <div class="nutrition-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Nutrient Progress
+                            </h2>
+
+                            <p>
+                                Today's estimated intake
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="nutrient-list"
+                        id="nutrientList"
+                    >
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FEEDING SCHEDULE + FOOD LIBRARY
+                 ================================================= -->
+
+            <section class="nutrition-two-column">
+
+
+                <!-- Feeding Schedule -->
+
+                <div class="nutrition-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Feeding Schedule
+                            </h2>
+
+                            <p>
+                                Bruno's daily meal plan
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="btn-outline"
+                            id="addScheduleBtn"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+
+                    <ul
+                        class="schedule-list"
+                        id="scheduleTimeline"
+                    >
+                    </ul>
+
+                </div>
+
+
+
+                <!-- Food Library -->
+
+                <div class="nutrition-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Food Library
+                            </h2>
+
+                            <p>
+                                Saved food items
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="btn-outline"
+                            id="addFoodBtn"
+                        >
+                            + Add Food
+                        </button>
+
+                    </div>
+
+
+                    <ul
+                        class="food-list"
+                        id="foodList"
+                    >
+                    </ul>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 NUTRITION TRENDS
+                 ================================================= -->
+
+            <section class="nutrition-card trend-card">
+
+                <div class="card-header trend-header">
+
+                    <div>
+
+                        <h2>
+                            Nutrition Trends
+                        </h2>
+
+                        <p>
+                            Calories, water and nutrition over time
+                        </p>
+
+                    </div>
+
+
+                    <div class="range-buttons">
+
+                        <button
+                            type="button"
+                            class="range-btn is-active"
+                            data-range="7"
+                        >
+                            7 Days
+                        </button>
+
+                        <button
+                            type="button"
+                            class="range-btn"
+                            data-range="30"
+                        >
+                            30 Days
+                        </button>
+
+                        <button
+                            type="button"
+                            class="range-btn"
+                            data-range="90"
+                        >
+                            3 Months
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trend-legend" id="trendLegend"></div>
+
+
+                <div class="trend-chart-wrapper">
+
+                    <canvas
+                        id="trendChart"
+                    ></canvas>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 TREATS + SENSITIVITIES
+                 ================================================= -->
+
+            <section class="nutrition-two-column">
+
+
+                <!-- Treats -->
+
+                <div class="nutrition-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Today's Treats
+                            </h2>
+
+                            <p>
+                                Extras outside scheduled meals
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="btn-outline"
+                            id="logTreatBtn"
+                        >
+                            + Log Treat
+                        </button>
+
+                    </div>
+
+
+                    <ul
+                        class="treat-list"
+                        id="treatList"
+                    >
+                    </ul>
+
+
+                    <div class="small-total">
+
+                        Total:
+                        <strong id="treatTotal">
+                            0 kcal
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Sensitivities -->
+
+                <div class="nutrition-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Food Allergies & Sensitivities
+                            </h2>
+
+                            <p>
+                                Tracking only
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="btn-outline"
+                            id="addSensitivityBtn"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+
+                    <ul
+                        class="sensitivity-list"
+                        id="sensitivityList"
+                    >
+                    </ul>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 STREAK
+                 ================================================= -->
+
+            <section class="nutrition-card streak-card">
+
+                <div class="streak-icon">
+                    🔥
+                </div>
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        NUTRITION STREAK
+                    </span>
+
+                    <h2>
+                        <span id="streakNumber">
+                            0
+                        </span>
+                        days
+                    </h2>
+
+                    <p id="streakCaption">
+                        Keep completing scheduled meals.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         EDIT DIET MODAL
+         ===================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalEditDiet"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2>
+                    Edit Diet
+                </h2>
+
+                <button
+                    type="button"
+                    data-close-modal="modalEditDiet"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formEditDiet">
+
+                <div class="form-grid">
+
+                    <label>
+                        Diet Type
+                        <input
+                            name="dietType"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Primary Food
+                        <input
+                            name="primaryFood"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Meals Per Day
+                        <input
+                            type="number"
+                            min="1"
+                            name="mealsPerDay"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Daily Calories
+                        <input
+                            type="number"
+                            min="0"
+                            name="calorieTarget"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Restrictions
+                        <input
+                            name="restrictions"
+                        >
+                    </label>
+
+
+                    <label>
+                        Allergies
+                        <input
+                            name="allergies"
+                        >
+                    </label>
+
+
+                    <label class="full-width">
+                        Nutrition Goal
+                        <input
+                            name="goal"
+                        >
+                    </label>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        data-close-modal="modalEditDiet"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Save Diet
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         LOG MEAL MODAL
+         ===================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalLogMeal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2>
+                    Log Meal
+                </h2>
+
+                <button
+                    type="button"
+                    data-close-modal="modalLogMeal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formLogMeal">
+
+                <div class="form-grid">
+
+                    <label>
+                        Meal
+                        <select name="mealType" required>
+                            <option value="">Select</option>
+                            <option>Breakfast</option>
+                            <option>Lunch</option>
+                            <option>Dinner</option>
+                            <option>Snack</option>
+                        </select>
+                    </label>
+
+
+                    <label>
+                        Food
+                        <input
+                            name="foodName"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Time
+                        <input
+                            type="time"
+                            name="time"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Quantity
+                        <input
+                            type="number"
+                            name="quantity"
+                            min="0"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Calories
+                        <input
+                            type="number"
+                            name="calories"
+                            min="0"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Status
+                        <select name="status">
+                            <option>Completed</option>
+                            <option>Upcoming</option>
+                        </select>
+                    </label>
+
+
+                    <label class="full-width">
+                        Notes
+                        <textarea name="notes"></textarea>
+                    </label>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        data-close-modal="modalLogMeal"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Save Meal
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         LOG WATER MODAL
+         ===================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalLogWater"
+    >
+
+        <div class="modal-box small-modal">
+
+            <div class="modal-header">
+
+                <h2>
+                    Log Water
+                </h2>
+
+                <button
+                    type="button"
+                    data-close-modal="modalLogWater"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formLogWater">
+
+                <label>
+                    Water Amount (L)
+
+                    <input
+                        type="number"
+                        name="amount"
+                        min="0"
+                        step="0.05"
+                        required
+                    >
+
+                </label>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        data-close-modal="modalLogWater"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Add Water
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ADD FOOD MODAL
+         ===================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalAddFood"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add Food
+                </h2>
+
+                <button
+                    type="button"
+                    data-close-modal="modalAddFood"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formAddFood">
+
+                <div class="form-grid">
+
+                    <label>
+                        Food Name
+                        <input
+                            name="name"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Category
+                        <input
+                            name="category"
+                        >
+                    </label>
+
+
+                    <label>
+                        Brand
+                        <input
+                            name="brand"
+                        >
+                    </label>
+
+
+                    <label>
+                        Calories
+                        <input
+                            type="number"
+                            name="calories"
+                            min="0"
+                        >
+                    </label>
+
+
+                    <label>
+                        Protein (g)
+                        <input
+                            type="number"
+                            name="protein"
+                            min="0"
+                        >
+                    </label>
+
+
+                    <label>
+                        Fat (g)
+                        <input
+                            type="number"
+                            name="fat"
+                            min="0"
+                        >
+                    </label>
+
+
+                    <label>
+                        Carbs (g)
+                        <input
+                            type="number"
+                            name="carbs"
+                            min="0"
+                        >
+                    </label>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        data-close-modal="modalAddFood"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Add Food
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         LOG TREAT MODAL
+         ===================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalLogTreat"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2>
+                    Log Treat
+                </h2>
+
+                <button
+                    type="button"
+                    data-close-modal="modalLogTreat"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formLogTreat">
+
+                <div class="form-grid">
+
+                    <label>
+                        Treat
+                        <input
+                            name="name"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Quantity
+                        <input
+                            name="quantity"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Calories
+                        <input
+                            type="number"
+                            name="calories"
+                            min="0"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Time
+                        <input
+                            type="time"
+                            name="time"
+                            required
+                        >
+                    </label>
+
+
+                    <label class="full-width">
+                        Notes
+                        <textarea name="notes"></textarea>
+                    </label>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        data-close-modal="modalLogTreat"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Save Treat
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ADD SCHEDULE MODAL
+         ===================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalAddSchedule"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add Feeding Schedule
+                </h2>
+
+                <button
+                    type="button"
+                    data-close-modal="modalAddSchedule"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formAddSchedule">
+
+                <div class="form-grid">
+
+                    <label>
+                        Time
+                        <input
+                            type="time"
+                            name="time"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Meal
+                        <input
+                            name="mealName"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Portion
+                        <input
+                            name="portion"
+                            placeholder="e.g. 120 g"
+                        >
+                    </label>
+
+
+                    <label>
+                        Food
+                        <input
+                            name="food"
+                        >
+                    </label>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        data-close-modal="modalAddSchedule"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Add Schedule
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ADD SENSITIVITY MODAL
+         ===================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalAddSensitivity"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add Food Sensitivity
+                </h2>
+
+                <button
+                    type="button"
+                    data-close-modal="modalAddSensitivity"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formAddSensitivity">
+
+                <div class="form-grid">
+
+                    <label>
+                        Food
+                        <input
+                            name="food"
+                            required
+                        >
+                    </label>
+
+
+                    <label>
+                        Reaction
+                        <input
+                            name="reaction"
+                        >
+                    </label>
+
+
+                    <label>
+                        Severity
+
+                        <select name="severity">
+
+                            <option>
+                                Mild
+                            </option>
+
+                            <option>
+                                Moderate
+                            </option>
+
+                            <option>
+                                Severe
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Date
+                        <input
+                            type="date"
+                            name="date"
+                        >
+                    </label>
+
+
+                    <label>
+                        Vet Confirmed
+
+                        <select name="confirmed">
+
+                            <option>
+                                No
+                            </option>
+
+                            <option>
+                                Yes
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label class="full-width">
+                        Notes
+                        <textarea name="notes"></textarea>
+                    </label>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        data-close-modal="modalAddSensitivity"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Save
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CHART.JS
+         ===================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"
+    ></script>
+
+
+    <!-- Shared JS -->
+
+    <script
+        src="../shared/js/shared.js"
+    ></script>
+
+
+    <!-- Nutrition JS -->
+
+    <script
+        src="nutrition.js"
+    ></script>
+
+
+</body>
+
+</html>

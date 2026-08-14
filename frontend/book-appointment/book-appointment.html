@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Book Appointment | PawSync</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="book-appointment.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <span class="brand-icon">
+            🐾
+        </span>
+
+        <span>
+            PawSync
+        </span>
+
+    </div>
+
+
+    <div class="topbar-right">
+
+        <button
+            class="notification-btn"
+            id="notificationButton"
+            type="button"
+        >
+
+            🔔
+
+            <span class="notification-count">
+                2
+            </span>
+
+        </button>
+
+
+        <div class="profile">
+
+            <div class="avatar">
+                G
+            </div>
+
+            <strong>
+                Gayatri
+            </strong>
+
+            <span>
+                ▾
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<div class="page-layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <nav>
+
+
+            <div class="nav-heading">
+                MAIN
+            </div>
+
+
+            <a
+                href="/frontend/owner/dashboard/ownerdashboard.html"
+                class="nav-link"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="/frontend/pets/pets.html"
+                class="nav-link"
+            >
+                <span>🐾</span>
+                My Pets
+            </a>
+
+
+
+            <div class="nav-heading">
+                PET CARE
+            </div>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>♥</span>
+                Health
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>💉</span>
+                Vaccination
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>🥣</span>
+                Nutrition
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>✂</span>
+                Grooming
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>🏃</span>
+                Activity
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>🦷</span>
+                Dental Care
+            </a>
+
+
+
+            <div class="nav-heading">
+                RECORDS
+            </div>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>▣</span>
+                Medical Vault
+            </a>
+
+
+            <a
+                href="/frontend/appointments/appointments.html"
+                class="nav-link active"
+            >
+                <span>♟</span>
+                Appointments
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>▦</span>
+                Calendar
+            </a>
+
+
+
+            <div class="nav-heading">
+                INSIGHTS
+            </div>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>▥</span>
+                Analytics
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>🤖</span>
+                AI Assistant
+            </a>
+
+
+
+            <div class="nav-heading">
+                OTHER
+            </div>
+
+
+            <a
+                href="#"
+                class="nav-link"
+            >
+                <span>♧</span>
+                Alerts
+            </a>
+
+
+            <a
+                href="/frontend/settings/settings.html"
+                class="nav-link"
+            >
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <button
+            class="back-button"
+            id="backButton"
+            type="button"
+        >
+            ← Back to Veterinarians
+        </button>
+
+
+
+        <div class="booking-layout">
+
+
+            <!-- LEFT SIDE -->
+
+            <section class="booking-form-section">
+
+
+                <div class="page-heading">
+
+                    <div class="eyebrow">
+                        VETERINARY CARE
+                    </div>
+
+                    <h1>
+                        Book an Appointment
+                    </h1>
+
+                    <p>
+                        Schedule a visit with your selected
+                        veterinarian.
+                    </p>
+
+                </div>
+
+
+
+                <!-- SELECTED VET -->
+
+                <div class="selected-vet-card">
+
+                    <img
+                        id="vetImage"
+                        src=""
+                        alt="Veterinarian"
+                    >
+
+
+                    <div class="selected-vet-info">
+
+                        <span class="verified">
+                            ✓ Verified Veterinarian
+                        </span>
+
+                        <h2 id="vetName">
+                            Dr. Anjali Sharma
+                        </h2>
+
+                        <p id="vetSpecialty">
+                            General Veterinary
+                        </p>
+
+                        <div class="vet-rating">
+
+                            ⭐
+                            <strong id="vetRating">
+                                4.9
+                            </strong>
+
+                            <span>
+                                Veterinarian
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="consultation-fee">
+
+                        <span>
+                            Consultation
+                        </span>
+
+                        <strong id="vetFee">
+                            ₹500
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FORM -->
+
+                <form id="appointmentForm">
+
+
+                    <!-- PET -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-heading">
+
+                            <span class="step-number">
+                                1
+                            </span>
+
+                            <div>
+
+                                <h2>
+                                    Select Your Pet
+                                </h2>
+
+                                <p>
+                                    Which pet is this appointment for?
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="pet-options">
+
+
+                            <label class="pet-option">
+
+                                <input
+                                    type="radio"
+                                    name="pet"
+                                    value="Bruno"
+                                    checked
+                                >
+
+                                <div class="pet-option-content">
+
+                                    <div class="pet-mini-avatar">
+                                        🐕
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Bruno
+                                        </strong>
+
+                                        <span>
+                                            Labrador Retriever
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="radio-check">
+                                    ✓
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="pet-option">
+
+                                <input
+                                    type="radio"
+                                    name="pet"
+                                    value="Kitty"
+                                >
+
+                                <div class="pet-option-content">
+
+                                    <div class="pet-mini-avatar cat">
+                                        🐈
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Kitty
+                                        </strong>
+
+                                        <span>
+                                            Persian Cat
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="radio-check">
+                                    ✓
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="pet-option">
+
+                                <input
+                                    type="radio"
+                                    name="pet"
+                                    value="Coco"
+                                >
+
+                                <div class="pet-option-content">
+
+                                    <div class="pet-mini-avatar bird">
+                                        🦜
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Coco
+                                        </strong>
+
+                                        <span>
+                                            Eclectus Parrot
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="radio-check">
+                                    ✓
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- DATE -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-heading">
+
+                            <span class="step-number">
+                                2
+                            </span>
+
+                            <div>
+
+                                <h2>
+                                    Select Date
+                                </h2>
+
+                                <p>
+                                    Choose a convenient date.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="date-options">
+
+                            <label class="date-option selected">
+
+                                <input
+                                    type="radio"
+                                    name="date"
+                                    value="18 Aug"
+                                    checked
+                                >
+
+                                <span>
+                                    MON
+                                </span>
+
+                                <strong>
+                                    18
+                                </strong>
+
+                                <small>
+                                    Aug
+                                </small>
+
+                            </label>
+
+
+                            <label class="date-option">
+
+                                <input
+                                    type="radio"
+                                    name="date"
+                                    value="19 Aug"
+                                >
+
+                                <span>
+                                    TUE
+                                </span>
+
+                                <strong>
+                                    19
+                                </strong>
+
+                                <small>
+                                    Aug
+                                </small>
+
+                            </label>
+
+
+                            <label class="date-option">
+
+                                <input
+                                    type="radio"
+                                    name="date"
+                                    value="20 Aug"
+                                >
+
+                                <span>
+                                    WED
+                                </span>
+
+                                <strong>
+                                    20
+                                </strong>
+
+                                <small>
+                                    Aug
+                                </small>
+
+                            </label>
+
+
+                            <label class="date-option">
+
+                                <input
+                                    type="radio"
+                                    name="date"
+                                    value="21 Aug"
+                                >
+
+                                <span>
+                                    THU
+                                </span>
+
+                                <strong>
+                                    21
+                                </strong>
+
+                                <small>
+                                    Aug
+                                </small>
+
+                            </label>
+
+
+                            <label class="date-option">
+
+                                <input
+                                    type="radio"
+                                    name="date"
+                                    value="22 Aug"
+                                >
+
+                                <span>
+                                    FRI
+                                </span>
+
+                                <strong>
+                                    22
+                                </strong>
+
+                                <small>
+                                    Aug
+                                </small>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TIME -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-heading">
+
+                            <span class="step-number">
+                                3
+                            </span>
+
+                            <div>
+
+                                <h2>
+                                    Select Time
+                                </h2>
+
+                                <p>
+                                    Choose an available time slot.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="time-options">
+
+
+                            <label class="time-option">
+
+                                <input
+                                    type="radio"
+                                    name="time"
+                                    value="09:00 AM"
+                                >
+
+                                <span>
+                                    09:00 AM
+                                </span>
+
+                            </label>
+
+
+                            <label class="time-option selected">
+
+                                <input
+                                    type="radio"
+                                    name="time"
+                                    value="10:00 AM"
+                                    checked
+                                >
+
+                                <span>
+                                    10:00 AM
+                                </span>
+
+                            </label>
+
+
+                            <label class="time-option">
+
+                                <input
+                                    type="radio"
+                                    name="time"
+                                    value="11:30 AM"
+                                >
+
+                                <span>
+                                    11:30 AM
+                                </span>
+
+                            </label>
+
+
+                            <label class="time-option">
+
+                                <input
+                                    type="radio"
+                                    name="time"
+                                    value="02:00 PM"
+                                >
+
+                                <span>
+                                    02:00 PM
+                                </span>
+
+                            </label>
+
+
+                            <label class="time-option">
+
+                                <input
+                                    type="radio"
+                                    name="time"
+                                    value="04:30 PM"
+                                >
+
+                                <span>
+                                    04:30 PM
+                                </span>
+
+                            </label>
+
+
+                            <label class="time-option">
+
+                                <input
+                                    type="radio"
+                                    name="time"
+                                    value="06:00 PM"
+                                >
+
+                                <span>
+                                    06:00 PM
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- REASON -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-heading">
+
+                            <span class="step-number">
+                                4
+                            </span>
+
+                            <div>
+
+                                <h2>
+                                    Reason for Visit
+                                </h2>
+
+                                <p>
+                                    Tell the veterinarian what your pet needs.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="reason-options">
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="reason"
+                                    value="General Checkup"
+                                    checked
+                                >
+
+                                <span>
+                                    🩺 General Checkup
+                                </span>
+
+                            </label>
+
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="reason"
+                                    value="Vaccination"
+                                >
+
+                                <span>
+                                    💉 Vaccination
+                                </span>
+
+                            </label>
+
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="reason"
+                                    value="Illness / Symptoms"
+                                >
+
+                                <span>
+                                    ❤️ Illness / Symptoms
+                                </span>
+
+                            </label>
+
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="reason"
+                                    value="Other"
+                                >
+
+                                <span>
+                                    📋 Other
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <textarea
+                            id="notes"
+                            placeholder="Add any additional information for the veterinarian..."
+                            rows="4"
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <button
+                        class="confirm-button"
+                        type="submit"
+                    >
+                        Confirm Appointment
+                        <span>→</span>
+                    </button>
+
+
+                </form>
+
+            </section>
+
+
+
+            <!-- RIGHT SIDE -->
+
+            <aside class="booking-summary">
+
+
+                <div class="summary-card">
+
+                    <h2>
+                        Appointment Summary
+                    </h2>
+
+
+                    <div class="summary-vet">
+
+                        <img
+                            id="summaryVetImage"
+                            src=""
+                            alt="Veterinarian"
+                        >
+
+                        <div>
+
+                            <strong id="summaryVetName">
+                                Dr. Anjali Sharma
+                            </strong>
+
+                            <span id="summaryVetSpecialty">
+                                General Veterinary
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            🐾 Pet
+                        </span>
+
+                        <strong id="summaryPet">
+                            Bruno
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            📅 Date
+                        </span>
+
+                        <strong id="summaryDate">
+                            18 Aug
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            🕐 Time
+                        </span>
+
+                        <strong id="summaryTime">
+                            10:00 AM
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            🩺 Reason
+                        </span>
+
+                        <strong id="summaryReason">
+                            General Checkup
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <div class="total-row">
+
+                        <span>
+                            Consultation Fee
+                        </span>
+
+                        <strong id="summaryFee">
+                            ₹500
+                        </strong>
+
+                    </div>
+
+
+                    <p class="payment-note">
+                        Payment details will be handled during
+                        the final booking process.
+                    </p>
+
+                </div>
+
+
+
+                <div class="help-card">
+
+                    <span>
+                        💡
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Need help?
+                        </strong>
+
+                        <p>
+                            You can change your pet, date or time
+                            before confirming the appointment.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- SUCCESS MODAL -->
+
+<div
+    class="modal-overlay"
+    id="successModal"
+>
+
+    <div class="success-modal">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Appointment Confirmed!
+        </h2>
+
+        <p>
+            Your appointment has been scheduled successfully.
+        </p>
+
+        <div class="success-details">
+
+            <strong id="successVet">
+                Dr. Anjali Sharma
+            </strong>
+
+            <span id="successDetails">
+                Bruno • 18 Aug • 10:00 AM
+            </span>
+
+        </div>
+
+        <button
+            id="successButton"
+            type="button"
+        >
+            View My Appointments
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="book-appointment.js"></script>
+
+</body>
+</html>

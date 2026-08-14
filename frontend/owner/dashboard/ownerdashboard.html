@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawSync | Owner Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../shared/css/variables.css">
+    <link rel="stylesheet" href="../../../shared/css/common.css">
+    <link rel="stylesheet" href="../../../shared/css/responsive.css">
+    <link rel="stylesheet" href="ownerdashboard.css">
+</head>
+<body data-shared-path="../../shared">
+<div class="app-shell">
+     <!-- SHARED SIDEBAR -->
+    <div id="sidebar-container"></div>
+
+    <main class="main-area">
+        <!-- SHARED NAVBAR -->
+        <div id="navbar-container"></div>
+
+        <section class="dashboard-content" id="pageContent">
+
+            <section class="pets-section" >
+                <!-- <a class="nav-item" href="my pets ">
+    <span>🐾</span>
+    My Pets
+</a> -->
+                <div class="pet-selector" id="petSelector"></div>
+            </section>
+
+            <section class="hero-grid">
+                <article class="card pet-health-card">
+                    <div class="pet-image-wrap">
+                        <img id="petImage" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80" alt="Bruno">
+                        <span class="pet-mini-badge">🐾</span>
+                    </div>
+
+                    <div class="pet-health-info">
+                        <h2 id="petName">Bruno</h2>
+                        <p id="petMeta">Labrador Retriever • 2 Years • Male • 20 kg</p>
+
+                        <div class="health-score-title">❤️ <span>Health Score</span></div>
+                        <div class="score-row">
+                            <strong id="healthScore">61</strong>
+                            <span>/ 100</span>
+                        </div>
+
+                        <div class="progress-track">
+                            <div class="progress-fill" id="healthProgress"></div>
+                        </div>
+
+                        <div class="health-message" id="healthMessage">
+                            <span>✓</span>
+                            <span>Attention required: Bruno has several pending health care items.</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card care-card">
+                    <div class="card-title-row">
+                        <h3>🗓️ Today's Care</h3>
+                        <span class="done-pill" id="careCount">3 / 5 Done</span>
+                    </div>
+                    <div class="care-list" id="careList"></div>
+                </article>
+
+                <article class="card reminders-card">
+                    <div class="card-title-row">
+                        <h3>🔔 Upcoming Reminders</h3>
+                        <a href="../../pages/calendar/calendar.html">View Calendar</a>
+                    </div>
+                    <div class="reminders-list" id="remindersList"></div>
+                </article>
+            </section>
+
+            <section class="summary-grid">
+                <article class="card summary-card">
+                    <div class="summary-heading">
+                        <h3>🥣 Today's<br>Nutrition</h3>
+                        <a href="../../pages/nutrition/nutrition.html">View Nutrition →</a>
+                    </div>
+                    <div class="summary-content">
+                        <div><span>Daily Goal</span><strong>1,100 kcal</strong></div>
+                        <div><span>Meals</span><strong>2 / 3</strong></div>
+                        <div><span>Water</span><strong>1.6 / 2 L</strong></div>
+                    </div>
+                </article>
+
+                <article class="card summary-card">
+                    <div class="summary-heading">
+                        <h3>✂️ Grooming<br>Status</h3>
+                        <a href="../../pages/grooming/grooming.html">View Grooming →</a>
+                    </div>
+                    <div class="summary-content">
+                        <div class="large-label">Next Grooming</div>
+                        <div class="large-value">20 Aug</div>
+                        <div class="mini-checks">
+                            <span>✓ Brushing</span>
+                            <span>✓ Ear Cleaning</span>
+                            <span>○ Nail Trim</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card summary-card">
+                    <div class="summary-heading">
+                        <h3>🏃 Today's<br>Activity</h3>
+                        <a href="../../pages/activity/activity.html">View Activity →</a>
+                    </div>
+                    <div class="summary-content">
+                        <div class="large-label">Today's Goal</div>
+                        <div class="large-value">60 min</div>
+                        <div class="activity-progress"><span id="activityProgress"></span></div>
+                        <div class="activity-label"><span>45 / 60 min</span></div>
+                    </div>
+                </article>
+
+                <article class="card summary-card medical-card">
+                    <div class="summary-heading">
+                        <h3>📁 Medical Vault</h3>
+                        <a href="../../pages/medical-vault/medical-vault.html">Open Vault →</a>
+                    </div>
+                    <div class="summary-content records">
+                        <div><span>💊 Prescription – Joint Vitamins</span><strong>5 Aug</strong></div>
+                        <div><span>💉 Vaccination Certificate</span><strong>20 Jul</strong></div>
+                        <div><span>🩸 Blood Report</span><strong>12 Jun</strong></div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="ai-card">
+                <div class="ai-robot" aria-hidden="true">🤖</div>
+                <div class="ai-copy">
+                    <h3>AI HEALTH ASSISTANT</h3>
+                    <p>Have a concern about <strong id="aiPetName">Bruno</strong>?</p>
+                    <span>Ask about symptoms, behaviour, feeding,<br>health or general care.</span>
+                </div>
+                <a class="ai-button" href="../../pages/ai-assistant/ai-assistant.html">Ask AI Assistant <span>→</span></a>
+                <div class="ai-sparkles">✦ ✧ ✦</div>
+            </section>
+
+        </section>
+    </main>
+</div>
+
+<script src="../../shared/js/utils.js"></script>
+<script src="../../shared/js/api.js"></script>
+<script src="../../shared/js/auth.js"></script>
+
+<script src="ownerdashboard.js"></script>
+
+<script src="../../shared/js/shared.js"></script>
+
+</body>
+</html>

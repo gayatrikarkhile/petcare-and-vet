@@ -1,0 +1,3018 @@
+/* ==========================
+   CSS RESET & GLOBAL VARIABLES
+   ========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', serif, 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* 
+   PawSync Shared Design System 
+   These variables will be used across all 7 pet pages 
+*/
+:root {
+    --primary-teal: #3b864c;      /* Main brand color */
+    --light-mint: #aae7d2;        /* Soft backgrounds, highlights */
+    --background: #dae8ed;        /* Very light page background */
+    --white: #f2efe8;             /* Cards and containers */
+    --text-primary: #172B3A;      /* Dark navy for headings and main text */
+    --text-secondary: #636b70;    /* Soft gray for descriptions/subtitles */
+    --soft-yellow: #fff9c7;       /* Accent for tips and fun facts */
+    
+    /* Reusable transition speeds for animations */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s ease-in-out;
+}
+
+/* ==========================
+   BASE BODY STYLING
+   ========================== */
+body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+/* ==========================
+   SHARED LAYOUT CONTAINERS
+   ========================== */
+/* This container keeps our content centered and prevents it from getting too wide on huge screens */
+.pet-page-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px; /* Gives some breathing room on mobile screens */
+    position: relative;
+}
+
+/* ==========================
+   DOG PAGE — NAVIGATION
+   ========================== */
+.pet-nav {
+    padding: 24px 0;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.back-link:hover {
+    color: var(--primary-teal);
+    transform: translateX(-4px);
+}
+
+.back-link .arrow {
+    font-size: 1.1rem;
+}
+
+/* ==========================
+   DOG PAGE — HERO SECTION
+   ========================== */
+.dog-hero-section {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0 80px 0;
+}
+
+.hero-badge {
+    display: inline-block;
+    background-color: var(--light-mint);
+    color: var(--primary-teal);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    /* color: var(--dark-navy, #172B3A); */
+    color: var(--text-primary);
+    line-height: 1.15;
+    margin-bottom: 24px;
+} 
+
+.hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 520px;
+}
+
+.primary-btn {
+    display: inline-block;
+    background-color: var(--primary-teal);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(79, 174, 154, 0.3);
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.primary-btn:hover {
+    background-color: #3f9482;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 174, 154, 0.4);
+}
+
+/* Hero Visual*/
+.dog-hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image-wrapper {
+    width: 135%;
+    max-width: 500px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(23, 43, 58, 0.08);
+    background-color: var(--white);
+    border: 4px solid var(--white);
+}
+
+.hero-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform var(--transition-smooth);
+}
+
+.hero-image-wrapper:hover img {
+    transform: scale(1.03);
+}
+
+/* ==========================
+   SIMPLIFIED HERO BADGES
+   ========================== */
+.hero-badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px; /* Neat spacing below the image */
+    width: 100%;
+    max-width: 440px;
+}
+
+.static-badge {
+    background: var(--white);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(23, 43, 58, 0.05);
+    border: 1px solid var(--light-mint);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    cursor: default;
+}
+
+.static-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(23, 43, 58, 0.1);
+    border-color: var(--primary-teal);
+}
+
+/* ==========================
+   RESPONSIVE DESIGN FOR HERO
+   ========================== */
+@media (max-width: 900px) {
+    .dog-hero-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 50px;
+        padding: 20px 0 50px 0;
+    }
+
+    .hero-subtitle {
+        margin: 0 auto 32px auto;
+    }
+
+    .hero-image-wrapper {
+        margin: 0 auto;
+    }
+}
+
+/* ==========================
+   DOG PAGE — UNDERSTANDING SECTION
+   ========================== */
+.understanding-section {
+    padding: 80px 0;
+}
+
+.understanding-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+}
+
+/* Circular Visual Container */
+.understanding-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.circle-image-wrapper {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1 / 1; /* Keeps it a perfect circle */
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--white);
+    border: 8px solid var(--white);
+    box-shadow: 0 16px 40px rgba(23, 43, 58, 0.08);
+    position: relative;
+}
+
+/* Notice we target 'img' here to ensure it works if you use standard HTML tags too */
+.circle-image-wrapper img,
+.circle-image-wrapper Image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-smooth);
+}
+
+.circle-image-wrapper:hover img,
+.circle-image-wrapper:hover Image {
+    transform: scale(1.05); /* Subtle zoom effect */
+}
+
+/* Content & Typography */
+.section-title {
+    font-size: 2.6rem;
+    color: var(--text-primary);
+    font-weight: 800;
+    margin-bottom: 40px;
+    line-height: 1.2;
+}
+
+/* 2x2 Traits Grid */
+.traits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.trait-card {
+    background-color: var(--white);
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid var(--light-mint);
+    box-shadow: 0 4px 12px rgba(23, 43, 58, 0.03);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.trait-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(23, 43, 58, 0.08);
+    border-color: var(--primary-teal);
+}
+
+.trait-icon {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.trait-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.trait-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ==========================
+   RESPONSIVE DESIGN FOR STEP 2
+   ========================== */
+@media (max-width: 900px) {
+    .understanding-split {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .circle-image-wrapper {
+        max-width: 350px; /* Slightly smaller on mobile */
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .traits-grid {
+        grid-template-columns: 1fr; /* Stacks the cards vertically on small phones */
+    }
+    
+    /* Re-align text to the left inside the cards on mobile for easier reading */
+    .trait-card {
+        text-align: left; 
+    }
+}
+
+/* ==========================
+   DOG PAGE — 3D BREED CARDS
+   ========================== */
+.breeds-section {
+    padding: 60px 0 100px 0;
+}
+
+.breeds-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* The Grid Setup */
+.breeds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* 3D Flip Card Container */
+.flip-card {
+    background-color: transparent;
+    height: 300px;
+    perspective: 1000px; /* This gives the 3D depth effect */
+    cursor: pointer;
+}
+
+/* The inner card that actually rotates */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); /* Smooth, polished flip */
+    transform-style: preserve-3d; /* Required for 3D */
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(23, 43, 58, 0.08);
+}
+
+/* Trigger flip on Hover (Desktop) OR when '.flipped' class is added (Mobile JS) */
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front and Back common styles */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari support */
+    backface-visibility: hidden;         /* Hides the back when looking at front */
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FRONT DESIGN - Clean White/Teal */
+.flip-card-front {
+    background-color: var(--white);
+    border: 2px solid var(--light-mint);
+}
+
+.card-visual {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+/* This ensures your actual photos fill the circle perfectly without stretching */
+.card-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.teal-bg { background-color: var(--primary-teal); color: var(--white); }
+.mint-bg { background-color: var(--light-mint); }
+
+.breed-name {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.flip-hint {
+    font-size: 0.85rem;
+    color: var(--primary-teal);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* BACK DESIGN - Fresh Soft Yellow */
+.flip-card-back {
+    background-color: var(--soft-yellow); /* Introduces the fresh accent color */
+    color: var(--text-primary);
+    transform: rotateY(180deg);
+    border: 2px solid #FCE49C; /* Slightly darker yellow for definition */
+    text-align: left;
+    align-items: flex-start;
+}
+
+.breed-name-back {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    border-bottom: 2px solid rgba(23, 43, 58, 0.1);
+    padding-bottom: 8px;
+    width: 100%;
+}
+
+.breed-traits {
+    list-style: none;
+    margin-bottom: auto; /* Pushes care tip to the bottom */
+}
+
+.breed-traits li {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.care-tip {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* ==========================
+   DOG PAGE — NUTRITION SECTION
+   ========================== */
+.nutrition-section {
+    /* Fresh, soft, pleasant blue palette just for this section */
+    --sect-bg-blue: #F0F6F9;
+    --soft-blue: #77abd1;
+    --bright-blue: #5C90B5;
+    
+    background-color: var(--sect-bg-blue);
+    padding: 80px 40px;
+    border-radius: 40px; /* Gives the whole section a soft, pill-like look */
+    margin: 40px 0;
+    text-align: center;
+}
+
+.nutrition-header {
+    margin-bottom: 50px;
+}
+
+.nutrition-radial-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    max-width: 500px;
+    margin: 0 auto 50px auto;
+}
+
+.radial-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Interactive Pill Buttons */
+.radial-item {
+    background-color: var(--white);
+    border: 2px solid var(--soft-blue);
+    border-radius: 50px;
+    padding: 10px 24px 10px 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: 0 4px 12px rgba(92, 144, 181, 0.08);
+}
+
+.radial-item:hover, 
+.radial-item.active {
+    border-color: var(--bright-blue);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(92, 144, 181, 0.15);
+}
+
+.radial-icon {
+    background-color: var(--soft-blue);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    overflow: hidden; /* <--- NEW: Keeps the image strictly inside the circle */
+    flex-shrink: 0; /* <--- NEW: Prevents the circle from squishing on small screens */
+}
+
+/* NEW: This ensures the images perfectly fill the small circles without distorting */
+.radial-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.radial-item:hover .radial-icon, 
+.radial-item.active .radial-icon {
+    background-color: var(--bright-blue);
+}
+
+.radial-label {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+}
+
+/* Central Image */
+.radial-center .center-bowl-circle {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 10px solid var(--white);
+    box-shadow: 0 16px 40px rgba(92, 144, 181, 0.2);
+    overflow: hidden;
+    background-color: var(--white);
+}
+
+.center-bowl-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Dynamic Panel Below */
+.nutrition-info-panel {
+    background-color: var(--white);
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 20px;
+    border-left: 6px solid var(--bright-blue);
+    box-shadow: 0 10px 30px rgba(23, 43, 58, 0.06);
+    text-align: left;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* We will trigger this class with JS to create a fade effect */
+.nutrition-info-panel.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.nutrition-info-panel h3 {
+    color: var(--bright-blue);
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.nutrition-info-panel p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+    .nutrition-section {
+        padding: 60px 20px;
+    }
+    .nutrition-radial-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .radial-column {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .radial-center {
+        order: -1; /* Forces the image to the top on mobile */
+    }
+    .center-bowl-circle {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+/* ==========================
+   DOG PAGE — EXERCISE TIMELINE
+   ========================== */
+.activity-section {
+    padding: 80px 0;
+    /* Return to default background for contrast */
+    background-color: var(--background); 
+    overflow-x: hidden;
+}
+
+.activity-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* Timeline Layout - Desktop (Horizontal) */
+.timeline-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 30px; 
+}
+
+.timeline-track {
+    position: absolute;
+    top: 58px; /* Aligns line behind the center of icons */
+    left: 5%;
+    right: 5%;
+    height: 4px;
+    background-color: var(--light-mint);
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.timeline-item {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 15px;
+}
+
+.timeline-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--white);
+    border: 4px solid var(--primary-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(79, 174, 154, 0.2);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.timeline-item:hover .timeline-icon {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(79, 174, 154, 0.3);
+    background-color: var(--light-mint);
+}
+
+.timeline-content {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(23, 43, 58, 0.04);
+    width: 100%;
+    border: 1px solid rgba(79, 174, 154, 0.1);
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.timeline-item:hover .timeline-content {
+    transform: translateY(-5px);
+    border-color: var(--primary-teal);
+}
+
+.time-label {
+    font-size: 0.85rem;
+    color: var(--primary-teal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.activity-title {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.activity-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ==========================
+   SCROLL REVEAL ANIMATIONS
+   ========================== */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* JavaScript will add this class when the element enters the screen */
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================
+   TIMELINE RESPONSIVE (MOBILE)
+   ========================== */
+@media (max-width: 850px) {
+    .timeline-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 20px;
+        gap: 30px;
+    }
+
+    .timeline-track {
+        top: 0;
+        bottom: 0;
+        left: 48px; /* Centers the vertical line precisely behind the icons */
+        width: 4px;
+        height: auto;
+    }
+
+    .timeline-item {
+        flex-direction: row;
+        text-align: left;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .timeline-icon {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .timeline-content {
+        width: calc(100% - 80px);
+    }
+}
+
+/* ==========================
+   DOG PAGE — HEALTH LIFE-STAGE
+   ========================== */
+/* ==========================================
+   HEALTH SECTION - COMPACT TWO COLUMN LAYOUT
+   ========================================== */
+
+.health-section {
+    padding: 60px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    column-gap: 50px;
+    align-items: center;
+}
+
+.health-header {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* ==========================================
+   DOG IMAGE
+   ========================================== */
+
+.health-dog-image {
+    grid-column: 1;
+    grid-row: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.health-dog-image img {
+    width: 100%;
+    max-width: 360px;
+    height: 360px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    box-shadow: 0 12px 30px rgba(15, 82, 186, 0.12);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.health-dog-image img:hover {
+    transform: scale(1.03) translateY(-5px);
+
+    box-shadow: 0 18px 35px rgba(15, 82, 186, 0.18);
+}
+
+/* Vertical Tree Track */
+.life-stage-container {
+    grid-column: 2;
+    grid-row: 2;
+
+    position: relative;
+
+    padding-left: 30px;
+}
+
+.life-stage-container::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 40px;
+    left: 49px; /* Aligns line perfectly with markers */
+    width: 2px;
+    background-color: var(--light-mint);
+    z-index: 1;
+}
+
+.stage-block {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 50px;
+    z-index: 2;
+}
+
+.stage-marker {
+    width: 70px;
+    height: 70px;
+    background-color: var(--white);
+    border: 3px solid var(--primary-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(79, 174, 154, 0.2);
+}
+
+.stage-title {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+/* Interactive Pill Buttons */
+.health-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.health-btn {
+    background-color: var(--white);
+    border: 1px solid var(--primary-teal);
+    color: var(--text-primary);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 2px 6px rgba(23, 43, 58, 0.04);
+}
+
+.health-btn:hover {
+    background-color: var(--primary-teal);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(79, 174, 154, 0.25);
+}
+
+/* ==========================
+   HEALTH MODAL / POP-UP
+   ========================== */
+.pawsync-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(23, 43, 58, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(4px);
+    padding: 20px;
+}
+
+/* Active class triggers visibility */
+.pawsync-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background-color: var(--white);
+    max-width: 500px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 24px;
+    position: relative;
+    transform: translateY(30px) scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 20px 50px rgba(23, 43, 58, 0.15);
+}
+
+.pawsync-modal.active .modal-box {
+    transform: translateY(0) scale(1);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    line-height: 1;
+}
+
+.close-modal-btn:hover {
+    color: var(--text-primary);
+}
+
+.modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.modal-desc {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.modal-disclaimer {
+    background-color: var(--soft-yellow);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+    border-left: 4px solid #FCE49C;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .life-stage-container {
+        padding-left: 10px;
+    }
+    .life-stage-container::before {
+        left: 29px;
+    }
+    .modal-box {
+        padding: 30px 20px;
+    }
+}
+
+/* ==========================
+   DOG PAGE — FUN FACTS (BENTO GRID)
+   ========================== */
+.fun-facts-section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.facts-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* The Bento Grid Layout */
+.bento-grid {
+    display: grid;
+    /* Creates 3 equal columns on desktop */
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+    gap: 24px;
+}
+
+/* Individual Card Styling */
+.bento-card {
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(23, 43, 58, 0.05);
+    /* The magic code for smooth hovering and enlarging */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* Hover + Enlarge Effect */
+.bento-card:hover {
+    transform: translateY(-10px) scale(1.03); /* Lifts up and zooms in 3% */
+    box-shadow: 0 20px 40px rgba(23, 43, 58, 0.12);
+    z-index: 10;
+}
+
+/* Updated for actual images */
+.bento-icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+    border-radius: 16px; /* Gives the images a beautiful soft-square look */
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Adds a subtle shadow to the images */
+}
+
+/* Ensures the photo perfectly fills the space without stretching */
+.bento-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Makes the emoji playfully bounce on hover */
+.bento-card:hover .bento-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.bento-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.bento-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Unique Grid Shapes */
+.bento-tall {
+    grid-column: span 1;
+    grid-row: span 2; /* Stretches down across two rows */
+}
+
+.bento-wide {
+    grid-column: span 2; /* Stretches across two columns */
+}
+
+/* Beautiful Soft Background Colors */
+.bg-teal { background-color: #c1d1cd; }
+.bg-mint { background-color: #c3e6da; }
+.bg-blue { background-color: #c1dbe9; }
+.bg-yellow { background-color: #a8ceec; }
+
+/* ==========================
+   BENTO GRID RESPONSIVE (MOBILE)
+   ========================== */
+@media (max-width: 850px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    }
+    .bento-tall {
+        grid-column: span 2;
+        grid-row: span 1; /* Removes tall stretch on smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .bento-grid {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+    }
+    .bento-tall, .bento-wide {
+        grid-column: span 1; /* Every card becomes standard width */
+    }
+}
+
+/* ==========================
+   DOG PAGE — FINAL CTA SECTION
+   ========================== */
+.cta-section {
+    padding: 40px 20px 100px 20px; /* Extra bottom padding so it doesn't hug the footer */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cta-card {
+    /* background-color: var(--primary-teal); */
+    background: linear-gradient(135deg, #1a626a, #48899b);
+    border-radius: 32px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(79, 174, 154, 0.25);
+    position: relative;
+    overflow: hidden; /* Keeps the decorative circle inside the card */
+}
+
+/* A subtle, aesthetic background circle graphic */
+.cta-card::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 250px;
+    height: 250px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    pointer-events: none; /* Prevents it from blocking clicks */
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2; /* Keeps the text clearly above the decorative background circle */
+}
+
+.cta-card h2 {
+    color: var(--white);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.cta-card p {
+    color: var(--white);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 35px auto;
+    line-height: 1.6;
+    opacity: 0.9; /* Makes the paragraph slightly softer than the heading */
+}
+
+/* Button Layout */
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-primary {
+    background-color: var(--white);
+    color: var(--primary-teal);
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+    border-color: var(--white);
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px);
+}
+
+/* ==========================
+   CTA RESPONSIVE (MOBILE)
+   ========================== */
+@media (max-width: 650px) {
+    .cta-card {
+        padding: 40px 20px;
+        border-radius: 24px;
+    }
+    .cta-card h2 {
+        font-size: 1.8rem;
+    }
+    .cta-buttons {
+        flex-direction: column;
+        gap: 16px;
+    }
+    /* Buttons become full width on mobile so they are easy to tap */
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+/* ==========================================================
+   CAT PAGE SPECIFIC STYLES 
+   (Scoped to .cat-page to avoid breaking Dog page)
+   ========================================================== */
+
+/* Apply Aesthetic Fonts to the Cat Page */
+.cat-page {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--light-bg, #F5F8F7);
+    color: var(--text-primary, #172B3A);
+    overflow-x: hidden;
+}
+
+.cat-page h1, 
+.cat-page h2, 
+.cat-page h3, 
+.cat-page .cat-heading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+/* --- Shared Pet Page Navigation (if not already styled in Dog page) --- */
+.pet-page-nav {
+    padding: 20px 5%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary, #71808A);
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--primary-teal, #4FAE9A);
+    transform: translateX(-5px);
+}
+
+/* --- Cat Hero Section --- */
+.cat-hero {
+    padding: 120px 5% 60px 5%;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    background-color: var(--light-mint, #E5F4EF);
+    color: var(--primary-teal, #4FAE9A);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.cat-heading {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    color: var(--dark-navy, #172B3A);
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.hero-description {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-secondary, #71808A);
+    margin-bottom: 40px;
+    max-width: 90%;
+}
+
+.cat-btn-main {
+    display: inline-block;
+    background-color: var(--primary-teal, #4FAE9A);
+    color: #FFFFFF;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(79, 174, 154, 0.2);
+}
+
+.cat-btn-main:hover {
+    background-color: var(--dark-navy, #172B3A);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(23, 43, 58, 0.15);
+}
+
+/* --- Hero Image & Floating Elements --- */
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.main-cat-image-container {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Aesthetic organic shape */
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    background-color: var(--light-mint, #E5F4EF);
+}
+
+.main-cat-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05); /* Slight zoom for image depth */
+}
+
+/* Floating Badges */
+.floating-badge {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px 10px 10px;
+    border-radius: 50px;
+    box-shadow: 0 15px 35px rgba(23, 43, 58, 0.08);
+    animation: floatCatBadge 6s ease-in-out infinite;
+    z-index: 2;
+    border: 1px solid rgba(255,255,255,0.5);
+    transition: transform 0.3s ease;
+}
+
+.floating-badge:hover {
+    transform: scale(1.05);
+    animation-play-state: paused;
+    cursor: default;
+}
+
+.badge-img-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.badge-img-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--dark-navy, #172B3A);
+}
+
+/* Badge Placements & Staggered Animations */
+.badge-top-left {
+    top: 8%;
+    left: 2%; /* Pulled inward to prevent cutting */
+    animation-delay: 0s;
+    z-index: 5;
+}
+
+.badge-bottom-left {
+    bottom: 12%;
+    left: 0%; /* Pulled inward */
+    animation-delay: 1.5s;
+    z-index: 5;
+}
+
+.badge-middle-right {
+    top: 50%;
+    right: 0%; /* Pulled inward */
+    animation-delay: 3s;
+    z-index: 5;
+}
+
+@keyframes floatCatBadge {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+/* --- Responsive Design for Cat Hero --- */
+@media (max-width: 992px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .hero-description {
+        margin: 0 auto 30px auto;
+    }
+    
+    .hero-image-wrapper {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .badge-top-left { top: 5%; left: 5%; }
+    .badge-bottom-left { bottom: 5%; left: 5%; }
+    .badge-middle-right { top: 45%; right: 5%; }
+}
+
+@media (max-width: 576px) {
+    .cat-hero { padding-top: 100px; }
+    .floating-badge {
+        padding: 8px 16px 8px 8px;
+    }
+    .badge-img-circle { width: 35px; height: 35px; }
+    .badge-text { font-size: 0.85rem; }
+    .main-cat-image-container { border-radius: 30px; } /* Softer corners for mobile */
+}
+
+/* ==========================================================
+   STEP 2: UNDERSTANDING CATS SECTION
+   ========================================================== */
+.understanding-cats-section {
+    padding: 100px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.section-header-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+}
+
+.section-eyebrow {
+    display: inline-block;
+    background-color: var(--light-mint, #E5F4EF);
+    color: var(--primary-teal, #4FAE9A);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.section-header-center h2 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    color: var(--dark-navy, #172B3A);
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.section-header-center p {
+    font-size: 1.1rem;
+    color: var(--text-secondary, #71808A);
+    line-height: 1.6;
+}
+
+/* Traits Grid Layout */
+.traits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.trait-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(23, 43, 58, 0.05);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.trait-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(23, 43, 58, 0.1);
+}
+
+.trait-img-wrapper {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+}
+
+.trait-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.trait-card:hover .trait-img-wrapper img {
+    transform: scale(1.05);
+}
+
+.trait-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.trait-content h3 {
+    font-size: 1.4rem;
+    color: var(--dark-navy, #172B3A);
+    margin-bottom: 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+.trait-content p {
+    font-size: 1rem;
+    color: var(--text-secondary, #71808A);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsive adjustments for Understanding Cats */
+@media (max-width: 900px) {
+    .traits-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .trait-img-wrapper {
+        height: 220px;
+    }
+}
+
+/* ==========================================================
+   STEP 3: CAT BREEDS (3D FLIP CARDS)
+   ========================================================== */
+.breeds-section {
+    padding: 100px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.breeds-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.breed-flip-card {
+    background-color: transparent;
+    height: 380px;
+    perspective: 1000px;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.breed-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(23, 43, 58, 0.05);
+}
+
+/* Hover trigger for desktop & .flipped class trigger for mobile */
+.breed-flip-card:hover .breed-card-inner,
+.breed-flip-card.flipped .breed-card-inner {
+    transform: rotateY(180deg);
+}
+
+.breed-card-front, 
+.breed-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.breed-card-front {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.breed-card-front img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.breed-front-content {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFFFFF;
+    height: 30%;
+    box-sizing: border-box;
+}
+
+.breed-front-content h3 {
+    font-size: 1.25rem;
+    color: var(--dark-navy, #172B3A);
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+}
+
+.flip-hint {
+    font-size: 0.75rem;
+    color: var(--primary-teal, #4FAE9A);
+    background: var(--light-mint, #E5F4EF);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.breed-card-back {
+    background-color: var(--dark-navy, #172B3A);
+    color: #FFFFFF;
+    transform: rotateY(180deg);
+    padding: 30px;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.breed-card-back h3 {
+    font-size: 1.4rem;
+    color: var(--white, #FFFFFF);
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    border-bottom: 2px solid rgba(79, 174, 154, 0.4);
+    padding-bottom: 8px;
+}
+
+.breed-card-back p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 12px;
+}
+
+.breed-card-back p strong {
+    color: var(--primary-teal, #4FAE9A);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .breeds-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .breeds-grid {
+        grid-template-columns: 1fr;
+    }
+    .breed-flip-card {
+        height: 350px;
+    }
+}
+
+/* ==========================================================
+   STEP 4: NUTRITION & FEEDING SECTION
+   ========================================================== */
+.nutrition-section {
+    padding: 100px 5%;
+    max-width: 1300px;
+    margin: 40px auto;
+    background-color: var(--white, #FFFFFF);
+    border-radius: 40px;
+    box-shadow: 0 10px 40px rgba(23, 43, 58, 0.03);
+}
+
+.nutrition-interactive-wrapper {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.nutrition-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nutri-tab {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--light-bg, #F5F8F7);
+    border: 2px solid transparent;
+    padding: 12px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.nutri-tab:hover {
+    background: var(--light-mint, #E5F4EF);
+    transform: translateX(4px);
+}
+
+.nutri-tab.active {
+    background: var(--light-mint, #E5F4EF);
+    border-color: var(--primary-teal, #4FAE9A);
+    box-shadow: 0 8px 20px rgba(79, 174, 154, 0.15);
+}
+
+.nutri-tab-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.nutri-tab-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nutri-tab span {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--dark-navy, #172B3A);
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Display Panel */
+.nutrition-display-panel {
+    background: var(--light-bg, #F5F8F7);
+    border-radius: 24px;
+    padding: 40px;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.nutri-content-pane {
+    display: none;
+    grid-template-columns: 1.1fr 1.3fr;
+    gap: 35px;
+    align-items: center;
+    width: 100%;
+    animation: fadeInPane 0.4s ease forwards;
+}
+
+.nutri-content-pane.active {
+    display: grid;
+}
+
+@keyframes fadeInPane {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pane-img {
+    width: 100%;
+    height: 260px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(23, 43, 58, 0.08);
+}
+
+.pane-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pane-text h3 {
+    font-size: 1.6rem;
+    color: var(--dark-navy, #172B3A);
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.pane-text p {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #71808A);
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.nutri-bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nutri-bullet-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--dark-navy, #172B3A);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.nutri-bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-teal, #4FAE9A);
+    border-radius: 50%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .nutrition-interactive-wrapper {
+        grid-template-columns: 1f;
+    }
+    .nutri-content-pane {
+        grid-template-columns: 1fr;
+    }
+    .pane-img {
+        height: 220px;
+    }
+}
+
+/* ==========================================================
+   STEP 5: ACTIVITY & ENRICHMENT SECTION
+   ========================================================== */
+.enrichment-section {
+    padding: 100px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.enrichment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.enrichment-card {
+    background-color: var(--white, #FFFFFF);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    box-shadow: 0 10px 30px rgba(23, 43, 58, 0.04);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.enrichment-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(23, 43, 58, 0.08);
+}
+
+.enrichment-img {
+    width: 42%;
+    min-height: 200px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.enrichment-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.enrichment-card:hover .enrichment-img img {
+    transform: scale(1.06);
+}
+
+.enrichment-content {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.enrichment-content h3 {
+    font-size: 1.35rem;
+    color: var(--dark-navy, #172B3A);
+    margin-bottom: 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+.enrichment-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #71808A);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsive adjustments for Enrichment */
+@media (max-width: 900px) {
+    .enrichment-grid {
+        grid-template-columns: 1fr;
+    }
+    .enrichment-card {
+        flex-direction: column;
+    }
+    .enrichment-img {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/* ==========================================================
+   STEP 6: HEALTH & VACCINATION SECTION
+   ========================================================== */
+.health-section {
+    padding: 100px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.health-timeline-wrapper {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.health-stages-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.stage-btn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--white, #FFFFFF);
+    border: 2px solid transparent;
+    padding: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(23, 43, 58, 0.03);
+    width: 100%;
+}
+
+.stage-btn:hover {
+    transform: translateX(4px);
+    border-color: rgba(79, 174, 154, 0.3);
+}
+
+.stage-btn.active {
+    background: var(--light-mint, #E5F4EF);
+    border-color: var(--primary-teal, #4FAE9A);
+    box-shadow: 0 12px 30px rgba(79, 174, 154, 0.15);
+}
+
+.stage-badge {
+    width: 45px;
+    height: 45px;
+    background-color: var(--light-bg, #F5F8F7);
+    color: var(--primary-teal, #4FAE9A);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-family: 'Playfair Display', serif;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.stage-btn.active .stage-badge {
+    background-color: var(--primary-teal, #4FAE9A);
+    color: #FFFFFF;
+}
+
+.stage-btn h3 {
+    font-size: 1.15rem;
+    color: var(--dark-navy, #172B3A);
+    margin-bottom: 4px;
+    font-family: 'Playfair Display', serif;
+}
+
+.stage-btn p {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #71808A);
+    margin: 0;
+}
+
+/* Health Display Card Panel */
+.health-display-card {
+    background: var(--white, #FFFFFF);
+    border-radius: 28px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(23, 43, 58, 0.05);
+    border: 1px solid rgba(0,0,0,0.03);
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.health-pane {
+    display: none;
+    grid-template-columns: 1.1fr 1.3fr;
+    gap: 35px;
+    align-items: center;
+    width: 100%;
+    animation: fadeInPane 0.4s ease forwards;
+}
+
+.health-pane.active {
+    display: grid;
+}
+
+.health-pane-img {
+    width: 100%;
+    height: 280px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(23, 43, 58, 0.08);
+}
+
+.health-pane-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.health-pane-content h3 {
+    font-size: 1.6rem;
+    color: var(--dark-navy, #172B3A);
+    margin-bottom: 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+.health-pane-content > p {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #71808A);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.health-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.health-list li {
+    font-size: 0.9rem;
+    color: var(--dark-navy, #172B3A);
+    line-height: 1.5;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 18px;
+}
+
+.health-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-teal, #4FAE9A);
+    border-radius: 50%;
+}
+
+.health-list li strong {
+    color: var(--dark-navy, #172B3A);
+}
+
+.health-disclaimer {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    background: var(--light-bg, #F5F8F7);
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.health-disclaimer p {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #71808A);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .health-timeline-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .health-pane {
+        grid-template-columns: 1fr;
+    }
+    .health-pane-img {
+        height: 220px;
+    }
+}
+
+/* ==========================================================
+   STEP 10: FUN FACTS & CAT CARE TIPS (FLIP CARDS)
+   ========================================================== */
+/* .fun-facts-section {
+    padding: 100px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.fact-flip-card {
+    background-color: transparent;
+    height: 320px;
+    perspective: 1000px;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.fact-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(23, 43, 58, 0.05);
+}
+
+.fact-flip-card:hover .fact-card-inner,
+.fact-flip-card.flipped .fact-card-inner {
+    transform: rotateY(180deg);
+}
+
+.fact-card-front, 
+.fact-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.fact-card-front {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.fact-img-top {
+    width: 100%;
+    height: 65%;
+    overflow: hidden;
+}
+
+.fact-img-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fact-front-text {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFFFFF;
+    height: 35%;
+    box-sizing: border-box;
+}
+
+.fact-front-text h3 {
+    font-size: 1.15rem;
+    color: var(--dark-navy, #172B3A);
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+}
+
+.fact-card-back {
+    background-color: var(--primary-teal, #4FAE9A);
+    color: #FFFFFF;
+    transform: rotateY(180deg);
+    padding: 30px;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.fact-card-back h3 {
+    font-size: 1.3rem;
+    color: var(--white, #FFFFFF);
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 8px;
+}
+
+.fact-card-back p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+} */
+
+/* Responsive adjustments */
+/* @media (max-width: 1200px) {
+    .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .facts-grid {
+        grid-template-columns: 1fr;
+    }
+} */
+
+
+
+
+
+
+/* ==========================================================
+   STEP 10: SLIDING FUN FACTS & CARE TIPS SECTION
+   ========================================================== */
+/* .sliding-facts-section {
+    padding: 100px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.sliding-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 40px 0;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sliding-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    will-change: transform;
+    padding: 0 50vw; Allows smooth looping padding
+} */
+
+/* .sliding-card {
+    width: 320px;
+    height: 420px;
+    background: #FFFFFF;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(23, 43, 58, 0.06);
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    transition: filter 0.5s ease, opacity 0.5s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+    filter: blur(4px);
+    opacity: 0.45;
+    transform: scale(0.9);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.sliding-card.in-focus {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+}
+
+.sliding-card.expanded {
+    filter: blur(0) !important;
+    opacity: 1 !important;
+    transform: scale(1.08) translateY(-8px) !important;
+    box-shadow: 0 25px 50px rgba(23, 43, 58, 0.15) !important;
+    z-index: 10;
+}
+
+.sliding-card-img {
+    width: 100%;
+    height: 55%;
+    overflow: hidden;
+}
+
+.sliding-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.sliding-card.expanded .sliding-card-img img {
+    transform: scale(1.05);
+}
+
+.sliding-card-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.sliding-card-content h3 {
+    font-size: 1.25rem;
+    color: var(--dark-navy, #172B3A);
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.sliding-card-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #71808A);
+    line-height: 1.6;
+    margin: 0;
+} */
+
+/* Background overlay when a card is expanded */
+/* .facts-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(23, 43, 58, 0.35);
+    backdrop-filter: blur(4px);
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.facts-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+} */
+
+/* Responsive adjustments */
+/* @media (max-width: 768px) {
+    .sliding-card {
+        width: 280px;
+        height: 380px;
+    }
+} */
+
+
+
+/* ==========================================================
+   STEP 10: SLIDING FUN FACTS & CARE TIPS SECTION (FIXED FOCUS)
+   ========================================================== */
+.sliding-facts-section {
+    padding: 100px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.sliding-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 40px 0;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sliding-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    will-change: transform;
+    padding: 0 50vw;
+}
+
+.sliding-card {
+    width: 320px;
+    height: 420px;
+    background: #FFFFFF;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(23, 43, 58, 0.06);
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    filter: blur(4px);
+    opacity: 0.45;
+    transform: scale(0.9);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.sliding-card.in-focus {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+}
+
+.sliding-card.expanded {
+    filter: blur(0) !important;
+    opacity: 1 !important;
+    transform: scale(1.08) translateY(-8px) !important;
+    box-shadow: 0 25px 50px rgba(23, 43, 58, 0.2) !important;
+    z-index: 10;
+}
+
+.sliding-card-img {
+    width: 100%;
+    height: 55%;
+    overflow: hidden;
+}
+
+.sliding-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.sliding-card.expanded .sliding-card-img img {
+    transform: scale(1.05);
+}
+
+.sliding-card-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.sliding-card-content h3 {
+    font-size: 1.25rem;
+    color: var(--dark-navy, #172B3A);
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.sliding-card-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #71808A);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Background overlay when a card is expanded */
+.facts-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(23, 43, 58, 0.35);
+    backdrop-filter: blur(4px);
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.facts-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sliding-card {
+        width: 280px;
+        height: 380px;
+    }
+}
+/* ==========================================================
+   STEP 11: CLOSURE & NEXT CATEGORY (BIRDS) SECTION
+   ========================================================== */
+.closure-section {
+    padding: 80px 5% 120px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.closure-card {
+    background: linear-gradient(135deg, var(--dark-navy, #172B3A) 0%, #1A3548 100%);
+    border-radius: 32px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(23, 43, 58, 0.15);
+}
+
+.closure-content {
+    z-index: 2;
+}
+
+.closure-eyebrow {
+    display: inline-block;
+    background: rgba(79, 174, 154, 0.2);
+    color: var(--primary-teal, #4FAE9A);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(79, 174, 154, 0.3);
+}
+
+.closure-content h2 {
+    font-size: clamp(2.2rem, 3.5vw, 3rem);
+    color: #FFFFFF;
+    margin-bottom: 18px;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+}
+
+.closure-content p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.closure-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-primary-teal {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--primary-teal, #4FAE9A);
+    color: #FFFFFF;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 20px rgba(79, 174, 154, 0.3);
+}
+
+.btn-primary-teal:hover {
+    background-color: #3f9885;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(79, 174, 154, 0.45);
+}
+
+.btn-primary-teal svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-primary-teal:hover svg {
+    transform: translateX(5px);
+}
+
+.btn-secondary-outline {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 16px 28px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.closure-image-wrapper {
+    position: relative;
+    height: 340px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.closure-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.closure-card:hover .closure-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.next-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(23, 43, 58, 0.85);
+    backdrop-filter: blur(10px);
+    color: #FFFFFF;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .closure-card {
+        grid-template-columns: 1fr;
+        padding: 40px 30px;
+        gap: 35px;
+    }
+    .closure-image-wrapper {
+        height: 260px;
+    }
+}
+
+/* ==========================================================================
+   DOG PAGE COMPACTNESS OVERRIDES (ONLY AFFECTS DOG PAGE)
+   ========================================================================== */
+
+/* 1. Compact Hero Section */
+body.dog-page .hero-section {
+    padding: 36px 0;
+    min-height: 360px;
+}
+
+/* 2. Compact Main Sections */
+body.dog-page .section,
+body.dog-page .info-section {
+    padding: 28px 0;
+}
+
+/* 3. Compact Grid & Flex Gaps */
+body.dog-page .grid-container,
+body.dog-page .card-grid {
+    gap: 16px;
+}
+
+/* 4. Compact Card Heights & Internal Padding */
+body.dog-page .card,
+body.dog-page .info-card,
+body.dog-page .feature-card {
+    padding: 18px 22px;
+    min-height: auto;
+}
+
+/* 5. Compact Image & Media Containers */
+body.dog-page .media-wrapper,
+body.dog-page .img-container,
+body.dog-page .pet-photo-wrapper {
+    height: 220px;
+    min-height: auto;
+}
+
+/* 6. Compact Headings & Text Margins */
+body.dog-page .section-title,
+body.dog-page h2 {
+    margin-bottom: 12px;
+}
+
+body.dog-page .card-title,
+body.dog-page h3 {
+    margin-bottom: 8px;
+}
+
+body.dog-page p {
+    margin-bottom: 10px;
+    line-height: 1.45;
+}
+
+/* 7. Compact Lists & Interactive Badges */
+body.dog-page ul, 
+body.dog-page ol {
+    margin-bottom: 12px;
+    padding-left: 20px;
+}
+
+body.dog-page li {
+    margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   DOG PAGE — COMPACT NUTRITION SECTION OVERRIDES (#nutrition)
+   ========================================================================== */
+
+/* 1. Compact Main Nutrition Section Container */
+body.dog-page #nutrition.nutrition-section,
+body.dog-page .nutrition-section {
+    padding: 24px 0;
+    margin: 0 auto;
+}
+
+/* 2. Tighten Nutrition Grid Layout */
+body.dog-page #nutrition .nutrition-grid,
+body.dog-page #nutrition .grid-container {
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* 3. Compact Nutrition Cards */
+body.dog-page #nutrition .nutrition-card,
+body.dog-page #nutrition .card {
+    padding: 16px 20px;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 4. Scale Down Nutrition Images / Media Wrappers */
+body.dog-page #nutrition .nutrition-img,
+body.dog-page #nutrition .nutrition-media,
+body.dog-page #nutrition .image-wrapper {
+    height: 180px;
+    max-height: 180px;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+/* 5. Compact Headings & Text inside Nutrition */
+body.dog-page #nutrition h2,
+body.dog-page #nutrition .section-title {
+    margin-bottom: 8px;
+}
+
+body.dog-page #nutrition h3,
+body.dog-page #nutrition .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+body.dog-page #nutrition p {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* 6. Compact Nutrition Badges & Feeding Schedule Lists */
+body.dog-page #nutrition .nutrition-badge,
+body.dog-page #nutrition .diet-tag {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+}
+
+body.dog-page #nutrition ul,
+body.dog-page #nutrition ol {
+    margin-bottom: 8px;
+    padding-left: 18px;
+}
+
+body.dog-page #nutrition li {
+    margin-bottom: 4px;
+    font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   DOG PAGE — NUTRITION SECTION WIDTH OVERRIDES
+   ========================================================================== */
+
+/* 1. Constrain Overall Section Horizontal Width */
+body.dog-page #nutrition.nutrition-section,
+body.dog-page .nutrition-section {
+    max-width: 920px;       /* Restricts maximum horizontal stretch */
+    width: 90%;             /* Adds breathing room on medium screens */
+    margin-left: auto;      /* Keeps container perfectly centered */
+    margin-right: auto;
+}
+
+/* 2. Tighten Grid Container & Card Widths */
+body.dog-page #nutrition .nutrition-grid,
+body.dog-page #nutrition .grid-container {
+    max-width: 100%;
+    /* Snugger min/max column width for cards */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    justify-content: center;
+}
+
+/* 3. Cap Individual Card Widths */
+body.dog-page #nutrition .nutrition-card,
+body.dog-page #nutrition .card {
+    max-width: 420px;       /* Prevents single cards from becoming too wide */
+    margin: 0 auto;         /* Centers cards if grid drops to a single column */
+    width: 100%;
+}
+/* ==========================================================================
+   DOG PAGE — HERO IMAGE SHAPE & SIZE OVERRIDES
+   ========================================================================== */
+
+/* 1. Compact Hero Image Container & Apply Modern Organic Shape */
+body.dog-page .hero-image-wrapper {
+    width: 100%;
+    max-width: 350px;                  /* Compacts width (reduced from large footprint) */
+    height: 350px;                     /* Compacts height for a crisp frame */
+    margin-left: 0;                    /* Anchors securely to the left side */
+    margin-right: auto;
+    overflow: hidden;
+    
+    /* Aesthetic Organic Shape: Soft fluid curves (Not too sharp, not too blunt) */
+    border-radius: 38% 62% 58% 42% / 45% 40% 60% 55%;
+    
+    /* Subtle depth elevation */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, border-radius 0.3s ease;
+}
+
+/* 2. Fill Frame Perfectly */
+body.dog-page .hero-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;            /* Matches the wrapper's shape */
+}
+
+/* Optional hover state for a subtle aesthetic feel */
+body.dog-page .hero-image-wrapper:hover {
+    border-radius: 45% 55% 52% 48% / 50% 45% 55% 50%;
+}
+/* ==========================================================================
+   DOG PAGE — REDUCE GAPS BETWEEN ALL SECTIONS
+   ========================================================================== */
+
+/* 1. Pull all sections closer together */
+body.dog-page section,
+body.dog-page .section,
+body.dog-page .info-section {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important; /* Reduces huge gaps between sections */
+    padding-top: 24px !important;   /* Tightens internal top space */
+    padding-bottom: 24px !important;/* Tightens internal bottom space */
+}
+
+/* 2. If your <main> or wrapper uses Flex/Grid, this overrides the gap */
+body.dog-page main,
+body.dog-page .main-content-wrapper {
+    gap: 24px !important; 
+}
+
+/* 3. Remove extra space on the very last section before the footer */
+body.dog-page section:last-of-type,
+body.dog-page .section:last-of-type {
+    margin-bottom: 0 !important;
+}
+
+/* 4. Fix any lingering divider lines or empty spaces */
+body.dog-page hr,
+body.dog-page .divider {
+    margin: 16px 0 !important;
+}
+
+
+
+
+
+/* ==========================================================
+   FIX - REMOVE UNDERLINE FROM SUPPORTED PET NAMES
+   ========================================================== */
+
+.supported-pets .sp-name {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+.supported-pets .sp-name::before,
+.supported-pets .sp-name::after {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* Keep the hover effect */
+.supported-pets .sp-item:hover .sp-name {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Profile - PawSync</title>
+
+    <link
+        rel="stylesheet"
+        href="profile.css"
+    >
+</head>
+
+<body>
+
+    <div class="profile-page">
+
+        <!-- HEADER -->
+        <header class="profile-header">
+
+            <button
+                class="back-button"
+                onclick="goBack()"
+            >
+                ← Dashboard
+            </button>
+
+            <h1>My Profile</h1>
+
+        </header>
+
+
+        <!-- PROFILE CONTENT -->
+        <main class="profile-container">
+
+            <!-- PROFILE CARD -->
+            <section class="profile-card">
+
+                <div class="profile-avatar" id="profileAvatar">
+                    G
+                </div>
+
+                <h2 id="profileName">
+                    Loading...
+                </h2>
+
+                <p id="profileEmail">
+                    Loading...
+                </p>
+
+                <span class="role-badge">
+                    Pet Owner
+                </span>
+
+            </section>
+
+
+            <!-- PERSONAL INFORMATION -->
+            <section class="information-card">
+
+                <h2>Personal Information</h2>
+
+                <div class="information-grid">
+
+                   
+                    <div class="information-item">
+                        <label>Full Name</label>
+                        <p id="fullName">Loading...</p>
+                    </div>
+
+
+                    <div class="information-item">
+                        <label>Email Address</label>
+                        <p id="emailAddress">Loading...</p>
+                    </div>
+
+
+                    <div class="information-item">
+                        <label>Phone Number</label>
+                        <p id="phoneNumber">Not added</p>
+                    </div>
+
+
+                    <div class="information-item">
+                        <label>Account Role</label>
+                        <p id="accountRole">Pet Owner</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ACCOUNT INFORMATION -->
+            <section class="information-card">
+
+                <h2>Account Information</h2>
+
+                <div class="information-grid">
+
+                    <div class="information-item">
+                        <label>Account Status</label>
+
+                        <p>
+                            <span class="status-badge">
+                                Active
+                            </span>
+                        </p>
+                    </div>
+
+
+                    <div class="information-item">
+                        <label>Login Method</label>
+
+                        <p id="loginMethod">
+                            Loading...
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+<section class="profile-actions">
+
+    <button
+        class="edit-profile-button"
+        id="editProfileButton"
+        type="button"
+    >
+        ✏️ Edit Profile
+    </button>
+
+</section>
+
+
+<!-- ========================================
+     EDIT PROFILE MODAL
+======================================== -->
+
+<div
+    class="modal-overlay"
+    id="editProfileModal"
+>
+
+    <div class="edit-profile-modal">
+
+        <button
+            class="modal-close"
+            id="closeProfileModal"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-header">
+
+            <div class="modal-avatar">
+                ✏️
+            </div>
+
+            <div>
+
+                <h2>Edit Profile</h2>
+
+                <p>
+                    Update your personal information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form id="editProfileForm">
+
+ <!-- ========================================
+     PROFILE PHOTO
+======================================== -->
+
+<div class="profile-photo-section">
+
+    <div class="profile-photo-preview">
+
+        <img
+            id="editProfilePhotoPreview"
+            src=""
+            alt="Profile Photo"
+        >
+
+        <div
+            id="editProfilePhotoInitial"
+            class="profile-photo-initial"
+        >
+            G
+        </div>
+
+    </div>
+
+
+    <div class="profile-photo-actions">
+
+        <h4>Profile Photo</h4>
+
+        <p>
+            Add a profile photo to personalize
+            your PawSync account.
+        </p>
+
+
+        <label
+            for="profilePhotoInput"
+            class="change-photo-btn"
+        >
+            📷 Change Photo
+        </label>
+
+
+        <input
+            type="file"
+            id="profilePhotoInput"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+        >
+
+
+        <button
+            type="button"
+            id="removeProfilePhoto"
+            class="remove-photo-btn"
+        >
+            Remove
+        </button>
+
+    </div>
+
+</div>
+
+
+            <div class="form-group">
+
+                <label for="editName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="editName"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="editPhone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="editPhone"
+                    placeholder="Enter your phone number"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="editEmail"
+                    disabled
+                >
+
+                <small>
+                    Email cannot be changed here.
+                </small>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelProfileEdit"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-profile-button"
+                >
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+            
+        </main>
+
+    </div>
+
+
+    <script src="profile.js"></script>
+
+</body>
+</html>

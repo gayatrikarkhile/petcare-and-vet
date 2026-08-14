@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grooming | PawSync</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="../shared/css/variables.css">
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <link rel="stylesheet" href="../shared/css/responsive.css">
+
+    <!-- Grooming CSS -->
+    <link rel="stylesheet" href="grooming.css">
+</head>
+
+<body data-shared-path="../shared">
+
+    <!-- =========================
+         SHARED NAVBAR
+         ========================= -->
+
+    <div id="navbar-container"></div>
+
+
+    <!-- =========================
+         PAGE LAYOUT
+         ========================= -->
+
+    <div class="page-layout">
+
+        <!-- SHARED SIDEBAR -->
+        <div id="sidebar-container"></div>
+
+
+        <!-- =========================
+             MAIN CONTENT
+             ========================= -->
+
+        <main class="grooming-main">
+
+            <div class="grooming-page">
+
+                <!-- PAGE HEADER -->
+
+                <header class="grooming-header">
+
+                    <div class="grooming-heading">
+
+                        <span class="page-label">
+                            PET CARE
+                        </span>
+
+                        <h1>
+                            Grooming ✂️
+                        </h1>
+
+                        <p>
+                            Keep your pet clean, healthy and looking their best.
+                        </p>
+
+                    </div>
+
+
+                    <div class="grooming-actions">
+
+                        <select
+                            id="petSelector"
+                            class="pet-selector"
+                        >
+                            <option value="bruno">
+                                Bruno (Dog)
+                            </option>
+
+                            <option value="luna">
+                                Luna (Cat)
+                            </option>
+
+                            <option value="max">
+                                Max (Dog)
+                            </option>
+                        </select>
+
+                        <button
+                            class="grooming-btn"
+                            id="addGroomingBtn"
+                        >
+                            <span>+</span>
+                            Log Grooming
+                        </button>
+
+                    </div>
+
+                </header>
+
+
+                <!-- =========================
+                     SUMMARY CARDS
+                     ========================= -->
+
+                <section class="grooming-summary">
+
+                    <div class="grooming-card">
+
+                        <div class="card-icon blue-icon">
+                            🛁
+                        </div>
+
+                        <div class="card-info">
+
+                            <span class="card-label">
+                                LAST GROOMING
+                            </span>
+
+                            <strong>
+                                12 Aug
+                            </strong>
+
+                            <p>
+                                2 days ago
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="grooming-card">
+
+                        <div class="card-icon purple-icon">
+                            ✂️
+                        </div>
+
+                        <div class="card-info">
+
+                            <span class="card-label">
+                                NEXT GROOMING
+                            </span>
+
+                            <strong>
+                                20 Aug
+                            </strong>
+
+                            <p>
+                                In 6 days
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="grooming-card">
+
+                        <div class="card-icon teal-icon">
+                            ❤️
+                        </div>
+
+                        <div class="card-info">
+
+                            <span class="card-label">
+                                GROOMING HEALTH
+                            </span>
+
+                            <strong>
+                                Good
+                            </strong>
+
+                            <p>
+                                Regular care maintained
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =========================
+                     MAIN GRID
+                     ========================= -->
+
+                <section class="grooming-grid">
+
+
+                    <!-- GROOMING SCHEDULE -->
+
+                    <div class="grooming-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h2>
+                                    Grooming Schedule
+                                </h2>
+
+                                <p>
+                                    Upcoming and recent grooming activities
+                                </p>
+
+                            </div>
+
+                            <button
+                                class="small-btn"
+                                id="scheduleBtn"
+                            >
+                                + Add
+                            </button>
+
+                        </div>
+
+
+                        <div class="schedule-list">
+
+                            <div class="schedule-item">
+
+                                <div class="schedule-icon">
+                                    🛁
+                                </div>
+
+                                <div class="schedule-info">
+
+                                    <h3>
+                                        Bath
+                                    </h3>
+
+                                    <p>
+                                        Full body bath and shampoo
+                                    </p>
+
+                                </div>
+
+                                <div class="schedule-date">
+
+                                    <strong>
+                                        20 Aug
+                                    </strong>
+
+                                    <span>
+                                        Upcoming
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="schedule-item">
+
+                                <div class="schedule-icon">
+                                    ✂️
+                                </div>
+
+                                <div class="schedule-info">
+
+                                    <h3>
+                                        Hair Trim
+                                    </h3>
+
+                                    <p>
+                                        Coat trimming and styling
+                                    </p>
+
+                                </div>
+
+                                <div class="schedule-date">
+
+                                    <strong>
+                                        25 Aug
+                                    </strong>
+
+                                    <span>
+                                        Upcoming
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="schedule-item completed">
+
+                                <div class="schedule-icon">
+                                    🧼
+                                </div>
+
+                                <div class="schedule-info">
+
+                                    <h3>
+                                        Nail Trimming
+                                    </h3>
+
+                                    <p>
+                                        Nails cleaned and trimmed
+                                    </p>
+
+                                </div>
+
+                                <div class="schedule-date">
+
+                                    <strong>
+                                        12 Aug
+                                    </strong>
+
+                                    <span>
+                                        Completed
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="schedule-item completed">
+
+                                <div class="schedule-icon">
+                                    👂
+                                </div>
+
+                                <div class="schedule-info">
+
+                                    <h3>
+                                        Ear Cleaning
+                                    </h3>
+
+                                    <p>
+                                        Ear cleaning and inspection
+                                    </p>
+
+                                </div>
+
+                                <div class="schedule-date">
+
+                                    <strong>
+                                        10 Aug
+                                    </strong>
+
+                                    <span>
+                                        Completed
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GROOMING CHECKLIST -->
+
+                    <div class="grooming-panel checklist-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h2>
+                                    Grooming Checklist
+                                </h2>
+
+                                <p>
+                                    Regular care for Bruno
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="checklist">
+
+                            <label class="check-item">
+
+                                <input
+                                    type="checkbox"
+                                    checked
+                                >
+
+                                <span>
+                                    Brush coat
+                                </span>
+
+                            </label>
+
+
+                            <label class="check-item">
+
+                                <input
+                                    type="checkbox"
+                                    checked
+                                >
+
+                                <span>
+                                    Clean ears
+                                </span>
+
+                            </label>
+
+
+                            <label class="check-item">
+
+                                <input
+                                    type="checkbox"
+                                >
+
+                                <span>
+                                    Trim nails
+                                </span>
+
+                            </label>
+
+
+                            <label class="check-item">
+
+                                <input
+                                    type="checkbox"
+                                >
+
+                                <span>
+                                    Brush teeth
+                                </span>
+
+                            </label>
+
+
+                            <label class="check-item">
+
+                                <input
+                                    type="checkbox"
+                                >
+
+                                <span>
+                                    Bath
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="checklist-progress">
+
+                            <div class="progress-header">
+
+                                <span>
+                                    Today's care
+                                </span>
+
+                                <strong id="checkProgress">
+                                    2 / 5
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-bar">
+
+                                <div
+                                    id="checkProgressBar"
+                                    style="width: 40%;"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =========================
+                     GROOMING TIPS
+                     ========================= -->
+
+                <section class="grooming-panel tips-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Grooming Tips
+                            </h2>
+
+                            <p>
+                                Simple ways to keep your pet comfortable
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tips-grid">
+
+                        <div class="tip-card">
+
+                            <div class="tip-icon">
+                                🪮
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Brush Regularly
+                                </h3>
+
+                                <p>
+                                    Regular brushing helps remove loose hair
+                                    and keeps the coat healthy.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="tip-card">
+
+                            <div class="tip-icon">
+                                🦷
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Don't Forget Teeth
+                                </h3>
+
+                                <p>
+                                    Dental cleaning can help prevent plaque
+                                    and bad breath.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="tip-card">
+
+                            <div class="tip-icon">
+                                🐾
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Check Paws
+                                </h3>
+
+                                <p>
+                                    Inspect paws regularly for cuts,
+                                    dryness or irritation.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =========================
+                     EMPTY / RECENT RECORD
+                     ========================= -->
+
+                <section class="grooming-panel records-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Recent Grooming Records
+                            </h2>
+
+                            <p>
+                                Grooming history for your selected pet
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-row">
+
+                        <div class="record-icon">
+                            🛁
+                        </div>
+
+                        <div class="record-info">
+
+                            <strong>
+                                Full Grooming Session
+                            </strong>
+
+                            <span>
+                                Bath • Hair brushing • Nail trimming
+                            </span>
+
+                        </div>
+
+                        <div class="record-date">
+                            12 Aug 2026
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-row">
+
+                        <div class="record-icon">
+                            🦷
+                        </div>
+
+                        <div class="record-info">
+
+                            <strong>
+                                Dental Cleaning
+                            </strong>
+
+                            <span>
+                                Teeth brushed and checked
+                            </span>
+
+                        </div>
+
+                        <div class="record-date">
+                            05 Aug 2026
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================
+         GROOMING MODAL
+         ========================= -->
+
+    <div
+        class="modal-overlay"
+        id="groomingModal"
+    >
+
+        <div class="grooming-modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2>
+                        Log Grooming
+                    </h2>
+
+                    <p>
+                        Add a grooming record for your pet.
+                    </p>
+
+                </div>
+
+                <button
+                    class="close-modal"
+                    id="closeModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="groomingForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Grooming Type
+                    </label>
+
+                    <select
+                        id="groomingType"
+                        required
+                    >
+
+                        <option value="">
+                            Select grooming type
+                        </option>
+
+                        <option value="Bath">
+                            Bath
+                        </option>
+
+                        <option value="Hair Trim">
+                            Hair Trim
+                        </option>
+
+                        <option value="Nail Trimming">
+                            Nail Trimming
+                        </option>
+
+                        <option value="Ear Cleaning">
+                            Ear Cleaning
+                        </option>
+
+                        <option value="Dental Cleaning">
+                            Dental Cleaning
+                        </option>
+
+                        <option value="Full Grooming">
+                            Full Grooming
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="groomingDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Cost
+                        </label>
+
+                        <input
+                            type="number"
+                            id="groomingCost"
+                            placeholder="₹ 0"
+                            min="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Groomer / Clinic
+                    </label>
+
+                    <input
+                        type="text"
+                        id="groomerName"
+                        placeholder="e.g. Paw Salon"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="groomingNotes"
+                        rows="3"
+                        placeholder="Add any additional notes..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelModal"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                    >
+                        Save Record
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Toast -->
+
+    <div
+        class="grooming-toast"
+        id="groomingToast"
+    >
+        Grooming record saved successfully.
+    </div>
+
+
+    <!-- Shared JS -->
+    <script src="../shared/js/shared.js"></script>
+
+    <!-- Grooming JS -->
+    <script src="grooming.js"></script>
+
+</body>
+
+</html>

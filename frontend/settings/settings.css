@@ -1,0 +1,920 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f5faf8;
+
+    color: #173b5f;
+
+}
+
+
+.settings-page {
+
+    min-height: 100vh;
+
+}
+
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+
+.settings-header {
+
+    height: 90px;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 50px;
+
+    border-bottom:
+        1px solid #e3ece9;
+
+    position: relative;
+
+}
+
+
+.settings-header h1 {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 26px;
+
+}
+
+
+.back-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #126e72;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+}
+
+
+.back-button:hover {
+
+    background: #eaf6f2;
+
+}
+
+
+/* ============================= */
+/* CONTAINER */
+/* ============================= */
+
+.settings-container {
+
+    width: min(900px, 92%);
+
+    margin: 40px auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+
+/* ============================= */
+/* CARD */
+/* ============================= */
+
+.settings-card {
+
+    background: #ffffff;
+
+    border:
+        1px solid #e2ebe8;
+
+    border-radius: 20px;
+
+    padding: 28px 30px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(30, 80, 70, 0.05);
+
+}
+
+
+/* ============================= */
+/* SECTION TITLE */
+/* ============================= */
+
+.section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.section-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 12px;
+
+    background: #e5f5ef;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 21px;
+
+}
+
+
+.section-title h2 {
+
+    font-size: 20px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.section-title p {
+
+    color: #8193a3;
+
+    font-size: 14px;
+
+}
+
+
+/* ============================= */
+/* ROW */
+/* ============================= */
+
+.settings-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 20px 0;
+
+    border-top:
+        1px solid #edf2f0;
+
+}
+
+
+.settings-row h3 {
+
+    font-size: 16px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.settings-row p {
+
+    color: #8193a3;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+
+.action-button {
+
+    border:
+        1px solid #126e72;
+
+    background: #ffffff;
+
+    color: #126e72;
+
+    padding: 10px 18px;
+
+    border-radius: 9px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+}
+
+
+.action-button:hover {
+
+    background: #eaf6f2;
+
+}
+
+
+/* ============================= */
+/* TOGGLE */
+/* ============================= */
+
+.switch {
+
+    position: relative;
+
+    width: 48px;
+
+    height: 26px;
+
+    flex-shrink: 0;
+
+}
+
+
+.switch input {
+
+    opacity: 0;
+
+    width: 0;
+
+    height: 0;
+
+}
+
+
+.slider {
+
+    position: absolute;
+
+    inset: 0;
+
+    cursor: pointer;
+
+    background: #cbd8d5;
+
+    border-radius: 30px;
+
+    transition: 0.25s;
+
+}
+
+
+.slider::before {
+
+    content: "";
+
+    position: absolute;
+
+    height: 20px;
+
+    width: 20px;
+
+    left: 3px;
+
+    top: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transition: 0.25s;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0,0,0,0.15);
+
+}
+
+
+.switch input:checked + .slider {
+
+    background: #19a982;
+
+}
+
+
+.switch input:checked + .slider::before {
+
+    transform:
+        translateX(22px);
+
+}
+
+
+/* ============================= */
+/* SECURITY */
+/* ============================= */
+
+.security-status {
+
+    background: #e4f7ed;
+
+    color: #16805d;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+
+/* ============================= */
+/* DANGER */
+/* ============================= */
+
+.danger-card {
+
+    border-color: #f0dddd;
+
+}
+
+
+.danger-icon {
+
+    background: #fff0ed;
+
+}
+
+
+.logout-button {
+
+    border: none;
+
+    background: #fff0ed;
+
+    color: #c63d35;
+
+    padding: 10px 20px;
+
+    border-radius: 9px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.logout-button:hover {
+
+    background: #ffe1dc;
+
+}
+
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 650px) {
+
+    .settings-header {
+
+        padding: 0 20px;
+
+    }
+
+
+    .settings-header h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .settings-container {
+
+        width: 94%;
+
+        margin: 25px auto;
+
+    }
+
+
+    .settings-card {
+
+        padding: 22px;
+
+    }
+
+
+    .settings-row {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .action-button,
+    .logout-button {
+
+        width: 100%;
+
+    }
+
+}
+
+/* ========================================
+   CHANGE PASSWORD MODAL
+======================================== */
+
+.password-modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(15, 35, 45, 0.45);
+
+    padding: 20px;
+
+    z-index: 3000;
+
+}
+
+
+.password-modal-overlay.show {
+
+    display: flex;
+
+}
+
+
+/* ========================================
+   MODAL
+======================================== */
+
+.password-modal {
+
+    position: relative;
+
+    width: min(500px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(20, 55, 70, 0.20);
+
+    animation:
+        passwordModalAppear
+        0.2s ease;
+
+}
+
+
+@keyframes passwordModalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px)
+            scale(0.98);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* ========================================
+   CLOSE BUTTON
+======================================== */
+
+.password-modal-close {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 17px;
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f2f7f5;
+
+    color: #58717b;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+}
+
+
+.password-modal-close:hover {
+
+    background: #e5efec;
+
+    color: #173b5f;
+
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.password-modal-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+    padding-right: 35px;
+
+}
+
+
+.password-modal-icon {
+
+    width: 50px;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #e5f5ef;
+
+    border-radius: 14px;
+
+    font-size: 23px;
+
+}
+
+
+.password-modal-header h2 {
+
+    margin: 0 0 5px;
+
+    color: #173b5f;
+
+    font-size: 21px;
+
+}
+
+
+.password-modal-header p {
+
+    margin: 0;
+
+    color: #8193a3;
+
+    font-size: 13px;
+
+}
+
+
+/* ========================================
+   GOOGLE LOGIN NOTICE
+======================================== */
+
+.google-password-notice {
+
+    display: flex;
+
+    gap: 12px;
+
+    padding: 16px;
+
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+
+    background: #f1f7ff;
+
+    border: 1px solid #dce9f7;
+
+}
+
+
+.notice-icon {
+
+    font-size: 20px;
+
+}
+
+
+.google-password-notice strong {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #173b5f;
+
+}
+
+
+.google-password-notice p {
+
+    margin: 5px 0;
+
+    color: #657d91;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ========================================
+   FORM
+======================================== */
+
+.password-form-group {
+
+    margin-bottom: 18px;
+
+}
+
+
+.password-form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #173b5f;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.password-form-group input {
+
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 14px;
+
+    border: 1px solid #dce7e4;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    color: #173b5f;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+}
+
+
+.password-form-group input:focus {
+
+    border-color: #15977f;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(21, 151, 127, 0.10);
+
+}
+
+
+/* ========================================
+   REQUIREMENTS
+======================================== */
+
+.password-requirements {
+
+    padding: 14px 16px;
+
+    margin-top: 5px;
+
+    margin-bottom: 22px;
+
+    border-radius: 10px;
+
+    background: #f7faf9;
+
+}
+
+
+.password-requirements strong {
+
+    font-size: 13px;
+
+    color: #173b5f;
+
+}
+
+
+.password-requirements ul {
+
+    margin: 7px 0 0 18px;
+
+    padding: 0;
+
+    color: #8193a3;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+}
+
+
+
+/* ========================================
+   SETTINGS ACTION BUTTON
+======================================== */
+
+.settings-action-button {
+
+    min-width: 105px;
+
+    height: 44px;
+
+    padding: 0 22px;
+
+    border: 1px solid #147d80;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #147d80;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+/* Hover */
+
+.settings-action-button:hover {
+
+    background: #147d80;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 14px
+        rgba(20, 125, 128, 0.18);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* Click */
+
+.settings-action-button:active {
+
+    transform:
+        translateY(0);
+
+    box-shadow: none;
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 500px) {
+
+    .password-modal {
+
+        padding: 24px;
+
+        border-radius: 17px;
+
+    }
+
+
+    .password-modal-actions {
+
+        flex-direction: column-reverse;
+
+    }
+
+
+    .password-cancel-button,
+    .password-save-button {
+
+        width: 100%;
+
+    }
+
+}
+

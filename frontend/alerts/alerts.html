@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Alerts | PawSync</title>
+
+
+    <!-- =========================================
+         GOOGLE FONT
+    ========================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         SHARED CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/responsive.css"
+    >
+
+
+    <!-- =========================================
+         ALERTS CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="alerts.css"
+    >
+
+</head>
+
+
+<body data-shared-path="../shared">
+
+
+    <!-- =========================================
+         SHARED NAVBAR
+    ========================================== -->
+
+    <div id="navbar-container"></div>
+
+
+    <!-- =========================================
+         PAGE LAYOUT
+    ========================================== -->
+
+    <div class="page-layout">
+
+
+        <!-- =====================================
+             SHARED SIDEBAR
+        ====================================== -->
+
+        <div id="sidebar-container"></div>
+
+
+        <!-- =====================================
+             MAIN CONTENT
+        ====================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================
+                 PAGE HEADER
+            ================================== -->
+
+            <section class="alerts-header">
+
+                <div>
+
+                    <span class="alerts-eyebrow">
+                        PET CARE NOTIFICATIONS
+                    </span>
+
+                    <h1>
+                        Alerts
+                    </h1>
+
+                    <p>
+                        Stay updated about important
+                        health, vaccination and care
+                        reminders for your pets.
+                    </p>
+
+                </div>
+
+
+                <div class="alerts-header-actions">
+
+                    <button
+                        type="button"
+                        class="mark-all-button"
+                        id="markAllReadButton"
+                    >
+                        Mark all as read
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 ALERT SUMMARY
+            ================================== -->
+
+            <section class="alert-summary-grid">
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon warning">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Important
+                        </span>
+
+                        <strong id="importantCount">
+                            2
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon reminder">
+                        🔔
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Reminders
+                        </span>
+
+                        <strong id="reminderCount">
+                            4
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon appointment">
+                        👨‍⚕️
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Appointments
+                        </span>
+
+                        <strong id="appointmentCount">
+                            2
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon unread">
+                        ●
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Unread
+                        </span>
+
+                        <strong id="unreadCount">
+                            5
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================
+                 ALERT CONTENT
+            ================================== -->
+
+            <section class="alerts-card">
+
+
+                <!-- =================================
+                     ALERT TOOLBAR
+                ================================== -->
+
+                <div class="alerts-toolbar">
+
+
+                    <div>
+
+                        <h2>
+                            Recent Alerts
+                        </h2>
+
+                        <p>
+                            Important updates and reminders
+                            for your pets.
+                        </p>
+
+                    </div>
+
+
+                    <div class="alert-filters">
+
+                        <button
+                            type="button"
+                            class="alert-filter active"
+                            data-filter="all"
+                        >
+                            All
+                        </button>
+
+                        <button
+                            type="button"
+                            class="alert-filter"
+                            data-filter="unread"
+                        >
+                            Unread
+                        </button>
+
+                        <button
+                            type="button"
+                            class="alert-filter"
+                            data-filter="important"
+                        >
+                            Important
+                        </button>
+
+                        <button
+                            type="button"
+                            class="alert-filter"
+                            data-filter="reminder"
+                        >
+                            Reminders
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     ALERT LIST
+                ================================== -->
+
+                <div
+                    class="alerts-list"
+                    id="alertsList"
+                >
+
+                    <!--
+                        Alerts will be generated
+                        by alerts.js
+                    -->
+
+                </div>
+
+
+                <!-- =================================
+                     EMPTY STATE
+                ================================== -->
+
+                <div
+                    class="alerts-empty"
+                    id="alertsEmpty"
+                    hidden
+                >
+
+                    <div class="empty-alert-icon">
+                        🔔
+                    </div>
+
+                    <h3>
+                        No alerts found
+                    </h3>
+
+                    <p>
+                        You don't have any alerts
+                        matching this filter.
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         SHARED JAVASCRIPT
+    ========================================== -->
+
+    <script src="../shared/js/shared.js"></script>
+
+
+    <!-- =========================================
+         ALERTS JAVASCRIPT
+    ========================================== -->
+
+    <script src="alerts.js"></script>
+
+</body>
+
+</html>

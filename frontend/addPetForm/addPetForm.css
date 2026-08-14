@@ -1,0 +1,737 @@
+/* ==========================================================================
+   COLOR SYSTEM & VARIABLES
+   ========================================================================== */
+:root {
+  --card-background: #FFFFFF;
+  --page-background: #F7F5FF;
+  --primary-text: #1D2F63;
+  --secondary-text: #667595;
+  --accent: #7657FF;
+  --accent-hover: #6342E8;
+  --accent-soft: #F3F0FF;
+  --border: #E8E5F2;
+  --input-background: #FFFFFF;
+  --error-color: #E53935;
+  --error-bg: #FFEBEE;
+  --placeholder: #9AA4BC;
+  
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--page-background);
+  color: var(--primary-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Page Layout */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 20px;
+}
+
+/* Main Form Card */
+.pet-form-card {
+  background-color: var(--card-background);
+  width: 100%;
+  max-width: 850px;
+  border-radius: 24px;
+  border: 1px solid rgba(118, 87, 255, 0.08);
+  box-shadow: 0 12px 40px rgba(45, 38, 100, 0.08);
+  padding: 44px;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.form-header {
+  margin-bottom: 36px;
+}
+
+.header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 10px;
+}
+
+.header-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.form-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--primary-text);
+}
+
+.form-header .subtitle {
+  font-size: 15px;
+  color: var(--secondary-text);
+}
+
+/* ==========================================================================
+   FORM SECTIONS & GRID
+   ========================================================================== */
+.form-section {
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.required-star, .req {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.section-divider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 36px 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+/* Labels */
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-text);
+  margin-bottom: 8px;
+}
+
+.input-hint {
+  font-size: 12px;
+  color: var(--secondary-text);
+  margin-top: 6px;
+}
+
+/* ==========================================================================
+   FORM CONTROLS & INPUTS
+   ========================================================================== */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background-color: var(--input-background);
+  color: var(--primary-text);
+  font-family: var(--font-main);
+  font-size: 15px;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input::placeholder {
+  color: var(--placeholder);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(118, 87, 255, 0.12);
+}
+
+/* Inputs with Icons */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon input {
+  padding-right: 44px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--secondary-text);
+  pointer-events: none;
+}
+
+.date-icon {
+  pointer-events: none;
+}
+
+/* Select Dropdown Wrapper */
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.select-wrapper select {
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.select-icon {
+  position: absolute;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--secondary-text);
+  pointer-events: none;
+}
+
+/* Weight Input Group */
+.weight-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.weight-input-group input[type="number"] {
+  flex: 1;
+}
+
+.unit-select {
+  width: 100px;
+  flex-shrink: 0;
+}
+
+/* Remove Number Spinner */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* ==========================================================================
+   SEGMENTED CONTROL (RADIO BUTTONS)
+   ========================================================================== */
+.segmented-control {
+  display: flex;
+  background-color: var(--accent-soft);
+  padding: 4px;
+  border-radius: 12px;
+  height: 48px;
+  gap: 4px;
+}
+
+.segmented-option {
+  flex: 1;
+  position: relative;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.segmented-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.segmented-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary-text);
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.segmented-label svg {
+  width: 16px;
+  height: 16px;
+}
+
+.segmented-option input[type="radio"]:checked + .segmented-label {
+  background-color: var(--card-background);
+  color: var(--accent);
+  box-shadow: 0 2px 8px rgba(118, 87, 255, 0.12);
+}
+
+/* ==========================================================================
+   SEARCHABLE DROPDOWN (BREED)
+   ========================================================================== */
+.searchable-select {
+  position: relative;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--card-background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(29, 47, 99, 0.1);
+  z-index: 100;
+  padding: 6px;
+}
+
+.dropdown-item {
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--primary-text);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.dropdown-item:hover,
+.dropdown-item.highlighted {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.dropdown-empty {
+  padding: 12px;
+  font-size: 14px;
+  color: var(--secondary-text);
+  text-align: center;
+}
+
+/* ==========================================================================
+   FILE UPLOAD COMPONENT
+   ========================================================================== */
+.upload-container {
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  background-color: var(--accent-soft);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  overflow: hidden;
+}
+
+.upload-container.drag-over {
+  border-color: var(--accent);
+  background-color: #EAE5FF;
+}
+
+.upload-dropzone {
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-align: center;
+}
+
+.upload-icon-circle {
+  width: 48px;
+  height: 48px;
+  background-color: var(--card-background);
+  color: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(118, 87, 255, 0.1);
+}
+
+.upload-icon-circle svg {
+  width: 22px;
+  height: 22px;
+}
+
+.upload-text {
+  font-size: 14px;
+  color: var(--primary-text);
+  margin-bottom: 2px;
+}
+
+.upload-subtext {
+  font-size: 12px;
+  color: var(--secondary-text);
+}
+
+.upload-preview {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.preview-avatar-wrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--accent);
+  flex-shrink: 0;
+  background-color: var(--card-background);
+}
+
+.preview-avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-change-photo,
+.btn-remove-photo {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.btn-change-photo {
+  background-color: var(--card-background);
+  color: var(--primary-text);
+  border: 1px solid var(--border);
+}
+
+.btn-change-photo:hover {
+  background-color: #F8F9FC;
+  border-color: #D1D5DB;
+}
+
+.btn-remove-photo {
+  background-color: transparent;
+  color: var(--error-color);
+}
+
+.btn-remove-photo:hover {
+  background-color: var(--error-bg);
+}
+
+/* ==========================================================================
+   TAGS / CHIPS INPUT (ALLERGIES & MEDICAL)
+   ========================================================================== */
+.tag-input-container {
+  min-height: 48px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background-color: var(--input-background);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.tag-input-container:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(118, 87, 255, 0.12);
+}
+
+.tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+.tag-chip-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.tag-chip-remove:hover {
+  opacity: 1;
+}
+
+.tag-chip-remove svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tag-input-container input {
+  flex: 1;
+  min-width: 160px;
+  height: 34px;
+  padding: 0 4px;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+/* ==========================================================================
+   VALIDATION ERROR STATES
+   ========================================================================== */
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error .tag-input-container,
+.form-group.has-error .segmented-control,
+.form-group.has-error .upload-container {
+  border-color: var(--error-color) !important;
+}
+
+.form-group.has-error input:focus,
+.form-group.has-error select:focus {
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.12) !important;
+}
+
+.error-message {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--error-color);
+  margin-top: 6px;
+  min-height: 16px;
+  display: block;
+}
+
+/* ==========================================================================
+   BUTTONS & ACTIONS
+   ========================================================================== */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+button {
+  font-family: var(--font-main);
+  border: none;
+  outline: none;
+}
+
+.btn-primary,
+.btn-secondary {
+  height: 50px;
+  padding: 0 28px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--secondary-text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background-color: #F8F9FC;
+  color: var(--primary-text);
+  border-color: #D1D5DB;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.toast {
+  background-color: var(--primary-text);
+  color: #FFFFFF;
+  padding: 14px 22px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.toast-icon {
+  color: #4ADE80;
+  display: flex;
+  align-items: center;
+}
+
+.toast-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.toast-message {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding: 20px 12px;
+  }
+
+  .pet-form-card {
+    padding: 28px 20px;
+    border-radius: 20px;
+    width: 95%;
+  }
+
+  .form-header h1 {
+    font-size: 24px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .form-group.full-width {
+    grid-column: span 1;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .toast-container {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .toast {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,1028 @@
+/* =========================================
+   PAWSYNC
+   APPOINTMENTS PAGE ONLY
+
+   Navbar + Sidebar are handled by:
+   shared/css/common.css
+========================================= */
+
+
+/* =========================================
+   PAGE VARIABLES
+========================================= */
+
+:root {
+
+    --appointment-primary: #128876;
+    --appointment-primary-dark: #0d6b5d;
+    --appointment-primary-light: #e6f5f2;
+
+    --appointment-bg: #f4f8f7;
+    --appointment-card: #ffffff;
+
+    --appointment-text: #1e293b;
+    --appointment-muted: #64748b;
+
+    --appointment-border: #e2e8f0;
+
+    --appointment-radius-lg: 16px;
+    --appointment-radius-md: 12px;
+
+    --appointment-shadow-sm:
+        0 4px 18px rgba(18, 136, 118, 0.04);
+
+    --appointment-shadow-hover:
+        0 12px 30px rgba(18, 136, 118, 0.12);
+}
+
+
+/* =========================================
+   PAGE BODY
+========================================= */
+
+body {
+
+    background: var(--appointment-bg);
+
+    color: var(--appointment-text);
+
+    font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* =========================================
+   PAGE LAYOUT
+========================================= */
+
+.page-layout {
+
+    min-height: 100vh;
+
+}
+
+
+/*
+    Shared sidebar is fixed.
+
+    Therefore appointment content starts
+    after the sidebar.
+*/
+
+.main-content {
+
+    margin-left: 250px;
+
+    padding: 120px 40px 60px;
+
+    width: calc(100% - 250px);
+
+    max-width: 1400px;
+
+    margin-right: auto;
+
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+}
+
+
+.eyebrow {
+
+    color: var(--appointment-primary);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+    margin-bottom: 4px;
+
+}
+
+
+.page-header h1 {
+
+    margin: 0;
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.03em;
+
+    color: var(--appointment-text);
+
+}
+
+
+.page-header p {
+
+    margin: 4px 0 0;
+
+    color: var(--appointment-muted);
+
+    font-size: 14px;
+
+}
+
+
+.my-appointments-btn {
+
+    border: 1px solid var(--appointment-border);
+
+    background: #ffffff;
+
+    color: var(--appointment-primary);
+
+    padding: 10px 18px;
+
+    border-radius: var(--appointment-radius-md);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: var(--appointment-shadow-sm);
+
+    transition: all 0.2s ease;
+
+}
+
+
+.my-appointments-btn:hover {
+
+    background: var(--appointment-primary-light);
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.search-section {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        200px
+        200px;
+
+    gap: 14px;
+
+    margin-bottom: 24px;
+
+}
+
+
+.search-box {
+
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--appointment-border);
+
+    border-radius: var(--appointment-radius-md);
+
+    padding: 0 16px;
+
+    box-shadow: var(--appointment-shadow-sm);
+
+    transition: border-color 0.2s ease;
+
+}
+
+
+.search-box:focus-within {
+
+    border-color:
+        var(--appointment-primary);
+
+}
+
+
+.search-box span {
+
+    font-size: 15px;
+
+    opacity: 0.6;
+
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: var(--appointment-text);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+}
+
+
+.search-section select {
+
+    height: 46px;
+
+    border:
+        1px solid
+        var(--appointment-border);
+
+    border-radius:
+        var(--appointment-radius-md);
+
+    background: #ffffff;
+
+    color: var(--appointment-text);
+
+    padding: 0 14px;
+
+    outline: none;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    box-shadow:
+        var(--appointment-shadow-sm);
+
+}
+
+
+.search-section select:focus {
+
+    border-color:
+        var(--appointment-primary);
+
+}
+
+
+/* =========================================
+   INFO CARDS
+========================================= */
+
+.appointment-info {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 16px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.info-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        var(--appointment-border);
+
+    border-radius:
+        var(--appointment-radius-md);
+
+    padding: 16px;
+
+    box-shadow:
+        var(--appointment-shadow-sm);
+
+}
+
+
+.info-icon {
+
+    width: 44px;
+
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        var(--appointment-primary-light);
+
+    border-radius:
+        var(--appointment-radius-md);
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+
+}
+
+
+.info-card strong {
+
+    display: block;
+
+    color: var(--appointment-text);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.info-card p {
+
+    margin: 2px 0 0;
+
+    color: var(--appointment-muted);
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+
+}
+
+
+.section-heading h2 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    color: var(--appointment-text);
+
+}
+
+
+.section-heading p {
+
+    margin: 3px 0 0;
+
+    color: var(--appointment-muted);
+
+    font-size: 13px;
+
+}
+
+
+.section-heading > span {
+
+    background: #e2e8f0;
+
+    color: var(--appointment-text);
+
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   VETERINARIAN GRID
+========================================= */
+
+.vet-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+
+}
+
+
+/* =========================================
+   VETERINARIAN CARD
+========================================= */
+
+.vet-card {
+
+    background:
+        var(--appointment-card);
+
+    border:
+        1px solid
+        var(--appointment-border);
+
+    border-radius:
+        var(--appointment-radius-lg);
+
+    overflow: hidden;
+
+    box-shadow:
+        var(--appointment-shadow-sm);
+
+    transition:
+        all 0.3s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+}
+
+
+.vet-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        var(--appointment-shadow-hover);
+
+    border-color: #cbd5e1;
+
+}
+
+
+/* =========================================
+   CARD TOP
+========================================= */
+
+.vet-card-top {
+
+    padding: 20px 20px 14px;
+
+    display: flex;
+
+    gap: 14px;
+
+}
+
+
+.vet-photo {
+
+    width: 74px;
+
+    height: 74px;
+
+    flex-shrink: 0;
+
+    border-radius:
+        var(--appointment-radius-md);
+
+    object-fit: cover;
+
+    box-shadow:
+        0 4px 10px
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+.vet-details {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.verified {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    color:
+        var(--appointment-primary);
+
+    background:
+        var(--appointment-primary-light);
+
+    padding: 2px 8px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    margin-bottom: 6px;
+
+}
+
+
+.vet-name {
+
+    margin: 0;
+
+    color:
+        var(--appointment-text);
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.vet-specialty {
+
+    margin: 3px 0 6px;
+
+    color:
+        var(--appointment-muted);
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+}
+
+
+.rating {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    font-size: 12px;
+
+}
+
+
+.rating strong {
+
+    color: #d97706;
+
+    font-weight: 700;
+
+}
+
+
+.rating span {
+
+    color:
+        var(--appointment-muted);
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   CARD BODY
+========================================= */
+
+.vet-card-body {
+
+    padding: 0 20px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+.vet-location {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color:
+        var(--appointment-muted);
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+}
+
+
+.vet-meta {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 10px 0;
+
+    border-top:
+        1px dashed
+        var(--appointment-border);
+
+    border-bottom:
+        1px dashed
+        var(--appointment-border);
+
+}
+
+
+.availability {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #059669;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.availability-dot {
+
+    width: 6px;
+
+    height: 6px;
+
+    background: #10b981;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 3px
+        #d1fae5;
+
+}
+
+
+.fee {
+
+    color:
+        var(--appointment-text);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+}
+
+
+.fee span {
+
+    color:
+        var(--appointment-muted);
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+}
+
+
+/* =========================================
+   CARD ACTIONS
+========================================= */
+
+.vet-actions {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1.25fr;
+
+    gap: 8px;
+
+}
+
+
+.profile-btn,
+.book-btn {
+
+    height: 38px;
+
+    border-radius:
+        var(--appointment-radius-md);
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+.profile-btn {
+
+    border:
+        1px solid
+        var(--appointment-border);
+
+    background: #ffffff;
+
+    color:
+        var(--appointment-text);
+
+}
+
+
+.profile-btn:hover {
+
+    background:
+        var(--appointment-bg);
+
+    border-color: #cbd5e1;
+
+}
+
+
+.book-btn {
+
+    border: none;
+
+    background:
+        var(--appointment-primary);
+
+    color: white;
+
+    box-shadow:
+        0 4px 12px
+        rgba(18, 136, 118, 0.2);
+
+}
+
+
+.book-btn:hover {
+
+    background:
+        var(--appointment-primary-dark);
+
+    box-shadow:
+        0 6px 16px
+        rgba(18, 136, 118, 0.3);
+
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    color:
+        var(--appointment-muted);
+
+    background: #ffffff;
+
+    border:
+        1px dashed
+        var(--appointment-border);
+
+    border-radius:
+        var(--appointment-radius-lg);
+
+}
+
+
+.empty-state div {
+
+    font-size: 40px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.empty-state h3 {
+
+    color:
+        var(--appointment-text);
+
+    margin: 0;
+
+    font-size: 16px;
+
+}
+
+
+.empty-state p {
+
+    font-size: 13px;
+
+    margin-top: 4px;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+
+    .vet-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 1100px) {
+
+    .search-section {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+    .search-box {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .main-content {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding:
+            100px 20px 40px;
+
+    }
+
+
+    .appointment-info {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .vet-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .page-header {
+
+        align-items: flex-start;
+
+        gap: 16px;
+
+        flex-direction: column;
+
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .main-content {
+
+        padding:
+            95px 16px 35px;
+
+    }
+
+
+    .search-section {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .vet-card-top {
+
+        padding:
+            16px 16px 12px;
+
+    }
+
+
+    .vet-card-body {
+
+        padding:
+            0 16px 16px;
+
+    }
+
+}

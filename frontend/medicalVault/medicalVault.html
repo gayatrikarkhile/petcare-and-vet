@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Medical Vault | PawSync</title>
+
+
+    <!-- =========================================
+         SHARED CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/responsive.css"
+    >
+
+
+    <!-- =========================================
+         MEDICAL VAULT CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="medicalVault.css"
+    >
+
+</head>
+
+
+<body data-shared-path="../shared">
+
+
+    <!-- =========================================
+         SHARED NAVBAR
+    ========================================== -->
+
+    <div id="navbar-container"></div>
+
+
+    <!-- =========================================
+         PAGE LAYOUT
+    ========================================== -->
+
+    <div class="page-layout">
+
+
+        <!-- =====================================
+             SHARED SIDEBAR
+        ====================================== -->
+
+        <div id="sidebar-container"></div>
+
+
+        <!-- =====================================
+             MEDICAL VAULT CONTENT
+        ====================================== -->
+
+        <main class="main-content">
+
+            <main class="medical-vault-page">
+
+
+                <!-- =================================
+                     PAGE HEADER
+                ================================== -->
+
+                <section class="vault-header">
+
+                    <div class="vault-header-text">
+
+                        <span class="vault-label">
+                            PET HEALTH RECORDS
+                        </span>
+
+                        <h1>
+                            Medical Vault
+                        </h1>
+
+                        <p>
+                            Keep your pets' important medical
+                            documents safe, organized and easy
+                            to access.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="upload-document-button"
+                        id="openUploadModal"
+                    >
+
+                        <span>
+                            +
+                        </span>
+
+                        Upload Document
+
+                    </button>
+
+                </section>
+
+
+                <!-- =================================
+                     PET CATEGORIES
+                ================================== -->
+
+                <section class="pet-category-section">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <h2>
+                                Your Pets
+                            </h2>
+
+                            <p>
+                                Select a pet to view their
+                                medical documents.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="pet-category-grid"
+                        id="petCategoryGrid"
+                    >
+
+                        <!--
+                            Pet cards are generated
+                            by medicalVault.js
+                        -->
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================
+                     SELECTED PET / DOCUMENTS
+                ================================== -->
+
+                <section class="documents-section">
+
+
+                    <div class="documents-header">
+
+                        <div>
+
+                            <span class="selected-pet-label">
+                                SELECTED PET
+                            </span>
+
+                            <h2 id="selectedPetName">
+                                Bruno
+                            </h2>
+
+                            <p id="selectedPetInfo">
+                                Labrador Retriever • 2 Years
+                            </p>
+
+                        </div>
+
+
+                        <div class="document-count-box">
+
+                            <strong id="documentCount">
+                                0
+                            </strong>
+
+                            <span>
+                                Documents
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         DOCUMENT FILTERS
+                    ================================== -->
+
+                    <div class="document-toolbar">
+
+                        <div
+                            class="document-tabs"
+                            id="documentTabs"
+                        >
+
+                            <button
+                                type="button"
+                                class="document-tab active"
+                                data-type="all"
+                            >
+                                All
+                            </button>
+
+                            <button
+                                type="button"
+                                class="document-tab"
+                                data-type="vaccination"
+                            >
+                                Vaccinations
+                            </button>
+
+                            <button
+                                type="button"
+                                class="document-tab"
+                                data-type="medical"
+                            >
+                                Medical Reports
+                            </button>
+
+                            <button
+                                type="button"
+                                class="document-tab"
+                                data-type="prescription"
+                            >
+                                Prescriptions
+                            </button>
+
+                            <button
+                                type="button"
+                                class="document-tab"
+                                data-type="lab"
+                            >
+                                Lab Reports
+                            </button>
+
+                        </div>
+
+
+                        <div class="document-search">
+
+                            <span>
+                                🔍
+                            </span>
+
+                            <input
+                                type="text"
+                                id="documentSearch"
+                                placeholder="Search documents..."
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         DOCUMENT LIST
+                    ================================== -->
+
+                    <div
+                        class="document-list"
+                        id="documentList"
+                    >
+
+                        <!--
+                            Documents are generated
+                            by medicalVault.js
+                        -->
+
+                    </div>
+
+
+                    <!-- =================================
+                         EMPTY STATE
+                    ================================== -->
+
+                    <div
+                        class="empty-document-state"
+                        id="emptyDocumentState"
+                        hidden
+                    >
+
+                        <div class="empty-document-icon">
+                            📁
+                        </div>
+
+                        <h3>
+                            No documents found
+                        </h3>
+
+                        <p>
+                            This pet doesn't have any documents
+                            matching your selection.
+                        </p>
+
+                    </div>
+
+
+                </section>
+
+
+            </main>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         UPLOAD DOCUMENT MODAL
+    ========================================== -->
+
+    <div
+        class="modal-overlay"
+        id="uploadModal"
+        hidden
+    >
+
+        <div
+            class="upload-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="uploadModalTitle"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-label">
+                        MEDICAL RECORD
+                    </span>
+
+                    <h2 id="uploadModalTitle">
+                        Upload Document
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close-button"
+                    id="closeUploadModal"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                id="uploadDocumentForm"
+                class="upload-form"
+            >
+
+
+                <!-- PET -->
+
+                <div class="form-group">
+
+                    <label for="documentPet">
+                        Select Pet
+                    </label>
+
+                    <select
+                        id="documentPet"
+                        required
+                    >
+                    </select>
+
+                </div>
+
+
+                <!-- DOCUMENT TYPE -->
+
+                <div class="form-group">
+
+                    <label for="documentType">
+                        Document Type
+                    </label>
+
+                    <select
+                        id="documentType"
+                        required
+                    >
+
+                        <option value="">
+                            Select document type
+                        </option>
+
+                        <option value="vaccination">
+                            Vaccination Certificate
+                        </option>
+
+                        <option value="medical">
+                            Medical Report
+                        </option>
+
+                        <option value="prescription">
+                            Prescription
+                        </option>
+
+                        <option value="lab">
+                            Lab Report
+                        </option>
+
+                        <option value="discharge">
+                            Discharge Summary
+                        </option>
+
+                        <option value="xray">
+                            X-Ray / Scan
+                        </option>
+
+                        <option value="history">
+                            Medical History
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DOCUMENT NAME -->
+
+                <div class="form-group">
+
+                    <label for="documentTitle">
+                        Document Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="documentTitle"
+                        placeholder="e.g. Rabies Vaccination Certificate"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DATE + DOCTOR -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="documentDate">
+                            Document Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="documentDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="documentDoctor">
+                            Doctor / Clinic
+                        </label>
+
+                        <input
+                            type="text"
+                            id="documentDoctor"
+                            placeholder="Optional"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- FILE -->
+
+                <div class="form-group">
+
+                    <label for="documentFile">
+                        Upload File
+                    </label>
+
+                    <label
+                        class="file-upload-area"
+                        for="documentFile"
+                    >
+
+                        <span class="file-upload-icon">
+                            📄
+                        </span>
+
+                        <strong>
+                            Click to choose a file
+                        </strong>
+
+                        <small>
+                            PDF, JPG, PNG up to 10 MB
+                        </small>
+
+                        <input
+                            type="file"
+                            id="documentFile"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            required
+                        >
+
+                    </label>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="documentDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="documentDescription"
+                        rows="3"
+                        placeholder="Add any additional information..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-button"
+                        id="cancelUpload"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="submit-upload-button"
+                    >
+                        Upload Document
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         SHARED JAVASCRIPT
+    ========================================== -->
+
+    <script src="../shared/js/shared.js"></script>
+
+
+    <!-- =========================================
+         MEDICAL VAULT JAVASCRIPT
+    ========================================== -->
+
+    <script src="medicalVault.js"></script>
+
+</body>
+
+</html>

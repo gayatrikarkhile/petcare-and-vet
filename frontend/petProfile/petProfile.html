@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pet Profile | PawSync</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="petProfile.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+        <span class="brand-icon">🐾</span>
+        <span>PawSync</span>
+    </div>
+
+    <div class="topbar-right">
+
+        <button class="notification-btn" id="notificationButton">
+            🔔
+            <span class="notification-count">2</span>
+        </button>
+
+        <div class="profile">
+
+            <div class="avatar">G</div>
+
+            <strong>Gayatri</strong>
+
+            <span>▾</span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<div class="page-layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <nav>
+
+            <div class="nav-heading">
+                MAIN
+            </div>
+
+            <a
+                href="/frontend/owner/dashboard/ownerdashboard.html"
+                class="nav-link"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a
+                href="/frontend/pets/pets.html"
+                class="nav-link active"
+            >
+                <span>🐾</span>
+                My Pets
+            </a>
+
+
+            <div class="nav-heading">
+                PET CARE
+            </div>
+
+            <a href="#" class="nav-link">
+                <span>♥</span>
+                Health
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>💉</span>
+                Vaccination
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🥣</span>
+                Nutrition
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>✂</span>
+                Grooming
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🏃</span>
+                Activity
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🦷</span>
+                Dental Care
+            </a>
+
+
+            <div class="nav-heading">
+                RECORDS
+            </div>
+
+            <a href="#" class="nav-link">
+                <span>▣</span>
+                Medical Vault
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>♟</span>
+                Appointments
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>▦</span>
+                Calendar
+            </a>
+
+
+            <div class="nav-heading">
+                INSIGHTS
+            </div>
+
+            <a href="#" class="nav-link">
+                <span>▥</span>
+                Analytics
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>🤖</span>
+                AI Assistant
+            </a>
+
+
+            <div class="nav-heading">
+                OTHER
+            </div>
+
+            <a href="#" class="nav-link">
+                <span>♧</span>
+                Alerts
+            </a>
+
+            <a
+                href="/frontend/settings/settings.html"
+                class="nav-link"
+            >
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <div class="back-row">
+
+            <button
+                id="backButton"
+                class="back-button"
+                type="button"
+            >
+                ← Back to My Pets
+            </button>
+
+        </div>
+
+
+        <!-- PROFILE HERO -->
+
+        <section class="profile-hero">
+
+
+            <div class="pet-photo-box">
+
+                <img
+                    id="petImage"
+                    src=""
+                    alt="Pet"
+                >
+
+                <span class="active-badge">
+                    ● Active
+                </span>
+
+            </div>
+
+
+            <div class="pet-main-info">
+
+                <span
+                    class="pet-type"
+                    id="petType"
+                >
+                    DOG
+                </span>
+
+                <h1 id="petName">
+                    Bruno
+                </h1>
+
+                <p
+                    id="petBreed"
+                    class="breed"
+                >
+                    Labrador Retriever
+                </p>
+
+
+                <div class="quick-details">
+
+                    <div>
+
+                        <span>
+                            Age
+                        </span>
+
+                        <strong id="petAge">
+                            2 Years
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Gender
+                        </span>
+
+                        <strong id="petGender">
+                            Male
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Weight
+                        </span>
+
+                        <strong id="petWeight">
+                            20 kg
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="health-score-box">
+
+                <span>
+                    ❤️ Health Score
+                </span>
+
+                <div>
+
+                    <strong id="healthScore">
+                        61
+                    </strong>
+
+                    <small>
+                        / 100
+                    </small>
+
+                </div>
+
+
+                <div class="score-track">
+
+                    <div
+                        id="scoreProgress"
+                        class="score-progress"
+                    ></div>
+
+                </div>
+
+
+                <p id="healthStatus">
+                    Needs Attention
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROFILE GRID -->
+
+        <section class="profile-grid">
+
+
+            <!-- BASIC INFORMATION -->
+
+            <article class="card">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+
+                        <span class="card-icon">
+                            🐾
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Basic Information
+                            </h2>
+
+                            <p>
+                                Your pet's personal details
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="edit-button"
+                        type="button"
+                    >
+                        ✎ Edit
+                    </button>
+
+                </div>
+
+
+                <div class="info-grid">
+
+                    <div class="info-item">
+
+                        <span>
+                            Pet Name
+                        </span>
+
+                        <strong id="infoName">
+                            Bruno
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Species
+                        </span>
+
+                        <strong id="infoSpecies">
+                            Dog
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Breed
+                        </span>
+
+                        <strong id="infoBreed">
+                            Labrador Retriever
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Gender
+                        </span>
+
+                        <strong id="infoGender">
+                            Male
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Age
+                        </span>
+
+                        <strong id="infoAge">
+                            2 Years
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Weight
+                        </span>
+
+                        <strong id="infoWeight">
+                            20 kg
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- UPCOMING CARE -->
+
+            <article class="card">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+
+                        <span class="card-icon yellow">
+                            📅
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Upcoming Care
+                            </h2>
+
+                            <p>
+                                Important upcoming events
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="upcoming-list">
+
+
+                    <div class="upcoming-item">
+
+                        <div class="event-icon vaccine">
+                            💉
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Rabies Booster
+                            </strong>
+
+                            <span>
+                                Vaccination
+                            </span>
+
+                        </div>
+
+                        <b>
+                            18 Aug
+                        </b>
+
+                    </div>
+
+
+                    <div class="upcoming-item">
+
+                        <div class="event-icon grooming">
+                            ✂️
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Full Grooming
+                            </strong>
+
+                            <span>
+                                Grooming Session
+                            </span>
+
+                        </div>
+
+                        <b>
+                            20 Aug
+                        </b>
+
+                    </div>
+
+
+                    <div class="upcoming-item">
+
+                        <div class="event-icon vet">
+                            👨‍⚕️
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Vet Appointment
+                            </strong>
+
+                            <span>
+                                Dr. Sharma
+                            </span>
+
+                        </div>
+
+                        <b>
+                            23 Aug
+                        </b>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- MEDICAL RECORDS -->
+
+            <article class="card">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+
+                        <span class="card-icon purple">
+                            📁
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Recent Medical Records
+                            </h2>
+
+                            <p>
+                                Latest health documents
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="view-button"
+                        type="button"
+                    >
+                        View All
+                    </button>
+
+                </div>
+
+
+                <div class="medical-list">
+
+                    <div class="medical-item">
+
+                        <span class="record-icon">
+                            💊
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Prescription
+                            </strong>
+
+                            <span>
+                                General medication
+                            </span>
+
+                        </div>
+
+                        <small>
+                            05 Aug
+                        </small>
+
+                    </div>
+
+
+                    <div class="medical-item">
+
+                        <span class="record-icon">
+                            💉
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Vaccination Certificate
+                            </strong>
+
+                            <span>
+                                Rabies vaccination
+                            </span>
+
+                        </div>
+
+                        <small>
+                            20 Jul
+                        </small>
+
+                    </div>
+
+
+                    <div class="medical-item">
+
+                        <span class="record-icon">
+                            🧪
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Blood Report
+                            </strong>
+
+                            <span>
+                                Routine blood test
+                            </span>
+
+                        </div>
+
+                        <small>
+                            12 Jun
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- TODAY'S CARE -->
+
+            <article class="card">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+
+                        <span class="card-icon green">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Today's Care
+                            </h2>
+
+                            <p id="todayCareText">
+                                Daily care routine
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="care-list">
+
+                    <div class="care-item completed">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Morning Meal
+                            </strong>
+
+                            <small>
+                                08:00 AM
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="care-item completed">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Fresh Water Refill
+                            </strong>
+
+                            <small>
+                                09:00 AM
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="care-item completed">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Teeth Brushing
+                            </strong>
+
+                            <small>
+                                11:30 AM
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="care-item">
+
+                        <span>
+                            ○
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Evening Park Walk
+                            </strong>
+
+                            <small>
+                                05:30 PM
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="care-item">
+
+                        <span>
+                            ○
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Evening Meal
+                            </strong>
+
+                            <small>
+                                07:30 PM
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="petProfile.js"></script>
+
+</body>
+</html>

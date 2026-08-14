@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Vaccination | PawSync</title>
+
+
+    <!-- =========================================
+         GOOGLE FONT
+    ========================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         SHARED CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../shared/css/responsive.css"
+    >
+
+
+    <!-- =========================================
+         VACCINATION CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="vaccination.css"
+    >
+
+</head>
+
+
+<body data-shared-path="../shared">
+
+
+    <!-- =========================================
+         SHARED NAVBAR
+    ========================================== -->
+
+    <div id="navbar-container"></div>
+
+
+    <!-- =========================================
+         PAGE LAYOUT
+    ========================================== -->
+
+    <div class="page-layout">
+
+
+        <!-- =====================================
+             SHARED SIDEBAR
+        ====================================== -->
+
+        <div id="sidebar-container"></div>
+
+
+        <!-- =====================================
+             MAIN CONTENT
+        ====================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================
+                 PAGE HEADER
+            ================================== -->
+
+            <section class="vaccination-header">
+
+                <div>
+
+                    <span class="vaccination-eyebrow">
+                        PET IMMUNIZATION
+                    </span>
+
+                    <h1>
+                        Vaccination 💉
+                    </h1>
+
+                    <p>
+                        Keep track of your pets'
+                        vaccinations and never miss
+                        an important booster.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="add-vaccine-button"
+                    id="openVaccineModal"
+                >
+
+                    <span>+</span>
+
+                    Add Vaccination
+
+                </button>
+
+            </section>
+
+
+            <!-- =================================
+                 PET SELECTOR
+            ================================== -->
+
+            <section class="pet-selector-section">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>
+                            Select Your Pet
+                        </h2>
+
+                        <p>
+                            View vaccination records
+                            for each pet.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="pet-selector"
+                    id="petSelector"
+                >
+
+                    <!--
+                        Pet cards are generated
+                        by vaccination.js
+                    -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 VACCINATION SUMMARY
+            ================================== -->
+
+            <section class="vaccination-summary">
+
+
+                <div class="vaccination-stat-card">
+
+                    <div class="vaccination-stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Up to Date
+                        </span>
+
+                        <strong id="upToDateCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="vaccination-stat-card">
+
+                    <div class="vaccination-stat-icon yellow">
+                        ⏰
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Due Soon
+                        </span>
+
+                        <strong id="dueSoonCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="vaccination-stat-card">
+
+                    <div class="vaccination-stat-icon red">
+                        !
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Overdue
+                        </span>
+
+                        <strong id="overdueCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="vaccination-stat-card">
+
+                    <div class="vaccination-stat-icon blue">
+                        💉
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Vaccines
+                        </span>
+
+                        <strong id="totalVaccineCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================
+                 MAIN GRID
+            ================================== -->
+
+            <section class="vaccination-main-grid">
+
+
+                <!-- =================================
+                     VACCINATION RECORDS
+                ================================== -->
+
+                <div class="vaccination-records-card">
+
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Vaccination Records
+                            </h2>
+
+                            <p id="selectedPetText">
+                                Select a pet to view records.
+                            </p>
+
+                        </div>
+
+
+                        <select
+                            id="vaccineFilter"
+                            class="vaccine-filter"
+                        >
+
+                            <option value="all">
+                                All Vaccines
+                            </option>
+
+                            <option value="up-to-date">
+                                Up to Date
+                            </option>
+
+                            <option value="due-soon">
+                                Due Soon
+                            </option>
+
+                            <option value="overdue">
+                                Overdue
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        class="vaccination-record-list"
+                        id="vaccinationRecordList"
+                    >
+
+                        <!--
+                            Vaccination records are
+                            generated by vaccination.js
+                        -->
+
+                    </div>
+
+
+                    <div
+                        class="vaccination-empty"
+                        id="vaccinationEmpty"
+                        hidden
+                    >
+
+                        <div class="empty-icon">
+                            💉
+                        </div>
+
+                        <h3>
+                            No vaccination records
+                        </h3>
+
+                        <p>
+                            Add a vaccination record
+                            for this pet.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================
+                     UPCOMING REMINDERS
+                ================================== -->
+
+                <div class="upcoming-vaccinations-card">
+
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Upcoming Reminders
+                            </h2>
+
+                            <p>
+                                Never miss a booster.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="upcoming-vaccination-list"
+                        id="upcomingVaccinationList"
+                    >
+
+                        <!--
+                            Upcoming reminders are
+                            generated by vaccination.js
+                        -->
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================
+                 VACCINATION CALENDAR
+            ================================== -->
+
+            <section class="vaccination-calendar-card">
+
+
+                <div class="calendar-header">
+
+                    <div>
+
+                        <span class="calendar-eyebrow">
+                            VACCINATION REMINDERS
+                        </span>
+
+                        <h2>
+                            Vaccination Calendar
+                        </h2>
+
+                        <p>
+                            Your pets' upcoming vaccination
+                            dates are shown here.
+                        </p>
+
+                    </div>
+
+
+                    <div class="calendar-controls">
+
+                        <button
+                            type="button"
+                            class="calendar-nav-button"
+                            id="previousMonth"
+                            aria-label="Previous month"
+                        >
+                            ‹
+                        </button>
+
+
+                        <strong
+                            id="calendarMonthYear"
+                        >
+                            August 2026
+                        </strong>
+
+
+                        <button
+                            type="button"
+                            class="calendar-nav-button"
+                            id="nextMonth"
+                            aria-label="Next month"
+                        >
+                            ›
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     CALENDAR
+                ================================== -->
+
+                <div class="calendar-wrapper">
+
+
+                    <div class="calendar-weekdays">
+
+                        <div>
+                            Sun
+                        </div>
+
+                        <div>
+                            Mon
+                        </div>
+
+                        <div>
+                            Tue
+                        </div>
+
+                        <div>
+                            Wed
+                        </div>
+
+                        <div>
+                            Thu
+                        </div>
+
+                        <div>
+                            Fri
+                        </div>
+
+                        <div>
+                            Sat
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="calendar-days"
+                        id="calendarDays"
+                    >
+
+                        <!--
+                            Calendar dates are generated
+                            by vaccination.js
+                        -->
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================
+                     CALENDAR LEGEND
+                ================================== -->
+
+                <div class="calendar-legend">
+
+                    <span>
+
+                        <i class="legend-dot vaccine-dot"></i>
+
+                        Vaccination
+
+                    </span>
+
+
+                    <span>
+
+                        <i class="legend-dot due-dot"></i>
+
+                        Due Soon
+
+                    </span>
+
+
+                    <span>
+
+                        <i class="legend-dot overdue-dot"></i>
+
+                        Overdue
+
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         ADD VACCINATION MODAL
+    ========================================== -->
+
+    <div
+        class="modal-overlay"
+        id="vaccineModal"
+        hidden
+    >
+
+        <div
+            class="vaccine-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="vaccineModalTitle"
+        >
+
+
+            <!-- MODAL HEADER -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-eyebrow">
+                        VACCINATION RECORD
+                    </span>
+
+                    <h2 id="vaccineModalTitle">
+                        Add Vaccination
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close-button"
+                    id="closeVaccineModal"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- =================================
+                 FORM
+            ================================== -->
+
+            <form
+                id="vaccinationForm"
+                class="vaccination-form"
+            >
+
+
+                <!-- PET -->
+
+                <div class="form-group">
+
+                    <label for="vaccinePet">
+                        Select Pet
+                    </label>
+
+                    <select
+                        id="vaccinePet"
+                        required
+                    >
+
+                        <option value="">
+                            Select a pet
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- VACCINE -->
+
+                <div class="form-group">
+
+                    <label for="vaccineName">
+                        Vaccine
+                    </label>
+
+                    <select
+                        id="vaccineName"
+                        required
+                    >
+
+                        <option value="">
+                            Select vaccine
+                        </option>
+
+                        <option value="Rabies">
+                            Rabies
+                        </option>
+
+                        <option value="DHPP">
+                            DHPP
+                        </option>
+
+                        <option value="Bordetella">
+                            Bordetella
+                        </option>
+
+                        <option value="FVRCP">
+                            FVRCP
+                        </option>
+
+                        <option value="FeLV">
+                            FeLV
+                        </option>
+
+                        <option value="Parrot Polyomavirus">
+                            Parrot Polyomavirus
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CUSTOM VACCINE -->
+
+                <div
+                    class="form-group"
+                    id="customVaccineGroup"
+                    hidden
+                >
+
+                    <label for="customVaccine">
+                        Vaccine Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customVaccine"
+                        placeholder="Enter vaccine name"
+                    >
+
+                </div>
+
+
+                <!-- DATE GIVEN + NEXT DUE -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="dateGiven">
+                            Date Given
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dateGiven"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="nextDueDate">
+                            Next Due Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="nextDueDate"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- DOCTOR -->
+
+                <div class="form-group">
+
+                    <label for="vaccineDoctor">
+                        Doctor / Clinic
+                    </label>
+
+                    <input
+                        type="text"
+                        id="vaccineDoctor"
+                        placeholder="e.g. Dr. Sharma"
+                    >
+
+                </div>
+
+
+                <!-- NOTES -->
+
+                <div class="form-group">
+
+                    <label for="vaccineNotes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="vaccineNotes"
+                        rows="3"
+                        placeholder="Add any additional information..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- REMINDER -->
+
+                <div class="reminder-option">
+
+                    <input
+                        type="checkbox"
+                        id="enableReminder"
+                        checked
+                    >
+
+                    <label for="enableReminder">
+
+                        <strong>
+                            Add calendar reminder
+                        </strong>
+
+                        <span>
+                            Show this vaccination on
+                            the reminder calendar.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-button"
+                        id="cancelVaccine"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="save-vaccine-button"
+                    >
+                        Save Vaccination
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         SHARED JAVASCRIPT
+    ========================================== -->
+
+    <script src="../shared/js/shared.js"></script>
+
+
+    <!-- =========================================
+         VACCINATION JAVASCRIPT
+    ========================================== -->
+
+    <script src="vaccination.js"></script>
+
+</body>
+
+</html>

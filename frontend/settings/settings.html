@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Settings - PawSync</title>
+
+    <link
+        rel="stylesheet"
+        href="settings.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="settings-page">
+
+        <!-- HEADER -->
+
+        <header class="settings-header">
+
+            <button
+                class="back-button"
+                onclick="goBack()"
+            >
+                ← Dashboard
+            </button>
+
+            <h1>Settings</h1>
+
+        </header>
+
+
+        <!-- MAIN -->
+
+        <main class="settings-container">
+
+
+            <!-- ACCOUNT SETTINGS -->
+
+            <section class="settings-card">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        👤
+                    </div>
+
+                    <div>
+                        <h2>Account</h2>
+
+                        <p>
+                            Manage your account information
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div>
+
+                        <h3>Profile</h3>
+
+                        <p>
+                            View and manage your personal information.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="action-button"
+                        id="profileButton"
+                    >
+                        View Profile
+                    </button>
+
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div>
+
+                        <h3>Change Password</h3>
+
+                        <p>
+                            Update your PawSync account password.
+                        </p>
+
+                    </div>
+
+                   <button
+    type="button"
+    id="changePasswordButton"
+    class="settings-action-button"
+>
+    Change
+</button>
+
+                </div>
+
+            </section>
+
+
+            <!-- NOTIFICATIONS -->
+
+            <section class="settings-card">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🔔
+                    </div>
+
+                    <div>
+
+                        <h2>Notifications</h2>
+
+                        <p>
+                            Control how PawSync notifies you.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div>
+
+                        <h3>Pet Care Reminders</h3>
+
+                        <p>
+                            Receive reminders for your pet's care.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="careNotifications"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div>
+
+                        <h3>Vet Appointment Notifications</h3>
+
+                        <p>
+                            Get notified about upcoming vet appointments.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="vetNotifications"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- SECURITY -->
+
+            <section class="settings-card">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <h2>Security</h2>
+
+                        <p>
+                            Keep your PawSync account secure.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div>
+
+                        <h3>Login Method</h3>
+
+                        <p id="loginMethod">
+                            Loading...
+                        </p>
+
+                    </div>
+
+                    <span class="security-status">
+                        Secure
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- DANGER ZONE -->
+
+            <section class="settings-card danger-card">
+
+                <div class="section-title">
+
+                    <div class="section-icon danger-icon">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <h2>Account Actions</h2>
+
+                        <p>
+                            Actions that affect your PawSync account.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div>
+
+                        <h3>Log Out</h3>
+
+                        <p>
+                            Sign out of your PawSync account.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="logout-button"
+                        id="logoutButton"
+                    >
+                        Log Out
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+    <!-- ========================================
+     CHANGE PASSWORD MODAL
+======================================== -->
+
+<div
+    id="changePasswordModal"
+    class="password-modal-overlay"
+>
+
+    <div class="password-modal">
+
+        <!-- Close Button -->
+
+        <button
+            type="button"
+            id="closePasswordModal"
+            class="password-modal-close"
+        >
+            ×
+        </button>
+
+
+        <!-- Header -->
+
+        <div class="password-modal-header">
+
+            <div class="password-modal-icon">
+                🔐
+            </div>
+
+            <div>
+
+                <h2>Change Password</h2>
+
+                <p>
+                    Update your PawSync account password.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Google Account Notice -->
+
+        <div
+            id="googlePasswordNotice"
+            class="google-password-notice"
+            style="display: none;"
+        >
+
+            <div class="notice-icon">
+                🔵
+            </div>
+
+            <div>
+
+                <strong>
+                    Google Sign-In account
+                </strong>
+
+                <p>
+                    You signed in using Google, so
+                    PawSync does not have a separate
+                    password for your account.
+                </p>
+
+                <p>
+                    Please manage your password through
+                    your Google Account.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Normal Password Form -->
+
+        <form
+            id="changePasswordForm"
+        >
+
+            <!-- Current Password -->
+
+            <div class="password-form-group">
+
+                <label for="currentPassword">
+                    Current Password
+                </label>
+
+                <input
+                    type="password"
+                    id="currentPassword"
+                    placeholder="Enter your current password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- New Password -->
+
+            <div class="password-form-group">
+
+                <label for="newPassword">
+                    New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="newPassword"
+                    placeholder="Create a new password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Confirm Password -->
+
+            <div class="password-form-group">
+
+                <label for="confirmNewPassword">
+                    Confirm New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmNewPassword"
+                    placeholder="Confirm your new password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Password Requirements -->
+
+            <div class="password-requirements">
+
+                <strong>
+                    Password requirements
+                </strong>
+
+                <ul>
+
+                    <li>
+                        At least 8 characters
+                    </li>
+
+                    <li>
+                        Use a combination of letters and numbers
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- Actions -->
+
+            <div class="password-modal-actions">
+
+                <button
+                    type="button"
+                    id="cancelPasswordChange"
+                    class="password-cancel-button"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="password-save-button"
+                >
+                    Change Password
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+    <script src="settings.js"></script>
+
+</body>
+
+</html>

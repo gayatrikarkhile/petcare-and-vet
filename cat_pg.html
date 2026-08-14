@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Care & Information | PawSync</title>
+    
+    <!-- Aesthetic Fonts: Playfair Display (Elegant Headings) & Outfit (Modern Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="pet_pages.css">
+</head>
+<body class="cat-page">
+
+    <!-- TOP NAVIGATION -->
+    <nav class="pet-page-nav">
+        <div class="nav-container">
+            <a href="index.html" class="back-link">
+                <span class="back-arrow">←</span> Back to PawSync
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ==========================
+             STEP 1: CAT HERO SECTION
+             ========================== -->
+        <header class="cat-hero reveal-on-scroll">
+            <div class="hero-container">
+                
+                <!-- Left Side: Text Content -->
+                <div class="hero-text-content">
+                    <span class="hero-eyebrow">The Curious World of Felines</span>
+                    <h1 class="cat-heading">Know Your Cats</h1>
+                    <p class="hero-description">
+                        Elegant, independent, yet deeply affectionate. Cats have unique personalities, needs, and behaviors. Discover how to provide the purr-fect care for your feline companion, from tailored nutrition to environmental enrichment.
+                    </p>
+                    <a href="#understanding-cats" class="btn-primary cat-btn-main">Explore Cat Care!!</a>
+                </div>
+
+                <!-- Right Side: Image & Floating Badges -->
+                <div class="hero-image-wrapper">
+                    <!-- Main Hero Image -->
+                    <div class="main-cat-image-container">
+                        <!-- <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=800" alt="Beautiful orange and white cat looking curious" class="main-cat-img"> -->
+                         <img src="https://i.pinimg.com/736x/23/79/8e/23798ecbf0b17dabd2a0cf976e97f8e4.jpg" alt="Beautiful orange and white cat looking curious" class="main-cat-img">
+                    </div>
+
+                    <!-- Floating Badge 1: Independent Companions -->
+                    <div class="floating-badge badge-top-left">
+                        <div class="badge-img-circle">
+                            <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&q=80&w=150" alt="Cat paw">
+                        </div>
+                        <span class="badge-text">Independent Companions</span>
+                    </div>
+
+                    <!-- Floating Badge 2: Nutrition -->
+                    <div class="floating-badge badge-bottom-left">
+                        <div class="badge-img-circle">
+                            <img src="https://i.pinimg.com/736x/d3/42/7f/d3427f0bfe1e92fd0b297e262b9c65a8.jpg" alt="Cat food bowl">
+                        </div>
+                        <span class="badge-text">Tailored Nutrition</span>
+                    </div>
+
+                    <!-- Floating Badge 3: Enrichment -->
+                    <div class="floating-badge badge-middle-right">
+                        <div class="badge-img-circle">
+                            <img src="https://i.pinimg.com/736x/03/34/7a/03347aa3e96537ee09e936d6b8c92967.jpg" alt="Cat playing with yarn">
+                        </div>
+                        <span class="badge-text">Enrichment & Play</span>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+    
+        <!-- ==========================
+             STEP 2: UNDERSTANDING CATS
+             ========================== -->
+        <section id="understanding-cats" class="understanding-cats-section reveal-on-scroll">
+            <div class="cats-container">
+                <div class="section-header-center">
+                    <span class="section-eyebrow">Feline Nature</span>
+                    <h2>More Than Just Independent</h2>
+                    <p>Cats are often misunderstood. Beneath their calm and composed exterior lies a rich emotional world, deep curiosity, and unique behavioral quirks.</p>
+                </div>
+
+                <div class="traits-grid">
+                    <!-- Trait 1: Independent -->
+                    <div class="trait-card reveal-on-scroll">
+                        <div class="trait-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&q=80&w=600" alt="Independent cat looking out window">
+                        </div>
+                        <div class="trait-content">
+                            <h3>Naturally Independent</h3>
+                            <p>Cats often enjoy self-directed exploration and downtime while still forming deeply loyal and strong emotional bonds with their favorite humans.</p>
+                        </div>
+                    </div>
+
+                    <!-- Trait 2: Curious -->
+                    <div class="trait-card reveal-on-scroll" style="transition-delay: 0.1s;">
+                        <div class="trait-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&q=80&w=600" alt="Curious cat investigating">
+                        </div>
+                        <div class="trait-content">
+                            <h3>Deeply Curious</h3>
+                            <p>Driven by natural hunting instincts, cats continuously investigate, track movement, and explore every nook and cranny of their environment.</p>
+                        </div>
+                    </div>
+
+                    <!-- Trait 3: Rest-Loving -->
+                    <div class="trait-card reveal-on-scroll" style="transition-delay: 0.2s;">
+                        <div class="trait-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&q=80&w=600" alt="Resting cat sleeping peacefully">
+                        </div>
+                        <div class="trait-content">
+                            <h3>Rest & Recharge</h3>
+                            <p>Conservation of energy is key. Cats spend a significant portion of their day resting and sleeping in warm, safe, elevated spaces.</p>
+                        </div>
+                    </div>
+
+                    <!-- Trait 4: Individual Personalities -->
+                    <div class="trait-card reveal-on-scroll" style="transition-delay: 0.3s;">
+                        <div class="trait-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&q=80&w=600" alt="Cat with unique personality">
+                        </div>
+                        <div class="trait-content">
+                            <h3>Unique Personalities</h3>
+                            <p>No two cats are identical. Each possesses a completely distinct temperament, social preference, and rhythm of communication.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ==========================
+             STEP 3: CAT BREEDS
+             ========================== -->
+        <section id="cat-breeds" class="breeds-section reveal-on-scroll">
+            <div class="cats-container">
+                <div class="section-header-center">
+                    <span class="section-eyebrow">Feline Varieties</span>
+                    <h2>Every Cat Has Its Own Character</h2>
+                    <p>Explore popular cat breeds and learn about their distinctive temperaments, physical traits, and specific care considerations.</p>
+                </div>
+
+                <div class="breeds-grid">
+                    <!-- Breed 1: Maine Coon -->
+                    <div class="breed-flip-card" tabindex="0">
+                        <div class="breed-card-inner">
+                            <div class="breed-card-front">
+                                <img src="https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?auto=format&fit=crop&q=80&w=600" alt="Maine Coon cat">
+                                <div class="breed-front-content">
+                                    <h3>Maine Coon</h3>
+                                    <span class="flip-hint">Hover / Tap</span>
+                                </div>
+                            </div>
+                            <div class="breed-card-back">
+                                <h3>Maine Coon</h3>
+                                <p class="breed-temp"><strong>Temperament:</strong> Often described as gentle giants, friendly, and social companions.</p>
+                                <p class="breed-traits"><strong>Characteristics:</strong> Large muscular build, tufted ears, and a plush coat.</p>
+                                <p class="breed-care"><strong>Care:</strong> Requires regular brushing to prevent tangles in their long fur.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Breed 2: Siamese -->
+                    <div class="breed-flip-card" tabindex="0">
+                        <div class="breed-card-inner">
+                            <div class="breed-card-front">
+                                <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&q=80&w=600" alt="Siamese cat">
+                                <div class="breed-front-content">
+                                    <h3>Siamese</h3>
+                                    <span class="flip-hint">Hover / Tap</span>
+                                </div>
+                            </div>
+                            <div class="breed-card-back">
+                                <h3>Siamese</h3>
+                                <p class="breed-temp"><strong>Temperament:</strong> Highly vocal, affectionate, and deeply interactive with family.</p>
+                                <p class="breed-traits"><strong>Characteristics:</strong> Striking blue eyes, sleek body, and distinct color-point coat.</p>
+                                <p class="breed-care"><strong>Care:</strong> Thrives on high mental stimulation and constant social engagement.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Breed 3: Persian -->
+                    <div class="breed-flip-card" tabindex="0">
+                        <div class="breed-card-inner">
+                            <div class="breed-card-front">
+                                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&q=80&w=600" alt="Persian cat">
+                                <div class="breed-front-content">
+                                    <h3>Persian</h3>
+                                    <span class="flip-hint">Hover / Tap</span>
+                                </div>
+                            </div>
+                            <div class="breed-card-back">
+                                <h3>Persian</h3>
+                                <p class="breed-temp"><strong>Temperament:</strong> Typically calm, quiet, and enjoys a peaceful indoor environment.</p>
+                                <p class="breed-traits"><strong>Characteristics:</strong> Luxurious long coat, round face, and sweet expression.</p>
+                                <p class="breed-care"><strong>Care:</strong> Requires daily grooming and gentle eye maintenance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Breed 4: Bengal -->
+                    <div class="breed-flip-card" tabindex="0">
+                        <div class="breed-card-inner">
+                            <div class="breed-card-front">
+                                <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&q=80&w=600" alt="Bengal cat">
+                                <div class="breed-front-content">
+                                    <h3>Bengal</h3>
+                                    <span class="flip-hint">Hover / Tap</span>
+                                </div>
+                            </div>
+                            <div class="breed-card-back">
+                                <h3>Bengal</h3>
+                                <p class="breed-temp"><strong>Temperament:</strong> Energetic, playful, highly active, and exceptionally curious.</p>
+                                <p class="breed-traits"><strong>Characteristics:</strong> Distinctive leopard-like spots and an athletic body.</p>
+                                <p class="breed-care"><strong>Care:</strong> Needs vertical climbing spaces and interactive puzzle toys.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Breed 5: British Shorthair -->
+                    <div class="breed-flip-card" tabindex="0">
+                        <div class="breed-card-inner">
+                            <div class="breed-card-front">
+                                <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&q=80&w=600" alt="British Shorthair cat">
+                                <div class="breed-front-content">
+                                    <h3>British Shorthair</h3>
+                                    <span class="flip-hint">Hover / Tap</span>
+                                </div>
+                            </div>
+                            <div class="breed-card-back">
+                                <h3>British Shorthair</h3>
+                                <p class="breed-temp"><strong>Temperament:</strong> Easygoing, dignified, independent yet loyal companions.</p>
+                                <p class="breed-traits"><strong>Characteristics:</strong> Dense plush coat, round face, and robust frame.</p>
+                                <p class="breed-care"><strong>Care:</strong> Low maintenance coat care, but monitor daily portions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Breed 6: Ragdoll -->
+                    <div class="breed-flip-card" tabindex="0">
+                        <div class="breed-card-inner">
+                            <div class="breed-card-front">
+                                <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&q=80&w=600" alt="Ragdoll cat">
+                                <div class="breed-front-content">
+                                    <h3>Ragdoll</h3>
+                                    <span class="flip-hint">Hover / Tap</span>
+                                </div>
+                            </div>
+                            <div class="breed-card-back">
+                                <h3>Ragdoll</h3>
+                                <p class="breed-temp"><strong>Temperament:</strong> Docile, affectionate, and relaxed when held lovingly.</p>
+                                <p class="breed-traits"><strong>Characteristics:</strong> Striking blue eyes and a silky semi-long coat.</p>
+                                <p class="breed-care"><strong>Care:</strong> Moderate brushing needs; deeply enjoys human presence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================
+             STEP 4: NUTRITION & FEEDING
+             ========================== -->
+        <section id="cat-nutrition" class="nutrition-section reveal-on-scroll">
+            <div class="cats-container">
+                <div class="section-header-center">
+                    <span class="section-eyebrow">Feline Nutrition</span>
+                    <h2>Feed Their Curiosity. Fuel Their Health.</h2>
+                    <p>As strict carnivores, cats require precise, high-quality nutrients to thrive. Explore the essential pillars of proper feline nutrition.</p>
+                </div>
+
+                <div class="nutrition-interactive-wrapper">
+                    <!-- Left Side: Navigation Tabs with Image Thumbnails -->
+                    <div class="nutrition-tabs">
+                        <button class="nutri-tab active" data-target="protein">
+                            <div class="nutri-tab-img">
+                                <img src="https://i.pinimg.com/1200x/05/5f/0e/055f0e5346538578054ea860e7f1aab9.jpg" alt="Protein">
+                            </div>
+                            <span>Animal Protein</span>
+                        </button>
+                        <button class="nutri-tab" data-target="hydration">
+                            <div class="nutri-tab-img">
+                                <img src="https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?auto=format&fit=crop&q=80&w=200" alt="Hydration">
+                            </div>
+                            <span>Crucial Hydration</span>
+                        </button>
+                        <button class="nutri-tab" data-target="portions">
+                            <div class="nutri-tab-img">
+                                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&q=80&w=200" alt="Portions">
+                            </div>
+                            <span>Portion Control</span>
+                        </button>
+                        <button class="nutri-tab" data-target="lifestage">
+                            <div class="nutri-tab-img">
+                                <img src="https://tse1.explicit.bing.net/th/id/OIP._UkQTD992q4Sk2bkapi32gHaFj?r=0&w=2048&h=1536&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Life Stage">
+                            </div>
+                            <span>Life Stage Needs</span>
+                        </button>
+                        <button class="nutri-tab" data-target="avoid">
+                            <div class="nutri-tab-img">
+                                <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&q=80&w=200" alt="Foods to Avoid">
+                            </div>
+                            <span>Foods to Avoid</span>
+                        </button>
+                    </div>
+
+                    <!-- Right Side: Dynamic Content Display Panel -->
+                    <div class="nutrition-display-panel">
+                        <!-- Pane 1: Protein -->
+                        <div class="nutri-content-pane active" id="protein">
+                            <div class="pane-img">
+                                <img src="https://i.pinimg.com/1200x/05/5f/0e/055f0e5346538578054ea860e7f1aab9.jpg" alt="Fresh cat food">
+                            </div>
+                            <div class="pane-text">
+                                <h3>Animal-Based Protein</h3>
+                                <p>Cats are obligate carnivores, meaning their bodies are biologically designed to derive essential nutrients—such as taurine, arachidonic acid, and vitamin A—exclusively from animal tissue.</p>
+                                <ul class="nutri-bullet-list">
+                                    <li>Essential amino acids like taurine support heart and vision health.</li>
+                                    <li>High-meat moisture formulas naturally support feline kidney function.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pane 2: Hydration -->
+                        <div class="nutri-content-pane" id="hydration">
+                            <div class="pane-img">
+                                <img src="https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?auto=format&fit=crop&q=80&w=600" alt="Cat drinking fresh water">
+                            </div>
+                            <div class="pane-text">
+                                <h3 class="pane-title">Encouraging Hydration</h3>
+                                <p>Many cats possess a low natural thirst drive because their ancestral diet provided most of their hydration. Providing fresh, accessible water daily is critical.</p>
+                                <ul class="nutri-bullet-list">
+                                    <li>Consider circulating pet fountains to attract curious cats with moving water.</li>
+                                    <li>Keep water stations physically separated from their food and litter boxes.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pane 3: Portions -->
+                        <div class="nutri-content-pane" id="portions">
+                            <div class="pane-img">
+                                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&q=80&w=600" alt="Portion measurement">
+                            </div>
+                            <div class="pane-text">
+                                <h3>Smart Portion Control</h3>
+                                <p>Obesity is a common health risk for indoor felines. Measuring daily food intake prevents excess weight gain and lowers long-term risks of joint stress and diabetes.</p>
+                                <ul class="nutri-bullet-list">
+                                    <li>Use a measuring cup or kitchen scale rather than unmeasured free-feeding.</li>
+                                    <li>Tailor meal sizes strictly to your cat's specific age, weight, and activity level.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pane 4: Life Stage -->
+                        <div class="nutri-content-pane" id="lifestage">
+                            <div class="pane-img">
+                                <img src="https://tse1.explicit.bing.net/th/id/OIP._UkQTD992q4Sk2bkapi32gHaFj?r=0&w=2048&h=1536&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Cat life stages">
+                            </div>
+                            <div class="pane-text">
+                                <h3>Tailored Life Stage Nutrition</h3>
+                                <p>A cat's dietary requirements shift significantly as they transition from energetic kittens to sophisticated adults and graceful senior companions.</p>
+                                <ul class="nutri-bullet-list">
+                                    <li>Kittens require higher protein and calorie density for active structural growth.</li>
+                                    <li>Senior cats benefit from joint support nutrients and easily digestible ingredients.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pane 5: Foods to Avoid -->
+                        <div class="nutri-content-pane" id="avoid">
+                            <div class="pane-img">
+                                <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&q=80&w=600" alt="Unsafe foods warning">
+                            </div>
+                            <div class="pane-text">
+                                <h3>Foods to Strictly Avoid</h3>
+                                <p>Certain human foods are highly toxic to felines and can trigger severe internal complications. Always keep these ingredients safely out of reach.</p>
+                                <ul class="nutri-bullet-list">
+                                    <li>Onions, garlic, chives, and leeks damage red blood cells and cause anemia.</li>
+                                    <li>Chocolate, caffeine, alcohol, and raw yeast dough pose major toxin risks.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================
+             STEP 5: ACTIVITY & ENRICHMENT
+             ========================== -->
+        <section id="cat-enrichment" class="enrichment-section reveal-on-scroll">
+            <div class="cats-container">
+                <div class="section-header-center">
+                    <span class="section-eyebrow">Feline Enrichment</span>
+                    <h2>Keep Their Curiosity Alive</h2>
+                    <p>Unlike dogs, cats thrive on environmental enrichment that mimics natural instincts like stalking, climbing, scratching, and problem-solving.</p>
+                </div>
+
+                <div class="enrichment-grid">
+                    <!-- Card 1: Vertical Space -->
+                    <div class="enrichment-card reveal-on-scroll">
+                        <div class="enrichment-img">
+                            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&q=80&w=600" alt="Cat exploring vertical space">
+                        </div>
+                        <div class="enrichment-content">
+                            <h3>Vertical Space & Climbing</h3>
+                            <p>Cats feel safe and confident when they can survey their territory from above. Provide tall cat trees, wall shelves, and clear window perches.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Scratching -->
+                    <div class="enrichment-card reveal-on-scroll" style="transition-delay: 0.1s;">
+                        <div class="enrichment-img">
+                            <img src="https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?auto=format&fit=crop&q=80&w=600" alt="Cat scratching post">
+                        </div>
+                        <div class="enrichment-content">
+                            <h3>Dedicated Scratching</h3>
+                            <p>Scratching is a natural necessity for shedding old claw sheaths, stretching muscles, and scent-marking. Offer sturdy sisal posts.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Puzzle Toys -->
+                    <div class="enrichment-card reveal-on-scroll" style="transition-delay: 0.2s;">
+                        <div class="enrichment-img">
+                            <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&q=80&w=600" alt="Cat puzzle toys">
+                        </div>
+                        <div class="enrichment-content">
+                            <h3>Problem-Solving Puzzles</h3>
+                            <p>Keep sharp minds engaged with treat-dispensing puzzle toys that stimulate their natural foraging instincts and reward persistence.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Interactive Play -->
+                    <div class="enrichment-card reveal-on-scroll" style="transition-delay: 0.3s;">
+                        <div class="enrichment-img">
+                            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=600" alt="Cat playing with interactive toy">
+                        </div>
+                        <div class="enrichment-content">
+                            <h3>Chasing & Wand Play</h3>
+                            <p>Simulate the hunt with interactive feather wands, allowing your cat to safely stalk, chase, and finally 'catch' their target during play sessions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================
+             STEP 6: HEALTH & VACCINATION
+             ========================== -->
+        <section id="cat-health" class="health-section reveal-on-scroll">
+            <div class="cats-container">
+                <div class="section-header-center">
+                    <span class="section-eyebrow">Preventive Care</span>
+                    <h2>Stay Ahead of Their Health</h2>
+                    <p>A proactive healthcare routine evolves alongside your cat. Explore essential preventive care milestones across their life stages.</p>
+                </div>
+
+                <div class="health-timeline-wrapper">
+                    <!-- Stage Selection Buttons -->
+                    <div class="health-stages-nav">
+                        <button class="stage-btn active" data-stage="kitten">
+                            <span class="stage-badge">01</span>
+                            <div>
+                                <h3>Kitten Stage</h3>
+                                <p>Foundation & Early Immunization</p>
+                            </div>
+                        </button>
+                        <button class="stage-btn" data-stage="adult">
+                            <span class="stage-badge">02</span>
+                            <div>
+                                <h3>Adult Cat</h3>
+                                <p>Maintenance & Routine Wellness</p>
+                            </div>
+                        </button>
+                        <button class="stage-btn" data-stage="senior">
+                            <span class="stage-badge">03</span>
+                            <div>
+                                <h3>Senior Cat</h3>
+                                <p>Enhanced Monitoring & Comfort</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Stage Content Display Area -->
+                    <div class="health-display-card">
+                        <!-- Kitten Pane -->
+                        <div class="health-pane active" id="kitten">
+                            <div class="health-pane-img">
+                                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=600" alt="Kitten health check">
+                            </div>
+                            <div class="health-pane-content">
+                                <h3>Kitten Preventive Care</h3>
+                                <p>The first year lays the structural and immunological foundation for a long, healthy life. Veterinary guidance during this period is critical.</p>
+                                <ul class="health-list">
+                                    <li><strong>Initial Vaccinations:</strong> Core vaccines (such as FVRCP and Rabies) administered on a schedule advised by your vet.</li>
+                                    <li><strong>Parasite Control:</strong> Safe screening and prevention protocols for fleas, ticks, and intestinal worms.</li>
+                                    <li><strong>Early Socialization & Spay/Neuter:</strong> Discussing optimal developmental timing for surgical procedures.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Adult Pane -->
+                        <div class="health-pane" id="adult">
+                            <div class="health-pane-img">
+                                <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&q=80&w=600" alt="Adult cat health check">
+                            </div>
+                            <div class="health-pane-content">
+                                <h3>Adult Cat Maintenance (Ages 1–7)</h3>
+                                <p>Consistent annual wellness checkups ensure minor issues are spotted before they become major health concerns.</p>
+                                <ul class="health-list">
+                                    <li><strong>Annual Wellness Exams:</strong> Comprehensive physical evaluation, dental assessment, and weight tracking.</li>
+                                    <li><strong>Booster Vaccinations:</strong> Periodic lifestyle-dependent vaccine updates as recommended by your veterinary team.</li>
+                                    <li><strong>Parasite & Weight Monitoring:</strong> Maintaining optimal body condition score and year-round preventative protection.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Senior Pane -->
+                        <div class="health-pane" id="senior">
+                            <div class="health-pane-img">
+                                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&q=80&w=600" alt="Senior cat wellness care">
+                            </div>
+                            <div class="health-pane-content">
+                                <h3>Senior Cat Care (Ages 7+)</h3>
+                                <p>As cats enter their golden years, increased physiological monitoring helps preserve comfort, mobility, and vitality.</p>
+                                <ul class="health-list">
+                                    <li><strong>Biannual Checkups:</strong> More frequent veterinary evaluations to catch age-related conditions early.</li>
+                                    <li><strong>Diagnostic Screening:</strong> Routine bloodwork and urinalysis to monitor kidney, liver, and thyroid function.</li>
+                                    <li><strong>Comfort Adaptations:</strong> Joint support, easy access litter boxes, and warm resting locations.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="health-disclaimer">
+                    <p><em>Note: Preventive care plans and vaccination schedules vary based on age, health history, geographic location, and lifestyle factors. Always consult your qualified veterinary professional for personalized medical guidance.</em></p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================
+             STEP 10: SLIDING FUN FACTS & CARE TIPS
+             ========================== -->
+        <section id="cat-fun-facts" class="sliding-facts-section reveal-on-scroll">
+            <div class="cats-container">
+                <div class="section-header-center">
+                    <span class="section-eyebrow">Expert Insights</span>
+                    <h2>Cat Parents, Save These</h2>
+                    <p>Discover fascinating feline facts and quick daily care tips. Click any card to pause, focus, and read closely.</p>
+                </div>
+            </div>
+
+            <div class="sliding-carousel-container" id="factsCarousel">
+                <div class="sliding-track">
+                    <!-- Card 1 -->
+                    <div class="sliding-card">
+                        <div class="sliding-card-img">
+                            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=500" alt="Cat whiskers">
+                        </div>
+                        <div class="sliding-card-content">
+                            <h3>Whiskers as Navigators</h3>
+                            <p>A cat's whiskers are roughly as wide as their body. They use them to gauge spatial openings and navigate safely in total darkness.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="sliding-card">
+                        <div class="sliding-card-img">
+                            <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&q=80&w=500" alt="Cat paws">
+                        </div>
+                        <div class="sliding-card-content">
+                            <h3>Scent Glands in Paws</h3>
+                            <p>Cats have sweat and scent glands on the soft pads of their paws. When they knead or scratch surfaces, they leave behind unique territory markers.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="sliding-card">
+                        <div class="sliding-card-img">
+                            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=500" alt="Cat feeding">
+                        </div>
+                        <div class="sliding-card-content">
+                            <h3>Fresh Flowing Water</h3>
+                            <p>Many felines instinctively prefer running water over stagnant bowls because running sources in nature are historically safer and cleaner.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="sliding-card">
+                        <div class="sliding-card-img">
+                            <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&q=80&w=500" alt="Cat toy play">
+                        </div>
+                        <div class="sliding-card-content">
+                            <h3>The Hunt Cycle</h3>
+                            <p>Complete play sessions with a meal or treat. This satisfies the natural predator cycle of stalk, chase, catch, and finally consume their prey.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="sliding-card">
+                        <div class="sliding-card-img">
+                            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&q=80&w=500" alt="Curious cat">
+                        </div>
+                        <div class="sliding-card-content">
+                            <h3>Feline Purring</h3>
+                            <p>Purring doesn't always mean happiness; cats also purr to self-soothe when stressed, injured, or recovering from physical strain.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================
+             STEP 11: CLOSURE & NEXT CATEGORY (BIRDS)
+             ========================== -->
+        <section id="cat-closure" class="closure-section reveal-on-scroll">
+            <div class="cats-container">
+                <div class="closure-card">
+                    <div class="closure-content">
+                        <span class="closure-eyebrow">Next Journey</span>
+                        <h2>Ready to Take Flight?</h2>
+                        <p>Now that you've mastered understanding feline behavior and care, step into the vibrant world of our feathered companions. Discover bird behavior, intelligence, and unique bonding dynamics.</p>
+                        <div class="closure-actions">
+                            <a href="bird_pg.html" class="btn-primary-teal">
+                                <span>Explore Bird Care</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                            <a href="index.html" class="btn-secondary-outline">Back to Home</a>
+                        </div>
+                    </div>
+                    <div class="closure-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&q=80&w=800" alt="Vibrant colourful bird">
+                        <div class="next-badge">
+                            <span>Next Category: Birds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    
+
+
+
+    <!-- Shared JavaScript -->
+    <script src="pet_pages.js"></script>
+</body>
+</html>

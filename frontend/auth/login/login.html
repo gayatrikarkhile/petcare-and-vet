@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PawSync - Authentication</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <!-- ==========================
+             ROLE SELECTION
+        ========================== -->
+
+        <section
+            id="role-selection-section"
+            class="auth-section"
+        >
+
+            <div class="auth-header">
+
+                <div class="brand">
+                    <span class="brand-icon">🐾</span>
+                    <span>PawSync</span>
+                </div>
+
+                <h2>Welcome to PawSync</h2>
+
+                <p>
+                    How would you like to continue?
+                </p>
+
+            </div>
+
+
+            <div class="role-cards">
+
+                <!-- PET OWNER -->
+
+                <button
+                    type="button"
+                    class="role-card"
+                    id="card-pet-owner"
+                >
+
+                    <span class="role-icon">
+                        🐾
+                    </span>
+
+                    <div class="role-text">
+
+                        <h3>Pet Owner</h3>
+
+                        <p>
+                            Manage your pets, health records,
+                            nutrition, vaccinations, grooming
+                            and more.
+                        </p>
+
+                    </div>
+
+                    <span class="role-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- VETERINARIAN -->
+
+                <button
+                    type="button"
+                    class="role-card vet-card"
+                    id="card-vet"
+                >
+
+                    <span class="role-icon">
+                        🩺
+                    </span>
+
+                    <div class="role-text">
+
+                        <h3>Veterinarian</h3>
+
+                        <p>
+                            Manage consultations, pet health
+                            information and veterinary services.
+                        </p>
+
+                    </div>
+
+                    <span class="role-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================
+             LOGIN
+        ========================== -->
+
+        <section
+            id="login-section"
+            class="auth-section hidden"
+        >
+
+            <div class="top-bar">
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    id="login-back-btn"
+                >
+                    ← Change Role
+                </button>
+
+                <span
+                    class="role-badge"
+                    id="login-role-badge"
+                >
+                    Pet Owner
+                </span>
+
+            </div>
+
+
+            <div class="auth-header">
+
+                <h2>Welcome Back</h2>
+
+                <p>
+                    Please enter your details to sign in.
+                </p>
+
+            </div>
+
+
+            <form id="login-form">
+
+                <div class="form-group">
+
+                    <label for="login-email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="login-email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="login-password">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="login-password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-options">
+
+                    <button
+                        type="button"
+                        id="go-to-forgot-password"
+                        class="text-link"
+                    >
+                        Forgot Password?
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Log In
+                </button>
+
+
+   <div class="google-login-container">
+
+    <div class="google-divider">
+        <span>OR</span>
+    </div>
+
+    <div id="google-login-btn"></div>
+
+</div>
+
+
+                <p
+                    id="login-message"
+                    class="form-message"
+                ></p>
+
+            </form>
+
+
+            <div class="switch-auth">
+
+                <p>
+
+                    Don't have an account?
+
+                    <button
+                        type="button"
+                        id="go-to-signup"
+                        class="text-link bold"
+                    >
+                        Sign Up
+                    </button>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================
+             SIGN UP
+        ========================== -->
+
+        <section
+            id="signup-section"
+            class="auth-section hidden"
+        >
+
+            <div class="top-bar">
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    id="signup-back-btn"
+                >
+                    ← Change Role
+                </button>
+
+                <span
+                    class="role-badge"
+                    id="signup-role-badge"
+                >
+                    Pet Owner
+                </span>
+
+            </div>
+
+
+            <div class="auth-header">
+
+                <h2>Create an Account</h2>
+
+                <p>
+                    Join PawSync to manage your pet care journey.
+                </p>
+
+            </div>
+
+
+            <form id="signup-form">
+
+                <div class="form-group">
+
+                    <label for="signup-name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signup-name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="signup-email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="signup-email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="signup-phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="signup-phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- VET ONLY FIELDS -->
+
+                <div
+                    id="vet-specific-fields"
+                    class="hidden"
+                >
+
+                    <div class="form-group">
+
+                        <label for="vet-clinic">
+                            Clinic / Hospital Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="vet-clinic"
+                            placeholder="Example: Happy Paws Clinic"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="vet-license">
+                            Veterinary License Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="vet-license"
+                            placeholder="Enter your license number"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="signup-password">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="signup-password"
+                            placeholder="Create a password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="signup-confirm-password">
+                        Confirm Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="signup-confirm-password"
+                            placeholder="Confirm your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Create Account
+                </button>
+
+
+                <p
+                    id="signup-message"
+                    class="form-message"
+                ></p>
+
+            </form>
+
+
+            <div class="switch-auth">
+
+                <p>
+
+                    Already have an account?
+
+                    <button
+                        type="button"
+                        id="go-to-login"
+                        class="text-link bold"
+                    >
+                        Log In
+                    </button>
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- ==========================
+     EMAIL OTP VERIFICATION
+========================== -->
+
+<section
+    id="otp-section"
+    class="auth-section hidden"
+>
+
+    <div class="top-bar">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="otp-back-btn"
+        >
+            ← Back
+        </button>
+
+    </div>
+
+
+    <div class="auth-header">
+
+        <div class="forgot-icon">
+            ✉️
+        </div>
+
+        <h2>Verify Your Email</h2>
+
+        <p>
+            We've sent a 6-digit verification code
+            to your email address.
+        </p>
+
+        <p
+            id="otp-email-display"
+            class="otp-email"
+        ></p>
+
+    </div>
+
+
+    <form id="otp-form">
+
+        <div class="form-group">
+
+            <label for="otp-input">
+                Enter OTP
+            </label>
+
+            <input
+                type="text"
+                id="otp-input"
+                maxlength="6"
+                inputmode="numeric"
+                placeholder="Enter 6-digit OTP"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn-primary"
+        >
+            Verify Email
+        </button>
+
+
+        <p
+            id="otp-message"
+            class="form-message"
+        ></p>
+
+    </form>
+
+
+    <div class="switch-auth">
+
+        <p>
+
+            Didn't receive the code?
+
+            <button
+                type="button"
+                id="resend-otp"
+                class="text-link bold"
+            >
+                Resend OTP
+            </button>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+        <!-- ==========================
+             FORGOT PASSWORD
+        ========================== -->
+
+        <section
+            id="forgot-password-section"
+            class="auth-section hidden"
+        >
+
+            <div class="top-bar">
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    id="forgot-back-btn"
+                >
+                    ← Back to Login
+                </button>
+
+            </div>
+
+
+            <div class="auth-header">
+
+                <div class="forgot-icon">
+                    🔐
+                </div>
+
+                <h2>Reset Password</h2>
+
+                <p>
+                    Enter your email address and we'll send
+                    you a link to reset your password.
+                </p>
+
+            </div>
+
+
+            <form id="forgot-password-form">
+
+                <div class="form-group">
+
+                    <label for="forgot-email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="forgot-email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Send Reset Link
+                </button>
+
+            </form>
+
+
+            <div
+                id="reset-success-message"
+                class="reset-success-message hidden"
+            >
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h3>Check Your Email</h3>
+
+                <p>
+                    If an account exists with this email,
+                    a password reset link has been sent.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY -->
+
+        <div class="security-text">
+            🔒 Your information is secure with PawSync
+        </div>
+
+    </div>
+
+
+    <script src="login.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+</body>
+
+</html>
