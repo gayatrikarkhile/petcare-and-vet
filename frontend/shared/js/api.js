@@ -1,5 +1,5 @@
 window.PawSyncAPI = {
-    baseURL: "http://localhost:5000/api",
+    baseURL: "/api",
 
     async request(endpoint, options = {}) {
         const response = await fetch(`${this.baseURL}${endpoint}`, {
