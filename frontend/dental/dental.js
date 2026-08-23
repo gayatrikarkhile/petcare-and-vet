@@ -233,7 +233,7 @@ const dentalData = {
    STATE
    ============================================================ */
 
-let currentPet = "bruno";
+let currentPet = "";
 
 
 /* ============================================================
@@ -254,46 +254,77 @@ document.addEventListener(
    INITIALIZE
    ============================================================ */
 
-function initializeDental() {
-
-    setupPetSelector();
-
+async function initializeDental() {
     setupModal();
 
-    renderDentalPage();
+    const token = localStorage.getItem("pawsyncToken");
+    if (!token) return;
 
-}
+    try {
+        const res = await fetch("/api/pets", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (res.ok && data.success && Array.isArray(data.pets) && data.pets.length > 0) {
+            const selector = document.getElementById("petSelector");
+            if (selector) selector.innerHTML = "";
 
+            data.pets.forEach(p => {
+                const key = p._id;
+                dentalData[key] = {
+                    name: p.petName,
+                    status: "Good",
+                    lastCleaning: "Not Recorded",
+                    nextCheckup: "Schedule Checkup",
+                    gumStatus: "Healthy",
+                    plaque: "Low",
+                    gumCondition: "Healthy",
+                    breath: "No Bad Odor",
+                    toothProblems: "None Reported",
+                    routine: [
+                        { name: "Daily Brushing", detail: `Brush ${p.petName}'s teeth with pet-safe toothpaste`, completed: false },
+                        { name: "Dental Treat / Chew", detail: "Provide a VOHC approved dental chew", completed: false }
+                    ],
+                    records: [],
+                    tip: `Brush ${p.petName}'s teeth regularly with pet-safe toothpaste to reduce plaque and tartar.`
+                };
 
-/* ============================================================
-   PET SELECTOR
-   ============================================================ */
+                if (selector) {
+                    const opt = document.createElement("option");
+                    opt.value = key;
+                    opt.textContent = `🐾 ${p.petName}`;
+                    selector.appendChild(opt);
+                }
+            });
 
-function setupPetSelector() {
+            const savedPet = localStorage.getItem("pawsyncSelectedPet");
+            if (savedPet && dentalData[savedPet]) {
+                currentPet = savedPet;
+            } else {
+                currentPet = data.pets[0]._id;
+            }
 
-    const selector =
-        document.getElementById(
-            "petSelector"
-        );
-
-
-    if (!selector) {
-        return;
-    }
-
-
-    selector.addEventListener(
-        "change",
-        function () {
-
-            currentPet =
-                this.value;
+            if (selector) {
+                selector.value = currentPet;
+                selector.addEventListener("change", function () {
+                    currentPet = this.value;
+                    renderDentalPage();
+                });
+            }
 
             renderDentalPage();
-
+        } else {
+            const container = document.querySelector(".main-content") || document.body;
+            if (container) {
+                const selector = document.getElementById("petSelector");
+                if (selector) {
+                    selector.innerHTML = "<option value=''>No pets available</option>";
+                }
+            }
         }
-    );
-
+    } catch (err) {
+        console.error("Error initializing dental page:", err);
+    }
 }
 
 

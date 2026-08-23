@@ -2,7 +2,7 @@
    ACTIVITY JS — PETVERSE AI
 ========================================================= */
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = (typeof window !== "undefined" && window.location && window.location.protocol === "file:") ? "http://localhost:5000/api" : "/api";
 let pets = [];
 let selectedPetId = null;
 let selectedPet = null;

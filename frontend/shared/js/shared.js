@@ -473,7 +473,7 @@ function setupNavbarSearch() {
         const token = localStorage.getItem("pawsyncToken");
         if (token) {
             try {
-                const res = await fetch("http://localhost:5000/api/pets", {
+                const res = await fetch("/api/pets", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -738,7 +738,7 @@ async function updateNavbarManagingPetName(petIdOrName) {
         const token = localStorage.getItem("pawsyncToken");
         if (token) {
             try {
-                const res = await fetch(`http://localhost:5000/api/pets/${petIdOrName}`, {
+                const res = await fetch(`/api/pets/${petIdOrName}`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -813,7 +813,7 @@ async function loadNavbarProfile() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/auth/profile",
+                "/api/auth/profile",
                 {
                     method: "GET",
 
@@ -984,7 +984,7 @@ async function updateNavbarNotificationBadge() {
     if (!token) return;
 
     try {
-        const res = await fetch("http://localhost:5000/api/notifications", {
+        const res = await fetch("/api/notifications", {
             headers: { "Authorization": `Bearer ${token}` }
         });
         const data = await res.json();

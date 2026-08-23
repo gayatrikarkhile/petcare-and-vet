@@ -314,7 +314,7 @@ async function checkPasswordAccountType() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/auth/profile",
+                "/api/auth/profile",
                 {
 
                     method: "GET",

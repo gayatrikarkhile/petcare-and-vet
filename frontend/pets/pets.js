@@ -270,7 +270,7 @@ async function loadPets() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/pets",
+                "/api/pets",
                 {
 
                     method: "GET",
@@ -782,12 +782,11 @@ async function updatePetCount() {
     try {
         const token = getToken();
         let totalCompletion = 0;
-        let totalUpcoming = 0;
 
         await Promise.all(pets.map(async (p) => {
             const petId = p.id || p._id;
             try {
-                const res = await fetch(`http://localhost:5000/api/pets/dashboard/${petId}`, {
+                const res = await fetch(`/api/pets/dashboard/${petId}`, {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
@@ -796,8 +795,6 @@ async function updatePetCount() {
                 const data = await res.json();
                 if (res.ok && data.success && data.dashboard) {
                     totalCompletion += (data.dashboard.profileCompletion || 50);
-                    const reminders = data.dashboard.upcomingReminders || [];
-                    totalUpcoming += reminders.length;
                 } else {
                     totalCompletion += 50;
                 }
@@ -808,7 +805,24 @@ async function updatePetCount() {
 
         const avgCompletion = Math.round(totalCompletion / pets.length);
         if (profileCompletionEl) profileCompletionEl.textContent = `${avgCompletion}%`;
-        if (upcomingAppointmentsEl) upcomingAppointmentsEl.textContent = totalUpcoming;
+
+        // Fetch owner's actual upcoming appointments
+        if (upcomingAppointmentsEl && token) {
+            try {
+                const apptRes = await fetch("/api/appointments/owner", {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                const apptData = await apptRes.json();
+                if (apptRes.ok && apptData.success && Array.isArray(apptData.appointments)) {
+                    const upcoming = apptData.appointments.filter(a => a.status === "pending" || a.status === "accepted");
+                    upcomingAppointmentsEl.textContent = upcoming.length;
+                } else {
+                    upcomingAppointmentsEl.textContent = "0";
+                }
+            } catch (err) {
+                upcomingAppointmentsEl.textContent = "0";
+            }
+        }
     } catch (err) {
         console.error("Error updating pet summary header cards:", err);
     }

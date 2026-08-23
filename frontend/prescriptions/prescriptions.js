@@ -21,7 +21,7 @@ async function loadPrescriptionsData() {
     }
 
     try {
-        const response = await fetch("http://localhost:5000/api/prescriptions/owner", {
+        const response = await fetch("/api/prescriptions/owner", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`

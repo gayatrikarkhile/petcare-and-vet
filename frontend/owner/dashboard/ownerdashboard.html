@@ -33,19 +33,20 @@
             </section>
 
             <section class="hero-grid">
-                <article class="card pet-health-card">
+                <article class="card pet-health-card" id="petHealthCard">
                     <div class="pet-image-wrap">
-                        <img id="petImage" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80" alt="Bruno">
+                        <img id="petImage" src="" alt="Pet" style="display:none;">
+                        <div id="petAvatarFallback" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:40px; background:#eaf5f2;">🐾</div>
                         <span class="pet-mini-badge">🐾</span>
                     </div>
 
                     <div class="pet-health-info">
-                        <h2 id="petName">Bruno</h2>
-                        <p id="petMeta">Labrador Retriever • 2 Years • Male • 20 kg</p>
+                        <h2 id="petName">Loading...</h2>
+                        <p id="petMeta">Fetching pet profile...</p>
 
                         <div class="health-score-title">❤️ <span>Health Score</span></div>
                         <div class="score-row">
-                            <strong id="healthScore">61</strong>
+                            <strong id="healthScore">0</strong>
                             <span>/ 100</span>
                         </div>
 
@@ -54,8 +55,8 @@
                         </div>
 
                         <div class="health-message" id="healthMessage">
-                            <span>✓</span>
-                            <span>Attention required: Bruno has several pending health care items.</span>
+                            <span>🐾</span>
+                            <span>Loading pet health details...</span>
                         </div>
                         <!-- PROFILE COMPLETION -->
 <div class="profile-completion-card" id="profileCompletionCard">
@@ -161,7 +162,7 @@
                 <div class="ai-robot" aria-hidden="true">🤖</div>
                 <div class="ai-copy">
                     <h3>AI HEALTH ASSISTANT</h3>
-                    <p>Have a concern about <strong id="aiPetName">Bruno</strong>?</p>
+                    <p>Have a concern about <strong id="aiPetName">your pet</strong>?</p>
                     <span>Ask about symptoms, behaviour, feeding,<br>health or general care.</span>
                 </div>
                 <a class="ai-button" href="../../pages/ai-assistant/ai-assistant.html">Ask AI Assistant <span>→</span></a>

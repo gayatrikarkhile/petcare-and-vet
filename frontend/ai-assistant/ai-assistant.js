@@ -49,6 +49,47 @@ function initializeAIAssistant() {
     if (clearBtn) {
         clearBtn.addEventListener("click", clearChat);
     }
+
+    loadUserPetsForAI();
+}
+
+async function loadUserPetsForAI() {
+    const selector = document.getElementById("petSelector");
+    if (!selector) return;
+
+    const token = localStorage.getItem("pawsyncToken");
+    if (!token) {
+        selector.innerHTML = "<option value=''>Please login</option>";
+        return;
+    }
+
+    try {
+        const res = await fetch("/api/pets", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (res.ok && data.success && Array.isArray(data.pets) && data.pets.length > 0) {
+            selector.innerHTML = "";
+            const savedPet = localStorage.getItem("pawsyncSelectedPet");
+
+            data.pets.forEach(pet => {
+                const opt = document.createElement("option");
+                opt.value = pet._id;
+                opt.textContent = `🐾 ${pet.petName}`;
+                if (savedPet && pet._id === savedPet) opt.selected = true;
+                selector.appendChild(opt);
+            });
+
+            selector.addEventListener("change", () => {
+                localStorage.setItem("pawsyncSelectedPet", selector.value);
+            });
+        } else {
+            selector.innerHTML = "<option value=''>No pets added</option>";
+        }
+    } catch (err) {
+        console.error("AI Assistant pet loading error:", err);
+        selector.innerHTML = "<option value=''>No pets available</option>";
+    }
 }
 
 /* ============================================================

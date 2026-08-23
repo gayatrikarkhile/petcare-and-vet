@@ -3,7 +3,7 @@
    DYNAMIC VERSION FROM MONGODB
 ========================================= */
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = (typeof window !== "undefined" && window.location && window.location.protocol === "file:") ? "http://localhost:5000/api" : "/api";
 let currentPet = null;
 
 function getToken() {

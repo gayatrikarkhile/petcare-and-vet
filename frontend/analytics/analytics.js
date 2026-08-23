@@ -2,7 +2,7 @@
    PAWSYNC - PET-WISE ANALYTICS DASHBOARD & EXPORT
 ========================================= */
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = (typeof window !== "undefined" && window.location && window.location.protocol === "file:") ? "http://localhost:5000/api" : "/api";
 let currentPetId = null;
 let currentAnalyticsData = null;
 let trendChart = null;

@@ -2,8 +2,7 @@
 // PAWSYNC PROFILE PAGE
 // ========================================
 
-const API_BASE_URL =
-    "http://localhost:5000/api/auth";
+const API_BASE_URL = (typeof window !== "undefined" && window.location && window.location.protocol === "file:") ? "http://localhost:5000/api/auth" : "/api/auth";
 
 
 // ========================================

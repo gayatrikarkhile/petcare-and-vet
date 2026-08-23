@@ -36,7 +36,7 @@ async function loadOwnerProfile() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/auth/profile",
+                "/api/auth/profile",
                 {
 
                     method: "GET",
@@ -160,7 +160,7 @@ async function loadOwnerPets() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/pets",
+                "/api/pets",
                 {
                     method: "GET",
 
@@ -270,14 +270,17 @@ async function loadOwnerPets() {
 
 
         /* ---------------------------------
-           SELECT FIRST REAL PET
+           SELECT FIRST REAL PET OR EMPTY STATE
         --------------------------------- */
 
-        if (data.pets.length > 0) {
-            if (!selectedPetKey || !pets[selectedPetKey]) {
-                selectedPetKey = data.pets[0]._id;
-                localStorage.setItem("pawsyncSelectedPet", selectedPetKey);
-            }
+        if (data.pets.length === 0) {
+            renderOwnerDashboardEmptyState();
+            return;
+        }
+
+        if (!selectedPetKey || !pets[selectedPetKey]) {
+            selectedPetKey = data.pets[0]._id;
+            localStorage.setItem("pawsyncSelectedPet", selectedPetKey);
         }
 
         renderPetSelector();
@@ -296,6 +299,59 @@ async function loadOwnerPets() {
 
     }
 
+}
+
+/* =========================================
+   RENDER OWNER DASHBOARD EMPTY STATE
+========================================= */
+
+function renderOwnerDashboardEmptyState() {
+    pets = {};
+    selectedPetKey = "";
+    localStorage.removeItem("pawsyncSelectedPet");
+
+    if ($("managingPetName")) $("managingPetName").textContent = "No Pet Selected";
+    if ($("aiPetName")) $("aiPetName").textContent = "your pet";
+    if ($("petName")) $("petName").textContent = "No pets added yet";
+    if ($("petMeta")) $("petMeta").textContent = "Add your first pet to start managing their health and care.";
+
+    if ($("petImage")) $("petImage").style.display = "none";
+    if ($("petAvatarFallback")) $("petAvatarFallback").style.display = "flex";
+
+    if ($("healthScore")) $("healthScore").textContent = "0";
+    if ($("healthProgress")) $("healthProgress").style.width = "0%";
+    if ($("healthMessage")) {
+        $("healthMessage").innerHTML = `
+            <span>🐾</span>
+            <span>No pet registered. <a href="../../addPetForm/addPetForm.html" style="color:#0d9588; font-weight:600; text-decoration:underline;">+ Add New Pet</a></span>
+        `;
+    }
+
+    updateProfileCompletion(0);
+
+    const todayCareList = document.getElementById("todayCareList");
+    if (todayCareList) {
+        todayCareList.innerHTML = `
+            <div style="text-align:center; padding:30px; color:#64748b;">
+                <p style="font-size:2rem; margin-bottom:8px;">🐾</p>
+                <p style="font-weight:600; margin:0;">No pets added yet</p>
+                <p style="font-size:0.85rem; margin-top:4px;">Add a pet to view today's care activities.</p>
+                <a href="../../addPetForm/addPetForm.html" style="display:inline-block; margin-top:10px; padding:8px 16px; background:#0d9588; color:white; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.85rem;">+ Add New Pet</a>
+            </div>
+        `;
+    }
+
+    const upcomingRemindersList = document.getElementById("upcomingRemindersList");
+    if (upcomingRemindersList) {
+        upcomingRemindersList.innerHTML = `
+            <div style="text-align:center; padding:20px; color:#64748b;">
+                <p style="margin:0;">No upcoming reminders</p>
+            </div>
+        `;
+    }
+
+    renderPetSelector();
+    renderPetGarden([], "");
 }
 
 
@@ -529,7 +585,7 @@ async function loadProfileCompletion(petId) {
         }
 
         const response = await fetch(
-            `http://localhost:5000/api/pets/${petId}/profile-completion`,
+            `/api/pets/${petId}/profile-completion`,
             {
                 method: "GET",
 
@@ -670,7 +726,7 @@ async function loadPetDashboard(petId) {
     if (!token) return;
 
     try {
-        const response = await fetch(`http://localhost:5000/api/pets/dashboard/${petId}`, {
+        const response = await fetch(`/api/pets/dashboard/${petId}`, {
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json"
@@ -691,9 +747,16 @@ async function loadPetDashboard(petId) {
                 $("petMeta").textContent = `${p.breed} • ${p.age} • ${p.gender} • ${p.weight}`;
             }
 
-            if ($("petImage") && p.image) {
-                $("petImage").src = p.image;
-                $("petImage").alt = p.name;
+            if ($("petImage")) {
+                if (p.image) {
+                    $("petImage").src = p.image;
+                    $("petImage").alt = p.name;
+                    $("petImage").style.display = "block";
+                    if ($("petAvatarFallback")) $("petAvatarFallback").style.display = "none";
+                } else {
+                    $("petImage").style.display = "none";
+                    if ($("petAvatarFallback")) $("petAvatarFallback").style.display = "flex";
+                }
             }
 
             // 2. HEALTH SCORE
@@ -827,7 +890,7 @@ async function markDashboardTaskComplete(petId, task) {
 
     try {
         if (task.type === "grooming") {
-            const res = await fetch("http://localhost:5000/api/grooming/complete", {
+            const res = await fetch("/api/grooming/complete", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -843,7 +906,7 @@ async function markDashboardTaskComplete(petId, task) {
             }
             alert(data.message || "Failed to mark task complete.");
         } else if (task.type === "nutrition") {
-            const res = await fetch(`http://localhost:5000/api/nutrition/complete/${petId}`, {
+            const res = await fetch(`/api/nutrition/complete/${petId}`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -2629,7 +2692,7 @@ function openNutritionModal(pet) {
 
         if (token) {
 
-            fetch(`http://localhost:5000/api/nutrition/${petId}`, {
+            fetch(`/api/nutrition/${petId}`, {
 
                 headers: {
 
@@ -3154,7 +3217,7 @@ function setupNutritionForm() {
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/nutrition",
+                        "/api/nutrition",
                         {
 
                             method:
@@ -3280,7 +3343,7 @@ function openGroomingModal(pet) {
     if (petId) {
         const token = localStorage.getItem("pawsyncToken");
         if (token) {
-            fetch(`http://localhost:5000/api/grooming/profile/${petId}`, {
+            fetch(`/api/grooming/profile/${petId}`, {
                 headers: { "Authorization": `Bearer ${token}` }
             })
             .then(res => res.ok ? res.json() : null)
@@ -3373,7 +3436,7 @@ function setupGroomingForm() {
         const petId = pet.id || pet._id;
 
         try {
-            const response = await fetch(`http://localhost:5000/api/grooming/profile/${petId}`, {
+            const response = await fetch(`/api/grooming/profile/${petId}`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -3387,7 +3450,7 @@ function setupGroomingForm() {
             if (response.ok && data.success) {
                 // Generate 30-day plan via Gemini AI
                 try {
-                    await fetch(`http://localhost:5000/api/grooming/generate-plan/${petId}`, {
+                    await fetch(`/api/grooming/generate-plan/${petId}`, {
                         method: "POST",
                         headers: {
                             "Authorization": `Bearer ${token}`,
@@ -3441,7 +3504,7 @@ function openActivityDashModal(pet) {
     if (petId) {
         const token = localStorage.getItem("pawsyncToken");
         if (token) {
-            fetch(`http://localhost:5000/api/activity/profile/${petId}`, {
+            fetch(`/api/activity/profile/${petId}`, {
                 headers: { "Authorization": `Bearer ${token}` }
             })
             .then(res => res.ok ? res.json() : null)
@@ -3539,7 +3602,7 @@ function setupActivityDashForm() {
         const petId = pet.id || pet._id;
 
         try {
-            const response = await fetch(`http://localhost:5000/api/activity/profile/${petId}`, {
+            const response = await fetch(`/api/activity/profile/${petId}`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -3553,7 +3616,7 @@ function setupActivityDashForm() {
             if (response.ok && data.success) {
                 // Generate 30-day activity plan via Gemini AI
                 try {
-                    await fetch(`http://localhost:5000/api/activity/generate-plan/${petId}`, {
+                    await fetch(`/api/activity/generate-plan/${petId}`, {
                         method: "POST",
                         headers: {
                             "Authorization": `Bearer ${token}`,

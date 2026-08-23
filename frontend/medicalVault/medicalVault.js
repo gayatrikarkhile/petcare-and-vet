@@ -142,6 +142,10 @@ async function apiRequest(
         `Bearer ${token}`;
 
 
+    if (url.startsWith("http://localhost:5000/api")) {
+        url = url.replace("http://localhost:5000/api", "/api");
+    }
+
     const response =
         await fetch(
             url,
@@ -183,7 +187,7 @@ async function loadPets() {
 
         const data =
             await apiRequest(
-                "http://localhost:5000/api/pets"
+                "/api/pets"
             );
 
 
@@ -448,7 +452,7 @@ async function loadDocumentsForSelectedPet() {
 
         const data =
             await apiRequest(
-                `http://localhost:5000/api/medical-documents/pet/${selectedPetId}`
+                `/api/medical-documents/pet/${selectedPetId}`
             );
 
 
@@ -1412,7 +1416,7 @@ async function deleteDocument(
 
         const data =
             await apiRequest(
-                `http://localhost:5000/api/medical-documents/${documentId}`,
+                `/api/medical-documents/${documentId}`,
                 {
                     method:
                         "DELETE"
@@ -1786,7 +1790,7 @@ function setupUploadForm() {
 
                 const data =
                     await apiRequest(
-                        "http://localhost:5000/api/medical-documents",
+                        "/api/medical-documents",
                         {
                             method:
                                 "POST",

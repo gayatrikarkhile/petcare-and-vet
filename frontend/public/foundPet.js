@@ -21,7 +21,7 @@ async function initFoundPetPage() {
     }
 
     try {
-        const res = await fetch(`http://localhost:5000/api/pets/public/pet/${token}`);
+        const res = await fetch(`/api/pets/public/pet/${token}`);
         const data = await res.json();
 
         if (!res.ok || !data.success || !data.publicPet) {
@@ -108,7 +108,7 @@ function renderPublicPet(pet, token) {
             const message = document.getElementById("finderMessageInput").value;
 
             try {
-                const res = await fetch(`http://localhost:5000/api/pets/public/pet/${token}/report-found`, {
+                const res = await fetch(`/api/pets/public/pet/${token}/report-found`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ location, finderPhone, message })

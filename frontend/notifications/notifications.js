@@ -22,7 +22,7 @@ async function loadNotifications() {
     }
 
     try {
-        const response = await fetch("http://localhost:5000/api/notifications", {
+        const response = await fetch("/api/notifications", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -147,7 +147,7 @@ async function markAsRead(id, element) {
     if (!token) return;
 
     try {
-        const res = await fetch(`http://localhost:5000/api/notifications/${id}/read`, {
+        const res = await fetch(`/api/notifications/${id}/read`, {
             method: "PUT",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -170,7 +170,7 @@ async function markAllAsRead() {
     if (!token) return;
 
     try {
-        const res = await fetch("http://localhost:5000/api/notifications/read-all", {
+        const res = await fetch("/api/notifications/read-all", {
             method: "PUT",
             headers: {
                 "Authorization": `Bearer ${token}`
