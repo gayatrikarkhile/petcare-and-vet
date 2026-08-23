@@ -1,217 +1,96 @@
 /* =========================================
-   PAWSYNC - ALERTS
-   PAGE-SPECIFIC JAVASCRIPT
-
-   Shared Navbar + Sidebar:
-   ../shared/js/shared.js
+   PAWSYNC - DYNAMIC ALERTS
+   Vaccination alerts are loaded from MongoDB
 ========================================= */
 
-
-/* =========================================
-   ALERT DATA
-========================================= */
-
-let alerts = [
-
-    {
-        id: 1,
-
-        title: "Rabies Vaccination Due",
-
-        message:
-            "Bruno's rabies booster is due on 18 Aug. Please make sure the vaccination is completed on time.",
-
-        pet: "Bruno",
-
-        type: "important",
-
-        category: "important",
-
-        icon: "💉",
-
-        date: "18 Aug",
-
-        time: "2 days ago",
-
-        unread: true
-    },
-
-
-    {
-        id: 2,
-
-        title: "Vet Appointment Upcoming",
-
-        message:
-            "Bruno has a general health checkup scheduled with Dr. Sharma on 23 Aug at 10:00 AM.",
-
-        pet: "Bruno",
-
-        type: "appointment",
-
-        category: "appointment",
-
-        icon: "👨‍⚕️",
-
-        date: "23 Aug",
-
-        time: "3 hours ago",
-
-        unread: true
-    },
-
-
-    {
-        id: 3,
-
-        title: "Grooming Reminder",
-
-        message:
-            "Kitty's grooming session is scheduled for 20 Aug.",
-
-        pet: "Kitty",
-
-        type: "reminder",
-
-        category: "reminder",
-
-        icon: "✂️",
-
-        date: "20 Aug",
-
-        time: "5 hours ago",
-
-        unread: true
-    },
-
-
-    {
-        id: 4,
-
-        title: "Health Checkup Reminder",
-
-        message:
-            "Coco's regular health checkup is coming up on 26 Aug.",
-
-        pet: "Coco",
-
-        type: "reminder",
-
-        category: "reminder",
-
-        icon: "🩺",
-
-        date: "26 Aug",
-
-        time: "Yesterday",
-
-        unread: true
-    },
-
-
-    {
-        id: 5,
-
-        title: "Vaccination Record Updated",
-
-        message:
-            "Kitty's vaccination record has been successfully updated in Medical Vault.",
-
-        pet: "Kitty",
-
-        type: "reminder",
-
-        category: "reminder",
-
-        icon: "💉",
-
-        date: "05 Aug",
-
-        time: "2 days ago",
-
-        unread: false
-    },
-
-
-    {
-        id: 6,
-
-        title: "Activity Level Needs Attention",
-
-        message:
-            "Bruno's average activity has decreased compared with the previous week.",
-
-        pet: "Bruno",
-
-        type: "important",
-
-        category: "important",
-
-        icon: "🏃",
-
-        date: "14 Aug",
-
-        time: "3 days ago",
-
-        unread: true
-    },
-
-
-    {
-        id: 7,
-
-        title: "Medical Document Added",
-
-        message:
-            "A new medical report was added to Coco's Medical Vault.",
-
-        pet: "Coco",
-
-        type: "reminder",
-
-        category: "reminder",
-
-        icon: "📄",
-
-        date: "12 Aug",
-
-        time: "4 days ago",
-
-        unread: false
-    },
-
-
-    {
-        id: 8,
-
-        title: "Health Score Improved",
-
-        message:
-            "Kitty's health score has improved to 86/100. Keep following the current care routine.",
-
-        pet: "Kitty",
-
-        type: "reminder",
-
-        category: "reminder",
-
-        icon: "❤️",
-
-        date: "10 Aug",
-
-        time: "5 days ago",
-
-        unread: false
-    }
-
-];
-
-
-/* =========================================
-   CURRENT FILTER
-========================================= */
+let alerts = [];
 
 let currentFilter = "all";
+
+const API_BASE = "/api";
+
+
+/* =========================================
+   AUTHENTICATION
+========================================= */
+
+function getAuthHeaders() {
+
+    const token =
+        localStorage.getItem("pawsyncToken");
+
+    const headers = {
+        "Content-Type": "application/json"
+    };
+
+    if (token) {
+
+        headers.Authorization =
+            `Bearer ${token}`;
+
+    }
+
+    return headers;
+}
+
+
+/* =========================================
+   API HELPER
+========================================= */
+
+async function apiFetch(
+    url,
+    options = {}
+) {
+
+    const response =
+        await fetch(url, {
+
+            ...options,
+
+            credentials: "include",
+
+            headers: {
+
+                ...getAuthHeaders(),
+
+                ...(options.headers || {})
+
+            }
+
+        });
+
+
+    let data = {};
+
+    try {
+
+        data =
+            await response.json();
+
+    } catch (error) {
+
+        data = {};
+
+    }
+
+
+    if (!response.ok) {
+
+        throw new Error(
+
+            data.message ||
+
+            `Request failed with status ${response.status}`
+
+        );
+
+    }
+
+
+    return data;
+
+}
 
 
 /* =========================================
@@ -272,18 +151,630 @@ const filterButtons =
 
 document.addEventListener(
     "DOMContentLoaded",
-    () => {
-
-        renderAlerts();
-
-        updateSummaryCounts();
+    async () => {
 
         setupFilters();
 
         setupMarkAllRead();
 
+        setupVaccinationDetailsModal();
+
+        await loadVaccinationAlerts();
+
     }
 );
+
+
+/* =========================================
+   LOAD REAL VACCINATION ALERTS
+========================================= */
+
+async function loadVaccinationAlerts() {
+
+    try {
+
+        alerts = [];
+
+        /* Fetch real vet notifications */
+        try {
+            const notifRes = await apiFetch(`${API_BASE}/notifications`);
+            if (notifRes && Array.isArray(notifRes.notifications)) {
+                notifRes.notifications.forEach(n => {
+                    alerts.push({
+                        id: `notif-${n._id}`,
+                        title: n.title,
+                        message: n.message,
+                        type: n.type.includes("accepted") ? "appointment" : (n.type.includes("rejected") ? "important" : "reminder"),
+                        category: n.type.includes("accepted") ? "appointment" : "reminder",
+                        icon: n.title.includes("Confirmed") || n.title.includes("Verified") ? "🟢" : (n.title.includes("Rejected") ? "🔴" : "🔔"),
+                        date: new Date(n.createdAt).toLocaleDateString(),
+                        time: new Date(n.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                        unread: !n.isRead
+                    });
+                });
+            }
+        } catch (e) {
+            console.error("Could not fetch vet notifications for owner:", e);
+        }
+
+        const petData =
+            await apiFetch(
+                `${API_BASE}/pets`
+            );
+
+
+        const pets =
+            Array.isArray(
+                petData.pets
+            )
+                ? petData.pets
+                : [];
+
+
+        alerts = [];
+
+
+        /*
+            Get vaccination records
+            for every pet.
+        */
+
+        for (
+            const pet of pets
+        ) {
+
+            try {
+
+                const vaccinationData =
+                    await apiFetch(
+                        `${API_BASE}/vaccinations/${pet._id}`
+                    );
+
+
+                const vaccinations =
+                    Array.isArray(
+                        vaccinationData.vaccinations
+                    )
+                        ? vaccinationData.vaccinations
+                        : [];
+
+
+                vaccinations.forEach(
+                    vaccination => {
+
+                        const status =
+                            getVaccinationStatus(
+                                vaccination.nextDue
+                            );
+
+
+                        /*
+                            Create alerts for:
+                            Due Soon
+                            Overdue
+                        */
+
+                        if (
+
+                            status === "due-soon"
+
+                            ||
+
+                            status === "overdue"
+
+                        ) {
+
+                            alerts.push(
+
+                                createVaccinationAlert(
+
+                                    pet,
+
+                                    vaccination,
+
+                                    status
+
+                                )
+
+                            );
+
+                        }
+
+                    }
+                );
+
+
+            } catch (error) {
+
+                console.error(
+
+                    `Unable to load vaccinations for ${
+                        pet.petName ||
+                        "pet"
+                    }:`,
+                    error
+
+                );
+
+            }
+
+        }
+
+
+        /*
+            Sort:
+            Overdue first
+            Then due dates
+        */
+
+        alerts.sort(
+
+            (first, second) => {
+
+                if (
+
+                    first.category === "important"
+
+                    &&
+
+                    second.category !== "important"
+
+                ) {
+
+                    return -1;
+
+                }
+
+
+                if (
+
+                    first.category !== "important"
+
+                    &&
+
+                    second.category === "important"
+
+                ) {
+
+                    return 1;
+
+                }
+
+
+                return (
+
+                    parseLocalDate(
+                        first.rawDueDate
+                    )
+
+                    -
+
+                    parseLocalDate(
+                        second.rawDueDate
+                    )
+
+                );
+
+            }
+
+        );
+
+
+        renderAlerts();
+
+        updateSummaryCounts();
+
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load alerts:",
+            error
+        );
+
+
+        alerts = [];
+
+        renderAlerts();
+
+        updateSummaryCounts();
+
+        showLoadError(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   VACCINATION STATUS
+========================================= */
+
+function getVaccinationStatus(
+    nextDue
+) {
+
+    const today =
+        startOfDay(
+            new Date()
+        );
+
+
+    const dueDate =
+        parseLocalDate(
+            nextDue
+        );
+
+
+    if (
+        Number.isNaN(
+            dueDate.getTime()
+        )
+    ) {
+
+        return "up-to-date";
+
+    }
+
+
+    const difference =
+        differenceInDays(
+            today,
+            dueDate
+        );
+
+
+    /*
+        Date has already passed
+    */
+
+    if (
+        difference > 0
+    ) {
+
+        return "overdue";
+
+    }
+
+
+    /*
+        Due today or within
+        next 30 days
+    */
+
+    if (
+        difference >= -30
+    ) {
+
+        return "due-soon";
+
+    }
+
+
+    return "up-to-date";
+
+}
+
+/* =========================================
+   CREATE VACCINATION ALERT
+========================================= */
+
+function createVaccinationAlert(
+
+    pet,
+
+    vaccination,
+
+    status
+
+) {
+
+    const petName =
+        pet.petName ||
+        pet.name ||
+        "Your pet";
+
+
+    const vaccineName =
+        vaccination.vaccine ||
+        vaccination.vaccineName ||
+        vaccination.name ||
+        "Vaccination";
+
+
+    const dueDate =
+        formatDate(
+            vaccination.nextDue
+        );
+
+
+    /*
+        Store ALL vaccination information
+        inside the alert.
+
+        This is important because the
+        popup needs these values.
+    */
+
+    const baseAlert = {
+
+        id:
+            `vaccination-${status}-${vaccination._id}`,
+
+        pet:
+            petName,
+
+        petId:
+            pet._id,
+
+        vaccinationId:
+            vaccination._id,
+
+        vaccine:
+            vaccineName,
+
+        dateGiven:
+            formatDate(
+                vaccination.dateGiven
+            ),
+
+        rawDueDate:
+            vaccination.nextDue,
+
+        doctor:
+            vaccination.doctor ||
+            vaccination.doctorClinic ||
+            vaccination.clinic ||
+            "Not specified",
+
+        notes:
+            vaccination.notes ||
+            "No additional notes.",
+
+        unread:
+            true
+
+    };
+
+
+    /* =====================================
+       OVERDUE
+    ====================================== */
+
+    if (
+        status === "overdue"
+    ) {
+
+        return {
+
+            ...baseAlert,
+
+            title:
+                `${vaccineName} Vaccination Overdue`,
+
+            message:
+                `${petName}'s ${vaccineName} vaccination was due on ${dueDate}. Please record the vaccination once it has been completed.`,
+
+            type:
+                "important",
+
+            category:
+                "important",
+
+            icon:
+                "⚠️",
+
+            date:
+                dueDate,
+
+            time:
+                "Vaccination overdue"
+
+        };
+
+    }
+
+
+    /* =====================================
+       DUE SOON
+    ====================================== */
+
+    return {
+
+        ...baseAlert,
+
+        title:
+            `${vaccineName} Vaccination Due Soon`,
+
+        message:
+            `${petName}'s ${vaccineName} vaccination is due on ${dueDate}.`,
+
+        type:
+            "reminder",
+
+        category:
+            "reminder",
+
+        icon:
+            "💉",
+
+        date:
+            dueDate,
+
+        time:
+            "Upcoming vaccination"
+
+    };
+
+}
+
+
+/* =========================================
+   DATE HELPERS
+========================================= */
+
+function parseLocalDate(
+    value
+) {
+
+    if (!value) {
+
+        return new Date(
+            NaN
+        );
+
+    }
+
+
+    const dateString =
+        String(value)
+            .slice(0, 10);
+
+
+    const parts =
+        dateString
+            .split("-")
+            .map(Number);
+
+
+    if (
+
+        parts.length !== 3
+
+        ||
+
+        parts.some(
+            number =>
+                Number.isNaN(
+                    number
+                )
+        )
+
+    ) {
+
+        return new Date(value);
+
+    }
+
+
+    return new Date(
+
+        parts[0],
+
+        parts[1] - 1,
+
+        parts[2]
+
+    );
+
+}
+
+
+function startOfDay(
+    date
+) {
+
+    return new Date(
+
+        date.getFullYear(),
+
+        date.getMonth(),
+
+        date.getDate()
+
+    );
+
+}
+
+
+function differenceInDays(
+
+    firstDate,
+
+    secondDate
+
+) {
+
+    return Math.round(
+
+        (
+
+            startOfDay(
+                firstDate
+            ).getTime()
+
+            -
+
+            startOfDay(
+                secondDate
+            ).getTime()
+
+        )
+
+        /
+
+        (
+
+            1000 *
+
+            60 *
+
+            60 *
+
+            24
+
+        )
+
+    );
+
+}
+
+
+function formatDate(
+    value
+) {
+
+    const date =
+        parseLocalDate(
+            value
+        );
+
+
+    if (
+
+        Number.isNaN(
+            date.getTime()
+        )
+
+    ) {
+
+        return "Not available";
+
+    }
+
+
+    return date.toLocaleDateString(
+
+        "en-IN",
+
+        {
+
+            day:
+                "2-digit",
+
+            month:
+                "short",
+
+            year:
+                "numeric"
+
+        }
+
+    );
+
+}
 
 
 /* =========================================
@@ -293,20 +784,19 @@ document.addEventListener(
 function renderAlerts() {
 
     if (!alertsList) {
+
         return;
+
     }
 
 
-    let filteredAlerts =
+    const filteredAlerts =
         getFilteredAlerts();
 
 
-    alertsList.innerHTML = "";
+    alertsList.innerHTML =
+        "";
 
-
-    /* =====================================
-       EMPTY STATE
-    ====================================== */
 
     if (
         filteredAlerts.length === 0
@@ -332,11 +822,8 @@ function renderAlerts() {
     }
 
 
-    /* =====================================
-       CREATE ALERT ITEMS
-    ====================================== */
-
     filteredAlerts.forEach(
+
         alert => {
 
             const alertElement =
@@ -350,6 +837,7 @@ function renderAlerts() {
             );
 
         }
+
     );
 
 }
@@ -365,7 +853,9 @@ function getFilteredAlerts() {
         currentFilter === "all"
     ) {
 
-        return [...alerts];
+        return [
+            ...alerts
+        ];
 
     }
 
@@ -375,8 +865,10 @@ function getFilteredAlerts() {
     ) {
 
         return alerts.filter(
+
             alert =>
                 alert.unread === true
+
         );
 
     }
@@ -387,9 +879,10 @@ function getFilteredAlerts() {
     ) {
 
         return alerts.filter(
+
             alert =>
-                alert.category ===
-                "important"
+                alert.category === "important"
+
         );
 
     }
@@ -400,18 +893,34 @@ function getFilteredAlerts() {
     ) {
 
         return alerts.filter(
+
             alert =>
-                alert.category ===
-                "reminder"
+                alert.category === "reminder"
+
         );
 
     }
 
 
-    return [...alerts];
+    if (
+        currentFilter === "appointment"
+    ) {
+
+        return alerts.filter(
+
+            alert =>
+                alert.category === "appointment"
+
+        );
+
+    }
+
+
+    return [
+        ...alerts
+    ];
 
 }
-
 
 /* =========================================
    CREATE ALERT ELEMENT
@@ -431,19 +940,11 @@ function createAlertElement(
         "alert-item";
 
 
-    if (alert.unread) {
-
-        element.classList.add(
-            "unread"
-        );
-
-    } else {
-
-        element.classList.add(
-            "read"
-        );
-
-    }
+    element.classList.add(
+        alert.unread
+            ? "unread"
+            : "read"
+    );
 
 
     element.dataset.alertId =
@@ -453,7 +954,9 @@ function createAlertElement(
     element.innerHTML = `
 
         <div class="alert-icon ${getIconClass(alert)}">
+
             ${alert.icon}
+
         </div>
 
 
@@ -462,7 +965,9 @@ function createAlertElement(
             <div class="alert-title-row">
 
                 <h3>
-                    ${escapeHTML(alert.title)}
+                    ${escapeHTML(
+                        alert.title
+                    )}
                 </h3>
 
                 ${
@@ -480,27 +985,41 @@ function createAlertElement(
 
 
             <p>
-                ${escapeHTML(alert.message)}
+                ${escapeHTML(
+                    alert.message
+                )}
             </p>
 
 
             <div class="alert-meta">
 
                 <span>
-                    ${escapeHTML(alert.pet)}
+                    ${escapeHTML(
+                        alert.pet
+                    )}
                 </span>
+
 
                 <span>
-                    ${escapeHTML(alert.date)}
+                    ${escapeHTML(
+                        alert.date
+                    )}
                 </span>
+
 
                 <span>
-                    ${escapeHTML(alert.time)}
+                    ${escapeHTML(
+                        alert.time
+                    )}
                 </span>
 
 
-                <span class="alert-badge ${alert.type}">
-                    ${getAlertTypeLabel(alert.type)}
+                <span
+                    class="alert-badge ${alert.type}"
+                >
+                    ${getAlertTypeLabel(
+                        alert.type
+                    )}
                 </span>
 
             </div>
@@ -518,13 +1037,14 @@ function createAlertElement(
                         ? "Mark as read"
                         : "Mark as unread"
                 }"
-                data-alert-id="${alert.id}"
             >
+
                 ${
                     alert.unread
                         ? "✓"
                         : "↺"
                 }
+
             </button>
 
 
@@ -532,9 +1052,10 @@ function createAlertElement(
                 type="button"
                 class="alert-action-button delete-alert-button"
                 title="Remove alert"
-                data-alert-id="${alert.id}"
             >
+
                 ×
+
             </button>
 
         </div>
@@ -555,8 +1076,12 @@ function createAlertElement(
     if (markReadButton) {
 
         markReadButton.addEventListener(
+
             "click",
+
             event => {
+
+                event.preventDefault();
 
                 event.stopPropagation();
 
@@ -566,6 +1091,7 @@ function createAlertElement(
                 );
 
             }
+
         );
 
     }
@@ -584,8 +1110,12 @@ function createAlertElement(
     if (deleteButton) {
 
         deleteButton.addEventListener(
+
             "click",
+
             event => {
+
+                event.preventDefault();
 
                 event.stopPropagation();
 
@@ -595,6 +1125,7 @@ function createAlertElement(
                 );
 
             }
+
         );
 
     }
@@ -605,8 +1136,15 @@ function createAlertElement(
     ====================================== */
 
     element.addEventListener(
+
         "click",
-        () => {
+
+        event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
 
             if (alert.unread) {
 
@@ -622,8 +1160,14 @@ function createAlertElement(
             );
 
         }
+
     );
 
+
+    /*
+        VERY IMPORTANT:
+        Close createAlertElement properly.
+    */
 
     return element;
 
@@ -639,8 +1183,7 @@ function getIconClass(
 ) {
 
     if (
-        alert.type ===
-        "important"
+        alert.type === "important"
     ) {
 
         return "warning";
@@ -649,8 +1192,7 @@ function getIconClass(
 
 
     if (
-        alert.type ===
-        "appointment"
+        alert.type === "appointment"
     ) {
 
         return "appointment";
@@ -713,8 +1255,13 @@ function getAlertTypeLabel(
 
 
     return (
-        labels[type] ||
+
+        labels[type]
+
+        ||
+
         "Alert"
+
     );
 
 }
@@ -727,13 +1274,17 @@ function getAlertTypeLabel(
 function setupFilters() {
 
     filterButtons.forEach(
+
         button => {
 
             button.addEventListener(
+
                 "click",
+
                 () => {
 
                     filterButtons.forEach(
+
                         item => {
 
                             item.classList.remove(
@@ -741,6 +1292,7 @@ function setupFilters() {
                             );
 
                         }
+
                     );
 
 
@@ -757,9 +1309,11 @@ function setupFilters() {
                     renderAlerts();
 
                 }
+
             );
 
         }
+
     );
 
 }
@@ -775,13 +1329,17 @@ function markAlertAsRead(
 
     const alert =
         alerts.find(
+
             item =>
                 item.id === alertId
+
         );
 
 
     if (!alert) {
+
         return;
+
     }
 
 
@@ -790,6 +1348,8 @@ function markAlertAsRead(
 
 
     updateSummaryCounts();
+
+    renderAlerts();
 
 }
 
@@ -804,13 +1364,17 @@ function toggleAlertRead(
 
     const alert =
         alerts.find(
+
             item =>
                 item.id === alertId
+
         );
 
 
     if (!alert) {
+
         return;
+
     }
 
 
@@ -823,8 +1387,6 @@ function toggleAlertRead(
     renderAlerts();
 
 }
-
-
 /* =========================================
    MARK ALL READ
 ========================================= */
@@ -832,21 +1394,27 @@ function toggleAlertRead(
 function setupMarkAllRead() {
 
     if (!markAllReadButton) {
+
         return;
+
     }
 
 
     markAllReadButton.addEventListener(
+
         "click",
+
         () => {
 
             alerts.forEach(
+
                 alert => {
 
                     alert.unread =
                         false;
 
                 }
+
             );
 
 
@@ -855,6 +1423,7 @@ function setupMarkAllRead() {
             renderAlerts();
 
         }
+
     );
 
 }
@@ -870,31 +1439,41 @@ function removeAlert(
 
     const alert =
         alerts.find(
+
             item =>
                 item.id === alertId
+
         );
 
 
     if (!alert) {
+
         return;
+
     }
 
 
     const confirmed =
         confirm(
+
             `Remove "${alert.title}" from your alerts?`
+
         );
 
 
     if (!confirmed) {
+
         return;
+
     }
 
 
     alerts =
         alerts.filter(
+
             item =>
                 item.id !== alertId
+
         );
 
 
@@ -913,32 +1492,37 @@ function updateSummaryCounts() {
 
     const important =
         alerts.filter(
+
             alert =>
-                alert.category ===
-                "important"
+                alert.category === "important"
+
         ).length;
 
 
     const reminders =
         alerts.filter(
+
             alert =>
-                alert.category ===
-                "reminder"
+                alert.category === "reminder"
+
         ).length;
 
 
     const appointments =
         alerts.filter(
+
             alert =>
-                alert.category ===
-                "appointment"
+                alert.category === "appointment"
+
         ).length;
 
 
     const unread =
         alerts.filter(
+
             alert =>
                 alert.unread === true
+
         ).length;
 
 
@@ -985,24 +1569,540 @@ function handleAlertClick(
 ) {
 
     /*
-        For now this is a static frontend.
-
-        Later, each alert can navigate
-        to its related page.
-
-        Examples:
-
-        Vaccination → vaccination.html
-        Appointment → appointments.html
-        Medical → medicalVault.html
-        Grooming → grooming.html
-        Activity → activity.html
+        Vaccination alerts open
+        the popup on THIS page.
     */
 
+    if (
 
-    console.log(
-        "Alert clicked:",
+        alert.category !== "important"
+
+        &&
+
+        alert.category !== "reminder"
+
+    ) {
+
+        return;
+
+    }
+
+
+    openVaccinationDetails(
         alert
+    );
+
+}
+
+
+/* =========================================
+   OPEN VACCINATION DETAILS
+========================================= */
+
+function openVaccinationDetails(
+    alert
+) {
+
+    const modal =
+        document.getElementById(
+            "vaccinationDetailsModal"
+        );
+
+
+    if (!modal) {
+
+        console.error(
+            "Vaccination details modal was not found."
+        );
+
+        return;
+
+    }
+
+
+    const vaccineName =
+        document.getElementById(
+            "detailsVaccineName"
+        );
+
+
+    const petName =
+        document.getElementById(
+            "detailsPetName"
+        );
+
+
+    const detailsPet =
+        document.getElementById(
+            "detailsPet"
+        );
+
+
+    const detailsVaccine =
+        document.getElementById(
+            "detailsVaccine"
+        );
+
+
+    const detailsDateGiven =
+        document.getElementById(
+            "detailsDateGiven"
+        );
+
+
+    const detailsNextDue =
+        document.getElementById(
+            "detailsNextDue"
+        );
+
+
+    const detailsDoctor =
+        document.getElementById(
+            "detailsDoctor"
+        );
+
+
+    const detailsNotes =
+        document.getElementById(
+            "detailsNotes"
+        );
+
+
+    const detailsStatus =
+        document.getElementById(
+            "detailsStatus"
+        );
+
+
+    /* =====================================
+       FILL POPUP
+    ====================================== */
+
+    const vaccine =
+        alert.vaccine ||
+        getVaccineNameFromTitle(
+            alert.title
+        );
+
+
+    if (vaccineName) {
+
+        vaccineName.textContent =
+            vaccine;
+
+    }
+
+
+    if (petName) {
+
+        petName.textContent =
+            alert.pet ||
+            "Your pet";
+
+    }
+
+
+    if (detailsPet) {
+
+        detailsPet.textContent =
+            alert.pet ||
+            "Your pet";
+
+    }
+
+
+    if (detailsVaccine) {
+
+        detailsVaccine.textContent =
+            vaccine;
+
+    }
+
+
+    if (detailsDateGiven) {
+
+        detailsDateGiven.textContent =
+            alert.dateGiven ||
+            "Not available";
+
+    }
+
+
+    if (detailsNextDue) {
+
+        detailsNextDue.textContent =
+            alert.date ||
+            "Not available";
+
+    }
+
+
+    if (detailsDoctor) {
+
+        detailsDoctor.textContent =
+            alert.doctor ||
+            "Not available";
+
+    }
+
+
+    if (detailsNotes) {
+
+        detailsNotes.textContent =
+            alert.notes ||
+            "No additional notes.";
+
+    }
+
+
+    if (detailsStatus) {
+
+        const isOverdue =
+            alert.category === "important";
+
+
+        detailsStatus.textContent =
+            isOverdue
+                ? "Overdue"
+                : "Due Soon";
+
+
+        detailsStatus.className =
+            "vaccination-details-status " +
+
+            (
+                isOverdue
+                    ? "overdue"
+                    : "due-soon"
+            );
+
+    }
+
+
+    /*
+        Store IDs for the next step.
+    */
+
+    if (alert.petId) {
+
+        modal.dataset.petId =
+            String(alert.petId);
+
+    }
+
+
+    if (alert.vaccinationId) {
+
+        modal.dataset.vaccinationId =
+            String(alert.vaccinationId);
+
+    }
+
+
+    /*
+        Open popup.
+    */
+
+    modal.classList.add(
+        "show"
+    );
+
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
+}
+
+
+/* =========================================
+   EXTRACT VACCINE NAME
+========================================= */
+
+function getVaccineNameFromTitle(
+    title
+) {
+
+    if (!title) {
+
+        return "Vaccination";
+
+    }
+
+
+    return title
+
+        .replace(
+            " Vaccination Due Soon",
+            ""
+        )
+
+        .replace(
+            " Vaccination Overdue",
+            ""
+        )
+
+        .trim();
+
+}
+/* =========================================
+   CLOSE VACCINATION DETAILS
+========================================= */
+
+function closeVaccinationDetails() {
+
+    const modal =
+        document.getElementById(
+            "vaccinationDetailsModal"
+        );
+
+
+    if (!modal) {
+
+        return;
+
+    }
+
+
+    modal.classList.remove(
+        "show"
+    );
+
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+}
+
+
+/* =========================================
+   SETUP DETAILS MODAL
+========================================= */
+
+function setupVaccinationDetailsModal() {
+
+    const closeButton =
+        document.getElementById(
+            "closeVaccinationDetails"
+        );
+
+
+    const overlay =
+        document.getElementById(
+            "vaccinationDetailsOverlay"
+        );
+
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+
+            "click",
+
+            event => {
+
+                event.preventDefault();
+
+                closeVaccinationDetails();
+
+            }
+
+        );
+
+    }
+
+
+    if (overlay) {
+
+        overlay.addEventListener(
+
+            "click",
+
+            event => {
+
+                event.preventDefault();
+
+                closeVaccinationDetails();
+
+            }
+
+        );
+
+    }
+
+
+
+
+    /*
+        ESC key closes popup.
+    */
+
+    document.addEventListener(
+
+        "keydown",
+
+        event => {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeVaccinationDetails();
+
+            }
+
+        }
+
+    );
+
+        // =========================================
+    // MARK VACCINATION AS COMPLETED
+    // =========================================
+
+    const completeButton =
+        document.getElementById(
+            "markVaccinationCompleted"
+        );
+
+    if (completeButton) {
+
+        completeButton.addEventListener(
+            "click",
+            async event => {
+
+                event.preventDefault();
+
+                const modal =
+                    document.getElementById(
+                        "vaccinationDetailsModal"
+                    );
+
+                const vaccinationId =
+                    modal?.dataset.vaccinationId;
+
+                if (!vaccinationId) {
+
+                    alert(
+                        "Vaccination ID not found."
+                    );
+
+                    return;
+
+                }
+
+                try {
+
+                    completeButton.disabled =
+                        true;
+
+                    completeButton.textContent =
+                        "Marking as completed...";
+
+
+                    const data =
+                        await apiFetch(
+
+                            `${API_BASE}/vaccinations/${vaccinationId}/complete`,
+
+                            {
+                                method: "PUT"
+                            }
+
+                        );
+
+
+                    if (!data.success) {
+
+                        throw new Error(
+                            data.message ||
+                            "Unable to complete vaccination."
+                        );
+
+                    }
+
+
+                    // Close the popup
+                    closeVaccinationDetails();
+
+
+                    // Remove the completed vaccination
+                    // from the current alerts
+                    alerts =
+                        alerts.filter(
+
+                            alert =>
+                                alert.vaccinationId !==
+                                vaccinationId
+
+                        );
+
+
+                    updateSummaryCounts();
+
+                    renderAlerts();
+
+
+                    alert(
+                        "Vaccination marked as completed successfully! ✓"
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Error completing vaccination:",
+                        error
+                    );
+
+
+                    alert(
+                        error.message ||
+                        "Unable to mark vaccination as completed."
+                    );
+
+
+                } finally {
+
+                    completeButton.disabled =
+                        false;
+
+                    completeButton.textContent =
+                        "✓ Mark as Completed";
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   LOAD ERROR
+========================================= */
+
+function showLoadError(
+    message
+) {
+
+    console.error(
+        "Alerts could not be loaded:",
+        message
     );
 
 }
@@ -1023,7 +2123,9 @@ function escapeHTML(
 
 
     div.textContent =
-        value;
+        value == null
+            ? ""
+            : String(value);
 
 
     return div.innerHTML;

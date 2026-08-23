@@ -1,15 +1,34 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Settings | VetCare</title><link rel="stylesheet" href="../vet-assets/vet-style.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings | PawSync Vet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../vet-assets/vet-style.css">
+</head>
 <body data-vetpage="settings">
-<header class="vet-topbar" id="vet-topbar"></header>
-<aside class="vet-sidebar" id="vet-sidebar"></aside>
-<main class="vet-main">
-<div class="vet-page-head"><div><div class="vet-eyebrow">Preferences</div><h1>Settings</h1><p class="vet-subtitle">Simple clinic dashboard preferences.</p></div></div>
-<section class="vet-card"><div class="vet-form-grid">
-<div class="vet-field"><label>Clinic Name</label><input value="PawCare Veterinary Clinic"></div><div class="vet-field"><label>Working Hours</label><input value="09:00 AM - 06:00 PM"></div>
-<div class="vet-field"><label>Appointment Duration</label><select><option>30 minutes</option><option>45 minutes</option><option>60 minutes</option></select></div>
-<div class="vet-field"><label>Reminder Notifications</label><select><option>Enabled</option><option>Disabled</option></select></div></div>
-<div class="vet-form-actions"><button class="vet-primary" onclick="alert('Settings saved in this frontend demo.')">Save Settings</button></div></section>
-</main>
-<script src="../vet-assets/vet-app.js"></script></body></html>
+  <header class="vet-topbar" id="vet-topbar"></header>
+  <aside class="vet-sidebar" id="vet-sidebar"></aside>
+
+  <main class="vet-main">
+    <div class="vet-page-head">
+      <div>
+        <div class="vet-eyebrow">⚙️ Account & Practice Setup</div>
+        <h1>Settings</h1>
+        <p class="vet-subtitle">Configure practice preferences and notifications.</p>
+      </div>
+    </div>
+
+    <div class="vet-card">
+      <h3 style="margin-top:0;color:var(--navy);">Practice Preferences</h3>
+      <p style="color:var(--muted);">Manage working hours, appointment slots, and notification preferences under <a href="vet-profile.html" style="color:var(--teal);font-weight:700;">My Profile</a>.</p>
+      <button class="vet-primary" onclick="location.href='vet-profile.html'">Go to My Profile</button>
+    </div>
+  </main>
+
+  <script src="../vet-assets/vet-app.js"></script>
+</body>
+</html>

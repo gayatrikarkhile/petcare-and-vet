@@ -1,0 +1,149 @@
+/* =========================================
+   PAWSYNC PUBLIC PET RECOVERY CARD STYLES
+========================================= */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #f8fafc;
+    color: #0f172a;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 16px;
+}
+
+.public-container {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.public-header {
+    background: #0d9588;
+    color: #ffffff;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-logo { font-weight: 800; font-size: 1.1rem; }
+.safety-tag { font-size: 0.75rem; font-weight: 600; background: rgba(255, 255, 255, 0.2); padding: 4px 10px; border-radius: 12px; }
+
+.state-box {
+    padding: 60px 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+.spinner {
+    width: 40px; height: 40px;
+    border: 4px solid #e2e8f0; border-top-color: #0d9588;
+    border-radius: 50%; animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.state-icon { font-size: 3rem; margin-bottom: 12px; }
+
+/* STATUS BANNERS */
+.status-banner {
+    padding: 20px;
+    text-align: center;
+}
+
+.lost-banner { background: #fee2e2; color: #991b1b; border-bottom: 2px solid #fca5a5; }
+.lost-banner h2 { font-size: 1.3rem; font-weight: 900; margin: 4px 0; }
+
+.safe-banner { background: #f0fdf4; color: #166534; border-bottom: 2px solid #bbf7d0; }
+.safe-banner h2 { font-size: 1.2rem; font-weight: 800; margin: 4px 0; }
+
+.banner-icon { font-size: 2.2rem; }
+
+/* PET DETAILS BODY */
+.pet-details-body { padding: 24px; text-align: center; }
+
+.pet-photo-frame {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    overflow: hidden;
+    border: 4px solid #0d9588;
+    position: relative;
+    background: #ccfbf1;
+}
+
+.pet-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.species-badge {
+    position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+    background: #0f172a; color: white; font-size: 0.7rem; font-weight: 800;
+    padding: 2px 10px; border-radius: 10px;
+}
+
+.pet-details-body h1 { font-size: 1.8rem; font-weight: 900; color: #0f172a; margin-bottom: 4px; }
+.pet-breed-text { font-size: 0.95rem; color: #64748b; font-weight: 600; margin-bottom: 20px; }
+
+.pet-stats-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    margin-bottom: 24px;
+}
+
+.stat-pill {
+    background: #f8fafc; border: 1px solid #e2e8f0;
+    padding: 10px 6px; border-radius: 12px;
+}
+.stat-pill span { font-size: 0.72rem; color: #64748b; font-weight: 600; display: block; }
+.stat-pill strong { font-size: 0.9rem; font-weight: 800; color: #0f172a; }
+
+.last-seen-box {
+    background: #fff1f2; border: 1px solid #fecdd3;
+    padding: 16px; border-radius: 14px; text-align: left; margin-bottom: 24px;
+    font-size: 0.88rem; color: #9f1239;
+}
+.last-seen-box h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 8px; color: #881337; }
+.lost-note-text { margin-top: 6px; font-style: italic; background: white; padding: 8px; border-radius: 8px; }
+
+/* CONTACT BUTTONS */
+.contact-actions-group { display: flex; flex-direction: column; gap: 12px; }
+
+.contact-btn {
+    display: flex; align-items: center; justify-content: center;
+    padding: 14px 20px; border-radius: 14px; font-weight: 800; font-size: 1rem;
+    text-decoration: none; border: none; cursor: pointer; transition: all 0.2s ease;
+}
+
+.phone-btn { background: #0d9588; color: white; box-shadow: 0 4px 14px rgba(13, 149, 136, 0.25); }
+.phone-btn:hover { background: #0f766e; }
+
+.whatsapp-btn { background: #25d366; color: white; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25); }
+.whatsapp-btn:hover { background: #1da851; }
+
+.report-btn { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; font-size: 0.9rem; }
+.report-btn:hover { background: #e2e8f0; }
+
+.public-footer { padding: 16px; text-align: center; font-size: 0.78rem; color: #94a3b8; border-top: 1px solid #f1f5f9; }
+
+/* MODAL */
+.modal-backdrop {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px; z-index: 5000;
+}
+.modal-content {
+    background: white; border-radius: 20px; padding: 24px;
+    width: 100%; max-width: 420px; position: relative;
+}
+.close-btn { position: absolute; top: 16px; right: 16px; border: none; background: transparent; font-size: 1.5rem; color: #64748b; cursor: pointer; }
+.form-group { margin-top: 14px; text-align: left; }
+.form-group label { font-size: 0.8rem; font-weight: 700; color: #334155; display: block; margin-bottom: 4px; }
+.form-group input, .form-group textarea { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1.5px solid #cbd5e1; font-family: inherit; font-size: 0.9rem; }
+.submit-btn { width: 100%; margin-top: 18px; padding: 12px; border-radius: 10px; background: #0d9588; color: white; font-weight: 800; border: none; cursor: pointer; }

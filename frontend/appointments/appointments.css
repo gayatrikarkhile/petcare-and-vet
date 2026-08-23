@@ -469,54 +469,52 @@ body {
 }
 
 
-/* =========================================
-   VETERINARIAN CARD
-========================================= */
-
-.vet-card {
-
-    background:
-        var(--appointment-card);
-
-    border:
-        1px solid
-        var(--appointment-border);
-
-    border-radius:
-        var(--appointment-radius-lg);
-
-    overflow: hidden;
-
-    box-shadow:
-        var(--appointment-shadow-sm);
-
-    transition:
-        all 0.3s
-        cubic-bezier(
-            0.16,
-            1,
-            0.3,
-            1
-        );
-
+.vet-card-modern {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
     display: flex;
-
     flex-direction: column;
-
     justify-content: space-between;
-
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
 }
 
-
-.vet-card:hover {
-
-    transform:
-        translateY(-4px);
-
-    box-shadow:
-        var(--appointment-shadow-hover);
-
+.vet-card-modern:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px -5px rgba(0, 0, 0, 0.08), 0 10px 15px -5px rgba(0, 0, 0, 0.02);
     border-color: #cbd5e1;
+}
+
+.vet-card-modern .fav-btn {
+    transition: all 0.2s ease;
+}
+
+.vet-card-modern .fav-btn:hover {
+    color: #ef4444 !important;
+    transform: scale(1.15);
+}
+
+.vet-card-modern .profile-btn {
+    transition: all 0.2s ease;
+}
+
+.vet-card-modern .profile-btn:hover {
+    background: #f8fafc !important;
+    border-color: #94a3b8 !important;
+}
+
+.vet-card-modern .book-btn {
+    transition: all 0.2s ease;
+}
+
+.vet-card-modern .book-btn:hover {
+    background: #166534 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(22, 101, 52, 0.35) !important;
+}
 
 }
 

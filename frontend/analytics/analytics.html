@@ -1,878 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Analytics | PawSync</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <title>Analytics | PawSync</title>
+    <!-- CHART.JS & HTML2PDF -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
+    <!-- SHARED STYLES -->
+    <link rel="stylesheet" href="../shared/css/variables.css">
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <link rel="stylesheet" href="../shared/css/responsive.css">
 
-    <!-- =========================================
-         GOOGLE FONT
-    ========================================== -->
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- =========================================
-         CHART.JS
-    ========================================== -->
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/chart.js">
-    </script>
-
-
-    <!-- =========================================
-         SHARED CSS
-    ========================================== -->
-
-    <link
-        rel="stylesheet"
-        href="../shared/css/variables.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../shared/css/common.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../shared/css/responsive.css"
-    >
-
-
-    <!-- =========================================
-         ANALYTICS CSS
-    ========================================== -->
-
-    <link
-        rel="stylesheet"
-        href="analytics.css"
-    >
-
+    <!-- PAGE STYLES -->
+    <link rel="stylesheet" href="analytics.css">
 </head>
-
-
 <body data-shared-path="../shared">
 
-
-    <!-- =========================================
-         SHARED NAVBAR
-    ========================================== -->
-
+    <!-- SHARED NAVBAR -->
     <div id="navbar-container"></div>
 
-
-    <!-- =========================================
-         PAGE LAYOUT
-    ========================================== -->
-
     <div class="page-layout">
-
-
-        <!-- =====================================
-             SHARED SIDEBAR
-        ====================================== -->
-
+        <!-- SHARED SIDEBAR -->
         <div id="sidebar-container"></div>
 
-
-        <!-- =====================================
-             MAIN CONTENT
-        ====================================== -->
-
+        <!-- MAIN CONTENT -->
         <main class="main-content">
-
-
-            <!-- =================================
-                 PAGE HEADER
-            ================================== -->
-
+            <!-- PAGE HEADER -->
             <section class="page-header">
-
-                <div>
-
-                    <div class="eyebrow">
-                        PET HEALTH INSIGHTS
-                    </div>
-
-                    <h1>
-                        Analytics 📊
-                    </h1>
-
-                    <p>
-                        Understand your pets' health, activity
-                        and care patterns at a glance.
-                    </p>
-
+                <div class="header-left">
+                    <div class="eyebrow">PET-WISE CARE REPORT</div>
+                    <h1>📊 Pet Analytics</h1>
+                    <p id="petMetaSubheader">Select a pet to view performance analytics and download reports.</p>
                 </div>
-
 
                 <div class="header-actions">
+                    <!-- PET SELECTOR -->
+                    <div class="selector-wrap">
+                        <label for="petSelect" class="selector-label">Selected Pet:</label>
+                        <select id="petSelect" class="analytics-dropdown"></select>
+                    </div>
 
-                    <select id="periodSelect">
+                    <!-- DATE RANGE FILTER -->
+                    <div class="selector-wrap">
+                        <label for="periodSelect" class="selector-label">Period:</label>
+                        <select id="periodSelect" class="analytics-dropdown">
+                            <option value="7">This Week</option>
+                            <option value="30" selected>This Month</option>
+                            <option value="90">Last 3 Months</option>
+                            <option value="365">This Year</option>
+                        </select>
+                    </div>
 
-                        <option value="30">
-                            Last 30 Days
-                        </option>
-
-                        <option value="90">
-                            Last 3 Months
-                        </option>
-
-                        <option value="365">
-                            This Year
-                        </option>
-
-                    </select>
-
-
-                    <button
-                        class="download-btn"
-                        id="downloadButton"
-                        type="button"
-                    >
-                        ↓ Export Report
+                    <button class="export-btn primary-btn" id="exportPdfBtn" type="button">
+                        📥 Export PDF
                     </button>
-
+                    <button class="export-btn secondary-btn" id="exportCsvBtn" type="button">
+                        📊 Export CSV
+                    </button>
                 </div>
-
             </section>
 
+            <!-- REPORT PRINTABLE CONTAINER -->
+            <div id="analyticsReportContainer">
+                
+                <!-- SELECTED PET OVERVIEW HERO -->
+                <section class="pet-overview-card" id="petOverviewCard">
+                    <div class="pet-avatar-wrap">
+                        <img id="analyticsPetPhoto" src="" alt="Pet Avatar" class="pet-avatar-img" />
+                        <div id="analyticsPetEmoji" class="pet-avatar-emoji" style="display:none;">🐾</div>
+                    </div>
+                    <div class="pet-info-details">
+                        <h2 id="analyticsPetName">--</h2>
+                        <div class="pet-tags-row">
+                            <span class="info-badge" id="analyticsPetSpecies">--</span>
+                            <span class="info-badge" id="analyticsPetBreed">--</span>
+                            <span class="info-badge" id="analyticsPetAge">--</span>
+                            <span class="info-badge" id="analyticsPetWeight">--</span>
+                            <span class="info-badge" id="analyticsPetGender">--</span>
+                        </div>
+                    </div>
+                </section>
 
-            <!-- =================================
-                 STAT CARDS
-            ================================== -->
-
-            <section class="stats-grid">
-
-
-                <div class="stat-card">
-
-                    <div class="stat-top">
-
-                        <div class="stat-icon green">
-                            🐾
+                <!-- OVERALL CARE SUMMARY & PERFORMANCE METRICS -->
+                <section class="analytics-grid-two">
+                    <!-- OVERALL SCORE -->
+                    <div class="analytics-card overall-card">
+                        <h3 class="card-title">🏆 Overall Care Score</h3>
+                        <div class="score-display">
+                            <span class="big-score" id="overallScoreVal">0</span>
+                            <span class="score-max">/ 100</span>
+                        </div>
+                        <div class="progress-track-large">
+                            <div class="progress-bar-large" id="overallScoreBar" style="width: 0%;"></div>
                         </div>
 
-                        <span class="trend positive">
-                            ↑ 8%
-                        </span>
-
-                    </div>
-
-                    <span class="stat-label">
-                        Total Pets
-                    </span>
-
-                    <strong class="stat-value">
-                        3
-                    </strong>
-
-                    <p>
-                        Active pet profiles
-                    </p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-top">
-
-                        <div class="stat-icon blue">
-                            ❤️
+                        <div class="section-scores-grid">
+                            <div class="sec-score-item">
+                                <span>🍲 Nutrition</span>
+                                <strong id="scoreNutVal">0%</strong>
+                            </div>
+                            <div class="sec-score-item">
+                                <span>✂️ Grooming</span>
+                                <strong id="scoreGroomVal">0%</strong>
+                            </div>
+                            <div class="sec-score-item">
+                                <span>🏃 Activity</span>
+                                <strong id="scoreActVal">0%</strong>
+                            </div>
+                            <div class="sec-score-item">
+                                <span>💉 Vaccination</span>
+                                <strong id="scoreVacVal">0%</strong>
+                            </div>
                         </div>
-
-                        <span class="trend positive">
-                            ↑ 5%
-                        </span>
-
                     </div>
 
-                    <span class="stat-label">
-                        Avg. Health Score
-                    </span>
-
-                    <strong class="stat-value">
-                        80
-                    </strong>
-
-                    <p>
-                        Across all pets
-                    </p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-top">
-
-                        <div class="stat-icon yellow">
-                            💉
+                    <!-- CARE PERFORMANCE METRICS -->
+                    <div class="analytics-card performance-summary-card">
+                        <h3 class="card-title">📅 Care Performance</h3>
+                        <div class="metrics-row">
+                            <div class="metric-box green-box">
+                                <span class="metric-num" id="completedTasksNum">0</span>
+                                <span class="metric-label">Completed</span>
+                            </div>
+                            <div class="metric-box red-box">
+                                <span class="metric-num" id="missedTasksNum">0</span>
+                                <span class="metric-label">Missed</span>
+                            </div>
+                            <div class="metric-box teal-box">
+                                <span class="metric-num" id="completionRateNum">0%</span>
+                                <span class="metric-label">Completion Rate</span>
+                            </div>
                         </div>
-
-                        <span class="trend positive">
-                            92%
-                        </span>
-
                     </div>
+                </section>
 
-                    <span class="stat-label">
-                        Vaccination Rate
-                    </span>
-
-                    <strong class="stat-value">
-                        92%
-                    </strong>
-
-                    <p>
-                        Vaccinations up to date
-                    </p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-top">
-
-                        <div class="stat-icon purple">
-                            🩺
+                <!-- SECTION ANALYTICS CARDS (4 CARDS) -->
+                <section class="section-cards-grid">
+                    <!-- NUTRITION -->
+                    <div class="analytics-card sec-card">
+                        <div class="sec-card-header">
+                            <span class="sec-icon">🍲</span>
+                            <h3>Nutrition</h3>
                         </div>
-
-                        <span class="trend neutral">
-                            2 upcoming
-                        </span>
-
+                        <div class="sec-stats-list">
+                            <div class="stat-line"><span>Meals Scheduled</span><strong id="nutSchedVal">0</strong></div>
+                            <div class="stat-line"><span>Meals Completed</span><strong id="nutCompVal">0</strong></div>
+                            <div class="stat-line"><span>Meals Missed</span><strong id="nutMissVal">0</strong></div>
+                            <div class="stat-line"><span>Completion Rate</span><strong id="nutRateVal">0%</strong></div>
+                        </div>
+                        <div class="progress-track-sm">
+                            <div class="progress-bar-sm green-bar" id="nutBar" style="width: 0%;"></div>
+                        </div>
+                        <div class="consistency-pill" id="nutConsistencyPill">Consistency: --</div>
                     </div>
 
-                    <span class="stat-label">
-                        Vet Visits
-                    </span>
+                    <!-- GROOMING (INCLUDES DENTAL) -->
+                    <div class="analytics-card sec-card">
+                        <div class="sec-card-header">
+                            <span class="sec-icon">✂️</span>
+                            <h3>Grooming <small style="font-size:0.75rem; color:#64748b; font-weight:normal;">(inc. Dental)</small></h3>
+                        </div>
+                        <div class="sec-stats-list">
+                            <div class="stat-line"><span>Activities Scheduled</span><strong id="groomSchedVal">0</strong></div>
+                            <div class="stat-line"><span>Completed</span><strong id="groomCompVal">0</strong></div>
+                            <div class="stat-line"><span>Missed</span><strong id="groomMissVal">0</strong></div>
+                            <div class="stat-line"><span>Completion Rate</span><strong id="groomRateVal">0%</strong></div>
+                        </div>
+                        <div class="progress-track-sm">
+                            <div class="progress-bar-sm blue-bar" id="groomBar" style="width: 0%;"></div>
+                        </div>
+                        <div class="consistency-pill" id="groomConsistencyPill">Consistency: --</div>
+                    </div>
 
-                    <strong class="stat-value">
-                        12
-                    </strong>
+                    <!-- ACTIVITY -->
+                    <div class="analytics-card sec-card">
+                        <div class="sec-card-header">
+                            <span class="sec-icon">🏃</span>
+                            <h3>Activity</h3>
+                        </div>
+                        <div class="sec-stats-list">
+                            <div class="stat-line"><span>Activities Scheduled</span><strong id="actSchedVal">0</strong></div>
+                            <div class="stat-line"><span>Completed</span><strong id="actCompVal">0</strong></div>
+                            <div class="stat-line"><span>Missed</span><strong id="actMissVal">0</strong></div>
+                            <div class="stat-line"><span>Completion Rate</span><strong id="actRateVal">0%</strong></div>
+                        </div>
+                        <div class="progress-track-sm">
+                            <div class="progress-bar-sm orange-bar" id="actBar" style="width: 0%;"></div>
+                        </div>
+                        <div class="consistency-pill" id="actConsistencyPill">Consistency: --</div>
+                    </div>
 
-                    <p>
-                        This year
-                    </p>
+                    <!-- VACCINATION -->
+                    <div class="analytics-card sec-card">
+                        <div class="sec-card-header">
+                            <span class="sec-icon">💉</span>
+                            <h3>Vaccination</h3>
+                        </div>
+                        <div class="sec-stats-list">
+                            <div class="stat-line"><span>Completed</span><strong id="vacCompVal">0</strong></div>
+                            <div class="stat-line"><span>Upcoming</span><strong id="vacUpVal">0</strong></div>
+                            <div class="stat-line"><span>Overdue</span><strong id="vacOverVal">0</strong></div>
+                        </div>
+                        <div class="vac-status-banner" id="vacStatusBanner">Status: 🟢 On Track</div>
+                    </div>
+                </section>
 
-                </div>
-
-
-            </section>
-
-
-            <!-- =================================
-                 HEALTH + DISTRIBUTION
-            ================================== -->
-
-            <section class="chart-row">
-
-
-                <!-- HEALTH TREND -->
-
-                <div class="chart-card large">
-
+                <!-- CARE PERFORMANCE OVER TIME CHART -->
+                <section class="analytics-card chart-card">
                     <div class="chart-header">
-
-                        <div>
-
-                            <h2>
-                                Pet Health Trend
-                            </h2>
-
-                            <p>
-                                Average health score over time
-                            </p>
-
-                        </div>
-
-
-                        <div class="legend">
-
-                            <span>
-
-                                <i class="legend-dot"></i>
-
-                                Health Score
-
-                            </span>
-
-                        </div>
-
+                        <h3>📈 Care Performance Over Time</h3>
                     </div>
-
-
                     <div class="chart-container">
+                        <canvas id="trendChartCanvas" height="220"></canvas>
+                    </div>
+                </section>
 
-                        <canvas
-                            id="healthTrendChart">
-                        </canvas>
-
+                <!-- CREDIT SUMMARY & RECENT HISTORY -->
+                <section class="analytics-grid-two">
+                    <!-- CARE CREDITS -->
+                    <div class="analytics-card">
+                        <h3 class="card-title">🏆 Care Credits Summary</h3>
+                        <table class="credits-table">
+                            <thead>
+                                <tr>
+                                    <th>Section</th>
+                                    <th>Credits Earned</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>🍲 Nutrition</td><td id="credNut">0.0</td></tr>
+                                <tr><td>✂️ Grooming</td><td id="credGroom">0.0</td></tr>
+                                <tr><td>🏃 Activity</td><td id="credAct">0.0</td></tr>
+                                <tr><td>💉 Vaccination</td><td id="credVac">0.0</td></tr>
+                                <tr class="total-row"><td><strong>Total Credits</strong></td><td id="credTotal"><strong>0.0</strong></td></tr>
+                            </tbody>
+                        </table>
                     </div>
 
+                    <!-- AI SUMMARY CARD -->
+                    <div class="analytics-card ai-summary-card">
+                        <h3 class="card-title">🤖 AI Pet Insight Summary</h3>
+                        <p class="ai-text-body" id="aiSummaryText">
+                            Loading care summary...
+                        </p>
+                    </div>
+                </section>
+
+                <!-- RECENT CARE HISTORY TABLE -->
+                <section class="analytics-card">
+                    <h3 class="card-title">📋 Recent Care History</h3>
+                    <div class="history-table-wrap">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Section</th>
+                                    <th>Activity</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentHistoryBody">
+                                <tr><td colspan="4" style="text-align:center;">No recent care activity recorded.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- BOTTOM EXPORT BUTTON -->
+                <div class="bottom-export-section">
+                    <button class="export-btn primary-btn large-export-btn" id="bottomExportPdfBtn" type="button">
+                        📥 Export Pet Report (PDF)
+                    </button>
                 </div>
-
-
-                <!-- HEALTH DISTRIBUTION -->
-
-                <div class="chart-card">
-
-                    <div class="chart-header">
-
-                        <div>
-
-                            <h2>
-                                Health Distribution
-                            </h2>
-
-                            <p>
-                                Current pet health status
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="doughnut-wrapper">
-
-                        <canvas
-                            id="healthDistributionChart">
-                        </canvas>
-
-
-                        <div class="doughnut-center">
-
-                            <strong>
-                                3
-                            </strong>
-
-                            <span>
-                                Pets
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="distribution-list">
-
-                        <div>
-
-                            <span>
-
-                                <i class="dot excellent"></i>
-
-                                Excellent
-
-                            </span>
-
-                            <strong>
-                                1
-                            </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span>
-
-                                <i class="dot good"></i>
-
-                                Good
-
-                            </span>
-
-                            <strong>
-                                1
-                            </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span>
-
-                                <i class="dot attention"></i>
-
-                                Needs Attention
-
-                            </span>
-
-                            <strong>
-                                1
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================
-                 VACCINATION + ACTIVITY
-            ================================== -->
-
-            <section class="chart-row">
-
-
-                <!-- VACCINATION -->
-
-                <div class="chart-card">
-
-                    <div class="chart-header">
-
-                        <div>
-
-                            <h2>
-                                Vaccination Status
-                            </h2>
-
-                            <p>
-                                Vaccination records
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="chart-container small">
-
-                        <canvas
-                            id="vaccinationChart">
-                        </canvas>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ACTIVITY -->
-
-                <div class="chart-card large">
-
-                    <div class="chart-header">
-
-                        <div>
-
-                            <h2>
-                                Weekly Activity
-                            </h2>
-
-                            <p>
-                                Average daily activity
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="chart-container small">
-
-                        <canvas
-                            id="activityChart">
-                        </canvas>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================
-                 LOWER CARDS
-            ================================== -->
-
-            <section class="bottom-grid">
-
-
-                <!-- PET HEALTH -->
-
-                <div class="health-table-card">
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <h2>
-                                Pet Health Overview
-                            </h2>
-
-                            <p>
-                                Current health status of your pets
-                            </p>
-
-                        </div>
-
-
-                        <a
-                            href="/frontend/pets/pets.html"
-                        >
-                            View Pets →
-                        </a>
-
-                    </div>
-
-
-                    <div class="pet-health-list">
-
-
-                        <!-- BRUNO -->
-
-                        <div class="pet-health-row">
-
-                            <div class="pet-info">
-
-                                <div class="pet-avatar dog">
-                                    🐕
-                                </div>
-
-                                <div>
-
-                                    <strong>
-                                        Bruno
-                                    </strong>
-
-                                    <span>
-                                        Labrador Retriever
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="health-score">
-
-                                <div>
-
-                                    <strong>
-                                        61
-                                    </strong>
-
-                                    <span>
-                                        /100
-                                    </span>
-
-                                </div>
-
-
-                                <div class="progress">
-
-                                    <div
-                                        class="progress-bar attention"
-                                        style="width: 61%"
-                                    ></div>
-
-                                </div>
-
-                            </div>
-
-
-                            <span
-                                class="status attention-status"
-                            >
-                                Needs Attention
-                            </span>
-
-                        </div>
-
-
-                        <!-- KITTY -->
-
-                        <div class="pet-health-row">
-
-                            <div class="pet-info">
-
-                                <div class="pet-avatar cat">
-                                    🐈
-                                </div>
-
-                                <div>
-
-                                    <strong>
-                                        Kitty
-                                    </strong>
-
-                                    <span>
-                                        Persian Cat
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="health-score">
-
-                                <div>
-
-                                    <strong>
-                                        86
-                                    </strong>
-
-                                    <span>
-                                        /100
-                                    </span>
-
-                                </div>
-
-
-                                <div class="progress">
-
-                                    <div
-                                        class="progress-bar good-bar"
-                                        style="width: 86%"
-                                    ></div>
-
-                                </div>
-
-                            </div>
-
-
-                            <span
-                                class="status good-status"
-                            >
-                                Good
-                            </span>
-
-                        </div>
-
-
-                        <!-- COCO -->
-
-                        <div class="pet-health-row">
-
-                            <div class="pet-info">
-
-                                <div class="pet-avatar bird">
-                                    🦜
-                                </div>
-
-                                <div>
-
-                                    <strong>
-                                        Coco
-                                    </strong>
-
-                                    <span>
-                                        Eclectus Parrot
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="health-score">
-
-                                <div>
-
-                                    <strong>
-                                        92
-                                    </strong>
-
-                                    <span>
-                                        /100
-                                    </span>
-
-                                </div>
-
-
-                                <div class="progress">
-
-                                    <div
-                                        class="progress-bar excellent-bar"
-                                        style="width: 92%"
-                                    ></div>
-
-                                </div>
-
-                            </div>
-
-
-                            <span
-                                class="status excellent-status"
-                            >
-                                Excellent
-                            </span>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-                <!-- UPCOMING CARE -->
-
-                <div class="upcoming-card">
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <h2>
-                                Upcoming Care
-                            </h2>
-
-                            <p>
-                                Important upcoming activities
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="upcoming-list">
-
-
-                        <div class="upcoming-item">
-
-                            <div class="upcoming-icon vaccine">
-                                💉
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Rabies Booster
-                                </strong>
-
-                                <span>
-                                    Bruno • 18 Aug
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="upcoming-item">
-
-                            <div class="upcoming-icon grooming">
-                                ✂️
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Grooming Session
-                                </strong>
-
-                                <span>
-                                    Kitty • 20 Aug
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="upcoming-item">
-
-                            <div class="upcoming-icon vet">
-                                👨‍⚕️
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Vet Appointment
-                                </strong>
-
-                                <span>
-                                    Bruno • 23 Aug
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="upcoming-item">
-
-                            <div class="upcoming-icon checkup">
-                                🩺
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Health Checkup
-                                </strong>
-
-                                <span>
-                                    Coco • 26 Aug
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-            </section>
-
-
+            </div>
         </main>
-
     </div>
 
-
-    <!-- =========================================
-         SHARED JAVASCRIPT
-    ========================================== -->
-
+    <!-- SHARED JS & PAGE LOGIC -->
     <script src="../shared/js/shared.js"></script>
-
-
-    <!-- =========================================
-         ANALYTICS JAVASCRIPT
-    ========================================== -->
-
     <script src="analytics.js"></script>
-
 </body>
-
 </html>

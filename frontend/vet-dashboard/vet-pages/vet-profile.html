@@ -1,16 +1,133 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>My Profile | VetCare</title><link rel="stylesheet" href="../vet-assets/vet-style.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Profile | PawSync Vet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../vet-assets/vet-style.css">
+</head>
 <body data-vetpage="profile">
-<header class="vet-topbar" id="vet-topbar"></header>
-<aside class="vet-sidebar" id="vet-sidebar"></aside>
-<main class="vet-main">
-<div class="vet-page-head"><div><div class="vet-eyebrow">Account</div><h1>My Profile</h1><p class="vet-subtitle">Your veterinary profile and clinic information.</p></div></div>
-<section class="vet-card"><div class="vet-form-grid">
-<div class="vet-field"><label>Full Name</label><input value="Dr. Sharma"></div><div class="vet-field"><label>Specialization</label><input value="Small Animal Veterinary"></div>
-<div class="vet-field"><label>Email</label><input value="dr.sharma@vetcare.demo"></div><div class="vet-field"><label>Phone</label><input value="+91 98765 43210"></div>
-<div class="vet-field"><label>Clinic Name</label><input value="PawCare Veterinary Clinic"></div><div class="vet-field"><label>Experience</label><input value="8 years"></div>
-<div class="vet-field vet-full"><label>About</label><textarea>Dedicated veterinarian focused on compassionate preventive and general pet care.</textarea></div></div>
-<div class="vet-form-actions"><button class="vet-primary" onclick="alert('Profile updated in this frontend demo.')">Save Changes</button></div></section>
-</main>
-<script src="../vet-assets/vet-app.js"></script></body></html>
+  <header class="vet-topbar" id="vet-topbar"></header>
+  <aside class="vet-sidebar" id="vet-sidebar"></aside>
+
+  <main class="vet-main">
+    <div class="vet-page-head">
+      <div>
+        <div class="vet-eyebrow">👤 Professional Credentials</div>
+        <h1>Veterinary Professional Profile</h1>
+        <p class="vet-subtitle">Manage your clinic info, availability, consultation fees, and verification status.</p>
+      </div>
+    </div>
+
+    <!-- Verification Status Banner Container -->
+    <div id="vet-verification-status-banner"></div>
+
+    <!-- Profile Form -->
+    <form class="vet-card" id="vet-profile-form" onsubmit="PawSyncVet.handleProfileSubmit(event)">
+      <h3 style="margin-top:0;color:var(--navy);border-bottom:1px solid var(--border);padding-bottom:12px;">1. Personal Details</h3>
+      <div class="vet-form-grid" style="margin-bottom:24px;">
+        <div class="vet-field">
+          <label>Full Name</label>
+          <input type="text" name="fullName" id="prof-fullName" required>
+        </div>
+        <div class="vet-field">
+          <label>Email Address</label>
+          <input type="email" name="email" id="prof-email" required>
+        </div>
+        <div class="vet-field">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" id="prof-phone" required>
+        </div>
+        <div class="vet-field">
+          <label>Profile Photo</label>
+          <input type="file" name="profilePhoto" accept="image/*">
+        </div>
+      </div>
+
+      <h3 style="color:var(--navy);border-bottom:1px solid var(--border);padding-bottom:12px;">2. Professional Qualifications</h3>
+      <div class="vet-form-grid" style="margin-bottom:24px;">
+        <div class="vet-field">
+          <label>Qualification (Degree)</label>
+          <input type="text" name="qualification" id="prof-qualification" placeholder="e.g. BVSc & AH, MVSc" required>
+        </div>
+        <div class="vet-field">
+          <label>Medical / Veterinary Registration Number</label>
+          <input type="text" name="licenseNumber" id="prof-licenseNumber" placeholder="e.g. VET-REG-2026-99" required>
+        </div>
+        <div class="vet-field">
+          <label>Specialization</label>
+          <select name="specialization" id="prof-specialization">
+            <option value="General Veterinary">General Veterinary</option>
+            <option value="Pet Nutrition">Pet Nutrition</option>
+            <option value="Veterinary Surgery">Veterinary Surgery</option>
+            <option value="Dermatology">Dermatology</option>
+            <option value="Dental Care">Dental Care</option>
+          </select>
+        </div>
+        <div class="vet-field">
+          <label>Years of Experience</label>
+          <input type="number" name="experienceYears" id="prof-experienceYears" min="0" value="5">
+        </div>
+      </div>
+
+      <h3 style="color:var(--navy);border-bottom:1px solid var(--border);padding-bottom:12px;">3. Clinic & Consultation Setup</h3>
+      <div class="vet-form-grid" style="margin-bottom:24px;">
+        <div class="vet-field">
+          <label>Clinic Name</label>
+          <input type="text" name="clinicName" id="prof-clinicName" placeholder="e.g. PawSync Pet Care Clinic" required>
+        </div>
+        <div class="vet-field">
+          <label>Clinic Phone</label>
+          <input type="tel" name="clinicPhone" id="prof-clinicPhone" placeholder="Clinic landline or mobile">
+        </div>
+        <div class="vet-field vet-full">
+          <label>Clinic Street Address</label>
+          <input type="text" name="clinicAddress" id="prof-clinicAddress" placeholder="Full clinic address">
+        </div>
+        <div class="vet-field">
+          <label>City</label>
+          <input type="text" name="city" id="prof-city" placeholder="City">
+        </div>
+        <div class="vet-field">
+          <label>State</label>
+          <input type="text" name="state" id="prof-state" placeholder="State">
+        </div>
+        <div class="vet-field">
+          <label>Pincode</label>
+          <input type="text" name="pincode" id="prof-pincode" placeholder="Pincode">
+        </div>
+        <div class="vet-field">
+          <label>Consultation Fee (₹)</label>
+          <input type="number" name="consultationFee" id="prof-consultationFee" value="500">
+        </div>
+        <div class="vet-field">
+          <label>Working Hours Start</label>
+          <input type="time" name="startHour" id="prof-startHour" value="10:00">
+        </div>
+        <div class="vet-field">
+          <label>Working Hours End</label>
+          <input type="time" name="endHour" id="prof-endHour" value="18:00">
+        </div>
+      </div>
+
+      <h3 style="color:var(--navy);border-bottom:1px solid var(--border);padding-bottom:12px;">4. Verification Documents</h3>
+      <p style="color:var(--muted);font-size:13.5px;">Upload clear photos or PDFs of your Veterinary Registration Certificate and Degree for Admin verification.</p>
+      <div class="vet-form-grid" style="margin-bottom:24px;">
+        <div class="vet-field vet-full">
+          <label>Upload Veterinary Certificate / License Documents</label>
+          <input type="file" name="verificationDocuments" multiple accept="image/*,.pdf">
+        </div>
+      </div>
+
+      <div class="vet-form-actions">
+        <button type="submit" class="vet-primary">Save Profile & Submit for Verification</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="../vet-assets/vet-app.js"></script>
+</body>
+</html>

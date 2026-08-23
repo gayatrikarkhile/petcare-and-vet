@@ -11,6 +11,10 @@ const connectDB = async () => {
             `MongoDB Connected: ${conn.connection.host}`
         );
 
+        // Seed default platform admin account
+        const seedAdminUser = require("../seedAdmin");
+        await seedAdminUser();
+
     } catch (error) {
 
         console.error(

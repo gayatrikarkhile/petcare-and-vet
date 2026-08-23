@@ -1129,3 +1129,1699 @@ button, input { font: inherit; }
     display: block;
     background: #f7faf9;
 }
+
+/* =========================================================
+   TOPBAR LAYOUT FIX
+   ========================================================= */
+
+.main-area {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   PROFILE COMPLETION
+========================================= */
+
+.profile-completion-card {
+    margin-top: 18px;
+    padding: 16px;
+    max-width: 340px;
+
+    background: #f8fcfa;
+
+    border: 1px solid #dbe9e5;
+    border-radius: 14px;
+}
+
+.profile-completion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
+.profile-completion-header span {
+    color: #24465a;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.profile-completion-header strong {
+    color: #138c72;
+    font-size: 14px;
+}
+
+.profile-completion-track {
+    width: 100%;
+    height: 8px;
+
+    background: #e2eae7;
+
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.profile-completion-fill {
+    width: 0%;
+    height: 100%;
+
+    background: #20a980;
+
+    border-radius: 999px;
+
+    transition: width 0.4s ease;
+}
+
+.profile-completion-card p {
+    margin: 9px 0 10px;
+
+    color: #728291;
+
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.complete-profile-button {
+    border: none;
+    background: transparent;
+
+    color: #138c72;
+
+    padding: 0;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.complete-profile-button:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   COMPLETE PET PROFILE MODAL
+========================================= */
+
+.profile-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(28, 55, 63, 0.38);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 9999;
+
+    padding: 20px;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.profile-modal {
+    width: min(680px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border: 1px solid #d8e9e4;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 24px 70px rgba(28, 72, 66, 0.20);
+
+    animation: profileModalOpen 0.25s ease;
+}
+
+
+@keyframes profileModalOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.profile-modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 25px 28px 22px;
+
+    border-bottom: 1px solid #e4efec;
+
+}
+
+
+.profile-modal-label {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #168c82;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.profile-modal-header h2 {
+
+    margin: 0;
+
+    color: #183f4b;
+
+    font-size: 26px;
+
+    font-weight: 800;
+
+}
+
+
+.profile-modal-header p {
+
+    margin: 7px 0 0;
+
+    color: #718891;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.profile-modal-close {
+
+    flex: 0 0 auto;
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #eef7f4;
+
+    color: #245a61;
+
+    font-size: 26px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.profile-modal-close:hover {
+
+    background: #dceee9;
+
+    transform: rotate(3deg);
+
+}
+
+
+/* =========================================
+   COMPLETION BOX
+========================================= */
+
+.modal-completion-box {
+
+    margin: 20px 28px;
+
+    padding: 17px 18px;
+
+    background: #f1faf7;
+
+    border: 1px solid #d6ebe5;
+
+    border-radius: 15px;
+
+}
+
+
+.modal-completion-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    color: #345b62;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.modal-completion-top strong {
+
+    color: #138c72;
+
+    font-size: 17px;
+
+}
+
+
+.modal-completion-track {
+
+    width: 100%;
+
+    height: 9px;
+
+    overflow: hidden;
+
+    background: #dce9e5;
+
+    border-radius: 999px;
+
+}
+
+
+.modal-completion-fill {
+
+    height: 100%;
+
+    background: #20a980;
+
+    border-radius: 999px;
+
+    transition: width 0.4s ease;
+
+}
+
+
+/* =========================================
+   PROFILE SECTIONS
+========================================= */
+
+.profile-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 0 28px 12px;
+
+    padding: 16px 17px;
+
+    background: #f9fcfb;
+
+    border: 1px solid #dfece8;
+
+    border-radius: 16px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.profile-section:hover {
+
+    border-color: #b8ddd4;
+
+    box-shadow:
+        0 7px 20px rgba(31, 137, 119, 0.07);
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================
+   SECTION ICON
+========================================= */
+
+.profile-section-icon {
+
+    flex: 0 0 auto;
+
+    width: 43px;
+
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #e8f5f1;
+
+    font-size: 20px;
+
+}
+
+
+.profile-section.completed
+.profile-section-icon {
+
+    background: #dff5ed;
+
+    color: #159477;
+
+    font-weight: 800;
+
+}
+
+
+/* =========================================
+   SECTION CONTENT
+========================================= */
+
+.profile-section-content {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.profile-section-content h3 {
+
+    margin: 0;
+
+    color: #244b56;
+
+    font-size: 15px;
+
+    font-weight: 750;
+
+}
+
+
+.profile-section-content p {
+
+    margin: 4px 0 0;
+
+    color: #7b9197;
+
+    font-size: 12px;
+
+    line-height: 1.45;
+
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.section-status {
+
+    flex: 0 0 auto;
+
+    padding: 7px 11px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+}
+
+
+.completed-status {
+
+    background: #def5eb;
+
+    color: #16866d;
+
+}
+
+
+/* =========================================
+   COMPLETE BUTTON
+========================================= */
+
+.profile-section-button {
+
+    flex: 0 0 auto;
+
+    border: 1px solid #b9ded5;
+
+    background: #ffffff;
+
+    color: #168c7c;
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.profile-section-button:hover {
+
+    background: #eaf8f4;
+
+    border-color: #77c5b5;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .profile-modal-overlay {
+
+        padding: 10px;
+
+    }
+
+
+    .profile-modal {
+
+        max-height: 94vh;
+
+        border-radius: 18px;
+
+    }
+
+
+    .profile-modal-header {
+
+        padding: 20px;
+
+    }
+
+
+    .profile-modal-header h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .modal-completion-box {
+
+        margin: 16px 20px;
+
+    }
+
+
+    .profile-section {
+
+        margin-left: 20px;
+
+        margin-right: 20px;
+
+        align-items: flex-start;
+
+    }
+
+
+    .profile-section-button {
+
+        align-self: center;
+
+    }
+
+}
+
+/* =========================================
+   NUTRITION PROFILE MODAL
+========================================= */
+
+.nutrition-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(28, 55, 63, 0.42);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 10000;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================
+   MODAL CONTAINER
+========================================= */
+
+.nutrition-modal {
+    width: min(700px, 100%);
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border: 1px solid #d8e9e4;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 70px rgba(28, 72, 66, 0.22);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.nutrition-modal-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 25px 28px 20px;
+
+    border-bottom: 1px solid #e4efec;
+}
+
+
+.nutrition-modal-label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #168c82;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.nutrition-modal-header h2 {
+    margin: 0;
+
+    color: #183f4b;
+
+    font-size: 27px;
+
+    font-weight: 800;
+}
+
+
+.nutrition-modal-header p {
+    margin: 7px 0 0;
+
+    color: #718891;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.nutrition-modal-close {
+    flex: 0 0 auto;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #eef7f4;
+
+    color: #245a61;
+
+    font-size: 26px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nutrition-modal-close:hover {
+    background: #dceee9;
+
+    transform: rotate(3deg);
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.nutrition-profile-form {
+    padding: 20px 28px 28px;
+}
+
+
+/* =========================================
+   FORM SECTION
+========================================= */
+
+.nutrition-form-section {
+    margin-bottom: 20px;
+
+    padding: 18px;
+
+    background: #f8fcfa;
+
+    border: 1px solid #dfede9;
+
+    border-radius: 16px;
+}
+
+
+.nutrition-form-section h3 {
+    margin: 0;
+
+    color: #244b56;
+
+    font-size: 16px;
+
+    font-weight: 750;
+}
+
+
+.nutrition-section-description {
+    margin: 5px 0 15px;
+
+    color: #7b9197;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.nutrition-form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-top: 14px;
+}
+
+
+.nutrition-form-group label {
+    color: #355b64;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.nutrition-form-group .optional {
+    color: #8da0a5;
+
+    font-size: 11px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.nutrition-form-group input,
+.nutrition-form-group select,
+.nutrition-form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d3e4df;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #294f59;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.nutrition-form-group input:focus,
+.nutrition-form-group select:focus,
+.nutrition-form-group textarea:focus {
+    border-color: #42ad9b;
+
+    box-shadow:
+        0 0 0 3px rgba(66, 173, 155, 0.10);
+}
+
+
+.nutrition-form-group textarea {
+    resize: vertical;
+
+    min-height: 90px;
+}
+
+
+.nutrition-form-group input::placeholder,
+.nutrition-form-group textarea::placeholder {
+    color: #a1b1b5;
+}
+
+
+/* =========================================
+   TWO-COLUMN ROW
+========================================= */
+
+.nutrition-form-row {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+/* =========================================
+   CHECKBOX AREA
+========================================= */
+
+.nutrition-checkbox-group {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+
+.nutrition-checkbox-item {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 11px;
+
+    background: #ffffff;
+
+    border: 1px solid #d5e6e1;
+
+    border-radius: 10px;
+
+    color: #4b6a72;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+
+.nutrition-checkbox-item:hover {
+    border-color: #80c9bb;
+
+    background: #f1faf7;
+}
+
+
+.nutrition-checkbox-item input {
+    width: auto;
+
+    accent-color: #20a980;
+}
+
+
+/* =========================================
+   SPECIES-SPECIFIC FIELDS
+========================================= */
+
+#speciesNutritionFields {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.species-field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.species-field label {
+    color: #355b64;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.species-field input,
+.species-field select,
+.species-field textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d3e4df;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #294f59;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+}
+
+
+.species-field input:focus,
+.species-field select:focus,
+.species-field textarea:focus {
+    border-color: #42ad9b;
+
+    box-shadow:
+        0 0 0 3px rgba(66, 173, 155, 0.10);
+}
+
+
+/* =========================================
+   FORM ACTIONS
+========================================= */
+
+.nutrition-form-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #e4efec;
+}
+
+
+.nutrition-cancel-button,
+.nutrition-save-button {
+    min-width: 125px;
+
+    padding: 11px 18px;
+
+    border-radius: 11px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nutrition-cancel-button {
+    border: 1px solid #cfe2dd;
+
+    background: #ffffff;
+
+    color: #42636b;
+}
+
+
+.nutrition-cancel-button:hover {
+    background: #f1f8f6;
+}
+
+
+.nutrition-save-button {
+    border: 1px solid #168f7a;
+
+    background: #168f7a;
+
+    color: #ffffff;
+}
+
+
+.nutrition-save-button:hover {
+    background: #117b6a;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .nutrition-modal-overlay {
+        padding: 10px;
+    }
+
+
+    .nutrition-modal {
+        max-height: 95vh;
+
+        border-radius: 18px;
+    }
+
+
+    .nutrition-modal-header {
+        padding: 20px;
+    }
+
+
+    .nutrition-modal-header h2 {
+        font-size: 22px;
+    }
+
+
+    .nutrition-profile-form {
+        padding: 16px 20px 22px;
+    }
+
+
+    .nutrition-form-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .nutrition-form-actions {
+        flex-direction: column-reverse;
+    }
+
+
+    .nutrition-cancel-button,
+    .nutrition-save-button {
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   PROFILE COMPLETION - SECTION BUTTONS
+========================================= */
+
+.profile-section-complete,
+#nutritionCompleteButton {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 115px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #2aa795;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #128878;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 750;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.profile-section-complete:hover,
+#nutritionCompleteButton:hover {
+    background: #168f7a;
+
+    border-color: #168f7a;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 14px rgba(22, 143, 122, 0.18);
+}
+
+
+.profile-section-complete:active,
+#nutritionCompleteButton:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   ✨ PAWSYNC PET GARDEN STYLING & ANIMATIONS ✨
+========================================= */
+
+.pet-garden-section {
+    position: relative;
+    width: 100%;
+    min-height: 340px;
+    background: linear-gradient(180deg, #e6f7f4 0%, #f0fdf9 60%, #e2f8ee 100%);
+    border-radius: 24px;
+    border: 1px solid #ccece6;
+    box-shadow: 0 10px 30px rgba(13, 149, 136, 0.07);
+    overflow: hidden;
+    padding: 24px 20px 16px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    animation: gardenFadeIn 1.2s ease-out forwards;
+}
+
+@keyframes gardenFadeIn {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Garden Header */
+.garden-header {
+    z-index: 5;
+    text-align: center;
+}
+
+.garden-header h2 {
+    margin: 0;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #0f766e;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    animation: headerPop 1s ease-out;
+}
+
+@keyframes headerPop {
+    0% { transform: scale(0.92); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Garden Background Environment Elements */
+.garden-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Clouds */
+.cloud {
+    position: absolute;
+    font-size: 2.2rem;
+    opacity: 0.75;
+    filter: drop-shadow(0 4px 6px rgba(255,255,255,0.9));
+    animation: moveClouds linear infinite;
+}
+
+.cloud-1 { top: 15px; left: -10%; animation-duration: 38s; }
+.cloud-2 { top: 40px; left: -25%; animation-duration: 48s; animation-delay: 12s; }
+.cloud-3 { top: 25px; left: -40%; animation-duration: 42s; animation-delay: 24s; }
+
+@keyframes moveClouds {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(120vw); }
+}
+
+/* Trees */
+.tree {
+    position: absolute;
+    bottom: 35px;
+    font-size: 4.5rem;
+    filter: drop-shadow(0 6px 12px rgba(15, 118, 110, 0.15));
+    transform-origin: bottom center;
+    animation: swayTree 6s ease-in-out infinite alternate;
+}
+
+.tree-left { left: 24px; }
+.tree-right { right: 24px; animation-delay: -3s; }
+
+@keyframes swayTree {
+    0% { transform: rotate(-2deg); }
+    100% { transform: rotate(2deg); }
+}
+
+/* Butterflies */
+.butterfly {
+    position: absolute;
+    font-size: 1.4rem;
+    animation: flyButterfly 14s ease-in-out infinite alternate;
+    opacity: 0.85;
+}
+
+.butterfly-1 { top: 25%; left: 15%; animation-duration: 16s; }
+.butterfly-2 { top: 45%; right: 20%; animation-duration: 18s; animation-delay: -5s; }
+
+@keyframes flyButterfly {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(60px, -30px) scale(1.1) rotate(10deg); }
+    50% { transform: translate(120px, 10px) scale(0.9) rotate(-10deg); }
+    75% { transform: translate(180px, -40px) scale(1.15) rotate(15deg); }
+    100% { transform: translate(240px, 0) scale(1); }
+}
+
+/* Glowing Particles */
+.glowing-particle {
+    position: absolute;
+    font-size: 1.1rem;
+    color: #f59e0b;
+    opacity: 0.7;
+    animation: floatParticle 4s ease-in-out infinite alternate;
+}
+
+.particle-1 { top: 30%; left: 35%; animation-delay: 0s; }
+.particle-2 { top: 55%; left: 65%; animation-delay: 1.5s; }
+.particle-3 { top: 20%; right: 30%; animation-delay: 3s; }
+
+@keyframes floatParticle {
+    0% { transform: translateY(0) scale(0.8); opacity: 0.3; }
+    100% { transform: translateY(-20px) scale(1.2); opacity: 0.9; }
+}
+
+/* Pet Garden Stage */
+.pet-garden-stage {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 900px;
+    min-height: 180px;
+    margin: 20px auto 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 0 40px;
+}
+
+/* Individual Pet Character Card */
+.garden-pet-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+.garden-pet-card:hover {
+    transform: translateY(-8px) scale(1.08);
+}
+
+.garden-pet-card.selected-pet-highlight {
+    transform: translateY(-6px) scale(1.05);
+}
+
+.garden-pet-card.selected-pet-highlight::before {
+    content: "✨";
+    position: absolute;
+    top: -12px;
+    right: -6px;
+    font-size: 1.2rem;
+    animation: sparkPulse 1.5s infinite alternate;
+}
+
+@keyframes sparkPulse {
+    0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+    100% { transform: scale(1.3) rotate(20deg); opacity: 1; }
+}
+
+/* Pet Avatar Box */
+.garden-pet-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3.5px solid #0d9588;
+    box-shadow: 0 8px 20px rgba(13, 149, 136, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.selected-pet-highlight .garden-pet-avatar {
+    border-color: #f59e0b;
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.5), 0 8px 20px rgba(13, 149, 136, 0.3);
+}
+
+.garden-pet-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.garden-pet-avatar .emoji-avatar {
+    font-size: 2.8rem;
+}
+
+/* Species Animations */
+
+/* Bird Animation: Gently flap & float up/down */
+.pet-anim-bird {
+    animation: flyBob 3s ease-in-out infinite alternate;
+}
+
+@keyframes flyBob {
+    0% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-14px) rotate(3deg); }
+    100% { transform: translateY(-4px) rotate(-1deg); }
+}
+
+/* Dog Animation: Wag tail & subtle breathing */
+.pet-anim-dog {
+    animation: dogWag 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes dogWag {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(2deg); }
+    100% { transform: translateY(0) rotate(-2deg); }
+}
+
+/* Cat Animation: Soft stretch & breathe */
+.pet-anim-cat {
+    animation: catBreathe 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes catBreathe {
+    0% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.03, 0.97) translateY(-3px); }
+    100% { transform: scale(1) translateY(0); }
+}
+
+/* Rabbit/Other Animation: Tiny hop */
+.pet-anim-rabbit, .pet-anim-default {
+    animation: rabbitHop 4s ease-in-out infinite;
+}
+
+@keyframes rabbitHop {
+    0%, 80%, 100% { transform: translateY(0); }
+    90% { transform: translateY(-10px); }
+}
+
+/* Pet Name Tag */
+.garden-pet-name {
+    margin-top: 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #134e4a;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3px 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #d1fae5;
+    letter-spacing: -0.01em;
+}
+
+.selected-pet-highlight .garden-pet-name {
+    background: #0d9588;
+    color: #ffffff;
+    border-color: #0d9588;
+}
+
+/* Garden Floor & Paw Prints */
+.garden-floor {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    border-top: 2px dashed #b2f5ea;
+}
+
+.grass-waving {
+    font-size: 1.2rem;
+    letter-spacing: 6px;
+    opacity: 0.85;
+    user-select: none;
+}
+
+.paw-prints {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 4px;
+    font-size: 1.1rem;
+    opacity: 0.55;
+}
+
+.paw-print {
+    animation: fadePaw 3s ease-in-out infinite alternate;
+}
+
+.paw-print:nth-child(2) { animation-delay: 0.7s; }
+.paw-print:nth-child(3) { animation-delay: 1.4s; }
+.paw-print:nth-child(4) { animation-delay: 2.1s; }
+
+@keyframes fadePaw {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    100% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* =========================================
+   VET APPOINTMENTS SECTION (DASHBOARD)
+========================================= */
+
+.appointments-card {
+    padding: 24px 28px;
+    background: #ffffff;
+    border: 1px solid #e1e8e5;
+    border-radius: 20px;
+    box-shadow: 0 5px 18px rgba(27, 52, 65, .035);
+}
+
+.appointments-card .card-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.appointments-card .card-title-row h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #10243a;
+}
+
+.appointments-card .view-all-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d9488;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.appointments-card .view-all-link:hover {
+    color: #0f766e;
+    text-decoration: underline;
+}
+
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.appointment-card-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    transition: all 0.2s ease;
+}
+
+.appointment-card-item:hover {
+    border-color: #0d9488;
+    background: #f0fdfa;
+    transform: translateY(-1px);
+}
+
+.appt-left-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.appt-vet-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #0d9488;
+    background: #e6f4f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.appt-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.appt-info h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.appt-info .appt-meta {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+.appt-info .appt-date-time {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d9488;
+    margin: 0;
+}
+
+.appt-right-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.appt-status-badge {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.appt-status-badge.pending {
+    background: #fef3c7;
+    color: #d97706;
+    border: 1px solid #fde68a;
+}
+
+.appt-status-badge.accepted {
+    background: #d1fae5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+}
+
+.appt-status-badge.completed {
+    background: #e0e7ff;
+    color: #4338ca;
+    border: 1px solid #c7d2fe;
+}
+
+.appt-status-badge.rejected,
+.appt-status-badge.cancelled {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fca5a5;
+}
+
+.empty-appointments {
+    text-align: center;
+    padding: 36px 20px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+}
+
+.empty-appointments .empty-icon {
+    font-size: 36px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.empty-appointments h4 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.empty-appointments p {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.book-vet-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #0d9488;
+    color: #ffffff;
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.book-vet-btn:hover {
+    background: #0f766e;
+    transform: translateY(-1px);
+}

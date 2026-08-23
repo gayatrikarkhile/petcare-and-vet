@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Safety & Recovery | PawSync</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- PAGE STYLES -->
+    <link rel="stylesheet" href="foundPet.css">
+</head>
+<body>
+
+    <div class="public-container">
+        <!-- BRAND HEADER -->
+        <header class="public-header">
+            <span class="brand-logo">🐾 PawSync</span>
+            <span class="safety-tag">Pet Recovery System</span>
+        </header>
+
+        <!-- LOADING STATE -->
+        <div id="loadingState" class="state-box">
+            <div class="spinner"></div>
+            <p>Retrieving pet safety information...</p>
+        </div>
+
+        <!-- ERROR / INVALID QR STATE -->
+        <div id="errorState" class="state-box" style="display:none;">
+            <div class="state-icon">⚠️</div>
+            <h2>Invalid or Inactive QR Code</h2>
+            <p>This QR code token is deactivated or does not match any registered pet record.</p>
+        </div>
+
+        <!-- MAIN PET DISPLAY CARD -->
+        <main id="publicPetCard" class="pet-card-main" style="display:none;">
+            <!-- LOST PET BANNER -->
+            <div id="lostBanner" class="status-banner lost-banner" style="display:none;">
+                <div class="banner-icon">🚨</div>
+                <h2>THIS PET IS LOST</h2>
+                <p>If you found this pet, please contact the owner immediately!</p>
+            </div>
+
+            <!-- SAFE PET BANNER -->
+            <div id="safeBanner" class="status-banner safe-banner" style="display:none;">
+                <div class="banner-icon">🟢</div>
+                <h2>Registered PawSync Pet</h2>
+                <p>This pet is safe and registered on PawSync.</p>
+            </div>
+
+            <!-- PET DETAILS CONTAINER -->
+            <div class="pet-details-body">
+                <div class="pet-photo-frame">
+                    <img id="publicPetPhoto" src="" alt="Pet Photo">
+                    <span id="publicSpeciesBadge" class="species-badge">Pet</span>
+                </div>
+
+                <h1 id="publicPetName">Pet Name</h1>
+                <p id="publicPetBreed" class="pet-breed-text">Breed</p>
+
+                <div class="pet-stats-grid">
+                    <div class="stat-pill">
+                        <span>Gender</span>
+                        <strong id="publicGender">--</strong>
+                    </div>
+                    <div class="stat-pill">
+                        <span>Age</span>
+                        <strong id="publicAge">--</strong>
+                    </div>
+                    <div class="stat-pill">
+                        <span>Weight</span>
+                        <strong id="publicWeight">--</strong>
+                    </div>
+                </div>
+
+                <!-- LAST SEEN LOST INFO (IF PET IS LOST) -->
+                <div id="lastSeenCard" class="last-seen-box" style="display:none;">
+                    <h3>📍 Last Seen Information</h3>
+                    <p id="lastSeenLocation">Location: --</p>
+                    <p id="lastSeenDate">Date: --</p>
+                    <p id="lastSeenNote" class="lost-note-text">Note: --</p>
+                </div>
+
+                <!-- CONTACT OWNER BUTTONS -->
+                <div class="contact-actions-group">
+                    <a id="btnCallOwner" href="#" class="contact-btn phone-btn">
+                        📞 Call Owner
+                    </a>
+                    <a id="btnWhatsappOwner" href="#" target="_blank" class="contact-btn whatsapp-btn">
+                        💬 WhatsApp Owner
+                    </a>
+                    <button id="btnReportFound" type="button" class="contact-btn report-btn">
+                        📍 Report Where I Found This Pet
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="public-footer">
+            <p>🐾 PawSync Safe Pet Identification & Recovery</p>
+        </footer>
+    </div>
+
+    <!-- REPORT FOUND LOCATION MODAL -->
+    <div id="reportFoundModal" class="modal-backdrop" style="display:none;">
+        <div class="modal-content">
+            <button id="closeReportModal" class="close-btn">&times;</button>
+            <h2>📍 Report Found Location</h2>
+            <p>Let the owner know where you spotted or found their pet.</p>
+
+            <form id="reportFoundForm">
+                <div class="form-group">
+                    <label>Found Location / Landmark *</label>
+                    <input type="text" id="foundLocationInput" placeholder="e.g. Near City Park Entrance, Main St." required>
+                </div>
+                <div class="form-group">
+                    <label>Your Contact Phone (Optional)</label>
+                    <input type="tel" id="finderPhoneInput" placeholder="e.g. +1 555 987 6543">
+                </div>
+                <div class="form-group">
+                    <label>Message for Owner (Optional)</label>
+                    <textarea id="finderMessageInput" rows="3" placeholder="e.g. Your pet is safe with me at the park cafe."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="submit-btn">Send Report to Owner</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script src="foundPet.js"></script>
+</body>
+</html>

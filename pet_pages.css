@@ -2994,25 +2994,3 @@ body.dog-page .divider {
 
 
 
-/* ==========================================================
-   FIX - REMOVE UNDERLINE FROM SUPPORTED PET NAMES
-   ========================================================== */
-
-.supported-pets .sp-name {
-    text-decoration: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
-.supported-pets .sp-name::before,
-.supported-pets .sp-name::after {
-    text-decoration: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
-/* Keep the hover effect */
-.supported-pets .sp-item:hover .sp-name {
-    text-decoration: none !important;
-    border-bottom: none !important;
-}

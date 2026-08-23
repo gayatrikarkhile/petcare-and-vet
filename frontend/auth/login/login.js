@@ -32,6 +32,9 @@ const forgotSection =
 const otpSection =
     document.getElementById("otp-section");
 
+const adminLoginSection =
+    document.getElementById("admin-login-section");
+
 
 /* Role cards */
 
@@ -61,6 +64,12 @@ const goToLoginBtn =
 
 const goToForgotBtn =
     document.getElementById("go-to-forgot-password");
+
+const goToAdminBtn =
+    document.getElementById("go-to-admin-login-card");
+
+const adminBackBtn =
+    document.getElementById("admin-login-back-btn");
 
 
 /* Dynamic elements */
@@ -99,6 +108,10 @@ function showSection(sectionToShow) {
     forgotSection.classList.add("hidden");
 
     otpSection.classList.add("hidden");
+
+    if (adminLoginSection) {
+        adminLoginSection.classList.add("hidden");
+    }
 
     sectionToShow.classList.remove("hidden");
 }
@@ -169,6 +182,22 @@ forgotBackBtn.addEventListener("click", () => {
     showSection(loginSection);
 
 });
+
+
+if (goToAdminBtn) {
+    goToAdminBtn.addEventListener("click", () => {
+        if (adminLoginSection) {
+            showSection(adminLoginSection);
+        }
+    });
+}
+
+
+if (adminBackBtn) {
+    adminBackBtn.addEventListener("click", () => {
+        showSection(roleSection);
+    });
+}
 
 
 /* ==========================
@@ -421,6 +450,13 @@ document
                     window.location.href =
                         "../../vet-dashboard/vet-pages/vetdashboard.html";
 
+                } else if (
+                    data.user.role === "admin"
+                ) {
+
+                    window.location.href =
+                        "../../admin/dashboard.html";
+
                 }
 
             }, 700);
@@ -443,6 +479,84 @@ document
         }
 
     });
+
+
+/* =========================================================
+   ADMIN LOGIN FORM
+========================================================= */
+
+const adminLoginForm =
+    document.getElementById("admin-login-form");
+
+
+if (adminLoginForm) {
+
+    adminLoginForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const email =
+            document
+                .getElementById("admin-login-email")
+                .value
+                .trim();
+
+        const password =
+            document
+                .getElementById("admin-login-password")
+                .value;
+
+        const message =
+            document.getElementById("admin-login-message");
+
+        if (!email || !password) {
+            message.textContent = "Please enter admin email and password.";
+            message.style.color = "#DC2626";
+            return;
+        }
+
+        try {
+            message.textContent = "Authenticating Administrator...";
+            message.style.color = "#64748B";
+
+            const response = await fetch(`${API_URL}/admin-login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                message.textContent = data.message || "Admin login failed.";
+                message.style.color = "#DC2626";
+                return;
+            }
+
+            message.textContent = "Admin login successful!";
+            message.style.color = "#00A896";
+
+            localStorage.setItem("pawsyncToken", data.token);
+            localStorage.setItem("pawsyncUser", JSON.stringify(data.user));
+
+            setTimeout(() => {
+                window.location.href = "../../admin/dashboard.html";
+            }, 600);
+
+        } catch (error) {
+            console.error("Admin Login Error:", error);
+            message.textContent = "Unable to connect to the server.";
+            message.style.color = "#DC2626";
+        }
+
+    });
+
+}
 
     /* =========================================================
    SIGNUP FORM
@@ -1395,6 +1509,11 @@ else if (data.user.role === "vet") {
              "../../vet-dashboard/vet-pages/vetdashboard.html";
 
     }
+
+} else if (data.user.role === "admin") {
+
+    window.location.href =
+        "../../admin/dashboard.html";
 
 }
 

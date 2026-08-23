@@ -1,20 +1,47 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prescriptions | VetCare</title><link rel="stylesheet" href="../vet-assets/vet-style.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prescriptions | PawSync Vet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../vet-assets/vet-style.css">
+</head>
 <body data-vetpage="prescriptions">
-<header class="vet-topbar" id="vet-topbar"></header>
-<aside class="vet-sidebar" id="vet-sidebar"></aside>
-<main class="vet-main">
-<div class="vet-page-head"><div><div class="vet-eyebrow">Treatment</div><h1>Prescriptions</h1><p class="vet-subtitle">Create and review simple treatment plans.</p></div><button class="vet-primary" onclick="document.getElementById('rx').scrollIntoView({behavior:'smooth'})">+ New Prescription</button></div>
-<div class="vet-grid vet-two"><section class="vet-card"><div class="vet-card-title"><h2>Recent Prescriptions</h2><span>Latest</span></div>
-<div class="vet-appointment"><div class="vet-patient-avatar">🐕</div><div class="vet-patient-info"><strong>Bruno</strong><small>Amoxicillin · 5 days</small></div><span class="vet-status vet-green">Active</span></div>
-<div class="vet-appointment"><div class="vet-patient-avatar">🐈</div><div class="vet-patient-info"><strong>Milo</strong><small>Vitamin supplement · 30 days</small></div><span class="vet-status vet-blue">Ongoing</span></div>
-<div class="vet-appointment"><div class="vet-patient-avatar">🦜</div><div class="vet-patient-info"><strong>Coco</strong><small>Topical treatment · 7 days</small></div><span class="vet-status vet-orange">Review</span></div></section>
-<section class="vet-card" id="rx"><div class="vet-card-title"><h2>Quick Prescription</h2><span>Frontend demo</span></div><div class="vet-form-grid">
-<div class="vet-field"><label>Patient</label><select><option>Bruno</option><option>Kitty</option><option>Coco</option><option>Bella</option></select></div>
-<div class="vet-field"><label>Medicine</label><input placeholder="Medicine name"></div>
-<div class="vet-field"><label>Dosage</label><input placeholder="e.g. 5 ml"></div><div class="vet-field"><label>Duration</label><input placeholder="e.g. 7 days"></div>
-<div class="vet-field vet-full"><label>Instructions</label><textarea placeholder="Add instructions for the pet owner..."></textarea></div></div>
-<div class="vet-form-actions"><button class="vet-primary" onclick="alert('Prescription saved in this frontend demo.')">Save Prescription</button></div></section></div>
-</main>
-<script src="../vet-assets/vet-app.js"></script></body></html>
+  <header class="vet-topbar" id="vet-topbar"></header>
+  <aside class="vet-sidebar" id="vet-sidebar"></aside>
+
+  <main class="vet-main">
+    <div class="vet-page-head">
+      <div>
+        <div class="vet-eyebrow">💊 Medication Records</div>
+        <h1>Prescriptions</h1>
+        <p class="vet-subtitle">Manage prescribed medications and dosage instructions for your patients.</p>
+      </div>
+    </div>
+
+    <div class="vet-card">
+      <div class="vet-table-wrap">
+        <table class="vet-table">
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Species & Breed</th>
+              <th>Owner</th>
+              <th>Prescription History</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="vet-records-list">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="../vet-assets/vet-app.js"></script>
+</body>
+</html>

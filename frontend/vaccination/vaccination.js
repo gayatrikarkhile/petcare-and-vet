@@ -1,205 +1,117 @@
 /* =========================================
    PAWSYNC - VACCINATION
-   PAGE-SPECIFIC JAVASCRIPT
+   DYNAMIC PAGE JAVASCRIPT
 
    Shared Navbar + Sidebar:
    ../shared/js/shared.js
+
+   Data source:
+   GET  /api/pets
+   GET  /api/vaccinations/:petId
+   POST /api/vaccinations
 ========================================= */
-
-
-/* =========================================
-   PET DATA
-========================================= */
-
-const pets = [
-
-    {
-        id: 1,
-        name: "Bruno",
-        breed: "Labrador Retriever",
-        age: "2 Years",
-        image:
-            "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=300&q=80"
-    },
-
-    {
-        id: 2,
-        name: "Kitty",
-        breed: "Persian Cat",
-        age: "3 Years",
-        image:
-            "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=300&q=80"
-    },
-
-    {
-        id: 3,
-        name: "Coco",
-        breed: "Eclectus Parrot",
-        age: "1 Year",
-        image:
-            "https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=300&q=80"
-    }
-
-];
-
-
-/* =========================================
-   VACCINATION DATA
-========================================= */
-
-let vaccinations = [
-
-    {
-        id: 1,
-
-        petId: 1,
-
-        vaccine:
-            "Rabies",
-
-        dateGiven:
-            "2025-08-18",
-
-        nextDue:
-            "2026-08-18",
-
-        doctor:
-            "Dr. Anjali Sharma",
-
-        notes:
-            "Annual rabies booster",
-
-        reminder:
-            true
-    },
-
-
-    {
-        id: 2,
-
-        petId: 1,
-
-        vaccine:
-            "DHPP",
-
-        dateGiven:
-            "2026-02-10",
-
-        nextDue:
-            "2027-02-10",
-
-        doctor:
-            "Dr. Anjali Sharma",
-
-        notes:
-            "DHPP booster",
-
-        reminder:
-            true
-    },
-
-
-    {
-        id: 3,
-
-        petId: 2,
-
-        vaccine:
-            "FVRCP",
-
-        dateGiven:
-            "2026-01-15",
-
-        nextDue:
-            "2027-01-15",
-
-        doctor:
-            "Dr. Neha Kulkarni",
-
-        notes:
-            "Annual FVRCP vaccination",
-
-        reminder:
-            true
-    },
-
-
-    {
-        id: 4,
-
-        petId: 2,
-
-        vaccine:
-            "FeLV",
-
-        dateGiven:
-            "2026-07-01",
-
-        nextDue:
-            "2026-08-25",
-
-        doctor:
-            "Dr. Neha Kulkarni",
-
-        notes:
-            "Follow-up dose",
-
-        reminder:
-            true
-    },
-
-
-    {
-        id: 5,
-
-        petId: 3,
-
-        vaccine:
-            "Parrot Polyomavirus",
-
-        dateGiven:
-            "2026-05-20",
-
-        nextDue:
-            "2026-09-20",
-
-        doctor:
-            "Dr. Priya Mehta",
-
-        notes:
-            "Annual vaccination",
-
-        reminder:
-            true
-    }
-
-];
 
 
 /* =========================================
    STATE
 ========================================= */
 
-let selectedPetId =
-    pets.length > 0
-        ? pets[0].id
-        : null;
+let pets = [];
+
+let vaccinations = [];
+
+let selectedPetId = null;
+
+let currentFilter = "all";
+
+let calendarDate = new Date();
+/* =========================================
+   VACCINATION FROM ALERT
+========================================= */
+
+const alertVaccinationId =
+    localStorage.getItem(
+        "vaccinationId"
+    );
+
+/* =========================================
+   PET FROM ALERT
+========================================= */
+
+const alertPetId =
+    localStorage.getItem(
+        "vaccinationPetId"
+    );
+
+/* =========================================
+   API / AUTH HELPERS
+========================================= */
+
+const API_BASE = "/api";
 
 
-let currentFilter =
-    "all";
+function getAuthHeaders() {
+
+    const headers = {
+        "Content-Type": "application/json"
+    };
+
+    /*
+        Your backend uses protect middleware.
+        If the project stores JWT in localStorage,
+        use it automatically. If JWT is stored in
+        an HTTP-only cookie, credentials: "include"
+        below handles it.
+    */
+
+const token = localStorage.getItem("pawsyncToken");
+
+    if (token) {
+
+        headers.Authorization =
+            token.startsWith("Bearer ")
+                ? token
+                : `Bearer ${token}`;
+
+    }
+
+    return headers;
+}
 
 
-let calendarDate =
-    new Date();
+async function apiFetch(url, options = {}) {
 
+    const requestOptions = {
+        ...options,
+        credentials: "include",
+        headers: {
+            ...getAuthHeaders(),
+            ...(options.headers || {})
+        }
+    };
 
-/*
-    Set calendar to current month.
+    const response =
+        await fetch(url, requestOptions);
 
-    For the static demo we use the
-    current browser month.
-*/
+    let data = {};
+
+    try {
+        data = await response.json();
+    } catch (error) {
+        data = {};
+    }
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            `Request failed with status ${response.status}`
+        );
+
+    }
+
+    return data;
+}
 
 
 /* =========================================
@@ -207,180 +119,234 @@ let calendarDate =
 ========================================= */
 
 const petSelector =
-    document.getElementById(
-        "petSelector"
-    );
-
+    document.getElementById("petSelector");
 
 const selectedPetText =
-    document.getElementById(
-        "selectedPetText"
-    );
-
+    document.getElementById("selectedPetText");
 
 const vaccinationRecordList =
-    document.getElementById(
-        "vaccinationRecordList"
-    );
-
+    document.getElementById("vaccinationRecordList");
 
 const vaccinationEmpty =
-    document.getElementById(
-        "vaccinationEmpty"
-    );
-
+    document.getElementById("vaccinationEmpty");
 
 const upcomingVaccinationList =
-    document.getElementById(
-        "upcomingVaccinationList"
-    );
-
+    document.getElementById("upcomingVaccinationList");
 
 const upToDateCount =
-    document.getElementById(
-        "upToDateCount"
-    );
-
+    document.getElementById("upToDateCount");
 
 const dueSoonCount =
-    document.getElementById(
-        "dueSoonCount"
-    );
-
+    document.getElementById("dueSoonCount");
 
 const overdueCount =
-    document.getElementById(
-        "overdueCount"
-    );
-
+    document.getElementById("overdueCount");
 
 const totalVaccineCount =
-    document.getElementById(
-        "totalVaccineCount"
-    );
-
+    document.getElementById("totalVaccineCount");
 
 const vaccineFilter =
-    document.getElementById(
-        "vaccineFilter"
-    );
-
+    document.getElementById("vaccineFilter");
 
 const calendarDays =
-    document.getElementById(
-        "calendarDays"
-    );
-
+    document.getElementById("calendarDays");
 
 const calendarMonthYear =
-    document.getElementById(
-        "calendarMonthYear"
-    );
-
+    document.getElementById("calendarMonthYear");
 
 const previousMonth =
-    document.getElementById(
-        "previousMonth"
-    );
-
+    document.getElementById("previousMonth");
 
 const nextMonth =
-    document.getElementById(
-        "nextMonth"
-    );
-
+    document.getElementById("nextMonth");
 
 const openVaccineModal =
-    document.getElementById(
-        "openVaccineModal"
-    );
-
+    document.getElementById("openVaccineModal");
 
 const vaccineModal =
-    document.getElementById(
-        "vaccineModal"
-    );
-
+    document.getElementById("vaccineModal");
 
 const closeVaccineModal =
-    document.getElementById(
-        "closeVaccineModal"
-    );
-
+    document.getElementById("closeVaccineModal");
 
 const cancelVaccine =
-    document.getElementById(
-        "cancelVaccine"
-    );
-
+    document.getElementById("cancelVaccine");
 
 const vaccinationForm =
-    document.getElementById(
-        "vaccinationForm"
-    );
-
+    document.getElementById("vaccinationForm");
 
 const vaccinePet =
-    document.getElementById(
-        "vaccinePet"
-    );
-
+    document.getElementById("vaccinePet");
 
 const vaccineName =
-    document.getElementById(
-        "vaccineName"
-    );
-
+    document.getElementById("vaccineName");
 
 const customVaccineGroup =
-    document.getElementById(
-        "customVaccineGroup"
-    );
-
+    document.getElementById("customVaccineGroup");
 
 const customVaccine =
-    document.getElementById(
-        "customVaccine"
-    );
-
+    document.getElementById("customVaccine");
 
 const dateGiven =
-    document.getElementById(
-        "dateGiven"
-    );
-
+    document.getElementById("dateGiven");
 
 const nextDueDate =
-    document.getElementById(
-        "nextDueDate"
-    );
-
+    document.getElementById("nextDueDate");
 
 const vaccineDoctor =
-    document.getElementById(
-        "vaccineDoctor"
-    );
-
+    document.getElementById("vaccineDoctor");
 
 const vaccineNotes =
-    document.getElementById(
-        "vaccineNotes"
-    );
-
+    document.getElementById("vaccineNotes");
 
 const enableReminder =
-    document.getElementById(
-        "enableReminder"
-    );
+    document.getElementById("enableReminder");
 
 
 /* =========================================
    INITIALIZE
 ========================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", async () => {
+
+    setupVaccineFilter();
+
+    setupCalendarControls();
+
+    setupModal();
+
+    setupVaccinationForm();
+
+    setupCustomVaccine();
+
+    await loadPets();
+
+});
+
+
+/* =========================================
+   LOAD PETS FROM DATABASE
+========================================= */
+
+async function loadPets() {
+
+    try {
+
+        showLoadingState();
+
+
+        const data =
+            await apiFetch(
+                `${API_BASE}/pets`
+            );
+
+
+        pets =
+            Array.isArray(data.pets)
+                ? data.pets
+                : [];
+
+
+        /* =====================================
+           NO PETS
+        ====================================== */
+
+        if (pets.length === 0) {
+
+            selectedPetId = null;
+
+            renderPetSelector();
+
+            populatePetSelect();
+
+            updateSelectedPet();
+
+            updateSummary();
+
+            renderUpcomingVaccinations();
+
+            renderCalendar();
+
+            return;
+        }
+
+
+        /* =====================================
+           SELECT PET
+        ====================================== */
+
+        /*
+            If the user came here by clicking
+            a vaccination alert, alerts.js
+            stored the pet ID in localStorage.
+
+            Example:
+
+            vaccinationPetId = "6a7f2e..."
+
+            We use that ID to automatically
+            select the correct pet.
+        */
+
+        const storedPetId =
+            localStorage.getItem(
+                "vaccinationPetId"
+            );
+
+
+        /*
+            Find the pet from the database
+            using its MongoDB _id.
+        */
+
+        if (storedPetId) {
+
+            const alertPet =
+                pets.find(
+                    pet =>
+                        String(pet._id) ===
+                        String(storedPetId)
+                );
+
+
+            /*
+                If the pet from the alert
+                exists, select that pet.
+            */
+
+            if (alertPet) {
+
+                selectedPetId =
+                    alertPet._id;
+
+            } else {
+
+                /*
+                    If the pet cannot be found,
+                    fall back to the first pet.
+                */
+
+                selectedPetId =
+                    pets[0]._id;
+
+            }
+
+        } else {
+
+            /*
+                Normal visit to vaccination page:
+                select the first pet.
+            */
+
+            selectedPetId =
+                pets[0]._id;
+
+        }
+
+
+        /* =====================================
+           DISPLAY SELECTED PET
+        ====================================== */
 
         renderPetSelector();
 
@@ -388,24 +354,120 @@ document.addEventListener(
 
         updateSelectedPet();
 
+
+        /* =====================================
+           LOAD VACCINATIONS FOR SELECTED PET
+        ====================================== */
+
+        await loadVaccinationsForPet(
+            selectedPetId
+        );
+
+
+        /* =====================================
+           REMOVE TEMPORARY ALERT DATA
+        ====================================== */
+
+        localStorage.removeItem(
+            "vaccinationPetId"
+        );
+
+        localStorage.removeItem(
+            "vaccinationId"
+        );
+
+
+        /* =====================================
+           UPDATE PAGE
+        ====================================== */
+
         updateSummary();
 
         renderUpcomingVaccinations();
 
         renderCalendar();
 
-        setupVaccineFilter();
 
-        setupCalendarControls();
+    } catch (error) {
 
-        setupModal();
+        console.error(
+            "Error loading pets:",
+            error
+        );
 
-        setupVaccinationForm();
 
-        setupCustomVaccine();
+        showPageError(
+            "Unable to load your pets. Please make sure you are logged in."
+        );
 
     }
-);
+
+}
+
+/* =========================================
+   LOAD VACCINATIONS FOR ONE PET
+========================================= */
+
+async function loadVaccinationsForPet(
+    petId
+) {
+
+    if (!petId) {
+
+        vaccinations = [];
+
+        renderVaccinationRecords();
+
+        updateSummary();
+
+        return;
+
+    }
+
+    try {
+
+        const data =
+            await apiFetch(
+                `${API_BASE}/vaccinations/${encodeURIComponent(petId)}`
+            );
+
+        vaccinations =
+            Array.isArray(data.vaccinations)
+                ? data.vaccinations
+                : [];
+
+        renderVaccinationRecords();
+
+        updateSummary();
+
+        renderUpcomingVaccinations();
+
+        renderCalendar();
+
+    } catch (error) {
+
+        console.error(
+            "Error loading vaccinations:",
+            error
+        );
+
+        vaccinations = [];
+
+        renderVaccinationRecords();
+
+        updateSummary();
+
+        renderUpcomingVaccinations();
+
+        renderCalendar();
+
+        showPageError(
+            "Unable to load vaccination records."
+        );
+
+    }
+
+}
 
 
 /* =========================================
@@ -418,115 +480,115 @@ function renderPetSelector() {
         return;
     }
 
-
     petSelector.innerHTML = "";
 
+    if (pets.length === 0) {
 
-    pets.forEach(
-        pet => {
+        petSelector.innerHTML = `
+            <div class="vaccination-empty">
+                <div class="empty-icon">🐾</div>
+                <h3>No pets found</h3>
+                <p>Add a pet to start managing vaccinations.</p>
+            </div>
+        `;
 
-            const card =
-                document.createElement(
-                    "button"
-                );
+        return;
+    }
 
+    pets.forEach(pet => {
 
-            card.type =
-                "button";
+        const card =
+            document.createElement("button");
 
+        card.type = "button";
 
-            card.className =
-                "pet-selector-card";
+        card.className =
+            "pet-selector-card";
 
+        if (
+            String(pet._id) ===
+            String(selectedPetId)
+        ) {
 
-            if (
-                pet.id ===
-                selectedPetId
-            ) {
-
-                card.classList.add(
-                    "active"
-                );
-
-            }
-
-
-            card.innerHTML = `
-
-                <div class="pet-selector-image">
-
-                    <img
-                        src="${pet.image}"
-                        alt="${escapeHTML(
-                            pet.name
-                        )}"
-                    >
-
-                </div>
-
-
-                <div class="pet-selector-info">
-
-                    <h3>
-                        ${escapeHTML(
-                            pet.name
-                        )}
-                    </h3>
-
-                    <p>
-                        ${escapeHTML(
-                            pet.breed
-                        )} •
-                        ${escapeHTML(
-                            pet.age
-                        )}
-                    </p>
-
-                </div>
-
-            `;
-
-
-            card.addEventListener(
-                "click",
-                () => {
-
-                    selectedPetId =
-                        pet.id;
-
-
-                    currentFilter =
-                        "all";
-
-
-                    if (vaccineFilter) {
-
-                        vaccineFilter.value =
-                            "all";
-
-                    }
-
-
-                    renderPetSelector();
-
-                    updateSelectedPet();
-
-                }
-            );
-
-
-            petSelector.appendChild(
-                card
-            );
+            card.classList.add("active");
 
         }
-    );
+
+        const image =
+            pet.petPhoto ||
+            getDefaultPetImage(pet.species);
+
+        const age =
+            calculateAge(pet.dateOfBirth);
+
+        card.innerHTML = `
+
+            <div class="pet-selector-image">
+
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(
+                        pet.petName || "Pet"
+                    )}"
+                    onerror="this.src='${getDefaultPetImage(pet.species)}'"
+                >
+
+            </div>
+
+            <div class="pet-selector-info">
+
+                <h3>
+                    ${escapeHTML(
+                        pet.petName || "Unnamed Pet"
+                    )}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        pet.breed || pet.species || "Pet"
+                    )}
+                    ${
+                        age
+                            ? ` • ${escapeHTML(age)}`
+                            : ""
+                    }
+                </p>
+
+            </div>
+
+        `;
+
+        card.addEventListener("click", async () => {
+
+            selectedPetId = pet._id;
+
+            currentFilter = "all";
+
+            if (vaccineFilter) {
+                vaccineFilter.value = "all";
+            }
+
+            renderPetSelector();
+
+            populatePetSelect();
+
+            updateSelectedPet();
+
+            await loadVaccinationsForPet(
+                selectedPetId
+            );
+
+        });
+
+        petSelector.appendChild(card);
+
+    });
 
 }
 
 
 /* =========================================
-   POPULATE PET SELECT
+   POPULATE PET SELECT IN MODAL
 ========================================= */
 
 function populatePetSelect() {
@@ -535,40 +597,26 @@ function populatePetSelect() {
         return;
     }
 
-
     vaccinePet.innerHTML = `
-
         <option value="">
             Select a pet
         </option>
-
     `;
 
+    pets.forEach(pet => {
 
-    pets.forEach(
-        pet => {
+        const option =
+            document.createElement("option");
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+        option.value =
+            pet._id;
 
+        option.textContent =
+            pet.petName || "Unnamed Pet";
 
-            option.value =
-                pet.id;
+        vaccinePet.appendChild(option);
 
-
-            option.textContent =
-                pet.name;
-
-
-            vaccinePet.appendChild(
-                option
-            );
-
-        }
-    );
-
+    });
 
     if (selectedPetId) {
 
@@ -589,10 +637,9 @@ function updateSelectedPet() {
     const pet =
         pets.find(
             item =>
-                item.id ===
-                selectedPetId
+                String(item._id) ===
+                String(selectedPetId)
         );
-
 
     if (!pet) {
 
@@ -603,21 +650,22 @@ function updateSelectedPet() {
 
         }
 
-
         renderVaccinationRecords();
 
         return;
 
     }
 
-
     if (selectedPetText) {
 
         selectedPetText.textContent =
-            `${pet.name} • ${pet.breed}`;
+            `${pet.petName || "Pet"} • ${
+                pet.breed ||
+                pet.species ||
+                "Pet"
+            }`;
 
     }
-
 
     if (vaccinePet) {
 
@@ -625,7 +673,6 @@ function updateSelectedPet() {
             selectedPetId;
 
     }
-
 
     renderVaccinationRecords();
 
@@ -641,16 +688,14 @@ function getVaccinationStatus(
 ) {
 
     const today =
-        startOfDay(
-            new Date()
-        );
-
+        startOfDay(new Date());
 
     const dueDate =
-        parseLocalDate(
-            vaccination.nextDue
-        );
+        parseLocalDate(vaccination.nextDue);
 
+    if (Number.isNaN(dueDate.getTime())) {
+        return "up-to-date";
+    }
 
     const difference =
         differenceInDays(
@@ -658,35 +703,13 @@ function getVaccinationStatus(
             dueDate
         );
 
-
-    /*
-        Already passed
-        = Overdue
-    */
-
     if (difference > 0) {
-
         return "overdue";
-
     }
-
-
-    /*
-        Due within 30 days
-        = Due Soon
-    */
 
     if (difference >= -30) {
-
         return "due-soon";
-
     }
-
-
-    /*
-        More than 30 days away
-        = Up to Date
-    */
 
     return "up-to-date";
 
@@ -703,96 +726,56 @@ function renderVaccinationRecords() {
         return;
     }
 
-
     let records =
         vaccinations.filter(
             vaccination =>
-                vaccination.petId ===
-                selectedPetId
+                String(vaccination.petId) ===
+                String(selectedPetId)
         );
 
-
-    if (
-        currentFilter !==
-        "all"
-    ) {
+    if (currentFilter !== "all") {
 
         records =
             records.filter(
                 vaccination =>
-
                     getVaccinationStatus(
                         vaccination
-                    ) ===
-                    currentFilter
+                    ) === currentFilter
             );
 
     }
 
+    vaccinationRecordList.innerHTML = "";
 
-    vaccinationRecordList.innerHTML =
-        "";
-
-
-    if (
-        records.length === 0
-    ) {
+    if (records.length === 0) {
 
         if (vaccinationEmpty) {
-
-            vaccinationEmpty.hidden =
-                false;
-
+            vaccinationEmpty.hidden = false;
         }
 
         return;
 
     }
 
-
     if (vaccinationEmpty) {
-
-        vaccinationEmpty.hidden =
-            true;
-
+        vaccinationEmpty.hidden = true;
     }
 
-
     records.sort(
-        (
-            first,
-            second
-        ) => {
-
-            return (
-                parseLocalDate(
-                    first.nextDue
-                ) -
-
-                parseLocalDate(
-                    second.nextDue
-                )
-            );
-
-        }
+        (first, second) =>
+            parseLocalDate(first.nextDue) -
+            parseLocalDate(second.nextDue)
     );
 
+    records.forEach(vaccination => {
 
-    records.forEach(
-        vaccination => {
+        vaccinationRecordList.appendChild(
+            createVaccinationRecord(
+                vaccination
+            )
+        );
 
-            const record =
-                createVaccinationRecord(
-                    vaccination
-                );
-
-
-            vaccinationRecordList.appendChild(
-                record
-            );
-
-        }
-    );
+    });
 
 }
 
@@ -806,28 +789,38 @@ function createVaccinationRecord(
 ) {
 
     const element =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     const status =
         getVaccinationStatus(
             vaccination
         );
 
-
-    const pet =
-        pets.find(
-            item =>
-                item.id ===
-                vaccination.petId
-        );
-
-
     element.className =
-        "vaccination-record";
+    "vaccination-record";
 
+
+/*
+    If this is the vaccination that the
+    user clicked from Alerts, highlight it.
+*/
+
+if (
+    alertVaccinationId &&
+    String(vaccination._id) ===
+        String(alertVaccinationId)
+) {
+
+    element.classList.add(
+        "alert-selected-vaccination"
+    );
+
+    element.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
 
     element.innerHTML = `
 
@@ -835,12 +828,12 @@ function createVaccinationRecord(
             💉
         </div>
 
-
         <div class="vaccine-record-info">
 
             <h3>
                 ${escapeHTML(
-                    vaccination.vaccine
+                    vaccination.vaccine ||
+                    "Vaccination"
                 )}
             </h3>
 
@@ -850,7 +843,6 @@ function createVaccinationRecord(
                     "Doctor not specified"
                 )}
             </p>
-
 
             <div class="vaccine-record-meta">
 
@@ -872,15 +864,11 @@ function createVaccinationRecord(
 
         </div>
 
-
-        <span
-            class="vaccine-status ${status}"
-        >
+        <span class="vaccine-status ${status}">
             ${getStatusLabel(status)}
         </span>
 
     `;
-
 
     return element;
 
@@ -891,9 +879,7 @@ function createVaccinationRecord(
    STATUS LABEL
 ========================================= */
 
-function getStatusLabel(
-    status
-) {
+function getStatusLabel(status) {
 
     const labels = {
 
@@ -907,7 +893,6 @@ function getStatusLabel(
             "Overdue"
 
     };
-
 
     return (
         labels[status] ||
@@ -926,92 +911,55 @@ function updateSummary() {
     const selectedRecords =
         vaccinations.filter(
             vaccination =>
-                vaccination.petId ===
-                selectedPetId
+                String(vaccination.petId) ===
+                String(selectedPetId)
         );
 
+    let upToDate = 0;
 
-    let upToDate =
-        0;
+    let dueSoon = 0;
 
-    let dueSoon =
-        0;
+    let overdue = 0;
 
-    let overdue =
-        0;
+    selectedRecords.forEach(vaccination => {
 
+        const status =
+            getVaccinationStatus(
+                vaccination
+            );
 
-    selectedRecords.forEach(
-        vaccination => {
-
-            const status =
-                getVaccinationStatus(
-                    vaccination
-                );
-
-
-            if (
-                status ===
-                "up-to-date"
-            ) {
-
-                upToDate++;
-
-            }
-
-
-            if (
-                status ===
-                "due-soon"
-            ) {
-
-                dueSoon++;
-
-            }
-
-
-            if (
-                status ===
-                "overdue"
-            ) {
-
-                overdue++;
-
-            }
-
+        if (status === "up-to-date") {
+            upToDate++;
         }
-    );
 
+        if (status === "due-soon") {
+            dueSoon++;
+        }
+
+        if (status === "overdue") {
+            overdue++;
+        }
+
+    });
 
     if (upToDateCount) {
-
         upToDateCount.textContent =
             upToDate;
-
     }
-
 
     if (dueSoonCount) {
-
         dueSoonCount.textContent =
             dueSoon;
-
     }
-
 
     if (overdueCount) {
-
         overdueCount.textContent =
             overdue;
-
     }
 
-
     if (totalVaccineCount) {
-
         totalVaccineCount.textContent =
             selectedRecords.length;
-
     }
 
 }
@@ -1019,6 +967,7 @@ function updateSummary() {
 
 /* =========================================
    UPCOMING VACCINATIONS
+   Shows reminders for all owner's pets.
 ========================================= */
 
 function renderUpcomingVaccinations() {
@@ -1027,56 +976,28 @@ function renderUpcomingVaccinations() {
         return;
     }
 
-
     const upcoming =
         vaccinations
-
             .filter(
                 vaccination =>
-                    vaccination.reminder ===
-                    true
+                    vaccination.reminder === true
             )
-
             .filter(
                 vaccination =>
                     getVaccinationStatus(
                         vaccination
-                    ) !==
-                    "overdue"
+                    ) !== "overdue"
             )
-
             .sort(
-                (
-                    first,
-                    second
-                ) => {
-
-                    return (
-                        parseLocalDate(
-                            first.nextDue
-                        ) -
-
-                        parseLocalDate(
-                            second.nextDue
-                        )
-                    );
-
-                }
+                (first, second) =>
+                    parseLocalDate(first.nextDue) -
+                    parseLocalDate(second.nextDue)
             )
+            .slice(0, 5);
 
-            .slice(
-                0,
-                5
-            );
+    upcomingVaccinationList.innerHTML = "";
 
-
-    upcomingVaccinationList.innerHTML =
-        "";
-
-
-    if (
-        upcoming.length === 0
-    ) {
+    if (upcoming.length === 0) {
 
         upcomingVaccinationList.innerHTML = `
 
@@ -1099,91 +1020,80 @@ function renderUpcomingVaccinations() {
         `;
 
         return;
-
     }
 
+    upcoming.forEach(vaccination => {
 
-    upcoming.forEach(
-        vaccination => {
-
-            const pet =
-                pets.find(
-                    item =>
-                        item.id ===
-                        vaccination.petId
-                );
-
-
-            const date =
-                parseLocalDate(
-                    vaccination.nextDue
-                );
-
-
-            const element =
-                document.createElement(
-                    "div"
-                );
-
-
-            element.className =
-                "upcoming-vaccination";
-
-
-            element.innerHTML = `
-
-                <div class="upcoming-date">
-
-                    <strong>
-                        ${date.getDate()}
-                    </strong>
-
-                    <span>
-                        ${date.toLocaleDateString(
-                            "en-IN",
-                            {
-                                month:
-                                    "short"
-                            }
-                        )}
-                    </span>
-
-                </div>
-
-
-                <div class="upcoming-info">
-
-                    <h3>
-                        ${escapeHTML(
-                            vaccination.vaccine
-                        )}
-                    </h3>
-
-                    <p>
-                        ${
-                            pet
-                                ? escapeHTML(
-                                    pet.name
-                                )
-                                : "Pet"
-                        }
-                        •
-                        ${formatDate(
-                            vaccination.nextDue
-                        )}
-                    </p>
-
-                </div>
-
-            `;
-
-
-            upcomingVaccinationList.appendChild(
-                element
+        const pet =
+            pets.find(
+                item =>
+                    String(item._id) ===
+                    String(vaccination.petId)
             );
 
-        }
-    );
+        const date =
+            parseLocalDate(
+                vaccination.nextDue
+            );
+
+        const element =
+            document.createElement("div");
+
+        element.className =
+            "upcoming-vaccination";
+
+        element.innerHTML = `
+
+            <div class="upcoming-date">
+
+                <strong>
+                    ${date.getDate()}
+                </strong>
+
+                <span>
+                    ${date.toLocaleDateString(
+                        "en-IN",
+                        {
+                            month: "short"
+                        }
+                    )}
+                </span>
+
+            </div>
+
+            <div class="upcoming-info">
+
+                <h3>
+                    ${escapeHTML(
+                        vaccination.vaccine ||
+                        "Vaccination"
+                    )}
+                </h3>
+
+                <p>
+                    ${
+                        pet
+                            ? escapeHTML(
+                                pet.petName ||
+                                "Pet"
+                            )
+                            : "Pet"
+                    }
+                    •
+                    ${formatDate(
+                        vaccination.nextDue
+                    )}
+                </p>
+
+            </div>
+
+        `;
+
+        upcomingVaccinationList.appendChild(
+            element
+        );
+
+    });
 
 }
 
@@ -1198,14 +1108,12 @@ function setupVaccineFilter() {
         return;
     }
 
-
     vaccineFilter.addEventListener(
         "change",
         () => {
 
             currentFilter =
                 vaccineFilter.value;
-
 
             renderVaccinationRecords();
 
@@ -1231,14 +1139,12 @@ function setupCalendarControls() {
                     calendarDate.getMonth() - 1
                 );
 
-
                 renderCalendar();
 
             }
         );
 
     }
-
 
     if (nextMonth) {
 
@@ -1249,7 +1155,6 @@ function setupCalendarControls() {
                 calendarDate.setMonth(
                     calendarDate.getMonth() + 1
                 );
-
 
                 renderCalendar();
 
@@ -1271,38 +1176,23 @@ function renderCalendar() {
         return;
     }
 
-
     const year =
         calendarDate.getFullYear();
-
 
     const month =
         calendarDate.getMonth();
 
-
     const firstDay =
-        new Date(
-            year,
-            month,
-            1
-        );
-
+        new Date(year, month, 1);
 
     const lastDay =
-        new Date(
-            year,
-            month + 1,
-            0
-        );
-
+        new Date(year, month + 1, 0);
 
     const daysInMonth =
         lastDay.getDate();
 
-
     const startingDay =
         firstDay.getDay();
-
 
     if (calendarMonthYear) {
 
@@ -1317,22 +1207,10 @@ function renderCalendar() {
 
     }
 
-
-    calendarDays.innerHTML =
-        "";
-
-
-    /*
-        Previous month dates
-    */
+    calendarDays.innerHTML = "";
 
     const previousLastDay =
-        new Date(
-            year,
-            month,
-            0
-        ).getDate();
-
+        new Date(year, month, 0).getDate();
 
     for (
         let index = startingDay - 1;
@@ -1341,27 +1219,16 @@ function renderCalendar() {
     ) {
 
         const dayNumber =
-            previousLastDay -
-            index;
+            previousLastDay - index;
 
-
-        const cell =
+        calendarDays.appendChild(
             createCalendarDay(
                 dayNumber,
                 true
-            );
-
-
-        calendarDays.appendChild(
-            cell
+            )
         );
 
     }
-
-
-    /*
-        Current month dates
-    */
 
     for (
         let day = 1;
@@ -1369,37 +1236,22 @@ function renderCalendar() {
         day++
     ) {
 
-        const cell =
+        calendarDays.appendChild(
             createCalendarDay(
                 day,
                 false
-            );
-
-
-        calendarDays.appendChild(
-            cell
+            )
         );
 
     }
 
-
-    /*
-        Next month dates
-        Complete the last row.
-    */
-
     const totalCells =
         calendarDays.children.length;
-
 
     const remainingCells =
         totalCells % 7 === 0
             ? 0
-            : 7 -
-              (
-                totalCells % 7
-              );
-
+            : 7 - (totalCells % 7);
 
     for (
         let day = 1;
@@ -1407,15 +1259,11 @@ function renderCalendar() {
         day++
     ) {
 
-        const cell =
+        calendarDays.appendChild(
             createCalendarDay(
                 day,
                 true
-            );
-
-
-        calendarDays.appendChild(
-            cell
+            )
         );
 
     }
@@ -1433,52 +1281,33 @@ function createCalendarDay(
 ) {
 
     const cell =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     cell.className =
         "calendar-day";
 
-
     if (otherMonth) {
-
-        cell.classList.add(
-            "other-month"
-        );
-
+        cell.classList.add("other-month");
     }
 
-
     const number =
-        document.createElement(
-            "span"
-        );
-
+        document.createElement("span");
 
     number.className =
         "calendar-day-number";
 
-
     number.textContent =
         dayNumber;
 
-
-    cell.appendChild(
-        number
-    );
-
+    cell.appendChild(number);
 
     if (!otherMonth) {
 
         const year =
             calendarDate.getFullYear();
 
-
         const month =
             calendarDate.getMonth();
-
 
         const date =
             new Date(
@@ -1487,11 +1316,6 @@ function createCalendarDay(
                 dayNumber
             );
 
-
-        /*
-            Today
-        */
-
         if (
             isSameDate(
                 date,
@@ -1499,17 +1323,9 @@ function createCalendarDay(
             )
         ) {
 
-            cell.classList.add(
-                "today"
-            );
+            cell.classList.add("today");
 
         }
-
-
-        /*
-            Find vaccination reminders
-            for this date.
-        */
 
         const dayVaccinations =
             vaccinations.filter(
@@ -1524,20 +1340,16 @@ function createCalendarDay(
 
                     }
 
-
                     const dueDate =
                         parseLocalDate(
                             vaccination.nextDue
                         );
 
-
                     return (
                         dueDate.getFullYear() ===
                             year &&
-
                         dueDate.getMonth() ===
                             month &&
-
                         dueDate.getDate() ===
                             dayNumber
                     );
@@ -1545,25 +1357,19 @@ function createCalendarDay(
                 }
             );
 
-
         dayVaccinations.forEach(
             vaccination => {
 
-                const event =
+                cell.appendChild(
                     createCalendarEvent(
                         vaccination
-                    );
-
-
-                cell.appendChild(
-                    event
+                    )
                 );
 
             }
         );
 
     }
-
 
     return cell;
 
@@ -1579,78 +1385,48 @@ function createCalendarEvent(
 ) {
 
     const event =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     const status =
         getVaccinationStatus(
             vaccination
         );
 
-
     const pet =
         pets.find(
             item =>
-                item.id ===
-                vaccination.petId
+                String(item._id) ===
+                String(vaccination.petId)
         );
-
 
     event.className =
         "calendar-event";
 
-
-    if (
-        status ===
-        "due-soon"
-    ) {
-
-        event.classList.add(
-            "due-soon"
-        );
-
+    if (status === "due-soon") {
+        event.classList.add("due-soon");
     }
 
-
-    if (
-        status ===
-        "overdue"
-    ) {
-
-        event.classList.add(
-            "overdue"
-        );
-
+    if (status === "overdue") {
+        event.classList.add("overdue");
     }
 
+    const petName =
+        pet
+            ? pet.petName || "Pet"
+            : "Pet";
+
+    const vaccineName =
+        vaccination.vaccine ||
+        "Vaccination";
 
     event.textContent =
-
-        `💉 ${
-            pet
-                ? pet.name
-                : "Pet"
-        } • ${
-            vaccination.vaccine
-        }`;
-
+        `💉 ${petName} • ${vaccineName}`;
 
     event.title =
-
-        `${vaccination.vaccine} - ${
-            pet
-                ? pet.name
-                : "Pet"
-        }\n` +
-
-        `Due: ${
-            formatDate(
-                vaccination.nextDue
-            )
-        }`;
-
+        `${vaccineName} - ${petName}\n` +
+        `Due: ${formatDate(
+            vaccination.nextDue
+        )}`;
 
     event.addEventListener(
         "click",
@@ -1658,14 +1434,12 @@ function createCalendarEvent(
 
             eventObject.stopPropagation();
 
-
             showVaccinationDetails(
                 vaccination
             );
 
         }
     );
-
 
     return event;
 
@@ -1683,10 +1457,9 @@ function showVaccinationDetails(
     const pet =
         pets.find(
             item =>
-                item.id ===
-                vaccination.petId
+                String(item._id) ===
+                String(vaccination.petId)
         );
-
 
     alert(
 
@@ -1694,12 +1467,13 @@ function showVaccinationDetails(
 
         `Pet: ${
             pet
-                ? pet.name
+                ? pet.petName || "Unknown"
                 : "Unknown"
         }\n` +
 
         `Vaccine: ${
-            vaccination.vaccine
+            vaccination.vaccine ||
+            "Vaccination"
         }\n` +
 
         `Due Date: ${
@@ -1728,43 +1502,28 @@ function setupModal() {
 
         openVaccineModal.addEventListener(
             "click",
-            () => {
-
-                openModal();
-
-            }
+            () => openModal()
         );
 
     }
-
 
     if (closeVaccineModal) {
 
         closeVaccineModal.addEventListener(
             "click",
-            () => {
-
-                closeModal();
-
-            }
+            () => closeModal()
         );
 
     }
-
 
     if (cancelVaccine) {
 
         cancelVaccine.addEventListener(
             "click",
-            () => {
-
-                closeModal();
-
-            }
+            () => closeModal()
         );
 
     }
-
 
     if (vaccineModal) {
 
@@ -1786,17 +1545,13 @@ function setupModal() {
 
     }
 
-
     document.addEventListener(
         "keydown",
         event => {
 
             if (
-                event.key ===
-                    "Escape" &&
-
+                event.key === "Escape" &&
                 vaccineModal &&
-
                 !vaccineModal.hidden
             ) {
 
@@ -1820,6 +1575,15 @@ function openModal() {
         return;
     }
 
+    if (pets.length === 0) {
+
+        alert(
+            "Please add a pet before adding a vaccination."
+        );
+
+        return;
+
+    }
 
     if (vaccinePet) {
 
@@ -1828,13 +1592,9 @@ function openModal() {
 
     }
 
+    vaccineModal.hidden = false;
 
-    vaccineModal.hidden =
-        false;
-
-
-    document.body.style.overflow =
-        "hidden";
+    document.body.style.overflow = "hidden";
 
 }
 
@@ -1849,13 +1609,9 @@ function closeModal() {
         return;
     }
 
+    vaccineModal.hidden = true;
 
-    vaccineModal.hidden =
-        true;
-
-
-    document.body.style.overflow =
-        "";
+    document.body.style.overflow = "";
 
 }
 
@@ -1870,7 +1626,6 @@ function setupCustomVaccine() {
         return;
     }
 
-
     vaccineName.addEventListener(
         "change",
         () => {
@@ -1883,19 +1638,15 @@ function setupCustomVaccine() {
                 customVaccineGroup.hidden =
                     false;
 
-
                 if (customVaccine) {
-
                     customVaccine.required =
                         true;
-
                 }
 
             } else {
 
                 customVaccineGroup.hidden =
                     true;
-
 
                 if (customVaccine) {
 
@@ -1917,6 +1668,7 @@ function setupCustomVaccine() {
 
 /* =========================================
    FORM SUBMISSION
+   DYNAMIC POST TO MONGODB
 ========================================= */
 
 function setupVaccinationForm() {
@@ -1925,29 +1677,16 @@ function setupVaccinationForm() {
         return;
     }
 
-
     vaccinationForm.addEventListener(
         "submit",
-        event => {
+        async event => {
 
             event.preventDefault();
 
-
             const petId =
-                Number(
-                    vaccinePet.value
-                );
+                vaccinePet.value;
 
-
-            const pet =
-                pets.find(
-                    item =>
-                        item.id ===
-                        petId
-                );
-
-
-            if (!pet) {
+            if (!petId) {
 
                 alert(
                     "Please select a pet."
@@ -1957,10 +1696,25 @@ function setupVaccinationForm() {
 
             }
 
+            const pet =
+                pets.find(
+                    item =>
+                        String(item._id) ===
+                        String(petId)
+                );
+
+            if (!pet) {
+
+                alert(
+                    "Selected pet was not found."
+                );
+
+                return;
+
+            }
 
             let selectedVaccine =
                 vaccineName.value;
-
 
             if (
                 selectedVaccine ===
@@ -1969,7 +1723,6 @@ function setupVaccinationForm() {
 
                 selectedVaccine =
                     customVaccine.value.trim();
-
 
                 if (!selectedVaccine) {
 
@@ -1983,14 +1736,11 @@ function setupVaccinationForm() {
 
             }
 
-
             const givenDate =
                 dateGiven.value;
 
-
             const dueDate =
                 nextDueDate.value;
-
 
             if (
                 !givenDate ||
@@ -2005,19 +1755,9 @@ function setupVaccinationForm() {
 
             }
 
-
-            /*
-                Next due date should not be
-                before the date given.
-            */
-
             if (
-                parseLocalDate(
-                    dueDate
-                ) <
-                parseLocalDate(
-                    givenDate
-                )
+                parseLocalDate(dueDate) <
+                parseLocalDate(givenDate)
             ) {
 
                 alert(
@@ -2028,14 +1768,9 @@ function setupVaccinationForm() {
 
             }
 
+            const payload = {
 
-            const newVaccination = {
-
-                id:
-                    Date.now(),
-
-                petId:
-                    petId,
+                petId: petId,
 
                 vaccine:
                     selectedVaccine,
@@ -2060,77 +1795,127 @@ function setupVaccinationForm() {
 
             };
 
+            const saveButton =
+                vaccinationForm.querySelector(
+                    ".save-vaccine-button"
+                );
 
-            vaccinations.push(
-                newVaccination
-            );
+            const originalText =
+                saveButton
+                    ? saveButton.textContent
+                    : "Save Vaccination";
 
+            try {
 
-            /*
-                Keep the newly selected pet
-                visible.
-            */
+                if (saveButton) {
 
-            selectedPetId =
-                petId;
+                    saveButton.disabled =
+                        true;
 
+                    saveButton.textContent =
+                        "Saving...";
 
-            currentFilter =
-                "all";
+                }
 
+                const data =
+                    await apiFetch(
+                        `${API_BASE}/vaccinations`,
+                        {
+                            method: "POST",
+                            body:
+                                JSON.stringify(
+                                    payload
+                                )
+                        }
+                    );
 
-            if (vaccineFilter) {
+                /*
+                    The backend returns the saved
+                    MongoDB vaccination document.
+                */
 
-                vaccineFilter.value =
+                if (
+                    data.vaccination
+                ) {
+
+                    vaccinations.push(
+                        data.vaccination
+                    );
+
+                }
+
+                selectedPetId =
+                    petId;
+
+                currentFilter =
                     "all";
 
+                if (vaccineFilter) {
+                    vaccineFilter.value =
+                        "all";
+                }
+
+                renderPetSelector();
+
+                populatePetSelect();
+
+                updateSelectedPet();
+
+                updateSummary();
+
+                renderUpcomingVaccinations();
+
+                renderCalendar();
+
+                vaccinationForm.reset();
+
+                if (customVaccineGroup) {
+                    customVaccineGroup.hidden =
+                        true;
+                }
+
+                if (customVaccine) {
+                    customVaccine.required =
+                        false;
+                }
+
+                if (vaccinePet) {
+                    vaccinePet.value =
+                        selectedPetId;
+                }
+
+                closeModal();
+
+                alert(
+                    data.message ||
+                    "Vaccination saved successfully."
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Save vaccination error:",
+                    error
+                );
+
+                alert(
+                    error.message ||
+                    "Unable to save vaccination."
+                );
+
+            } finally {
+
+                if (saveButton) {
+
+                    saveButton.disabled =
+                        false;
+
+                    saveButton.textContent =
+                        originalText;
+
+                }
+
             }
-
-
-            /*
-                Refresh everything.
-            */
-
-            renderPetSelector();
-
-            updateSelectedPet();
-
-            updateSummary();
-
-            renderUpcomingVaccinations();
-
-            renderCalendar();
-
-
-            /*
-                Reset and close modal.
-            */
-
-            vaccinationForm.reset();
-
-
-            if (customVaccineGroup) {
-
-                customVaccineGroup.hidden =
-                    true;
-
-            }
-
-
-            if (customVaccine) {
-
-                customVaccine.required =
-                    false;
-
-            }
-
-
-            closeModal();
-
-
-            alert(
-                "Vaccination saved successfully. The reminder has been added to the calendar."
-            );
 
         }
     );
@@ -2143,23 +1928,45 @@ function setupVaccinationForm() {
 ========================================= */
 
 function parseLocalDate(
-    dateString
+    value
 ) {
 
-    const [
-        year,
-        month,
-        day
-    ] =
+    if (!value) {
+        return new Date(NaN);
+    }
+
+    /*
+        MongoDB returns ISO dates such as:
+        2027-08-10T00:00:00.000Z
+
+        We only need the YYYY-MM-DD part
+        and create a local date to avoid
+        timezone shifting.
+    */
+
+    const dateString =
+        String(value).slice(0, 10);
+
+    const parts =
         dateString
             .split("-")
             .map(Number);
 
+    if (
+        parts.length !== 3 ||
+        parts.some(
+            number => Number.isNaN(number)
+        )
+    ) {
+
+        return new Date(value);
+
+    }
 
     return new Date(
-        year,
-        month - 1,
-        day
+        parts[0],
+        parts[1] - 1,
+        parts[2]
     );
 
 }
@@ -2169,9 +1976,7 @@ function parseLocalDate(
    START OF DAY
 ========================================= */
 
-function startOfDay(
-    date
-) {
+function startOfDay(date) {
 
     return new Date(
         date.getFullYear(),
@@ -2196,17 +2001,14 @@ function differenceInDays(
             firstDate
         ).getTime();
 
-
     const second =
         startOfDay(
             secondDate
         ).getTime();
 
-
     return Math.round(
         (
-            first -
-            second
+            first - second
         ) /
         (
             1000 *
@@ -2253,33 +2055,171 @@ function isSameDate(
 ========================================= */
 
 function formatDate(
-    dateString
+    dateValue
 ) {
 
-    if (!dateString) {
+    if (!dateValue) {
         return "";
     }
 
-
     const date =
         parseLocalDate(
-            dateString
+            dateValue
         );
 
+    if (Number.isNaN(date.getTime())) {
+        return "";
+    }
 
     return date.toLocaleDateString(
         "en-IN",
         {
-            day:
-                "2-digit",
-
-            month:
-                "short",
-
-            year:
-                "numeric"
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
         }
     );
+
+}
+
+
+/* =========================================
+   CALCULATE PET AGE
+========================================= */
+
+function calculateAge(
+    dateOfBirth
+) {
+
+    if (!dateOfBirth) {
+        return "";
+    }
+
+    const birthDate =
+        parseLocalDate(
+            dateOfBirth
+        );
+
+    if (Number.isNaN(birthDate.getTime())) {
+        return "";
+    }
+
+    const today =
+        new Date();
+
+    let years =
+        today.getFullYear() -
+        birthDate.getFullYear();
+
+    let months =
+        today.getMonth() -
+        birthDate.getMonth();
+
+    if (
+        months < 0 ||
+        (
+            months === 0 &&
+            today.getDate() <
+                birthDate.getDate()
+        )
+    ) {
+
+        years--;
+
+        months += 12;
+
+    }
+
+    if (years > 0) {
+        return `${years} Year${years === 1 ? "" : "s"}`;
+    }
+
+    return `${Math.max(months, 0)} Month${months === 1 ? "" : "s"}`;
+
+}
+
+
+/* =========================================
+   DEFAULT PET IMAGE
+========================================= */
+
+function getDefaultPetImage(
+    species
+) {
+
+    const value =
+        String(
+            species || ""
+        ).toLowerCase();
+
+    if (value.includes("cat")) {
+
+        return "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=300&q=80";
+
+    }
+
+    if (value.includes("bird") || value.includes("parrot")) {
+
+        return "https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=300&q=80";
+
+    }
+
+    return "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=300&q=80";
+
+}
+
+
+/* =========================================
+   LOADING STATE
+========================================= */
+
+function showLoadingState() {
+
+    if (petSelector) {
+
+        petSelector.innerHTML = `
+            <div class="vaccination-empty">
+                <div class="empty-icon">🐾</div>
+                <h3>Loading pets...</h3>
+                <p>Please wait.</p>
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================================
+   ERROR MESSAGE
+========================================= */
+
+function showPageError(
+    message
+) {
+
+    console.error(message);
+
+    /*
+        Keep the existing layout untouched.
+        Show the message through the existing
+        empty-state area when possible.
+    */
+
+    if (
+        vaccinationRecordList &&
+        vaccinations.length === 0
+    ) {
+
+        vaccinationRecordList.innerHTML = `
+            <div class="vaccination-empty">
+                <div class="empty-icon">⚠️</div>
+                <h3>Unable to load data</h3>
+                <p>${escapeHTML(message)}</p>
+            </div>
+        `;
+
+    }
 
 }
 
@@ -2293,15 +2233,62 @@ function escapeHTML(
 ) {
 
     const element =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     element.textContent =
-        value;
-
+        value == null
+            ? ""
+            : String(value);
 
     return element.innerHTML;
 
+}
+/* =========================================
+   SELECT PET FROM ALERT
+========================================= */
+
+function selectPetFromAlert() {
+
+    const storedPetId =
+        localStorage.getItem("vaccinationPetId");
+
+    // If the page was not opened from an alert,
+    // do nothing.
+    if (!storedPetId) {
+        return;
+    }
+
+    // Find the pet whose ID came from the alert
+    const pet =
+        pets.find(
+            item =>
+                String(item.id) ===
+                String(storedPetId)
+        );
+
+    // Pet was not found
+    if (!pet) {
+
+        console.warn(
+            "Pet from alert was not found:",
+            storedPetId
+        );
+
+        return;
+    }
+
+    // Select this pet
+    selectedPetId = pet.id;
+
+    // Show this pet as selected
+    renderPetSelector();
+
+    // Load/show this pet's vaccination records
+    updateSelectedPet();
+
+    // Remove the temporary ID
+    // so it doesn't keep selecting this pet
+    localStorage.removeItem(
+        "vaccinationPetId"
+    );
 }

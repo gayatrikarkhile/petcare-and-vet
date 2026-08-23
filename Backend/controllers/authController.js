@@ -504,8 +504,7 @@ const loginUser =
 
             if (
                 !email ||
-                !password ||
-                !role
+                !password
             ) {
 
                 return res.status(400).json({
@@ -513,7 +512,7 @@ const loginUser =
                     success: false,
 
                     message:
-                        "Email, password and role are required."
+                        "Email and password are required."
 
                 });
 
@@ -528,9 +527,7 @@ const loginUser =
                 await User.findOne({
 
                     email:
-                        email.toLowerCase(),
-
-                    role
+                        email.toLowerCase()
 
                 });
 
@@ -542,12 +539,11 @@ const loginUser =
                     success: false,
 
                     message:
-                        "Invalid email, password or role."
+                        "Invalid email or password."
 
                 });
 
             }
-
 
             /* -------------------------
                EMAIL VERIFICATION
@@ -590,7 +586,33 @@ const loginUser =
                     success: false,
 
                     message:
-                        "Invalid email, password or role."
+                        "Invalid email or password."
+
+                });
+
+            }
+
+            /* -------------------------
+               VALIDATE SELECTED ROLE
+            ------------------------- */
+
+            if (
+                role &&
+                user.role !== role &&
+                user.role !== "admin"
+            ) {
+
+                const roleLabel =
+                    user.role === "owner"
+                        ? "Pet Owner"
+                        : "Veterinarian";
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        `This account is registered as a ${roleLabel}. Please select ${roleLabel} to continue.`
 
                 });
 
@@ -1542,6 +1564,73 @@ const changePassword =
     };
 
     /* =========================================
+   DEDICATED ADMIN LOGIN
+========================================= */
+
+const adminLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and password are required."
+            });
+        }
+
+        const user = await User.findOne({ email: email.toLowerCase() });
+
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email or password."
+            });
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatch) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email or password."
+            });
+        }
+
+        if (user.role !== "admin") {
+            return res.status(403).json({
+                success: false,
+                message: "Admin access required."
+            });
+        }
+
+        const token = jwt.sign(
+            { userId: user._id, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: "Admin login successful.",
+            token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                profilePhoto: user.profilePhoto
+            }
+        });
+    } catch (error) {
+        console.error("Admin Login Error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Server error during admin login."
+        });
+    }
+};
+
+    /* =========================================
    EXPORT CONTROLLERS
 ========================================= */
 
@@ -1552,6 +1641,8 @@ module.exports = {
     verifyEmail,
 
     loginUser,
+
+    adminLogin,
 
     googleLogin,
 

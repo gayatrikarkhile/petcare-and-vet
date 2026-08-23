@@ -71,7 +71,8 @@ profilePhoto: {
 
             enum: [
                 "owner",
-                "vet"
+                "vet",
+                "admin"
             ]
 
         },

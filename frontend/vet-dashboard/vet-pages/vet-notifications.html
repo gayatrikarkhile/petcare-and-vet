@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notifications | PawSync Vet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../vet-assets/vet-style.css">
+</head>
+<body data-vetpage="notifications">
+  <header class="vet-topbar" id="vet-topbar"></header>
+  <aside class="vet-sidebar" id="vet-sidebar"></aside>
+
+  <main class="vet-main">
+    <div class="vet-page-head">
+      <div>
+        <div class="vet-eyebrow">🔔 Alerts & Activity</div>
+        <h1>Notifications</h1>
+        <p class="vet-subtitle">View all appointment requests, cancellations, and practice alerts.</p>
+      </div>
+      <div>
+        <button class="vet-secondary" onclick="PawSyncVet.markAllNotifsRead()">Mark All as Read</button>
+      </div>
+    </div>
+
+    <!-- Notifications List -->
+    <div id="vet-notifications-list">
+      <!-- Populated dynamically by vet-app.js -->
+    </div>
+  </main>
+
+  <script src="../vet-assets/vet-app.js"></script>
+  <script>
+    PawSyncVet.markAllNotifsRead = async function() {
+      try {
+        await PawSyncVet.apiRequest("/notifications/read-all", { method: "PUT" });
+        PawSyncVet.loadNotificationsPage();
+        PawSyncVet.loadNotificationBadge();
+      } catch (e) {}
+    };
+  </script>
+</body>
+</html>

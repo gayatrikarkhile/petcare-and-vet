@@ -1,16 +1,47 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Medical Records | VetCare</title><link rel="stylesheet" href="../vet-assets/vet-style.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medical Records | PawSync Vet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../vet-assets/vet-style.css">
+</head>
 <body data-vetpage="records">
-<header class="vet-topbar" id="vet-topbar"></header>
-<aside class="vet-sidebar" id="vet-sidebar"></aside>
-<main class="vet-main">
-<div class="vet-page-head"><div><div class="vet-eyebrow">Clinical Records</div><h1>Medical Records</h1><p class="vet-subtitle">Recent examinations, diagnoses and lab notes.</p></div><button class="vet-primary" onclick="alert('New medical record form can be connected here.')">+ New Record</button></div>
-<section class="vet-card vet-table-wrap"><table class="vet-table"><thead><tr><th>Patient</th><th>Visit</th><th>Diagnosis</th><th>Veterinarian</th><th>Status</th></tr></thead><tbody>
-<tr><td><strong>Bruno</strong><br><small>Labrador Retriever</small></td><td>14 Aug 2026</td><td>Routine checkup</td><td>Dr. Sharma</td><td><span class="vet-status vet-green">Completed</span></td></tr>
-<tr><td><strong>Milo</strong><br><small>British Shorthair</small></td><td>14 Aug 2026</td><td>Vaccination</td><td>Dr. Sharma</td><td><span class="vet-status vet-blue">Updated</span></td></tr>
-<tr><td><strong>Coco</strong><br><small>Eclectus Parrot</small></td><td>13 Aug 2026</td><td>Skin consultation</td><td>Dr. Sharma</td><td><span class="vet-status vet-orange">Follow-up</span></td></tr>
-<tr><td><strong>Bella</strong><br><small>Golden Retriever</small></td><td>12 Aug 2026</td><td>Dental examination</td><td>Dr. Sharma</td><td><span class="vet-status vet-green">Completed</span></td></tr>
-</tbody></table></section>
-</main>
-<script src="../vet-assets/vet-app.js"></script></body></html>
+  <header class="vet-topbar" id="vet-topbar"></header>
+  <aside class="vet-sidebar" id="vet-sidebar"></aside>
+
+  <main class="vet-main">
+    <div class="vet-page-head">
+      <div>
+        <div class="vet-eyebrow">📋 Clinical Vault</div>
+        <h1>Medical Records</h1>
+        <p class="vet-subtitle">Overview of consultation medical records across your practice.</p>
+      </div>
+    </div>
+
+    <div class="vet-card">
+      <div class="vet-table-wrap">
+        <table class="vet-table">
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Species & Breed</th>
+              <th>Owner</th>
+              <th>Visits</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="vet-records-list">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="../vet-assets/vet-app.js"></script>
+</body>
+</html>

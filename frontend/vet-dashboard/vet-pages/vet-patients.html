@@ -1,12 +1,33 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Patients | VetCare</title><link rel="stylesheet" href="../vet-assets/vet-style.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Patients | PawSync Vet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../vet-assets/vet-style.css">
+</head>
 <body data-vetpage="patients">
-<header class="vet-topbar" id="vet-topbar"></header>
-<aside class="vet-sidebar" id="vet-sidebar"></aside>
-<main class="vet-main">
-<div class="vet-page-head"><div><div class="vet-eyebrow">Patient Care</div><h1>Patients</h1><p class="vet-subtitle">Quick access to your registered pet patients.</p></div><button class="vet-primary" onclick="alert('New patient form can be connected here.')">+ Add Patient</button></div>
-<div class="vet-grid vet-patient-grid" id="patients"></div>
-<script>document.addEventListener("DOMContentLoaded",()=>document.getElementById("patients").innerHTML=vetPatientCards());</script>
-</main>
-<script src="../vet-assets/vet-app.js"></script></body></html>
+  <header class="vet-topbar" id="vet-topbar"></header>
+  <aside class="vet-sidebar" id="vet-sidebar"></aside>
+
+  <main class="vet-main">
+    <div class="vet-page-head">
+      <div>
+        <div class="vet-eyebrow">🐾 Patient Registry</div>
+        <h1>My Patients</h1>
+        <p class="vet-subtitle">View individual records, medical history, prescriptions, and vaccinations for all your patients.</p>
+      </div>
+    </div>
+
+    <!-- Patients Grid Container -->
+    <div class="vet-grid vet-patient-grid" id="vet-patients-grid">
+      <!-- Dynamically populated by vet-app.js -->
+    </div>
+  </main>
+
+  <script src="../vet-assets/vet-app.js"></script>
+</body>
+</html>

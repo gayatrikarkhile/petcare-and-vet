@@ -5,415 +5,278 @@
 }
 
 body {
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background: #f5faf8;
-
-    color: #173b5f;
-
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background: #f3f7f6;
+    color: #0f172a;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
-
 
 .settings-page {
-
     min-height: 100vh;
-
+    padding-bottom: 60px;
 }
-
 
 /* ============================= */
 /* HEADER */
 /* ============================= */
 
 .settings-header {
-
-    height: 90px;
-
+    height: 80px;
     background: #ffffff;
-
     display: flex;
-
     align-items: center;
-
     padding: 0 50px;
-
-    border-bottom:
-        1px solid #e3ece9;
-
-    position: relative;
-
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
-
 
 .settings-header h1 {
-
     position: absolute;
-
     left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    font-size: 26px;
-
+    transform: translateX(-50%);
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.3px;
 }
-
 
 .back-button {
-
-    border: none;
-
-    background: transparent;
-
-    color: #126e72;
-
-    font-size: 16px;
-
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #0d9488;
+    font-size: 14px;
     font-weight: 600;
-
     cursor: pointer;
-
-    padding: 10px 15px;
-
-    border-radius: 8px;
-
+    padding: 8px 16px;
+    border-radius: 14px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
-
 
 .back-button:hover {
-
-    background: #eaf6f2;
-
+    background: #f1f5f9;
+    border-color: #0d9488;
+    transform: translateX(-2px);
 }
-
 
 /* ============================= */
 /* CONTAINER */
 /* ============================= */
 
 .settings-container {
-
-    width: min(900px, 92%);
-
-    margin: 40px auto;
-
+    width: min(850px, 92%);
+    margin: 36px auto;
     display: flex;
-
     flex-direction: column;
-
-    gap: 22px;
-
+    gap: 24px;
 }
-
 
 /* ============================= */
 /* CARD */
 /* ============================= */
 
 .settings-card {
-
     background: #ffffff;
-
-    border:
-        1px solid #e2ebe8;
-
+    border: 1px solid #e2e8f0;
     border-radius: 20px;
-
-    padding: 28px 30px;
-
-    box-shadow:
-        0 8px 25px
-        rgba(30, 80, 70, 0.05);
-
+    padding: 30px 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
-
 
 /* ============================= */
 /* SECTION TITLE */
 /* ============================= */
 
 .section-title {
-
     display: flex;
-
     align-items: center;
-
-    gap: 15px;
-
+    gap: 16px;
     margin-bottom: 22px;
-
 }
-
 
 .section-icon {
-
-    width: 45px;
-
-    height: 45px;
-
-    border-radius: 12px;
-
-    background: #e5f5ef;
-
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    font-size: 21px;
-
+    font-size: 22px;
+    flex-shrink: 0;
 }
 
+.account-icon {
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.notify-icon {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.security-icon {
+    background: #ccfbf1;
+    color: #0d9488;
+}
+
+.danger-icon {
+    background: #ffedd5;
+    color: #ea580c;
+}
 
 .section-title h2 {
-
     font-size: 20px;
-
-    margin-bottom: 4px;
-
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
 }
-
 
 .section-title p {
-
-    color: #8193a3;
-
+    color: #64748b;
     font-size: 14px;
-
 }
-
 
 /* ============================= */
 /* ROW */
 /* ============================= */
 
 .settings-row {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     gap: 25px;
-
     padding: 20px 0;
-
-    border-top:
-        1px solid #edf2f0;
-
+    border-top: 1px solid #f1f5f9;
 }
-
 
 .settings-row h3 {
-
     font-size: 16px;
-
-    margin-bottom: 5px;
-
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 4px;
 }
-
 
 .settings-row p {
-
-    color: #8193a3;
-
+    color: #64748b;
     font-size: 14px;
-
     line-height: 1.5;
-
 }
-
 
 /* ============================= */
 /* BUTTON */
 /* ============================= */
 
-.action-button {
-
-    border:
-        1px solid #126e72;
-
+.action-button,
+.settings-action-button {
+    border: 1.5px solid #0d9488;
     background: #ffffff;
-
-    color: #126e72;
-
-    padding: 10px 18px;
-
-    border-radius: 9px;
-
+    color: #0d9488;
+    padding: 8px 22px;
+    border-radius: 10px;
     font-weight: 600;
-
+    font-size: 14px;
     cursor: pointer;
-
     white-space: nowrap;
-
+    transition: all 0.2s ease;
 }
 
-
-.action-button:hover {
-
-    background: #eaf6f2;
-
+.action-button:hover,
+.settings-action-button:hover {
+    background: #0d9488;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
 }
-
 
 /* ============================= */
 /* TOGGLE */
 /* ============================= */
 
 .switch {
-
     position: relative;
-
     width: 48px;
-
     height: 26px;
-
     flex-shrink: 0;
-
 }
-
 
 .switch input {
-
     opacity: 0;
-
     width: 0;
-
     height: 0;
-
 }
-
 
 .slider {
-
     position: absolute;
-
     inset: 0;
-
     cursor: pointer;
-
-    background: #cbd8d5;
-
+    background: #cbd5e1;
     border-radius: 30px;
-
     transition: 0.25s;
-
 }
-
 
 .slider::before {
-
     content: "";
-
     position: absolute;
-
     height: 20px;
-
     width: 20px;
-
     left: 3px;
-
     top: 3px;
-
     background: white;
-
     border-radius: 50%;
-
     transition: 0.25s;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0,0,0,0.15);
-
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
-
 
 .switch input:checked + .slider {
-
-    background: #19a982;
-
+    background: #10b981;
 }
-
 
 .switch input:checked + .slider::before {
-
-    transform:
-        translateX(22px);
-
+    transform: translateX(22px);
 }
-
 
 /* ============================= */
 /* SECURITY */
 /* ============================= */
 
 .security-status {
-
-    background: #e4f7ed;
-
-    color: #16805d;
-
-    padding: 7px 13px;
-
+    background: #ccfbf1;
+    color: #0f766e;
+    padding: 6px 16px;
     border-radius: 20px;
-
     font-size: 13px;
-
     font-weight: 600;
-
     white-space: nowrap;
-
 }
-
 
 /* ============================= */
 /* DANGER */
 /* ============================= */
 
 .danger-card {
-
-    border-color: #f0dddd;
-
+    border-color: #fee2e2;
 }
-
-
-.danger-icon {
-
-    background: #fff0ed;
-
-}
-
 
 .logout-button {
-
     border: none;
-
-    background: #fff0ed;
-
-    color: #c63d35;
-
-    padding: 10px 20px;
-
-    border-radius: 9px;
-
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 8px 22px;
+    border-radius: 10px;
+    font-size: 14px;
     font-weight: 600;
-
     cursor: pointer;
-
+    transition: all 0.2s ease;
 }
 
-
 .logout-button:hover {
-
-    background: #ffe1dc;
-
+    background: #fca5a5;
+    color: #991b1b;
 }
 
 

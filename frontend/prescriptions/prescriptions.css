@@ -1,0 +1,424 @@
+/* =========================================================
+   PAWSYNC PET PRESCRIPTIONS STYLES
+========================================================= */
+
+.page-container {
+    padding: 24px 32px 48px;
+    max-width: 1200px;
+}
+
+.page-header {
+    margin-bottom: 24px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+    color: #138a78;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 850;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Pet Filter Tabs */
+.pet-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-size: 13.5px;
+    font-weight: 750;
+    color: #475569;
+}
+
+.pet-tabs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pet-tab-btn {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 10px 18px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02);
+}
+
+.pet-tab-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+    transform: translateY(-2px);
+}
+
+.pet-tab-btn.active {
+    background: linear-gradient(135deg, #0d9488, #059669);
+    color: #ffffff;
+    border-color: #059669;
+    font-weight: 850;
+    box-shadow: 0 6px 18px rgba(13, 148, 136, 0.25);
+}
+
+/* Prescriptions Grid */
+.prescriptions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+}
+
+.rx-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.rx-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    border-color: #0d9488;
+}
+
+.rx-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 16px;
+}
+
+.rx-pet-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rx-pet-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #ccfbf1;
+    color: #0f766e;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    object-fit: cover;
+}
+
+.rx-pet-details h3 {
+    margin: 0 0 2px;
+    font-size: 17px;
+    font-weight: 850;
+    color: #0f172a;
+}
+
+.rx-pet-details span {
+    font-size: 12.5px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.rx-status-badge {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #10b981;
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 11.5px;
+    font-weight: 800;
+}
+
+.rx-med-box {
+    background: #f8fafc;
+    border: 1px solid #edf2f7;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.rx-med-name {
+    font-size: 16px;
+    font-weight: 850;
+    color: #0d9488;
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rx-med-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    font-size: 12.5px;
+}
+
+.rx-meta-item strong {
+    color: #475569;
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+
+.rx-meta-item span {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.rx-instructions {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #e2e8f0;
+    font-size: 12.5px;
+    color: #475569;
+    line-height: 1.4;
+}
+
+.rx-doctor-info {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+.rx-doctor-info strong {
+    color: #0f172a;
+    font-weight: 750;
+}
+
+.rx-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-view-rx {
+    flex: 1;
+    background: linear-gradient(135deg, #0d9488, #059669);
+    color: #ffffff;
+    border: none;
+    padding: 11px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-view-rx:hover {
+    box-shadow: 0 6px 16px rgba(13, 148, 136, 0.3);
+    transform: translateY(-2px);
+}
+
+.empty-state, .loading-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 24px;
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+}
+
+.empty-state span {
+    font-size: 44px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.empty-state h3 {
+    font-size: 18px;
+    font-weight: 850;
+    color: #0f172a;
+    margin: 0 0 6px;
+}
+
+/* Modal Overlay & Official Rx Document */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.rx-modal-card {
+    background: #ffffff;
+    border-radius: 24px;
+    max-width: 650px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 36px;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background: #f1f5f9;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    color: #64748b;
+}
+
+.rx-document {
+    border: 2px solid #0d9488;
+    border-radius: 16px;
+    padding: 28px;
+    background: #ffffff;
+}
+
+.rx-doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 18px;
+    border-bottom: 2px solid #0d9488;
+    margin-bottom: 20px;
+}
+
+.rx-doc-brand {
+    font-size: 22px;
+    font-weight: 850;
+    color: #0d9488;
+}
+
+.rx-doc-vet {
+    text-align: right;
+    font-size: 13px;
+    color: #475569;
+}
+
+.rx-doc-vet h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #0f172a;
+    font-weight: 850;
+}
+
+.rx-doc-patient {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-size: 13px;
+}
+
+.rx-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+
+.rx-table th, .rx-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    font-size: 13.5px;
+}
+
+.rx-table th {
+    background: #f0fdfa;
+    color: #0f766e;
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-download {
+    background: linear-gradient(135deg, #0d9488, #059669);
+    color: #ffffff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-weight: 850;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(13, 148, 136, 0.3);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(13, 148, 136, 0.4);
+}
+
+.btn-close {
+    background: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 750;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+@media print {
+    body * { visibility: hidden; }
+    #rxModalContent, #rxModalContent * { visibility: visible; }
+    #rxModalContent { position: absolute; left: 0; top: 0; width: 100%; }
+}

@@ -4,816 +4,376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Pet Profile | PawSync</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="petProfile.css">
 </head>
 
 <body>
 
 <header class="topbar">
-
     <div class="brand">
         <span class="brand-icon">🐾</span>
         <span>PawSync</span>
     </div>
 
     <div class="topbar-right">
-
         <button class="notification-btn" id="notificationButton">
             🔔
             <span class="notification-count">2</span>
         </button>
 
         <div class="profile">
-
             <div class="avatar">G</div>
-
             <strong>Gayatri</strong>
-
             <span>▾</span>
-
         </div>
-
     </div>
-
 </header>
 
-
 <div class="page-layout">
-
-
     <!-- SIDEBAR -->
-
     <aside class="sidebar">
-
         <nav>
-
-            <div class="nav-heading">
-                MAIN
-            </div>
-
-            <a
-                href="/frontend/owner/dashboard/ownerdashboard.html"
-                class="nav-link"
-            >
-                <span>⌂</span>
-                Dashboard
+            <div class="nav-heading">MAIN</div>
+            <a href="/frontend/owner/dashboard/ownerdashboard.html" class="nav-link">
+                <span>⌂</span> Dashboard
+            </a>
+            <a href="/frontend/pets/pets.html" class="nav-link active">
+                <span>🐾</span> My Pets
             </a>
 
-            <a
-                href="/frontend/pets/pets.html"
-                class="nav-link active"
-            >
-                <span>🐾</span>
-                My Pets
+            <div class="nav-heading">PET CARE</div>
+            <a href="/frontend/vaccination/vaccination.html" class="nav-link">
+                <span>💉</span> Vaccination
+            </a>
+            <a href="/frontend/nutrition/nutrition.html" class="nav-link">
+                <span>🥣</span> Nutrition
+            </a>
+            <a href="/frontend/grooming/grooming.html" class="nav-link">
+                <span>✂</span> Grooming
+            </a>
+            <a href="/frontend/activity/activity.html" class="nav-link">
+                <span>🏃</span> Activity
             </a>
 
-
-            <div class="nav-heading">
-                PET CARE
-            </div>
-
-            <a href="#" class="nav-link">
-                <span>♥</span>
-                Health
+            <div class="nav-heading">RECORDS</div>
+            <a href="/frontend/medicalVault/medicalVault.html" class="nav-link">
+                <span>▣</span> Medical Vault
             </a>
 
-            <a href="#" class="nav-link">
-                <span>💉</span>
-                Vaccination
+            <div class="nav-heading">OTHER</div>
+            <a href="/frontend/settings/settings.html" class="nav-link">
+                <span>⚙</span> Settings
             </a>
-
-            <a href="#" class="nav-link">
-                <span>🥣</span>
-                Nutrition
-            </a>
-
-            <a href="#" class="nav-link">
-                <span>✂</span>
-                Grooming
-            </a>
-
-            <a href="#" class="nav-link">
-                <span>🏃</span>
-                Activity
-            </a>
-
-            <a href="#" class="nav-link">
-                <span>🦷</span>
-                Dental Care
-            </a>
-
-
-            <div class="nav-heading">
-                RECORDS
-            </div>
-
-            <a href="#" class="nav-link">
-                <span>▣</span>
-                Medical Vault
-            </a>
-
-            <a href="#" class="nav-link">
-                <span>♟</span>
-                Appointments
-            </a>
-
-            <a href="#" class="nav-link">
-                <span>▦</span>
-                Calendar
-            </a>
-
-
-            <div class="nav-heading">
-                INSIGHTS
-            </div>
-
-            <a href="#" class="nav-link">
-                <span>▥</span>
-                Analytics
-            </a>
-
-            <a href="#" class="nav-link">
-                <span>🤖</span>
-                AI Assistant
-            </a>
-
-
-            <div class="nav-heading">
-                OTHER
-            </div>
-
-            <a href="#" class="nav-link">
-                <span>♧</span>
-                Alerts
-            </a>
-
-            <a
-                href="/frontend/settings/settings.html"
-                class="nav-link"
-            >
-                <span>⚙</span>
-                Settings
-            </a>
-
         </nav>
-
     </aside>
 
-
     <!-- MAIN CONTENT -->
-
     <main class="main-content">
-
         <div class="back-row">
-
-            <button
-                id="backButton"
-                class="back-button"
-                type="button"
-            >
+            <button id="backButton" class="back-button" type="button">
                 ← Back to My Pets
             </button>
-
         </div>
 
-
         <!-- PROFILE HERO -->
-
         <section class="profile-hero">
-
-
             <div class="pet-photo-box">
-
-                <img
-                    id="petImage"
-                    src=""
-                    alt="Pet"
-                >
-
-                <span class="active-badge">
-                    ● Active
-                </span>
-
+                <img id="petImage" src="" alt="Pet Photo">
+                <span class="active-badge">● Active</span>
             </div>
-
 
             <div class="pet-main-info">
-
-                <span
-                    class="pet-type"
-                    id="petType"
-                >
-                    DOG
-                </span>
-
-                <h1 id="petName">
-                    Bruno
-                </h1>
-
-                <p
-                    id="petBreed"
-                    class="breed"
-                >
-                    Labrador Retriever
-                </p>
-
+                <span class="pet-type" id="petType">PET</span>
+                <h1 id="petName">Loading...</h1>
+                <p id="petBreed" class="breed">--</p>
 
                 <div class="quick-details">
-
                     <div>
-
-                        <span>
-                            Age
-                        </span>
-
-                        <strong id="petAge">
-                            2 Years
-                        </strong>
-
+                        <span>Age</span>
+                        <strong id="petAge">--</strong>
                     </div>
-
-
                     <div>
-
-                        <span>
-                            Gender
-                        </span>
-
-                        <strong id="petGender">
-                            Male
-                        </strong>
-
+                        <span>Gender</span>
+                        <strong id="petGender">--</strong>
                     </div>
-
-
                     <div>
-
-                        <span>
-                            Weight
-                        </span>
-
-                        <strong id="petWeight">
-                            20 kg
-                        </strong>
-
+                        <span>Weight</span>
+                        <strong id="petWeight">--</strong>
                     </div>
-
+                    <div>
+                        <span>Microchip</span>
+                        <strong id="petMicrochip">--</strong>
+                    </div>
                 </div>
 
+                <div class="hero-actions-group">
+                    <button id="editPetBtn" class="action-btn edit-btn" type="button">✏️ Edit Profile</button>
+                    <button id="deletePetBtn" class="action-btn delete-btn" type="button">🗑️ Delete Pet</button>
+                </div>
             </div>
-
 
             <div class="health-score-box">
-
-                <span>
-                    ❤️ Health Score
-                </span>
-
+                <span>❤️ Pet Care Score</span>
                 <div>
-
-                    <strong id="healthScore">
-                        61
-                    </strong>
-
-                    <small>
-                        / 100
-                    </small>
-
+                    <strong id="healthScore">0</strong>
+                    <small>/ 100</small>
                 </div>
-
-
                 <div class="score-track">
-
-                    <div
-                        id="scoreProgress"
-                        class="score-progress"
-                    ></div>
-
+                    <div id="scoreProgress" class="score-progress"></div>
                 </div>
-
-
-                <p id="healthStatus">
-                    Needs Attention
-                </p>
-
+                <p id="healthStatus">Health information active</p>
             </div>
-
         </section>
-
 
         <!-- PROFILE GRID -->
-
         <section class="profile-grid">
-
-
-            <!-- BASIC INFORMATION -->
-
-            <article class="card">
-
+            <!-- BASIC INFORMATION CARD -->
+            <article class="card basic-info-card">
                 <div class="card-header">
-
                     <div class="card-title">
-
-                        <span class="card-icon">
-                            🐾
-                        </span>
-
+                        <span class="card-icon">🐾</span>
                         <div>
-
-                            <h2>
-                                Basic Information
-                            </h2>
-
-                            <p>
-                                Your pet's personal details
-                            </p>
-
+                            <h2>Basic Information</h2>
+                            <p>Dynamic pet profile details</p>
                         </div>
-
                     </div>
-
-
-                    <button
-                        class="edit-button"
-                        type="button"
-                    >
-                        ✎ Edit
-                    </button>
-
                 </div>
-
 
                 <div class="info-grid">
-
                     <div class="info-item">
-
-                        <span>
-                            Pet Name
-                        </span>
-
-                        <strong id="infoName">
-                            Bruno
-                        </strong>
-
+                        <span>Pet Name</span>
+                        <strong id="infoName">--</strong>
                     </div>
-
-
                     <div class="info-item">
-
-                        <span>
-                            Species
-                        </span>
-
-                        <strong id="infoSpecies">
-                            Dog
-                        </strong>
-
+                        <span>Species</span>
+                        <strong id="infoSpecies">--</strong>
                     </div>
-
-
                     <div class="info-item">
-
-                        <span>
-                            Breed
-                        </span>
-
-                        <strong id="infoBreed">
-                            Labrador Retriever
-                        </strong>
-
+                        <span>Breed</span>
+                        <strong id="infoBreed">--</strong>
                     </div>
-
-
                     <div class="info-item">
-
-                        <span>
-                            Gender
-                        </span>
-
-                        <strong id="infoGender">
-                            Male
-                        </strong>
-
+                        <span>Gender</span>
+                        <strong id="infoGender">--</strong>
                     </div>
-
-
                     <div class="info-item">
-
-                        <span>
-                            Age
-                        </span>
-
-                        <strong id="infoAge">
-                            2 Years
-                        </strong>
-
+                        <span>Age</span>
+                        <strong id="infoAge">--</strong>
                     </div>
-
-
                     <div class="info-item">
-
-                        <span>
-                            Weight
-                        </span>
-
-                        <strong id="infoWeight">
-                            20 kg
-                        </strong>
-
+                        <span>Weight</span>
+                        <strong id="infoWeight">--</strong>
                     </div>
-
+                    <div class="info-item">
+                        <span>Reproductive Status</span>
+                        <strong id="infoReproductive">--</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Microchip ID</span>
+                        <strong id="infoMicrochip">--</strong>
+                    </div>
                 </div>
-
             </article>
 
-
-            <!-- UPCOMING CARE -->
-
+            <!-- MEDICAL & HEALTH OVERVIEW CARD -->
             <article class="card">
-
                 <div class="card-header">
-
                     <div class="card-title">
-
-                        <span class="card-icon yellow">
-                            📅
-                        </span>
-
+                        <span class="card-icon yellow">📋</span>
                         <div>
-
-                            <h2>
-                                Upcoming Care
-                            </h2>
-
-                            <p>
-                                Important upcoming events
-                            </p>
-
+                            <h2>Medical & Care Notes</h2>
+                            <p>Allergies & medical conditions</p>
                         </div>
-
                     </div>
-
                 </div>
 
-
-                <div class="upcoming-list">
-
-
-                    <div class="upcoming-item">
-
-                        <div class="event-icon vaccine">
-                            💉
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Rabies Booster
-                            </strong>
-
-                            <span>
-                                Vaccination
-                            </span>
-
-                        </div>
-
-                        <b>
-                            18 Aug
-                        </b>
-
+                <div class="info-grid">
+                    <div class="info-item full-width">
+                        <span>Known Allergies</span>
+                        <div id="allergiesList" class="tags-container">N                    <div class="info-item full-width">
+                        <span>Existing Medical Conditions</span>
+                        <div id="conditionsList" class="tags-container">No existing medical conditions</div>
                     </div>
-
-
-                    <div class="upcoming-item">
-
-                        <div class="event-icon grooming">
-                            ✂️
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Full Grooming
-                            </strong>
-
-                            <span>
-                                Grooming Session
-                            </span>
-
-                        </div>
-
-                        <b>
-                            20 Aug
-                        </b>
-
-                    </div>
-
-
-                    <div class="upcoming-item">
-
-                        <div class="event-icon vet">
-                            👨‍⚕️
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Vet Appointment
-                            </strong>
-
-                            <span>
-                                Dr. Sharma
-                            </span>
-
-                        </div>
-
-                        <b>
-                            23 Aug
-                        </b>
-
-                    </div>
-
                 </div>
-
             </article>
-
-
-            <!-- MEDICAL RECORDS -->
-
-            <article class="card">
-
-                <div class="card-header">
-
-                    <div class="card-title">
-
-                        <span class="card-icon purple">
-                            📁
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Recent Medical Records
-                            </h2>
-
-                            <p>
-                                Latest health documents
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        class="view-button"
-                        type="button"
-                    >
-                        View All
-                    </button>
-
-                </div>
-
-
-                <div class="medical-list">
-
-                    <div class="medical-item">
-
-                        <span class="record-icon">
-                            💊
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Prescription
-                            </strong>
-
-                            <span>
-                                General medication
-                            </span>
-
-                        </div>
-
-                        <small>
-                            05 Aug
-                        </small>
-
-                    </div>
-
-
-                    <div class="medical-item">
-
-                        <span class="record-icon">
-                            💉
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Vaccination Certificate
-                            </strong>
-
-                            <span>
-                                Rabies vaccination
-                            </span>
-
-                        </div>
-
-                        <small>
-                            20 Jul
-                        </small>
-
-                    </div>
-
-
-                    <div class="medical-item">
-
-                        <span class="record-icon">
-                            🧪
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Blood Report
-                            </strong>
-
-                            <span>
-                                Routine blood test
-                            </span>
-
-                        </div>
-
-                        <small>
-                            12 Jun
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- TODAY'S CARE -->
-
-            <article class="card">
-
-                <div class="card-header">
-
-                    <div class="card-title">
-
-                        <span class="card-icon green">
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Today's Care
-                            </h2>
-
-                            <p id="todayCareText">
-                                Daily care routine
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="care-list">
-
-                    <div class="care-item completed">
-
-                        <span>
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Morning Meal
-                            </strong>
-
-                            <small>
-                                08:00 AM
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="care-item completed">
-
-                        <span>
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Fresh Water Refill
-                            </strong>
-
-                            <small>
-                                09:00 AM
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="care-item completed">
-
-                        <span>
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Teeth Brushing
-                            </strong>
-
-                            <small>
-                                11:30 AM
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="care-item">
-
-                        <span>
-                            ○
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Evening Park Walk
-                            </strong>
-
-                            <small>
-                                05:30 PM
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="care-item">
-
-                        <span>
-                            ○
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Evening Meal
-                            </strong>
-
-                            <small>
-                                07:30 PM
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </article>
-
         </section>
 
-    </main>
+        <!-- PET SAFETY QR SECTION (FULL WIDTH) -->
+        <section class="qr-section-container" style="margin-top: 24px;">
+            <article class="card qr-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="card-icon teal">🐾</span>
+                        <div>
+                            <h2>PET SAFETY QR</h2>
+                            <p>Keep this QR with your pet so they can be identified if they are ever lost.</p>
+                        </div>
+                    </div>
+                    <div class="status-badges-group">
+                        <span id="qrStatusBadge" class="qr-status-badge active">🟢 QR Code Active</span>
+                        <span id="petLostStatusBadge" class="pet-lost-badge safe">🟢 Safe</span>
+                    </div>
+                </div>
 
+                <div class="qr-card-body">
+                    <div class="qr-display-box">
+                        <div id="qrcodeCanvas" class="qr-canvas-wrap"></div>
+                        <div class="qr-pet-label">
+                            <h3 id="qrPetName">Pet Name</h3>
+                            <p id="qrPetBreed">Species & Breed</p>
+                        </div>
+                    </div>
+
+                    <div class="qr-actions-row">
+                        <button id="downloadQrBtn" class="action-btn primary-btn" type="button">⬇ Download QR</button>
+                        <button id="printQrBtn" class="action-btn secondary-btn" type="button">🖨 Print QR Tag</button>
+                        <button id="previewQrBtn" class="action-btn outline-btn" type="button">👀 Preview Public Page</button>
+                        <button id="toggleLostStatusBtn" class="action-btn danger-btn" type="button">🔴 Mark as Lost</button>
+                        <button id="regenerateQrBtn" class="action-btn text-btn" type="button">🔄 Regenerate QR</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
 </div>
 
+<!-- EDIT PET MODAL -->
+<div id="editPetModal" class="modal-backdrop" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-top">
+            <h2>✏️ Edit Pet Profile</h2>
+            <button id="closeEditModalBtn" class="modal-close-icon" type="button">&times;</button>
+        </div>
 
+        <form id="editPetForm">
+            <div class="inputs-grid">
+                <div class="input-block">
+                    <label>Pet Name *</label>
+                    <input type="text" id="editPetName" name="petName" required>
+                </div>
+
+                <div class="input-block">
+                    <label>Species *</label>
+                    <select id="editSpecies" name="species" required>
+                        <option value="Dog">Dog 🐶</option>
+                        <option value="Cat">Cat 🐱</option>
+                        <option value="Bird">Bird 🦜</option>
+                        <option value="Rabbit">Rabbit 🐰</option>
+                        <option value="Turtle">Turtle 🐢</option>
+                        <option value="Horse">Horse 🐴</option>
+                        <option value="Fish">Fish 🐠</option>
+                        <option value="Other">Other 🐾</option>
+                    </select>
+                </div>
+
+                <div class="input-block">
+                    <label>Breed *</label>
+                    <input type="text" id="editBreed" name="breed" required>
+                </div>
+
+                <div class="input-block">
+                    <label>Gender *</label>
+                    <select id="editGender" name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-block">
+                    <label>Owner Contact Phone *</label>
+                    <input type="tel" id="editOwnerPhone" name="ownerPhone" placeholder="e.g. +1 555 123 4567" required>
+                </div>
+
+                <div class="input-block">
+                    <label>Reproductive Status</label>
+                    <select id="editReproductiveStatus" name="reproductiveStatus">
+                        <option value="Intact">Intact</option>
+                        <option value="Neutered">Neutered</option>
+                        <option value="Spayed">Spayed</option>
+                        <option value="Unknown">Unknown</option>
+                    </select>
+                </div>
+
+                <div class="input-block">
+                    <label>Date of Birth *</label>
+                    <input type="date" id="editDateOfBirth" name="dateOfBirth" required>
+                </div>
+
+                <div class="input-block">
+                    <label>Weight *</label>
+                    <input type="number" step="0.1" id="editWeight" name="weight" required>
+                </div>
+
+                <div class="input-block">
+                    <label>Weight Unit</label>
+                    <select id="editWeightUnit" name="weightUnit">
+                        <option value="kg">kg</option>
+                        <option value="lbs">lbs</option>
+                    </select>
+                </div>
+
+                <div class="input-block">
+                    <label>Microchip ID</label>
+                    <input type="text" id="editMicrochip" name="microchip" placeholder="Optional microchip number">
+                </div>
+
+                <div class="input-block full-width-block">
+                    <label>Pet Photo URL</label>
+                    <input type="url" id="editPetPhoto" name="petPhoto" placeholder="https://example.com/pet.jpg">
+                </div>
+            </div>
+
+            <div class="modal-actions-row">
+                <button type="button" id="cancelEditModalBtn" class="action-btn btn-secondary">Cancel</button>
+                <button type="submit" id="saveEditModalBtn" class="action-btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MARK AS LOST MODAL -->
+<div id="markLostModal" class="modal-backdrop" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-top">
+            <h2>🚨 Mark Pet as Lost</h2>
+            <button id="closeLostModalBtn" class="modal-close-icon" type="button">&times;</button>
+        </div>
+
+        <form id="markLostForm">
+            <p style="color:#64748b; font-size:0.9rem; margin-bottom:16px;">
+                Provide last-seen details to help finders identify your pet when scanning the QR tag.
+            </p>
+
+            <div class="input-block">
+                <label>📍 Last Seen Location</label>
+                <input type="text" id="lostLocation" placeholder="e.g. Pune, Central Park near the fountain">
+            </div>
+
+            <div class="input-block">
+                <label>📅 Lost Date</label>
+                <input type="date" id="lostDate">
+            </div>
+
+            <div class="input-block full-width-block">
+                <label>📝 Additional Notes for Finder</label>
+                <textarea id="lostNote" rows="3" placeholder="e.g. Responds to Mimi, wearing a blue collar. Very friendly." style="width:100%; padding:10px; border-radius:10px; border:1px solid #cbd5e1; font-family:inherit;"></textarea>
+            </div>
+
+            <div class="modal-actions-row" style="margin-top:20px;">
+                <button type="button" id="cancelLostBtn" class="action-btn btn-secondary">Cancel</button>
+                <button type="submit" class="action-btn btn-primary" style="background:#dc2626; color:white;">🚨 Confirm Lost Status</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- QR CODE JS LIBRARY & PET PROFILE ENGINE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="petProfile.js"></script>
-
 </body>
 </html>

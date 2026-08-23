@@ -1,518 +1,1829 @@
-/**
- * PET REGISTRATION FORM - VANILLA JS ENGINE
- */
-
-// Breed Data per Species
-const BREED_DATA = {
-  Dog: [
-    "Labrador Retriever", "Golden Retriever", "German Shepherd", "Beagle", 
-    "Pug", "Shih Tzu", "Rottweiler", "Husky", "Dachshund", "French Bulldog", 
-    "Poodle", "Boxer", "Australian Shepherd", "Other"
-  ],
-  Cat: [
-    "Persian", "Siamese", "Maine Coon", "Bengal", "British Shorthair", 
-    "Ragdoll", "Sphynx", "American Shorthair", "Scottish Fold", "Abyssinian", "Other"
-  ],
-  Bird: [
-    "Parakeet / Budgie", "Cockatiel", "Canary", "Lovebird", "Cockatoo", 
-    "Macaw", "Conure", "Finch", "Other"
-  ],
-  Reptile: [
-    "Bearded Dragon", "Leopard Gecko", "Ball Python", "Corn Snake", 
-    "Red-Eared Slider", "Chameleon", "Iguana", "Other"
-  ],
-  Fish: [
-    "Goldfish", "Betta", "Guppy", "Angelfish", "Neon Tetra", "Molly", "Other"
-  ],
-  Horse: [
-    "Quarter Horse", "Thoroughbred", "Arabian", "Appaloosa", "Paint Horse", "Other"
-  ],
-  Exotic: [
-    "Rabbit", "Guinea Pig", "Hamster", "Ferret", "Chinchilla", "Hedgehog", "Other"
-  ]
-};
-
-// Global State
-const state = {
-  allergies: [],
-  medicalConditions: [],
-  photoDataUrl: null,
-  selectedBreed: ''
-};
-
-// DOM Elements Initialization
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Lucide Icons
-  if (window.lucide) {
-    lucide.createIcons();
-  }
 
-  initMaxDateRestriction();
-  initSpeciesBreedLogic();
-  initImageUpload();
-  initTagInputs();
-  initFormValidationAndSubmission();
-});
+  // =========================================================
+  // PREDEFINED BREED DATA
+  // =========================================================
 
-/**
- * Prevent Future Dates in Date Picker
- */
-function initMaxDateRestriction() {
-  const dateInput = document.getElementById('dateOfBirth');
-  if (dateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.setAttribute('max', today);
-  }
-}
+  const breedDatabase = {
 
-/**
- * Species & Searchable Breed Selection Logic
- */
-function initSpeciesBreedLogic() {
-  const speciesSelect = document.getElementById('species');
-  const breedSearchInput = document.getElementById('breedSearch');
-  const breedHiddenInput = document.getElementById('breed');
-  const breedDropdown = document.getElementById('breedDropdown');
-  const breedContainer = document.getElementById('breedSelectContainer');
+    Dog: [
+      "Labrador Retriever",
+      "Golden Retriever",
+      "German Shepherd",
+      "Beagle",
+      "Poodle",
+      "Rottweiler",
+      "Dachshund",
+      "Boxer",
+      "Pomeranian",
+      "Shih Tzu",
+      "Doberman",
+      "Indie / Mixed Breed",
+      "Other"
+    ],
 
-  let currentBreeds = [];
+    Cat: [
+      "Persian",
+      "Siamese",
+      "Maine Coon",
+      "Ragdoll",
+      "Bengal",
+      "British Shorthair",
+      "Sphynx",
+      "Scottish Fold",
+      "Russian Blue",
+      "Birman",
+      "Abyssinian",
+      "Domestic Shorthair",
+      "Other"
+    ],
 
-  // Enable and populate breeds when species changes
-  speciesSelect.addEventListener('change', (e) => {
-    const species = e.target.value;
-    currentBreeds = BREED_DATA[species] || [];
-    
-    breedSearchInput.disabled = false;
-    breedSearchInput.value = '';
-    breedHiddenInput.value = '';
-    state.selectedBreed = '';
-    breedSearchInput.placeholder = 'Search or select breed';
-    
-    clearFieldError('breed');
-    renderBreedDropdown(currentBreeds);
-  });
+    Bird: [
+      "Budgerigar",
+      "Cockatiel",
+      "Lovebird",
+      "African Grey",
+      "Macaw",
+      "Cockatoo",
+      "Canary",
+      "Finch",
+      "Conure",
+      "Indian Ringneck",
+      "Eclectus",
+      "Dove",
+      "Other"
+    ],
 
-  // Filter breed list on input
-  breedSearchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    breedHiddenInput.value = ''; // clear hidden value until selected
-    state.selectedBreed = '';
+    Fish: [
+      "Goldfish",
+      "Betta",
+      "Guppy",
+      "Molly",
+      "Platy",
+      "Tetra",
+      "Angelfish",
+      "Oscar",
+      "Koi",
+      "Discus",
+      "Zebra Danio",
+      "Gourami",
+      "Other"
+    ],
 
-    const filtered = currentBreeds.filter(b => b.toLowerCase().includes(query));
-    renderBreedDropdown(filtered);
-    showBreedDropdown();
-  });
+    Rabbit: [
+      "Holland Lop",
+      "Netherland Dwarf",
+      "Mini Rex",
+      "Lionhead",
+      "Flemish Giant",
+      "Dutch Rabbit",
+      "English Lop",
+      "Rex Rabbit",
+      "Himalayan",
+      "Harlequin",
+      "New Zealand",
+      "Californian",
+      "Other"
+    ],
 
-  // Open dropdown on focus
-  breedSearchInput.addEventListener('focus', () => {
-    if (!breedSearchInput.disabled) {
-      renderBreedDropdown(currentBreeds);
-      showBreedDropdown();
-    }
-  });
+    Horse: [
+      "Arabian",
+      "Thoroughbred",
+      "Quarter Horse",
+      "Appaloosa",
+      "Andalusian",
+      "Clydesdale",
+      "Friesian",
+      "Mustang",
+      "Morgan",
+      "Paint Horse",
+      "Marwari",
+      "Lipizzaner",
+      "Other"
+    ],
 
-  // Close dropdown on click outside
-  document.addEventListener('click', (e) => {
-    if (!breedContainer.contains(e.target)) {
-      hideBreedDropdown();
-    }
-  });
+    Turtle: [
+      "Red-Eared Slider",
+      "Indian Star Tortoise",
+      "Russian Tortoise",
+      "Greek Tortoise",
+      "Sulcata Tortoise",
+      "Box Turtle",
+      "Painted Turtle",
+      "Musk Turtle",
+      "Map Turtle",
+      "Snapping Turtle",
+      "Leopard Tortoise",
+      "Indian Roofed Turtle",
+      "Other"
+    ],
 
-  function renderBreedDropdown(list) {
-    breedDropdown.innerHTML = '';
+    Other: [
+      "Hamster",
+      "Guinea Pig",
+      "Ferret",
+      "Chinchilla",
+      "Hedgehog",
+      "Sugar Glider",
+      "Gerbil",
+      "Rat",
+      "Mouse",
+      "Prairie Dog",
+      "Pygmy Goat",
+      "Other"
+    ]
 
-    if (list.length === 0) {
-      breedDropdown.innerHTML = `<div class="dropdown-empty">No breeds found</div>`;
+  };
+
+
+  // =========================================================
+  // DOM ELEMENTS
+  // =========================================================
+
+  const petForm =
+    document.getElementById('petForm');
+
+  const speciesSelect =
+    document.getElementById('species');
+
+  const breedInput =
+    document.getElementById('breedInput');
+
+  const breedDropdownList =
+    document.getElementById('breedDropdownList');
+
+  const reproductiveStatusSelect =
+    document.getElementById('reproductiveStatus');
+
+  const uploadContainer =
+    document.getElementById('uploadContainer');
+
+  const uploadDropzone =
+    document.getElementById('uploadDropzone');
+
+  const uploadPreview =
+    document.getElementById('uploadPreview');
+
+  const photoInput =
+    document.getElementById('photoInput');
+
+  const previewImg =
+    document.getElementById('previewImg');
+
+  const btnChangePhoto =
+    document.getElementById('btnChangePhoto');
+
+  const btnRemovePhoto =
+    document.getElementById('btnRemovePhoto');
+
+  const tagInput =
+    document.getElementById('tagInput');
+
+  const tagsWrapper =
+    document.getElementById('tagsWrapper');
+
+  const toast =
+    document.getElementById('toast');
+
+  const toastMessage =
+    document.getElementById('toastMessage');
+
+  const btnCancel =
+    document.getElementById('btnCancel');
+
+
+  let activeTags = [];
+
+  let availableBreeds = [];
+
+
+  // =========================================================
+  // 1. SPECIES → BREED
+  // =========================================================
+
+  function updateBreedOptions() {
+
+    if (!speciesSelect || !breedInput) {
       return;
     }
 
-    list.forEach(breed => {
-      const item = document.createElement('div');
-      item.className = 'dropdown-item';
-      item.textContent = breed;
-      
-      item.addEventListener('click', () => {
-        breedSearchInput.value = breed;
-        breedHiddenInput.value = breed;
-        state.selectedBreed = breed;
-        clearFieldError('breed');
-        hideBreedDropdown();
-      });
 
-      breedDropdown.appendChild(item);
-    });
-  }
+    const species =
+      speciesSelect.value;
 
-  function showBreedDropdown() {
-    breedDropdown.hidden = false;
-  }
 
-  function hideBreedDropdown() {
-    breedDropdown.hidden = true;
-  }
-}
+    availableBreeds =
+      breedDatabase[species] || [];
 
-/**
- * Image Upload & Preview Logic
- */
-function initImageUpload() {
-  const uploadContainer = document.getElementById('uploadContainer');
-  const fileInput = document.getElementById('petPhoto');
-  const dropzone = document.getElementById('uploadDropzone');
-  const preview = document.getElementById('uploadPreview');
-  const previewImage = document.getElementById('previewImage');
-  const btnChange = document.getElementById('btnChangePhoto');
-  const btnRemove = document.getElementById('btnRemovePhoto');
 
-  // Click dropzone to select file
-  dropzone.addEventListener('click', () => fileInput.click());
-  btnChange.addEventListener('click', () => fileInput.click());
+    if (
+      species &&
+      availableBreeds.length > 0
+    ) {
 
-  // Handle Drag & Drop
-  ['dragenter', 'dragover'].forEach(eventName => {
-    uploadContainer.addEventListener(eventName, (e) => {
-      e.preventDefault();
-      uploadContainer.classList.add('drag-over');
-    });
-  });
+      // Enable breed input
+      breedInput.disabled = false;
 
-  ['dragleave', 'drop'].forEach(eventName => {
-    uploadContainer.addEventListener(eventName, (e) => {
-      e.preventDefault();
-      uploadContainer.classList.remove('drag-over');
-    });
-  });
+      breedInput.placeholder =
+        'Type or select breed...';
 
-  uploadContainer.addEventListener('drop', (e) => {
-    const files = e.dataTransfer.files;
-    if (files.length > 0) {
-      handleImageFile(files[0]);
-    }
-  });
-
-  // File Input Selection
-  fileInput.addEventListener('change', (e) => {
-    if (e.target.files.length > 0) {
-      handleImageFile(e.target.files[0]);
-    }
-  });
-
-  // Remove Photo Action
-  btnRemove.addEventListener('click', () => {
-    fileInput.value = '';
-    state.photoDataUrl = null;
-    previewImage.src = '';
-    preview.hidden = true;
-    dropzone.hidden = false;
-    clearFieldError('petPhoto');
-  });
-
-  function handleImageFile(file) {
-    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-    const maxSize = 5 * 1024 * 1024; // 5MB
-
-    if (!validTypes.includes(file.type)) {
-      showFieldError('petPhoto', 'Please select a valid image (JPG, PNG, or WEBP).');
-      return;
     }
 
-    if (file.size > maxSize) {
-      showFieldError('petPhoto', 'Image size must be less than 5MB.');
-      return;
-    }
+    else {
 
-    clearFieldError('petPhoto');
+      // Disable breed input
+      breedInput.disabled = true;
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      state.photoDataUrl = e.target.result;
-      previewImage.src = state.photoDataUrl;
-      dropzone.hidden = true;
-      preview.hidden = false;
-    };
-    reader.readAsDataURL(file);
-  }
-}
+      breedInput.value = '';
 
-/**
- * Tags / Chips System (Allergies & Medical Conditions)
- */
-function initTagInputs() {
-  setupTagField('allergyInput', 'allergyTags', state.allergies);
-  setupTagField('conditionInput', 'conditionTags', state.medicalConditions);
-}
+      breedInput.placeholder =
+        'Select species first';
 
-function setupTagField(inputId, tagsContainerId, listArray) {
-  const input = document.getElementById(inputId);
-  const container = document.getElementById(tagsContainerId);
+      if (breedDropdownList) {
 
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ',') {
-      e.preventDefault();
-      const val = input.value.trim().replace(/^,|,$/g, '');
-      if (val && !listArray.includes(val)) {
-        listArray.push(val);
-        renderTags(container, listArray);
-        input.value = '';
+        breedDropdownList.style.display =
+          'none';
+
       }
+
     }
-  });
 
-  // Process input on blur if text remains
-  input.addEventListener('blur', () => {
-    const val = input.value.trim().replace(/^,|,$/g, '');
-    if (val && !listArray.includes(val)) {
-      listArray.push(val);
-      renderTags(container, listArray);
-      input.value = '';
-    }
-  });
-}
-
-function renderTags(container, listArray) {
-  container.innerHTML = '';
-  listArray.forEach((item, index) => {
-    const chip = document.createElement('div');
-    chip.className = 'tag-chip';
-    chip.innerHTML = `
-      <span>${escapeHtml(item)}</span>
-      <button type="button" class="tag-chip-remove" aria-label="Remove ${escapeHtml(item)}">
-        <i data-lucide="x"></i>
-      </button>
-    `;
-
-    chip.querySelector('.tag-chip-remove').addEventListener('click', () => {
-      listArray.splice(index, 1);
-      renderTags(container, listArray);
-    });
-
-    container.appendChild(chip);
-  });
-
-  if (window.lucide) {
-    lucide.createIcons();
   }
-}
 
-/**
- * Validation & Submission Engine
- */
-function initFormValidationAndSubmission() {
-  const form = document.getElementById('petRegistrationForm');
-  const btnCancel = document.getElementById('btnCancel');
 
-  // Real-time blur validation
-  document.getElementById('petName').addEventListener('blur', validatePetName);
-  document.getElementById('species').addEventListener('change', validateSpecies);
-  document.getElementById('dateOfBirth').addEventListener('change', validateDateOfBirth);
-  document.getElementById('weightValue').addEventListener('input', validateWeight);
+  // =========================================================
+  // SPECIES CHANGE
+  // =========================================================
 
-  // Clear radio error on change
-  document.querySelectorAll('input[name="gender"]').forEach(radio => {
-    radio.addEventListener('change', () => clearFieldError('gender'));
-  });
+  if (speciesSelect) {
 
-  // Form Submit
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+    speciesSelect.addEventListener(
+      'change',
+      function () {
 
-    const isNameValid = validatePetName();
-    const isSpeciesValid = validateSpecies();
-    const isBreedValid = validateBreed();
-    const isGenderValid = validateGender();
-    const isDobValid = validateDateOfBirth();
-    const isWeightValid = validateWeight();
+        updateBreedOptions();
 
-    const isFormValid = isNameValid && isSpeciesValid && isBreedValid && 
-                        isGenderValid && isDobValid && isWeightValid;
+        breedInput.value = '';
 
-    if (!isFormValid) {
-      // Scroll to first error smoothly
-      const firstError = document.querySelector('.has-error');
-      if (firstError) {
-        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (breedDropdownList) {
+
+          breedDropdownList.style.display =
+            'none';
+
+        }
+
+        clearFieldError(
+          'breedInput'
+        );
+
       }
+    );
+
+  }
+
+
+  // Initialize breed on page load
+  updateBreedOptions();
+
+
+  // =========================================================
+  // BREED AUTOCOMPLETE
+  // =========================================================
+
+  if (breedInput) {
+
+    breedInput.addEventListener(
+      'focus',
+      () => {
+
+        if (
+          !breedInput.disabled
+        ) {
+
+          renderBreedOptions(
+            breedInput.value
+          );
+
+        }
+
+      }
+    );
+
+
+    breedInput.addEventListener(
+      'input',
+      (e) => {
+
+        renderBreedOptions(
+          e.target.value
+        );
+
+      }
+    );
+
+  }
+
+
+  function renderBreedOptions(
+    filterText = ''
+  ) {
+
+    if (
+      !breedDropdownList ||
+      !breedInput
+    ) {
+
+      return;
+
+    }
+
+
+    const query =
+      filterText
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+      availableBreeds.filter(
+        breed =>
+          breed
+            .toLowerCase()
+            .includes(query)
+      );
+
+
+    breedDropdownList.innerHTML =
+      '';
+
+
+    if (
+      filtered.length === 0
+    ) {
+
+      breedDropdownList.innerHTML =
+        `<div class="dropdown-empty">
+          No matching breeds found
+        </div>`;
+
+    }
+
+    else {
+
+      filtered.forEach(
+        breed => {
+
+          const item =
+            document.createElement(
+              'div'
+            );
+
+          item.className =
+            'dropdown-item';
+
+          item.textContent =
+            breed;
+
+
+          item.addEventListener(
+            'mousedown',
+            (e) => {
+
+              e.preventDefault();
+
+              breedInput.value =
+                breed;
+
+              breedDropdownList.style.display =
+                'none';
+
+              clearFieldError(
+                'breedInput'
+              );
+
+            }
+          );
+
+
+          breedDropdownList.appendChild(
+            item
+          );
+
+        }
+      );
+
+    }
+
+
+    breedDropdownList.style.display =
+      'block';
+
+  }
+
+
+  // =========================================================
+  // CLOSE BREED DROPDOWN
+  // =========================================================
+
+  document.addEventListener(
+    'click',
+    (e) => {
+
+      if (
+        !e.target.closest(
+          '.searchable-select'
+        )
+      ) {
+
+        if (breedDropdownList) {
+
+          breedDropdownList.style.display =
+            'none';
+
+        }
+
+      }
+
+    }
+  );
+
+
+  // =========================================================
+  // 2. REPRODUCTIVE STATUS
+  // Depends on Gender
+  // =========================================================
+
+  function updateReproductiveStatusOptions() {
+
+    if (!reproductiveStatusSelect) {
+
+      console.error(
+        'Reproductive status dropdown not found.'
+      );
+
+      return;
+
+    }
+
+
+    const selectedGender =
+      document.querySelector(
+        'input[name="gender"]:checked'
+      );
+
+
+    const gender =
+      selectedGender
+        ? selectedGender.value
+        : '';
+
+
+    console.log(
+      'Current gender:',
+      gender
+    );
+
+
+    // Clear old options
+    reproductiveStatusSelect.innerHTML =
+      '';
+
+
+    // =======================================================
+    // NO GENDER
+    // =======================================================
+
+    if (!gender) {
+
+      const option =
+        document.createElement(
+          'option'
+        );
+
+      option.value =
+        '';
+
+      option.textContent =
+        'Select gender first';
+
+      reproductiveStatusSelect.appendChild(
+        option
+      );
+
+      return;
+
+    }
+
+
+    // =======================================================
+    // DEFAULT
+    // =======================================================
+
+    const defaultOption =
+      document.createElement(
+        'option'
+      );
+
+    defaultOption.value =
+      '';
+
+    defaultOption.textContent =
+      'Select reproductive status';
+
+    reproductiveStatusSelect.appendChild(
+      defaultOption
+    );
+
+
+    // =======================================================
+    // MALE
+    // =======================================================
+
+    if (
+      gender === 'Male'
+    ) {
+
+      addReproductiveOption(
+        'Intact'
+      );
+
+      addReproductiveOption(
+        'Neutered'
+      );
+
+      addReproductiveOption(
+        'Unknown'
+      );
+
+    }
+
+
+    // =======================================================
+    // FEMALE
+    // =======================================================
+
+    else if (
+      gender === 'Female'
+    ) {
+
+      addReproductiveOption(
+        'Intact'
+      );
+
+      addReproductiveOption(
+        'Spayed'
+      );
+
+      addReproductiveOption(
+        'Unknown'
+      );
+
+    }
+
+  }
+
+
+  // =========================================================
+  // ADD REPRODUCTIVE OPTION
+  // =========================================================
+
+  function addReproductiveOption(
+    value
+  ) {
+
+    const option =
+      document.createElement(
+        'option'
+      );
+
+    option.value =
+      value;
+
+    option.textContent =
+      value;
+
+    reproductiveStatusSelect.appendChild(
+      option
+    );
+
+  }
+
+
+  // =========================================================
+  // GENDER BUTTON EVENTS
+  // =========================================================
+
+  const genderInputs =
+    document.querySelectorAll(
+      'input[name="gender"]'
+    );
+
+
+  genderInputs.forEach(
+    function (input) {
+
+      input.addEventListener(
+        'change',
+        function () {
+
+          console.log(
+            'Gender changed:',
+            input.value
+          );
+
+
+          updateReproductiveStatusOptions();
+
+        }
+      );
+
+    }
+  );
+
+
+  // Initialize reproductive status
+  updateReproductiveStatusOptions();
+
+
+  // =========================================================
+  // HANDLE BROWSER FORM RESTORATION
+  // =========================================================
+
+  window.addEventListener(
+    'pageshow',
+    function () {
+
+      updateBreedOptions();
+
+      updateReproductiveStatusOptions();
+
+    }
+  );
+
+
+  // =========================================================
+  // 3. PHOTO UPLOAD
+  // =========================================================
+
+  if (
+    uploadDropzone &&
+    photoInput
+  ) {
+
+    uploadDropzone.addEventListener(
+      'click',
+      () => photoInput.click()
+    );
+
+  }
+
+
+  if (
+    btnChangePhoto &&
+    photoInput
+  ) {
+
+    btnChangePhoto.addEventListener(
+      'click',
+      () => photoInput.click()
+    );
+
+  }
+
+
+  if (uploadContainer) {
+
+    [
+      'dragenter',
+      'dragover'
+    ].forEach(
+      eventName => {
+
+        uploadContainer.addEventListener(
+          eventName,
+          (e) => {
+
+            e.preventDefault();
+
+            uploadContainer.classList.add(
+              'drag-over'
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    [
+      'dragleave',
+      'drop'
+    ].forEach(
+      eventName => {
+
+        uploadContainer.addEventListener(
+          eventName,
+          (e) => {
+
+            e.preventDefault();
+
+            uploadContainer.classList.remove(
+              'drag-over'
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    uploadContainer.addEventListener(
+      'drop',
+      (e) => {
+
+        const files =
+          e.dataTransfer.files;
+
+
+        if (
+          files.length > 0
+        ) {
+
+          handleImageFile(
+            files[0]
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  if (photoInput) {
+
+    photoInput.addEventListener(
+      'change',
+      (e) => {
+
+        if (
+          e.target.files.length > 0
+        ) {
+
+          handleImageFile(
+            e.target.files[0]
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  function handleImageFile(
+    file
+  ) {
+
+    if (
+      !file.type.startsWith(
+        'image/'
+      )
+    ) {
+
+      showToast(
+        'Please upload a valid image file'
+      );
+
+      return;
+
+    }
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload =
+      (e) => {
+
+        if (previewImg) {
+
+          previewImg.src =
+            e.target.result;
+
+        }
+
+
+        if (uploadDropzone) {
+
+          uploadDropzone.style.display =
+            'none';
+
+        }
+
+
+        if (uploadPreview) {
+
+          uploadPreview.style.display =
+            'flex';
+
+        }
+
+      };
+
+
+    reader.readAsDataURL(
+      file
+    );
+
+  }
+
+
+  if (btnRemovePhoto) {
+
+    btnRemovePhoto.addEventListener(
+      'click',
+      () => {
+
+        if (photoInput) {
+
+          photoInput.value =
+            '';
+
+        }
+
+
+        if (previewImg) {
+
+          previewImg.src =
+            '';
+
+        }
+
+
+        if (uploadPreview) {
+
+          uploadPreview.style.display =
+            'none';
+
+        }
+
+
+        if (uploadDropzone) {
+
+          uploadDropzone.style.display =
+            'flex';
+
+        }
+
+      }
+    );
+
+  }
+
+
+  // =========================================================
+  // 4. MEDICAL CONDITION TAGS
+  // =========================================================
+
+  if (tagInput) {
+
+    tagInput.addEventListener(
+      'keydown',
+      (e) => {
+
+        if (
+          e.key === 'Enter' ||
+          e.key === ','
+        ) {
+
+          e.preventDefault();
+
+
+          const val =
+            tagInput.value
+              .trim()
+              .replace(
+                /,/g,
+                ''
+              );
+
+
+          if (
+            val &&
+            !activeTags.includes(
+              val
+            )
+          ) {
+
+            activeTags.push(
+              val
+            );
+
+            renderTags();
+
+            tagInput.value =
+              '';
+
+          }
+
+        }
+
+      }
+    );
+
+  }
+
+
+  function renderTags() {
+
+    if (!tagsWrapper) {
       return;
     }
 
-    // Collect Form Data into JS Object
-    const petData = {
-      petName: document.getElementById('petName').value.trim(),
-      species: document.getElementById('species').value,
-      breed: document.getElementById('breed').value || document.getElementById('breedSearch').value,
-      gender: document.querySelector('input[name="gender"]:checked').value,
-      dateOfBirth: document.getElementById('dateOfBirth').value,
-      currentWeight: {
-        value: parseFloat(document.getElementById('weightValue').value),
-        unit: document.getElementById('weightUnit').value
+
+    tagsWrapper.innerHTML =
+      '';
+
+
+    activeTags.forEach(
+      (tag, index) => {
+
+        const chip =
+          document.createElement(
+            'span'
+          );
+
+        chip.className =
+          'tag-chip';
+
+
+        chip.innerHTML = `
+          ${tag}
+          <button
+            type="button"
+            class="tag-chip-remove"
+            data-index="${index}"
+          >
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+            >
+              <line
+                x1="18"
+                y1="6"
+                x2="6"
+                y2="18"
+              ></line>
+
+              <line
+                x1="6"
+                y1="6"
+                x2="18"
+                y2="18"
+              ></line>
+            </svg>
+          </button>
+        `;
+
+
+        tagsWrapper.appendChild(
+          chip
+        );
+
+      }
+    );
+
+  }
+
+
+  if (tagsWrapper) {
+
+    tagsWrapper.addEventListener(
+      'click',
+      (e) => {
+
+        const removeBtn =
+          e.target.closest(
+            '.tag-chip-remove'
+          );
+
+
+        if (removeBtn) {
+
+          const index =
+            removeBtn.getAttribute(
+              'data-index'
+            );
+
+
+          activeTags.splice(
+            index,
+            1
+          );
+
+
+          renderTags();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  // =========================================================
+  // 5. FORM SUBMISSION
+  // =========================================================
+
+  if (petForm) {
+
+    petForm.addEventListener(
+      'submit',
+      async (e) => {
+
+        e.preventDefault();
+
+
+        let isValid =
+          true;
+
+
+        clearAllErrors();
+
+
+        // ===================================================
+        // GET FORM ELEMENTS
+        // ===================================================
+
+        const name =
+          document.getElementById(
+            'petName'
+          );
+
+
+        const dob =
+          document.getElementById(
+            'dob'
+          );
+
+
+        const weight =
+          document.getElementById(
+            'weight'
+          );
+
+
+        const weightUnit =
+          document.getElementById(
+            'weightUnit'
+          );
+
+
+        const microchip =
+          document.getElementById(
+            'microchip'
+          );
+
+
+        // ===================================================
+        // PET NAME
+        // ===================================================
+
+        if (
+          !name ||
+          !name.value.trim()
+        ) {
+
+          showFieldError(
+            'petName',
+            'Pet name is required'
+          );
+
+          isValid =
+            false;
+
+        }
+
+
+        // ===================================================
+        // SPECIES
+        // ===================================================
+
+        if (
+          !speciesSelect ||
+          !speciesSelect.value
+        ) {
+
+          showFieldError(
+            'species',
+            'Please select a species'
+          );
+
+          isValid =
+            false;
+
+        }
+
+
+        // ===================================================
+        // BREED
+        // ===================================================
+
+        if (
+          !breedInput ||
+          !breedInput.value.trim()
+        ) {
+
+          showFieldError(
+            'breedInput',
+            'Please enter or select a breed'
+          );
+
+          isValid =
+            false;
+
+        }
+
+
+        // ===================================================
+        // GENDER
+        // ===================================================
+
+        const genderChecked =
+          document.querySelector(
+            'input[name="gender"]:checked'
+          );
+
+
+        if (!genderChecked) {
+
+          showFieldError(
+            'gender',
+            'Please select gender'
+          );
+
+          isValid =
+            false;
+
+        }
+
+
+        // ===================================================
+        // REPRODUCTIVE STATUS
+        // ===================================================
+
+        if (
+          !reproductiveStatusSelect ||
+          !reproductiveStatusSelect.value
+        ) {
+
+          showFieldError(
+            'reproductiveStatus',
+            'Please select reproductive status'
+          );
+
+          isValid =
+            false;
+
+        }
+
+
+        // ===================================================
+        // DATE OF BIRTH
+        // ===================================================
+
+        if (
+          !dob ||
+          !dob.value
+        ) {
+
+          showFieldError(
+            'dob',
+            'Date of birth is required'
+          );
+
+          isValid =
+            false;
+
+        }
+
+
+        // ===================================================
+        // WEIGHT
+        // ===================================================
+
+        if (
+          !weight ||
+          !weight.value ||
+          Number(weight.value) <= 0
+        ) {
+
+          showFieldError(
+            'weight',
+            'Enter a valid weight'
+          );
+
+          isValid =
+            false;
+
+        }
+
+
+        // ===================================================
+        // STOP IF INVALID
+        // ===================================================
+
+        if (!isValid) {
+
+          return;
+
+        }
+
+
+        // ===================================================
+        // LOGIN TOKEN
+        // ===================================================
+
+        const token =
+          localStorage.getItem(
+            'pawsyncToken'
+          );
+
+
+        if (!token) {
+
+          showToast(
+            'Please login before adding a pet.'
+          );
+
+          return;
+
+        }
+
+
+        // ===================================================
+        // CREATE FORMDATA
+        // ===================================================
+
+        const formData =
+          new FormData();
+
+
+        // ===================================================
+        // BASIC INFORMATION
+        // ===================================================
+
+        formData.append(
+          'petName',
+          name.value.trim()
+        );
+
+
+        formData.append(
+          'species',
+          speciesSelect.value
+        );
+
+
+        formData.append(
+          'breed',
+          breedInput.value.trim()
+        );
+
+
+        formData.append(
+          'gender',
+          genderChecked.value
+        );
+
+
+        // ===================================================
+        // REPRODUCTIVE STATUS
+        // IMPORTANT:
+        // Do NOT redeclare const here.
+        // We already have reproductiveStatusSelect.
+        // ===================================================
+
+        formData.append(
+          'reproductiveStatus',
+          reproductiveStatusSelect.value
+        );
+
+
+        // ===================================================
+        // DATE OF BIRTH
+        // ===================================================
+
+        formData.append(
+          'dateOfBirth',
+          dob.value
+        );
+
+
+        // ===================================================
+        // WEIGHT
+        // ===================================================
+
+        formData.append(
+          'weight',
+          weight.value
+        );
+
+
+        formData.append(
+          'weightUnit',
+          weightUnit
+            ? weightUnit.value
+            : 'kg'
+        );
+
+
+        // ===================================================
+        // MICROCHIP
+        // ===================================================
+
+        formData.append(
+          'microchip',
+          microchip
+            ? microchip.value.trim()
+            : ''
+        );
+
+        const ownerPhoneInput = document.getElementById('ownerPhone');
+        formData.append(
+          'ownerPhone',
+          ownerPhoneInput ? ownerPhoneInput.value.trim() : ''
+        );
+
+
+        // ===================================================
+        // MEDICAL CONDITIONS
+        // ===================================================
+
+        formData.append(
+          'medicalConditions',
+          JSON.stringify(
+            activeTags
+          )
+        );
+
+
+        // ===================================================
+        // PET PHOTO
+        // ===================================================
+
+        if (
+          photoInput &&
+          photoInput.files &&
+          photoInput.files.length > 0
+        ) {
+
+          formData.append(
+            'petPhoto',
+            photoInput.files[0]
+          );
+
+        }
+
+
+        // ===================================================
+        // DEBUG
+        // ===================================================
+
+        console.log(
+          'Sending pet data to backend...'
+        );
+
+
+        for (
+          const [key, value]
+          of formData.entries()
+        ) {
+
+          if (
+            value instanceof File
+          ) {
+
+            console.log(
+              key,
+              value.name,
+              value.type,
+              value.size
+            );
+
+          }
+
+          else {
+
+            console.log(
+              key,
+              value
+            );
+
+          }
+
+        }
+
+
+        // ===================================================
+        // SUBMIT BUTTON
+        // ===================================================
+
+        const submitButton =
+          document.getElementById(
+            'btnSubmit'
+          );
+
+
+        const originalButtonText =
+          submitButton
+            ? submitButton.textContent
+            : 'Add Pet';
+
+
+        if (submitButton) {
+
+          submitButton.disabled =
+            true;
+
+          submitButton.textContent =
+            'Adding Pet...';
+
+        }
+
+
+        // ===================================================
+        // SEND REQUEST
+        // ===================================================
+
+        try {
+
+          const response =
+            await fetch(
+              'http://localhost:5000/api/pets',
+              {
+
+                method: 'POST',
+
+                headers: {
+
+                  Authorization:
+                    `Bearer ${token}`
+
+                },
+
+                body:
+                  formData
+
+              }
+            );
+
+
+          // =================================================
+          // BACKEND RESPONSE
+          // =================================================
+
+          const data =
+            await response.json();
+
+
+          console.log(
+            'Backend response:',
+            data
+          );
+
+
+          // =================================================
+          // SUCCESS
+          // =================================================
+
+          if (
+            response.ok &&
+            data.success
+          ) {
+
+            showToast(
+              'Pet profile created successfully!'
+            );
+
+
+            console.log(
+              'Saved pet:',
+              data.pet
+            );
+
+
+            setTimeout(
+              () => {
+
+                petForm.reset();
+
+                activeTags = [];
+
+                renderTags();
+
+
+                if (
+                  btnRemovePhoto
+                ) {
+
+                  btnRemovePhoto.click();
+
+                }
+
+
+                // Reset breed
+                updateBreedOptions();
+
+
+                // Reset reproductive status
+                updateReproductiveStatusOptions();
+
+              },
+              1200
+            );
+
+          }
+
+
+          // =================================================
+          // BACKEND ERROR
+          // =================================================
+
+          else {
+
+            console.error(
+              'Backend returned error:',
+              data
+            );
+
+
+            showToast(
+              data.message ||
+              'Unable to add pet.'
+            );
+
+          }
+
+        }
+
+
+        // ===================================================
+        // NETWORK ERROR
+        // ===================================================
+
+        catch (error) {
+
+          console.error(
+            'Add pet request failed:',
+            error
+          );
+
+
+          showToast(
+            'Unable to connect to the server.'
+          );
+
+        }
+
+
+        // ===================================================
+        // ENABLE BUTTON AGAIN
+        // ===================================================
+
+        finally {
+
+          if (submitButton) {
+
+            submitButton.disabled =
+              false;
+
+            submitButton.textContent =
+              originalButtonText;
+
+          }
+
+        }
+
+      }
+    );
+
+  }
+
+
+  // =========================================================
+  // 6. SHOW FIELD ERROR
+  // =========================================================
+
+  function showFieldError(
+    fieldId,
+    message
+  ) {
+
+    const group =
+      document.getElementById(
+        `group-${fieldId}`
+      );
+
+
+    const errorSpan =
+      document.getElementById(
+        `error-${fieldId}`
+      );
+
+
+    if (group) {
+
+      group.classList.add(
+        'has-error'
+      );
+
+    }
+
+
+    if (errorSpan) {
+
+      errorSpan.textContent =
+        message;
+
+    }
+
+  }
+
+
+  // =========================================================
+  // 7. CLEAR FIELD ERROR
+  // =========================================================
+
+  function clearFieldError(
+    fieldId
+  ) {
+
+    const group =
+      document.getElementById(
+        `group-${fieldId}`
+      );
+
+
+    const errorSpan =
+      document.getElementById(
+        `error-${fieldId}`
+      );
+
+
+    if (group) {
+
+      group.classList.remove(
+        'has-error'
+      );
+
+    }
+
+
+    if (errorSpan) {
+
+      errorSpan.textContent =
+        '';
+
+    }
+
+  }
+
+
+  // =========================================================
+  // 8. CLEAR ALL ERRORS
+  // =========================================================
+
+  function clearAllErrors() {
+
+    document
+      .querySelectorAll(
+        '.form-group'
+      )
+      .forEach(
+        (group) => {
+
+          group.classList.remove(
+            'has-error'
+          );
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        '.error-message'
+      )
+      .forEach(
+        (span) => {
+
+          span.textContent =
+            '';
+
+        }
+      );
+
+  }
+
+
+  // =========================================================
+  // 9. TOAST
+  // =========================================================
+
+  function showToast(
+    msg
+  ) {
+
+    if (
+      !toast ||
+      !toastMessage
+    ) {
+
+      alert(msg);
+
+      return;
+
+    }
+
+
+    toastMessage.textContent =
+      msg;
+
+
+    toast.classList.add(
+      'show'
+    );
+
+
+    setTimeout(
+      () => {
+
+        toast.classList.remove(
+          'show'
+        );
+
       },
-      petPhoto: state.photoDataUrl,
-      colorMarkings: document.getElementById('colorMarkings').value.trim(),
-      spayedNeutered: getSelectedRadioValue('spayedNeutered'),
-      knownAllergies: [...state.allergies],
-      existingMedicalConditions: [...state.medicalConditions]
-    };
+      3500
+    );
 
-    console.log('✅ Pet Registered Successfully:', petData);
-
-    showToast(`✓ ${petData.petName} has been added successfully!`);
-
-    // Reset Form safely after short delay
-    setTimeout(() => {
-      resetForm();
-    }, 1200);
-  });
-
-  // Cancel Button Action
-  btnCancel.addEventListener('click', () => {
-    if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
-      resetForm();
-    }
-  });
-}
-
-/* Individual Validation Rules */
-function validatePetName() {
-  const val = document.getElementById('petName').value.trim();
-  if (!val) {
-    showFieldError('petName', 'Pet name is required.');
-    return false;
-  }
-  clearFieldError('petName');
-  return true;
-}
-
-function validateSpecies() {
-  const val = document.getElementById('species').value;
-  if (!val) {
-    showFieldError('species', 'Please select a species.');
-    return false;
-  }
-  clearFieldError('species');
-  return true;
-}
-
-function validateBreed() {
-  const breedVal = document.getElementById('breed').value || document.getElementById('breedSearch').value.trim();
-  if (!breedVal) {
-    showFieldError('breed', 'Please select or search for a breed.');
-    return false;
-  }
-  clearFieldError('breed');
-  return true;
-}
-
-function validateGender() {
-  const selected = document.querySelector('input[name="gender"]:checked');
-  if (!selected) {
-    showFieldError('gender', 'Please select gender.');
-    return false;
-  }
-  clearFieldError('gender');
-  return true;
-}
-
-function validateDateOfBirth() {
-  const input = document.getElementById('dateOfBirth');
-  const val = input.value;
-  
-  if (!val) {
-    showFieldError('dateOfBirth', 'Please enter your pet\'s date of birth.');
-    return false;
   }
 
-  const selectedDate = new Date(val);
-  const today = new Date();
-  today.setHours(23, 59, 59, 999);
 
-  if (selectedDate > today) {
-    showFieldError('dateOfBirth', 'Date of birth cannot be in the future.');
-    return false;
+  // =========================================================
+  // 10. CANCEL BUTTON
+  // =========================================================
+
+  if (btnCancel) {
+
+    btnCancel.addEventListener(
+      'click',
+      () => {
+
+        if (
+          confirm(
+            'Discard changes?'
+          )
+        ) {
+
+          petForm.reset();
+
+          clearAllErrors();
+
+          activeTags = [];
+
+          renderTags();
+
+
+          if (
+            btnRemovePhoto
+          ) {
+
+            btnRemovePhoto.click();
+
+          }
+
+
+          updateBreedOptions();
+
+          updateReproductiveStatusOptions();
+
+        }
+
+      }
+    );
+
   }
 
-  clearFieldError('dateOfBirth');
-  return true;
-}
-
-function validateWeight() {
-  const val = document.getElementById('weightValue').value;
-  const num = parseFloat(val);
-
-  if (!val || isNaN(num)) {
-    showFieldError('weight', 'Please enter a valid weight.');
-    return false;
-  }
-  if (num <= 0) {
-    showFieldError('weight', 'Weight must be greater than 0.');
-    return false;
-  }
-  if (num > 1000) {
-    showFieldError('weight', 'Please enter a realistic weight value.');
-    return false;
-  }
-
-  clearFieldError('weight');
-  return true;
-}
-
-/* Helper Utilities */
-function showFieldError(groupId, message) {
-  const group = document.getElementById(`group-${groupId}`);
-  const errSpan = document.getElementById(`err-${groupId}`);
-  if (group) group.classList.add('has-error');
-  if (errSpan) errSpan.textContent = message;
-}
-
-function clearFieldError(groupId) {
-  const group = document.getElementById(`group-${groupId}`);
-  const errSpan = document.getElementById(`err-${groupId}`);
-  if (group) group.classList.remove('has-error');
-  if (errSpan) errSpan.textContent = '';
-}
-
-function getSelectedRadioValue(name) {
-  const el = document.querySelector(`input[name="${name}"]:checked`);
-  return el ? el.value : '';
-}
-
-function escapeHtml(text) {
-  return text.replace(/[&<>"']/g, (m) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
-  })[m]);
-}
-
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  const toastMessage = document.getElementById('toastMessage');
-  
-  toastMessage.textContent = message;
-  toast.classList.add('show');
-
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 4000);
-}
-
-function resetForm() {
-  const form = document.getElementById('petRegistrationForm');
-  form.reset();
-  
-  // Clear error states
-  document.querySelectorAll('.has-error').forEach(el => el.classList.remove('has-error'));
-  document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
-
-  // Reset custom states
-  state.allergies = [];
-  state.medicalConditions = [];
-  state.photoDataUrl = null;
-  state.selectedBreed = '';
-
-  document.getElementById('allergyTags').innerHTML = '';
-  document.getElementById('conditionTags').innerHTML = '';
-  document.getElementById('btnRemovePhoto').click();
-
-  // Reset Breed dropdown input state
-  const breedSearch = document.getElementById('breedSearch');
-  breedSearch.disabled = true;
-  breedSearch.placeholder = 'Select species first';
-}
+});

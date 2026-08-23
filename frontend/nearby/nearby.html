@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Pet Care | PawSync</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- LEAFLET MAP CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- SHARED STYLES -->
+    <link rel="stylesheet" href="../shared/css/variables.css">
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <link rel="stylesheet" href="../shared/css/responsive.css">
+
+    <!-- PAGE STYLES -->
+    <link rel="stylesheet" href="nearby.css">
+</head>
+<body data-shared-path="../shared">
+
+    <!-- SHARED NAVBAR -->
+    <div id="navbar-container"></div>
+
+    <div class="page-layout">
+        <!-- SHARED SIDEBAR -->
+        <div id="sidebar-container"></div>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- PAGE HEADER -->
+            <section class="page-header">
+                <div class="header-left">
+                    <div class="eyebrow">PET CARE FINDER</div>
+                    <h1>📍 Nearby Pet Care</h1>
+                    <p>Find top-rated pet groomers and veterinary clinics near your current location.</p>
+                </div>
+
+                <div class="header-actions">
+                    <div class="category-toggle-group">
+                        <button class="category-toggle-btn active" id="btnCategoryGroomer" type="button">
+                            ✂️ Find Nearby Groomer
+                        </button>
+                        <button class="category-toggle-btn" id="btnCategoryVet" type="button">
+                            🩺 Find Nearby Vet
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LOCATION DENIED CONTAINER -->
+            <div id="locationDeniedContainer" class="location-state-card" style="display:none;">
+                <div class="state-icon">📍</div>
+                <h2>Location Access Required</h2>
+                <p>We need your location to find nearby groomers and veterinarians. Please allow location access from your browser settings and try again.</p>
+                <button class="primary-btn" id="tryAgainLocationBtn" type="button">🔄 Try Again</button>
+            </div>
+
+            <!-- MAIN NEARBY MAP & RESULTS VIEW -->
+            <div id="nearbyMainView" class="nearby-split-layout" style="display:none;">
+                <!-- RESULTS LIST SIDEBAR -->
+                <div class="results-sidebar">
+                    <div class="results-header">
+                        <h3 id="resultsListTitle">Nearby Groomers</h3>
+                        <span class="radius-badge" id="currentRadiusBadge">Within 5 km</span>
+                    </div>
+
+                    <!-- LOADING STATE -->
+                    <div id="resultsLoading" class="status-box" style="display:none;">
+                        <div class="spinner"></div>
+                        <p>Searching nearby pet care services...</p>
+                    </div>
+
+                    <!-- EMPTY RESULTS STATE -->
+                    <div id="resultsEmpty" class="status-box" style="display:none;">
+                        <p class="empty-emoji">🔍</p>
+                        <p id="emptyMessageText">No nearby places found within 25 km.</p>
+                    </div>
+
+                    <!-- RESULTS CARDS LIST -->
+                    <div id="nearbyResultsList" class="results-cards-list"></div>
+                </div>
+
+                <!-- MAP CONTAINER -->
+                <div class="map-wrapper">
+                    <div id="nearbyMap" class="leaflet-map-canvas"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- LOCATION PERMISSION MODAL -->
+    <div id="locationPermissionModal" class="modal-overlay" style="display:none;">
+        <div class="modal-card">
+            <div class="modal-icon">📍</div>
+            <h2>Location Access</h2>
+            <p>Allow PawSync to access your location to find nearby groomers and veterinarians.</p>
+            <div class="modal-actions">
+                <button class="primary-btn" id="allowLocationBtn" type="button">Allow Location</button>
+                <button class="secondary-btn" id="notNowLocationBtn" type="button">Not Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUSINESS DETAILS MODAL -->
+    <div id="businessDetailsModal" class="modal-overlay" style="display:none;">
+        <div class="modal-card details-modal-card">
+            <button class="close-modal-btn" id="closeDetailsModalBtn" type="button">&times;</button>
+            <div class="details-modal-header">
+                <span class="details-icon" id="detailsIcon">✂️</span>
+                <div>
+                    <h2 id="detailsName">Business Name</h2>
+                    <span class="details-category" id="detailsCategory">Grooming</span>
+                </div>
+            </div>
+            <div class="details-body">
+                <div class="detail-row"><span>📍 Distance:</span><strong id="detailsDistance">--</strong></div>
+                <div class="detail-row"><span>🏡 Address:</span><span id="detailsAddress">--</span></div>
+                <div class="detail-row"><span>📞 Phone:</span><span id="detailsPhone">--</span></div>
+                <div class="detail-row"><span>⭐ Rating:</span><span id="detailsRating">--</span></div>
+                <div class="detail-row"><span>🕒 Opening Hours:</span><span id="detailsHours">--</span></div>
+            </div>
+            <div class="modal-actions" style="margin-top:20px;">
+                <button class="primary-btn" id="detailsDirectionsBtn" type="button">🗺️ Get Directions</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHARED JS & PAGE LOGIC -->
+    <script src="../shared/js/shared.js"></script>
+    <script src="nearby.js"></script>
+</body>
+</html>

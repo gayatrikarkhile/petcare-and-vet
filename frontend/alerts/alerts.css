@@ -556,7 +556,7 @@ button {
 
     color: #294744;
 
-    font-size: 12px;
+    font-size: 18px;
 
     font-weight: 700;
 }
@@ -583,7 +583,7 @@ button {
 
     color: #7d908d;
 
-    font-size: 10px;
+    font-size: 13px;
 
     line-height: 1.5;
 }
@@ -605,7 +605,7 @@ button {
 
     color: #99a8a5;
 
-    font-size: 9px;
+    font-size: 10px;
 }
 
 
@@ -960,6 +960,433 @@ button {
 
         width: 100%;
 
+    }
+
+}
+
+/* =========================================
+   VACCINATION DETAILS POPUP
+========================================= */
+
+.vaccination-details-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+}
+
+/* Show popup */
+.vaccination-details-modal.show {
+    display: flex;
+}
+
+
+/* =========================================
+   BACKGROUND OVERLAY
+========================================= */
+
+.vaccination-details-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(20, 45, 43, 0.45);
+
+    backdrop-filter: blur(5px);
+}
+
+
+/* =========================================
+   POPUP CARD
+========================================= */
+
+.vaccination-details-card {
+    position: relative;
+    z-index: 2;
+
+    width: min(560px, 100%);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border: 1px solid #d8ebe7;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 70px rgba(20, 70, 65, 0.20);
+
+    animation: vaccinationDetailsOpen 0.25s ease;
+}
+
+
+/* =========================================
+   OPEN ANIMATION
+========================================= */
+
+@keyframes vaccinationDetailsOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.vaccination-details-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 26px 28px 20px;
+
+    border-bottom: 1px solid #e5efed;
+}
+
+
+.vaccination-details-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #238f88;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.vaccination-details-header h2 {
+    margin: 0;
+
+    color: #173f3d;
+
+    font-size: 26px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.vaccination-details-close {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #f0f7f5;
+
+    color: #39716d;
+
+    font-size: 26px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+.vaccination-details-close:hover {
+    background: #dff2ee;
+
+    color: #177f78;
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+.vaccination-details-body {
+    padding: 26px 28px;
+}
+
+
+/* =========================================
+   VACCINE MAIN
+========================================= */
+
+.vaccination-details-main {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.vaccination-details-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: #e8f5f2;
+
+    font-size: 28px;
+}
+
+
+.vaccination-details-main h3 {
+    margin: 0 0 5px;
+
+    color: #173f3d;
+
+    font-size: 22px;
+
+    font-weight: 750;
+}
+
+
+.vaccination-details-main p {
+    margin: 0;
+
+    color: #6d8986;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.vaccination-details-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-top: 20px;
+
+    padding: 8px 14px;
+
+    border-radius: 10px;
+
+    background: #fff1d9;
+
+    color: #b87512;
+
+    font-size: 14px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================
+   INFORMATION GRID
+========================================= */
+
+.vaccination-details-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+
+.vaccination-detail-item {
+    padding: 15px 16px;
+
+    border: 1px solid #dcebe8;
+
+    border-radius: 14px;
+
+    background: #f6fbfa;
+}
+
+
+.vaccination-detail-item span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #78918e;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.vaccination-detail-item strong {
+    display: block;
+
+    color: #214a47;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   NOTES
+========================================= */
+
+.vaccination-details-notes {
+    margin-top: 14px;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    background: #f1f8f6;
+}
+
+
+.vaccination-details-notes span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #78918e;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.vaccination-details-notes p {
+    margin: 0;
+
+    color: #365d59;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.vaccination-details-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding: 18px 28px 24px;
+
+    border-top: 1px solid #e5efed;
+}
+
+
+.vaccination-details-complete {
+    min-height: 46px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #238f88;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+.vaccination-details-complete:hover {
+    background: #197b75;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 18px rgba(35, 143, 136, 0.20);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .vaccination-details-modal {
+        padding: 12px;
+    }
+
+    .vaccination-details-card {
+        border-radius: 18px;
+
+        max-height: 94vh;
+    }
+
+    .vaccination-details-header {
+        padding: 22px 20px 17px;
+    }
+
+    .vaccination-details-body {
+        padding: 22px 20px;
+    }
+
+    .vaccination-details-footer {
+        padding: 16px 20px 20px;
+    }
+
+    .vaccination-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vaccination-details-header h2 {
+        font-size: 23px;
+    }
+
+    .vaccination-details-complete {
+        width: 100%;
     }
 
 }

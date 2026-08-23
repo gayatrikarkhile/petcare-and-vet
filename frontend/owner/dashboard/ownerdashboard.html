@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../shared/css/variables.css">
-    <link rel="stylesheet" href="../../../shared/css/common.css">
-    <link rel="stylesheet" href="../../../shared/css/responsive.css">
+    <link rel="stylesheet" href="../../shared/css/variables.css">
+<link rel="stylesheet" href="../../shared/css/common.css">
+<link rel="stylesheet" href="../../shared/css/responsive.css">
     <link rel="stylesheet" href="ownerdashboard.css">
 </head>
 <body data-shared-path="../../shared">
@@ -57,6 +57,37 @@
                             <span>✓</span>
                             <span>Attention required: Bruno has several pending health care items.</span>
                         </div>
+                        <!-- PROFILE COMPLETION -->
+<div class="profile-completion-card" id="profileCompletionCard">
+
+    <div class="profile-completion-header">
+        <span>🐾 Profile Completion</span>
+
+        <strong id="profileCompletionPercent">
+            0%
+        </strong>
+    </div>
+
+    <div class="profile-completion-track">
+        <div
+            class="profile-completion-fill"
+            id="profileCompletionProgress"
+        ></div>
+    </div>
+
+    <p id="profileCompletionMessage">
+        Complete your pet profile to unlock personalized care schedules.
+    </p>
+
+    <button
+        type="button"
+        id="completeProfileButton"
+        class="complete-profile-button"
+    >
+        Complete Profile →
+    </button>
+
+</div>
                     </div>
                 </article>
 
@@ -71,65 +102,59 @@
                 <article class="card reminders-card">
                     <div class="card-title-row">
                         <h3>🔔 Upcoming Reminders</h3>
-                        <a href="../../pages/calendar/calendar.html">View Calendar</a>
+                        <a href="/frontend/calendar/calendar.html">View Calendar</a>
                     </div>
                     <div class="reminders-list" id="remindersList"></div>
                 </article>
             </section>
 
-            <section class="summary-grid">
-                <article class="card summary-card">
-                    <div class="summary-heading">
-                        <h3>🥣 Today's<br>Nutrition</h3>
-                        <a href="../../pages/nutrition/nutrition.html">View Nutrition →</a>
+            <!-- VET APPOINTMENTS SECTION -->
+            <section class="dashboard-appointments-section" style="margin-top: 24px;">
+                <article class="card appointments-card">
+                    <div class="card-title-row">
+                        <h3>🩺 Vet Appointments</h3>
+                        <a href="/frontend/appointments/appointments.html" class="view-all-link">Book / View All Vets →</a>
                     </div>
-                    <div class="summary-content">
-                        <div><span>Daily Goal</span><strong>1,100 kcal</strong></div>
-                        <div><span>Meals</span><strong>2 / 3</strong></div>
-                        <div><span>Water</span><strong>1.6 / 2 L</strong></div>
-                    </div>
+                    <div class="appointments-list" id="appointmentsList"></div>
                 </article>
+            </section>
 
-                <article class="card summary-card">
-                    <div class="summary-heading">
-                        <h3>✂️ Grooming<br>Status</h3>
-                        <a href="../../pages/grooming/grooming.html">View Grooming →</a>
-                    </div>
-                    <div class="summary-content">
-                        <div class="large-label">Next Grooming</div>
-                        <div class="large-value">20 Aug</div>
-                        <div class="mini-checks">
-                            <span>✓ Brushing</span>
-                            <span>✓ Ear Cleaning</span>
-                            <span>○ Nail Trim</span>
-                        </div>
-                    </div>
-                </article>
+            <!-- ✨ PAWSYNC PET GARDEN SECTION ✨ -->
+            <section class="pet-garden-section">
+                <!-- Garden Background Elements -->
+                <div class="garden-background">
+                    <div class="cloud cloud-1">☁️</div>
+                    <div class="cloud cloud-2">☁️</div>
+                    <div class="cloud cloud-3">☁️</div>
+                    <div class="tree tree-left">🌳</div>
+                    <div class="tree tree-right">🌳</div>
+                    <div class="butterfly butterfly-1">🦋</div>
+                    <div class="butterfly butterfly-2">🦋</div>
+                    <div class="glowing-particle particle-1">✨</div>
+                    <div class="glowing-particle particle-2">✨</div>
+                    <div class="glowing-particle particle-3">✨</div>
+                </div>
 
-                <article class="card summary-card">
-                    <div class="summary-heading">
-                        <h3>🏃 Today's<br>Activity</h3>
-                        <a href="../../pages/activity/activity.html">View Activity →</a>
-                    </div>
-                    <div class="summary-content">
-                        <div class="large-label">Today's Goal</div>
-                        <div class="large-value">60 min</div>
-                        <div class="activity-progress"><span id="activityProgress"></span></div>
-                        <div class="activity-label"><span>45 / 60 min</span></div>
-                    </div>
-                </article>
+                <!-- Garden Header Title -->
+                <div class="garden-header">
+                    <h2>✨ PawSync Pet Garden ✨</h2>
+                </div>
 
-                <article class="card summary-card medical-card">
-                    <div class="summary-heading">
-                        <h3>📁 Medical Vault</h3>
-                        <a href="../../pages/medical-vault/medical-vault.html">Open Vault →</a>
+                <!-- Animated Pet Stage -->
+                <div class="pet-garden-stage" id="petGardenStage">
+                    <!-- Dynamic user pets will be rendered here -->
+                </div>
+
+                <!-- Garden Floor & Waving Grass -->
+                <div class="garden-floor">
+                    <div class="grass-waving">🌿 🌿 🌿 🌿 🌿 🌿 🌿 🌿 🌿 🌿 🌿 🌿</div>
+                    <div class="paw-prints">
+                        <span class="paw-print">🐾</span>
+                        <span class="paw-print">🐾</span>
+                        <span class="paw-print">🐾</span>
+                        <span class="paw-print">🐾</span>
                     </div>
-                    <div class="summary-content records">
-                        <div><span>💊 Prescription – Joint Vitamins</span><strong>5 Aug</strong></div>
-                        <div><span>💉 Vaccination Certificate</span><strong>20 Jul</strong></div>
-                        <div><span>🩸 Blood Report</span><strong>12 Jun</strong></div>
-                    </div>
-                </article>
+                </div>
             </section>
 
             <section class="ai-card">
@@ -145,6 +170,876 @@
 
         </section>
     </main>
+</div>
+
+<!-- =========================================
+     COMPLETE PET PROFILE MODAL
+========================================= -->
+
+<div
+    class="profile-modal-overlay"
+    id="profileModalOverlay"
+    style="display: none;"
+>
+
+    <div class="profile-modal">
+
+        <!-- Header -->
+        <div class="profile-modal-header">
+
+            <div>
+                <span class="profile-modal-label">
+                    PET PROFILE
+                </span>
+
+                <h2 id="profileModalPetName">
+                    Complete Pet Profile
+                </h2>
+
+                <p>
+                    Complete the remaining information to unlock
+                    personalized care schedules.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="profile-modal-close"
+                id="profileModalClose"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- Completion -->
+        <div class="modal-completion-box">
+
+            <div class="modal-completion-top">
+
+                <span>
+                    Profile Completion
+                </span>
+
+                <strong id="modalCompletionPercent">
+                    50%
+                </strong>
+
+            </div>
+
+            <div class="modal-completion-track">
+
+                <div
+                    class="modal-completion-fill"
+                    id="modalCompletionProgress"
+                    style="width: 50%;"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Basic Profile -->
+        <div class="profile-section completed">
+
+            <div class="profile-section-icon">
+                ✓
+            </div>
+
+            <div class="profile-section-content">
+
+                <h3>
+                    Basic Profile
+                </h3>
+
+                <p>
+                    Your pet's basic information is complete.
+                </p>
+
+            </div>
+
+            <span class="section-status completed-status">
+                Complete
+            </span>
+
+        </div>
+
+
+        <!-- Nutrition -->
+        <div
+            class="profile-section"
+            id="nutritionProfileSection"
+        >
+
+            <div class="profile-section-icon">
+                🥗
+            </div>
+
+            <div class="profile-section-content">
+
+                <h3>
+                    Nutrition
+                </h3>
+
+                <p>
+                    Add your pet's diet and feeding information.
+                </p>
+
+            </div>
+
+           <button
+    type="button"
+    class="profile-section-complete"
+    id="nutritionCompleteButton"
+>
+    Complete →
+</button>
+
+        </div>
+
+
+        <!-- Grooming -->
+        <div
+            class="profile-section"
+            id="groomingProfileSection"
+        >
+
+            <div class="profile-section-icon">
+                ✂️
+            </div>
+
+            <div class="profile-section-content">
+
+                <h3>
+                    Grooming
+                </h3>
+
+                <p>
+                    Add information about your pet's grooming needs.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="profile-section-button"
+                data-section="grooming"
+            >
+                Complete →
+            </button>
+
+        </div>
+
+
+        <!-- Activity -->
+        <div
+            class="profile-section"
+            id="activityProfileSection"
+        >
+
+            <div class="profile-section-icon">
+                🏃
+            </div>
+
+            <div class="profile-section-content">
+
+                <h3>
+                    Activity
+                </h3>
+
+                <p>
+                    Add your pet's activity and exercise information.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="profile-section-button"
+                data-section="activity"
+            >
+                Complete →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================================
+     GROOMING PROFILE MODAL
+========================================= -->
+<div
+    class="nutrition-modal-overlay"
+    id="groomingModalOverlay"
+    style="display: none;"
+>
+    <div class="nutrition-modal" style="max-width: 680px; max-height: 90vh; overflow-y: auto;">
+        <div class="nutrition-modal-header">
+            <div>
+                <span class="nutrition-modal-label">GROOMING PROFILE</span>
+                <h2 id="groomingModalPetName">Pet's Grooming</h2>
+                <p id="groomingModalSpecies">Personalized grooming and coat care information</p>
+            </div>
+            <button type="button" class="nutrition-modal-close" id="groomingModalClose">&times;</button>
+        </div>
+
+        <form id="groomingProfileForm" style="padding: 24px;">
+            <div class="nutrition-form-section">
+                <h3>Coat & Skin Care</h3>
+                <div class="nutrition-form-row">
+                    <div class="nutrition-form-group">
+                        <label for="groomingCoatType">Coat Type *</label>
+                        <select id="groomingCoatType" name="coatType" required>
+                            <option value="Short Hair">Short Hair</option>
+                            <option value="Medium Hair">Medium Hair</option>
+                            <option value="Long Hair">Long Hair</option>
+                            <option value="Double Coat">Double Coat</option>
+                            <option value="Curly / Wavy">Curly / Wavy</option>
+                            <option value="Hairless / Shell / Scales">Hairless / Shell / Scales / Other</option>
+                        </select>
+                    </div>
+                    <div class="nutrition-form-group">
+                        <label for="groomingSheddingLevel">Shedding Level *</label>
+                        <select id="groomingSheddingLevel" name="sheddingLevel" required>
+                            <option value="Low">Low</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="nutrition-form-group">
+                    <label for="groomingSkinCondition">Skin Condition</label>
+                    <select id="groomingSkinCondition" name="skinCondition">
+                        <option value="Normal">Normal</option>
+                        <option value="Sensitive">Sensitive</option>
+                        <option value="Dry / Flaky">Dry / Flaky</option>
+                        <option value="Oily">Oily</option>
+                        <option value="Allergies">Allergies / Irritated</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="nutrition-form-section">
+                <h3>Grooming Frequencies</h3>
+                <div class="nutrition-form-row">
+                    <div class="nutrition-form-group">
+                        <label for="groomingBrushingFreq">Brushing Frequency</label>
+                        <select id="groomingBrushingFreq" name="brushingFrequency">
+                            <option value="Daily">Daily</option>
+                            <option value="2-3 times/week">2-3 times/week</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="nutrition-form-group">
+                        <label for="groomingBathingFreq">Bathing Frequency</label>
+                        <select id="groomingBathingFreq" name="bathingFrequency">
+                            <option value="Weekly">Weekly</option>
+                            <option value="Every 2 weeks">Every 2 weeks</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="As needed">As needed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="nutrition-form-row">
+                    <div class="nutrition-form-group">
+                        <label for="groomingNailFreq">Nail Trimming</label>
+                        <select id="groomingNailFreq" name="nailTrimmingFrequency">
+                            <option value="Bi-weekly">Bi-weekly</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="As needed">As needed</option>
+                        </select>
+                    </div>
+                    <div class="nutrition-form-group">
+                        <label for="groomingEarFreq">Ear Cleaning</label>
+                        <select id="groomingEarFreq" name="earCleaningFrequency">
+                            <option value="Weekly">Weekly</option>
+                            <option value="Bi-weekly">Bi-weekly</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nutrition-form-section">
+                <h3>Dental & Paw Care</h3>
+                <div class="nutrition-form-row">
+                    <div class="nutrition-form-group">
+                        <label for="groomingToothFreq">Tooth Brushing Frequency</label>
+                        <select id="groomingToothFreq" name="toothBrushingFrequency">
+                            <option value="Daily">Daily</option>
+                            <option value="2-3 times/week">2-3 times/week</option>
+                            <option value="Weekly">Weekly</option>
+                        </select>
+                    </div>
+                    <div class="nutrition-form-group">
+                        <label for="groomingPawCare">Paw Care Routine</label>
+                        <select id="groomingPawCare" name="pawCareRoutine">
+                            <option value="Daily paw wipe">Daily paw wipe</option>
+                            <option value="Paw balm">Paw balm application</option>
+                            <option value="As needed">As needed</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nutrition-form-actions">
+                <button type="button" class="nutrition-cancel-button" id="groomingCancelButton">Cancel</button>
+                <button type="submit" class="nutrition-save-button" id="groomingSaveButton">Save Grooming</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- =========================================
+     ACTIVITY PROFILE MODAL
+========================================= -->
+<div
+    class="nutrition-modal-overlay"
+    id="activityModalOverlay"
+    style="display: none;"
+>
+    <div class="nutrition-modal" style="max-width: 680px; max-height: 90vh; overflow-y: auto;">
+        <div class="nutrition-modal-header">
+            <div>
+                <span class="nutrition-modal-label">ACTIVITY PROFILE</span>
+                <h2 id="activityModalPetName">Pet's Activity</h2>
+                <p id="activityModalSpecies">Personalized physical exercise, play, and training information</p>
+            </div>
+            <button type="button" class="nutrition-modal-close" id="activityModalClose">&times;</button>
+        </div>
+
+        <form id="activityDashProfileForm" style="padding: 24px;">
+            <div class="nutrition-form-section">
+                <h3>Activity & Energy Levels</h3>
+                <div class="nutrition-form-row">
+                    <div class="nutrition-form-group">
+                        <label for="actDashLevel">Activity Level *</label>
+                        <select id="actDashLevel" name="activityLevel" required>
+                            <option value="Very Low">Very Low</option>
+                            <option value="Low">Low</option>
+                            <option value="Moderate" selected>Moderate</option>
+                            <option value="High">High</option>
+                            <option value="Very High">Very High</option>
+                        </select>
+                    </div>
+                    <div class="nutrition-form-group">
+                        <label for="actDashEnergy">Energy Level *</label>
+                        <select id="actDashEnergy" name="energyLevel" required>
+                            <option value="Low">Low</option>
+                            <option value="Moderate" selected>Moderate</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="nutrition-form-row">
+                    <div class="nutrition-form-group">
+                        <label for="actDashLifestyle">Lifestyle *</label>
+                        <select id="actDashLifestyle" name="lifestyle" required>
+                            <option value="Mostly Indoor">Mostly Indoor</option>
+                            <option value="Mostly Outdoor">Mostly Outdoor</option>
+                            <option value="Mixed" selected>Mixed</option>
+                        </select>
+                    </div>
+                    <div class="nutrition-form-group">
+                        <label for="actDashEnv">Environment</label>
+                        <select id="actDashEnv" name="environment">
+                            <option value="Small indoor space">Small indoor space</option>
+                            <option value="Large indoor space">Large indoor space</option>
+                            <option value="Yard">Yard</option>
+                            <option value="Park access & outdoor walking" selected>Park access & outdoor walking</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nutrition-form-section">
+                <h3>Current Routine & Preferences</h3>
+                <div class="nutrition-form-group">
+                    <label>Exercise Routine</label>
+                    <div class="nutrition-checkbox-group">
+                        <label><input type="checkbox" name="currentRoutine" value="Walking" checked> Walking</label>
+                        <label><input type="checkbox" name="currentRoutine" value="Running"> Running</label>
+                        <label><input type="checkbox" name="currentRoutine" value="Playing" checked> Playing</label>
+                        <label><input type="checkbox" name="currentRoutine" value="Training"> Training</label>
+                        <label><input type="checkbox" name="currentRoutine" value="Mental stimulation" checked> Mental Stimulation</label>
+                    </div>
+                </div>
+                <div class="nutrition-form-row">
+                    <div class="nutrition-form-group">
+                        <label for="actDashFavorites">Favorite Activities</label>
+                        <input type="text" id="actDashFavorites" name="favoriteActivities" placeholder="e.g. Fetch, Swimming">
+                    </div>
+                    <div class="nutrition-form-group">
+                        <label for="actDashDisliked">Disliked Activities</label>
+                        <input type="text" id="actDashDisliked" name="dislikedActivities" placeholder="e.g. Loud parks">
+                    </div>
+                </div>
+            </div>
+
+            <div class="nutrition-form-section">
+                <h3>Restrictions & Notes</h3>
+                <div class="nutrition-form-group">
+                    <label for="actDashRestrictions">Activity Restrictions / Considerations</label>
+                    <textarea id="actDashRestrictions" name="activityRestrictions" rows="3" placeholder="Add any joint issues, stamina limits, etc..."></textarea>
+                </div>
+            </div>
+
+            <div class="nutrition-form-actions">
+                <button type="button" class="nutrition-cancel-button" id="activityDashCancelBtn">Cancel</button>
+                <button type="submit" class="nutrition-save-button" id="activityDashSaveBtn">Save Activity</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- =========================================
+     NUTRITION PROFILE MODAL
+========================================= -->
+
+<div
+    class="nutrition-modal-overlay"
+    id="nutritionModalOverlay"
+    style="display: none;"
+>
+
+    <div class="nutrition-modal">
+
+        <!-- HEADER -->
+        <div class="nutrition-modal-header">
+
+            <div>
+
+                <span class="nutrition-modal-label">
+                    NUTRITION PROFILE
+                </span>
+
+                <h2 id="nutritionModalPetName">
+                    Laila's Nutrition
+                </h2>
+
+                <p id="nutritionModalSpecies">
+                    Personalized nutrition information
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="nutrition-modal-close"
+                id="nutritionModalClose"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- FORM -->
+        <form
+            id="nutritionProfileForm"
+            class="nutrition-profile-form"
+        >
+
+            <!-- =====================================
+                 COMMON NUTRITION INFORMATION
+            ====================================== -->
+
+            <div class="nutrition-form-section">
+
+                <h3>
+                    Feeding Information
+                </h3>
+
+                <p class="nutrition-section-description">
+                    Tell us about your pet's regular diet.
+                </p>
+
+
+                <!-- DIET TYPE -->
+
+                <div class="nutrition-form-group">
+
+                    <label for="nutritionDietType">
+                        Diet Type
+                    </label>
+
+                   <select
+    id="nutritionDietType"
+    name="dietType"
+>
+
+    <option value="">
+        Select diet type
+    </option>
+
+    <option value="Dry Food">
+        Dry Food
+    </option>
+
+    <option value="Wet Food">
+        Wet Food
+    </option>
+
+    <option value="Pellets">
+        Pellets
+    </option>
+
+    <option value="Hay">
+        Hay
+    </option>
+
+    <option value="Seeds">
+        Seeds
+    </option>
+
+    <option value="Mixed">
+        Mixed
+    </option>
+
+    <option value="Homemade">
+        Homemade
+    </option>
+
+    <option value="Fresh Food">
+        Fresh Food
+    </option>
+
+    <option value="Other">
+        Other
+    </option>
+
+</select>
+
+                </div>
+
+
+                <!-- PRIMARY FOOD -->
+
+                <div class="nutrition-form-group">
+
+                    <label for="nutritionPrimaryFood">
+                        Primary Food
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nutritionPrimaryFood"
+                        name="primaryFood"
+                        placeholder="e.g. pellets, dry food, hay..."
+                    >
+
+                </div>
+
+
+                <!-- FEEDING FREQUENCY -->
+
+                <div class="nutrition-form-row">
+
+                    <div class="nutrition-form-group">
+
+                        <label for="nutritionMealsPerDay">
+                            Feeding Frequency
+                        </label>
+
+                        <input
+                            type="number"
+                            id="nutritionMealsPerDay"
+                            name="mealsPerDay"
+                            min="1"
+                            max="20"
+                            placeholder="e.g. 2"
+                        >
+
+                    </div>
+
+
+                    <!-- CALORIE TARGET -->
+
+                    <div class="nutrition-form-group">
+
+                        <label for="nutritionCalorieTarget">
+                            Daily Calorie Target
+                            <span class="optional">
+                                (optional)
+                            </span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="nutritionCalorieTarget"
+                            name="calorieTarget"
+                            min="0"
+                            placeholder="kcal"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 SPECIES-SPECIFIC INFORMATION
+            ====================================== -->
+
+            <div
+                class="nutrition-form-section"
+                id="speciesSpecificNutrition"
+            >
+
+                <h3>
+                    Pet-Specific Nutrition
+                </h3>
+
+                <p class="nutrition-section-description">
+                    These questions will change according to your pet.
+                </p>
+
+
+                <div
+                    id="speciesNutritionFields"
+                >
+
+                    <!-- JavaScript will insert
+                         species-specific fields here -->
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 ALLERGIES & RESTRICTIONS
+            ====================================== -->
+
+            <div class="nutrition-form-section">
+
+                <h3>
+                    Allergies & Restrictions
+                </h3>
+
+
+                <div class="nutrition-form-group">
+
+                    <label for="nutritionAllergies">
+                        Food Allergies
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nutritionAllergies"
+                        name="allergies"
+                        placeholder="e.g. dairy, chicken, none"
+                    >
+
+                </div>
+
+
+                <div class="nutrition-form-group">
+
+                    <label>
+                        Dietary Restrictions
+                    </label>
+
+                    <div
+                        class="nutrition-checkbox-group"
+                        id="nutritionRestrictions"
+                    >
+
+                        <!-- JavaScript will create
+                             checkboxes here -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 TREATS & WATER
+            ====================================== -->
+
+            <div class="nutrition-form-section">
+
+                <h3>
+                    Treats & Water
+                </h3>
+
+
+                <div class="nutrition-form-row">
+
+                    <div class="nutrition-form-group">
+
+                        <label for="nutritionTreats">
+                            Treats
+                        </label>
+
+                        <select
+                            id="nutritionTreats"
+                            name="treatsAllowed"
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="true">
+                                Yes
+                            </option>
+
+                            <option value="false">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="nutrition-form-group">
+
+                        <label for="nutritionWaterAccess">
+                            Water Access
+                        </label>
+
+                        <select
+                            id="nutritionWaterAccess"
+                            name="waterAccess"
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="Always available">
+                                Always available
+                            </option>
+
+                            <option value="Limited">
+                                Limited
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 NUTRITION GOAL
+            ====================================== -->
+
+            <div class="nutrition-form-section">
+
+                <h3>
+                    Nutrition Goal
+                </h3>
+
+                <div class="nutrition-form-group">
+
+                    <label for="nutritionGoal">
+                        Primary Goal
+                    </label>
+
+                    <select
+                        id="nutritionGoal"
+                        name="nutritionGoal"
+                    >
+
+                        <option value="">
+                            Select nutrition goal
+                        </option>
+
+                        <option value="Maintain healthy weight">
+                            Maintain healthy weight
+                        </option>
+
+                        <option value="Weight gain">
+                            Healthy weight gain
+                        </option>
+
+                        <option value="Weight management">
+                            Weight management
+                        </option>
+
+                        <option value="Growth">
+                            Growth and development
+                        </option>
+
+                        <option value="Recovery">
+                            Recovery / special care
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 NOTES
+            ====================================== -->
+
+            <div class="nutrition-form-section">
+
+                <h3>
+                    Additional Notes
+                </h3>
+
+                <div class="nutrition-form-group">
+
+                    <textarea
+                        id="nutritionNotes"
+                        name="notes"
+                        rows="4"
+                        placeholder="Add any additional nutrition information..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 ACTIONS
+            ====================================== -->
+
+            <div class="nutrition-form-actions">
+
+                <button
+                    type="button"
+                    class="nutrition-cancel-button"
+                    id="nutritionCancelButton"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="nutrition-save-button"
+                    id="nutritionSaveButton"
+                >
+                    Save Nutrition
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
 </div>
 
 <script src="../../shared/js/utils.js"></script>

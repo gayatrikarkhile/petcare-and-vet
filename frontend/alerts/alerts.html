@@ -348,6 +348,163 @@
 
     </div>
 
+    <!-- =========================================
+     VACCINATION DETAILS POPUP
+========================================= -->
+
+<div
+    id="vaccinationDetailsModal"
+    class="vaccination-details-modal"
+    aria-hidden="true"
+>
+
+    <!-- Dark background -->
+    <div
+        class="vaccination-details-overlay"
+        id="vaccinationDetailsOverlay"
+    ></div>
+
+
+    <!-- Popup -->
+    <div
+        class="vaccination-details-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="vaccinationDetailsTitle"
+    >
+
+        <!-- HEADER -->
+        <div class="vaccination-details-header">
+
+            <div>
+                <span class="vaccination-details-label">
+                    VACCINATION RECORD
+                </span>
+
+                <h2 id="vaccinationDetailsTitle">
+                    Vaccination Details
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                id="closeVaccinationDetails"
+                class="vaccination-details-close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- BODY -->
+        <div class="vaccination-details-body">
+
+            <!-- Vaccine heading -->
+            <div class="vaccination-details-main">
+
+                <div class="vaccination-details-icon">
+                    💉
+                </div>
+
+                <div>
+                    <h3 id="detailsVaccineName">
+                        Rabies
+                    </h3>
+
+                    <p id="detailsPetName">
+                        Shyloh
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+            <div
+                id="detailsStatus"
+                class="vaccination-details-status"
+            >
+                Due Soon
+            </div>
+
+
+            <!-- INFORMATION -->
+            <div class="vaccination-details-grid">
+
+                <div class="vaccination-detail-item">
+                    <span>Pet</span>
+                    <strong id="detailsPet">
+                        Shyloh
+                    </strong>
+                </div>
+
+
+                <div class="vaccination-detail-item">
+                    <span>Vaccine</span>
+                    <strong id="detailsVaccine">
+                        Rabies
+                    </strong>
+                </div>
+
+
+                <div class="vaccination-detail-item">
+                    <span>Date Given</span>
+                    <strong id="detailsDateGiven">
+                        20 Aug 2026
+                    </strong>
+                </div>
+
+
+                <div class="vaccination-detail-item">
+                    <span>Next Due</span>
+                    <strong id="detailsNextDue">
+                        24 Aug 2026
+                    </strong>
+                </div>
+
+
+                <div class="vaccination-detail-item">
+                    <span>Doctor / Clinic</span>
+                    <strong id="detailsDoctor">
+                        Dr Neha Joshi
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- NOTES -->
+            <div class="vaccination-details-notes">
+
+                <span>Notes</span>
+
+                <p id="detailsNotes">
+                    No additional notes.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <div class="vaccination-details-footer">
+
+            <button
+                type="button"
+                id="markVaccinationCompleted"
+                class="vaccination-details-complete"
+            >
+                ✓ Mark as Completed
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 
     <!-- =========================================
          SHARED JAVASCRIPT

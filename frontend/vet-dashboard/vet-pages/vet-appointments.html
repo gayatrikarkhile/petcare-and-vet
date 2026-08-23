@@ -1,12 +1,75 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Appointments | VetCare</title><link rel="stylesheet" href="../vet-assets/vet-style.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Appointments | PawSync Vet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../vet-assets/vet-style.css">
+</head>
 <body data-vetpage="appointments">
-<header class="vet-topbar" id="vet-topbar"></header>
-<aside class="vet-sidebar" id="vet-sidebar"></aside>
-<main class="vet-main">
-<div class="vet-page-head"><div><div class="vet-eyebrow">Schedule</div><h1>Appointments</h1><p class="vet-subtitle">Manage today's visits and upcoming consultations.</p></div><button class="vet-primary" onclick="alert('New appointment form can be connected here.')">+ New Appointment</button></div>
-<section class="vet-card"><div class="vet-card-title"><h2>Today's Schedule</h2><span>8 appointments</span></div><div id="list"></div></section>
-<script>document.addEventListener("DOMContentLoaded",()=>document.getElementById("list").innerHTML=vetAppointmentRows());</script>
-</main>
-<script src="../vet-assets/vet-app.js"></script></body></html>
+  <header class="vet-topbar" id="vet-topbar"></header>
+  <aside class="vet-sidebar" id="vet-sidebar"></aside>
+
+  <main class="vet-main">
+    <div class="vet-page-head">
+      <div>
+        <div class="vet-eyebrow">📅 Practice Schedule</div>
+        <h1>Appointments Management</h1>
+        <p class="vet-subtitle">Review incoming appointment requests, confirmed visits, and past consultations.</p>
+      </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="vet-tabs" style="margin-bottom: 24px;">
+      <button class="vet-tab-btn active" onclick="PawSyncVet.switchApptTab('all', this)">
+        <span>📊</span> All
+      </button>
+      <button class="vet-tab-btn" onclick="PawSyncVet.switchApptTab('pending', this)">
+        <span>🔔</span> Pending Requests
+      </button>
+      <button class="vet-tab-btn" onclick="PawSyncVet.switchApptTab('accepted', this)">
+        <span>🟢</span> Upcoming Confirmed
+      </button>
+      <button class="vet-tab-btn" onclick="PawSyncVet.switchApptTab('completed', this)">
+        <span>🔵</span> Completed
+      </button>
+      <button class="vet-tab-btn" onclick="PawSyncVet.switchApptTab('cancelled', this)">
+        <span>🔴</span> Cancelled / Rejected
+      </button>
+    </div>
+
+    <!-- Appointments Table Card -->
+    <div class="vet-card">
+      <div class="vet-table-wrap">
+        <table class="vet-table">
+          <thead>
+            <tr>
+              <th>Date & Time</th>
+              <th>Patient</th>
+              <th>Owner</th>
+              <th>Type / Reason</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="vet-appointments-table">
+            <!-- Dynamic rows populated by vet-app.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="../vet-assets/vet-app.js"></script>
+  <script>
+    PawSyncVet.switchApptTab = function(status, btn) {
+      document.querySelectorAll(".vet-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      PawSyncVet.loadAppointmentsPage(status);
+    };
+  </script>
+</body>
+</html>

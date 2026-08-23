@@ -46,6 +46,7 @@ const {
     registerUser,
     verifyEmail,
     loginUser,
+    adminLogin,
     googleLogin,
     getProfile,
     updateProfile,
@@ -88,6 +89,16 @@ router.post(
 
 
 /* =========================================
+   ADMIN LOGIN
+========================================= */
+
+router.post(
+    "/admin-login",
+    adminLogin
+);
+
+
+/* =========================================
    GOOGLE LOGIN
 ========================================= */
 
@@ -106,6 +117,12 @@ router.get(
     getProfile
 );
 
+router.get(
+    "/me",
+    protect,
+    getProfile
+);
+
 /* =========================================
    UPDATE LOGGED-IN USER PROFILE
 ========================================= */
@@ -116,7 +133,6 @@ router.put(
     upload.single("profilePhoto"),
     updateProfile
 );
-
 /* =========================================
    CHANGE PASSWORD
 ========================================= */

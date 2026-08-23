@@ -256,21 +256,26 @@ button {
 
 
 .profile-avatar {
-    width: 48px;
-    height: 48px;
-
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-
     background: var(--primary-soft);
-
     color: var(--primary-dark);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 16px;
     font-weight: 800;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid #0d9588;
+}
+
+#navbarProfileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 
@@ -299,7 +304,7 @@ button {
 
     width: 180px;
 
-    background: var(--surface);
+    background: #ffffff;
 
     border: 1px solid var(--border);
 
@@ -308,7 +313,7 @@ button {
     padding: 8px;
 
     box-shadow:
-        0 15px 35px rgba(21, 42, 64, 0.12);
+        0 15px 35px rgba(21, 42, 64, 0.15);
 
     display: none;
 
@@ -316,8 +321,66 @@ button {
 }
 
 
-.profile-menu.active {
-    display: block;
+.profile-menu.active,
+.profile-menu.show {
+    display: block !important;
+}
+
+/* Dynamic Search Bar & Results Dropdown */
+.search-box {
+    position: relative;
+}
+
+.search-results-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 320px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    z-index: 2500;
+    display: none;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.search-results-dropdown.show {
+    display: block !important;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    text-decoration: none;
+    color: #0f172a;
+}
+
+.search-result-item:hover {
+    background: #e6f4f1;
+    color: #0d9588;
+}
+
+.search-result-icon {
+    font-size: 1.2rem;
+}
+
+.search-result-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.search-result-category {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-left: auto;
 }
 
 
@@ -491,11 +554,15 @@ button {
 
 
 .nav-item.active {
-    background: var(--primary-soft);
+    background: #e6f4f2;
+    color: #0d9588;
+    font-weight: 800;
+    border-left: 4px solid #0d9588;
+    box-shadow: inset 0 0 0 1px rgba(13, 149, 136, 0.12);
+}
 
-    color: var(--primary-dark);
-
-    font-weight: 700;
+.nav-item.active span {
+    color: #0d9588;
 }
 
 
@@ -619,12 +686,15 @@ button {
 ========================================= */
 
 .page-layout {
+    display: flex;
     min-height: 100vh;
 }
 
-
 .main-content {
-    min-height: 100vh;
+    flex: 1;
+    margin-left: 250px;
+    padding-top: 88px;
+    min-height: calc(100vh - 88px);
 }
 
 

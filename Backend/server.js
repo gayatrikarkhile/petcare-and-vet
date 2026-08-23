@@ -37,39 +37,25 @@ const connectDB = require("./config/db");
 // =========================================
 
 const authRoutes = require("./routes/authRoutes");
+const petRoutes = require("./routes/petRoutes");
+const medicalDocumentRoutes = require("./routes/medicalDocumentRoutes");
+const vaccinationRoutes = require("./routes/vaccinationRoutes");
+const nutritionRoutes = require("./routes/nutritionRoutes");
+const groomingRoutes = require("./routes/groomingRoutes");
+const activityRoutes = require("./routes/activityRoutes");
 
+// Vet, Admin, Appointment, Patient & Notification Routes
+const vetRoutes = require("./routes/vetRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const appointmentRoutes = require("./routes/appointmentRoutes");
+const patientRoutes = require("./routes/patientRoutes");
+const medicalRecordRoutes = require("./routes/medicalRecordRoutes");
+const prescriptionRoutes = require("./routes/prescriptionRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
 
-// // =========================================
-// // ENVIRONMENT VARIABLES CHECK
-// // =========================================
-
-// console.log(
-//     "EMAIL_USER:",
-//     process.env.EMAIL_USER
-// );
-
-// console.log(
-//     "EMAIL_PASSWORD exists:",
-//     !!process.env.EMAIL_PASSWORD
-// );
-
-// console.log(
-//     "EMAIL_PASSWORD length:",
-//     process.env.EMAIL_PASSWORD
-//         ? process.env.EMAIL_PASSWORD.length
-//         : undefined
-// );
-
-// console.log(
-//     "MONGO_URI exists:",
-//     !!process.env.MONGO_URI
-// );
-
-// console.log(
-//     "GOOGLE_CLIENT_ID exists:",
-//     !!process.env.GOOGLE_CLIENT_ID
-// );
-
+console.log("====================================");
+console.log("PAWSYNC VET, ADMIN & CARE ROUTES LOADED");
+console.log("====================================");
 
 // =========================================
 // EXPRESS APP
@@ -82,27 +68,8 @@ const app = express();
 // MIDDLEWARE
 // =========================================
 
-app.use(
-    cors()
-);
-
-app.use(
-    express.json()
-);
-
-
-// =========================================
-// SERVE FRONTEND / STATIC FILES
-// =========================================
-
-// Serve files from the project root.
-// This allows Express to serve:
-// index.html
-// frontend/
-// css/
-// js/
-// images/
-// etc.
+app.use(cors());
+app.use(express.json());
 
 app.use(
     express.static(
@@ -122,34 +89,41 @@ connectDB();
 // API ROUTES
 // =========================================
 
-app.use(
-    "/api/auth",
-    authRoutes
-);
+app.use("/api/auth", authRoutes);
+app.use("/api/pets", petRoutes);
+app.use("/api/medical-documents", medicalDocumentRoutes);
+app.use("/api/vaccinations", vaccinationRoutes);
+app.use("/api/nutrition", nutritionRoutes);
+app.use("/api/grooming", groomingRoutes);
+app.use("/api/activity", activityRoutes);
 
+// PawSync Vet & Practice API Routes
+app.use("/api/vet", vetRoutes);
+app.use("/api/vets", vetRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/appointments", appointmentRoutes);
+app.use("/api/patients", patientRoutes);
+app.use("/api/medical-records", medicalRecordRoutes);
+app.use("/api/prescriptions", prescriptionRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 // =========================================
-// HOME PAGE
+// HOME PAGE & REDIRECTS
 // =========================================
 
-// When visiting:
-// http://localhost:5000
-//
-// Open the root index.html
+app.get("/", (req, res) => {
+    res.sendFile(
+        path.join(
+            __dirname,
+            "../index.html"
+        )
+    );
+});
 
-app.get(
-    "/",
-    (req, res) => {
-
-        res.sendFile(
-            path.join(
-                __dirname,
-                "../index.html"
-            )
-        );
-
-    }
-);
+// Public QR Found Pet Route Redirect
+app.get("/pet/found/:token", (req, res) => {
+    res.redirect(`/frontend/public/foundPet.html?token=${req.params.token}`);
+});
 
 
 // =========================================
@@ -162,10 +136,8 @@ app.listen(
     PORT,
     "0.0.0.0",
     () => {
-
         console.log(
             `PawSync server running at: http://localhost:${PORT}`
         );
-
     }
 );

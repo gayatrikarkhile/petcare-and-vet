@@ -1,24 +1,65 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dashboard | VetCare</title><link rel="stylesheet" href="../vet-assets/vet-style.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | PawSync Vet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../vet-assets/vet-style.css">
+</head>
 <body data-vetpage="dashboard">
-<header class="vet-topbar" id="vet-topbar"></header>
-<aside class="vet-sidebar" id="vet-sidebar"></aside>
-<main class="vet-main">
-<div class="vet-page-head"><div><div class="vet-eyebrow">Good morning, Doctor</div><h1>Welcome back, Dr. Sharma 👋</h1><p class="vet-subtitle">Here is today's clinic overview.</p></div><button class="vet-primary" onclick="location.href='vet-appointments.html'">+ New Appointment</button></div>
-<div class="vet-grid vet-stats">
-<div class="vet-card vet-stat"><div class="vet-stat-icon">📅</div><div><div class="vet-stat-value">8</div><div class="vet-stat-label">Today's Appointments</div></div></div>
-<div class="vet-card vet-stat"><div class="vet-stat-icon">🐾</div><div><div class="vet-stat-value">124</div><div class="vet-stat-label">Active Patients</div></div></div>
-<div class="vet-card vet-stat"><div class="vet-stat-icon">🩺</div><div><div class="vet-stat-value">6</div><div class="vet-stat-label">Pending Reviews</div></div></div>
-<div class="vet-card vet-stat"><div class="vet-stat-icon">💰</div><div><div class="vet-stat-value">₹18.4k</div><div class="vet-stat-label">Today's Revenue</div></div></div></div>
-<div class="vet-grid vet-two" style="margin-top:20px">
-<section class="vet-card"><div class="vet-card-title"><h2>Today's Appointments</h2><span>Friday, 14 Aug</span></div><div id="vet-appointments"></div></section>
-<section class="vet-card"><div class="vet-card-title"><h2>Clinic Overview</h2><span>Today</span></div>
-<div class="vet-progress-row"><div class="vet-progress-head"><b>Appointments completed</b><span>5 / 8</span></div><div class="vet-progress"><span style="width:62%"></span></div></div>
-<div class="vet-progress-row"><div class="vet-progress-head"><b>Follow-ups</b><span>7 / 10</span></div><div class="vet-progress"><span style="width:70%"></span></div></div>
-<div class="vet-progress-row"><div class="vet-progress-head"><b>Vaccinations</b><span>9 / 12</span></div><div class="vet-progress"><span style="width:75%"></span></div></div>
-<div class="vet-card" style="margin-top:20px;background:#f3faf8;box-shadow:none"><b style="color:var(--navy)">Next priority</b><p style="color:var(--muted);margin-bottom:0">Review Bruno's lab report before the 4:00 PM follow-up.</p></div></section></div>
-<section class="vet-card" style="margin-top:20px"><div class="vet-card-title"><h2>Recent Patients</h2><a href="vet-patients.html" style="color:var(--teal);font-weight:800;font-size:13px">View all →</a></div><div class="vet-grid vet-three" id="vet-patients"></div></section>
-<script>document.addEventListener("DOMContentLoaded",()=>{document.getElementById("vet-appointments").innerHTML=vetAppointmentRows();document.getElementById("vet-patients").innerHTML=vetPatientCards(vetPatients.slice(0,3));});</script>
-</main>
-<script src="../vet-assets/vet-app.js"></script></body></html>
+  <header class="vet-topbar" id="vet-topbar"></header>
+  <aside class="vet-sidebar" id="vet-sidebar"></aside>
+
+  <main class="vet-main">
+    <!-- Header -->
+    <div class="vet-page-head">
+      <div>
+        <div class="vet-eyebrow">🩺 Veterinary Practice Dashboard</div>
+        <h1 id="vet-greeting-title">Good Morning, Doctor 👋</h1>
+        <p class="vet-subtitle">Here's what's happening with your practice today.</p>
+      </div>
+      <div>
+        <button class="vet-primary" onclick="location.href='vet-appointments.html'">📅 Manage Appointments</button>
+      </div>
+    </div>
+
+    <!-- Profile Completion Prompt Banner (Renders if profile incomplete) -->
+    <div id="vet-profile-prompt-container"></div>
+
+    <!-- Statistics Cards -->
+    <div class="vet-grid vet-stats" id="vet-stats-grid" style="margin-bottom: 28px;">
+      <!-- Dynamic Stats Rendered by vet-app.js -->
+    </div>
+
+    <!-- Two-column Layout -->
+    <div class="vet-grid vet-two">
+      <!-- Left Column: Appointment Requests -->
+      <section class="vet-card">
+        <div class="vet-card-title">
+          <h2>🔔 Appointment Requests</h2>
+          <a href="vet-appointments.html" style="color:var(--teal);font-weight:700;font-size:13px;text-decoration:none;">View all →</a>
+        </div>
+        <div id="vet-requests-list">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- Right Column: Recent Patients -->
+      <section class="vet-card">
+        <div class="vet-card-title">
+          <h2>🐾 Recent Patients</h2>
+          <a href="vet-patients.html" style="color:var(--teal);font-weight:700;font-size:13px;text-decoration:none;">My Patients →</a>
+        </div>
+        <div class="vet-grid" id="vet-recent-patients">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../vet-assets/vet-app.js"></script>
+</body>
+</html>

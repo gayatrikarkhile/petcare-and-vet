@@ -229,7 +229,7 @@ textarea {
 
     color: #138a78;
 
-    font-size: 13px;
+    font-size: 14.5px;
 
     font-weight: 700;
 
@@ -266,7 +266,7 @@ textarea {
 .eyebrow {
     color: #138a78;
 
-    font-size: 10px;
+    font-size: 11.5px;
 
     font-weight: 800;
 
@@ -286,9 +286,9 @@ textarea {
 .page-heading p {
     margin: 7px 0 0;
 
-    color: #82919d;
+    color: #64748b;
 
-    font-size: 12px;
+    font-size: 14px;
 }
 
 
@@ -333,7 +333,7 @@ textarea {
 .verified {
     color: #138a78;
 
-    font-size: 9px;
+    font-size: 11px;
 
     font-weight: 800;
 }
@@ -341,15 +341,19 @@ textarea {
 .selected-vet-info h2 {
     margin: 4px 0;
 
-    font-size: 16px;
+    font-size: 18px;
+
+    font-weight: 800;
 }
 
 .selected-vet-info p {
     margin: 0;
 
-    color: #7f909c;
+    color: #64748b;
 
-    font-size: 10px;
+    font-size: 13px;
+
+    font-weight: 600;
 }
 
 .vet-rating {
@@ -361,7 +365,7 @@ textarea {
 
     margin-top: 7px;
 
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .vet-rating strong {
@@ -379,17 +383,21 @@ textarea {
 .consultation-fee span {
     display: block;
 
-    color: #8b99a4;
+    color: #64748b;
 
-    font-size: 9px;
+    font-size: 12px;
 
     margin-bottom: 3px;
+
+    font-weight: 600;
 }
 
 .consultation-fee strong {
     color: #158a75;
 
-    font-size: 18px;
+    font-size: 22px;
+
+    font-weight: 800;
 }
 
 
@@ -416,15 +424,15 @@ textarea {
 
     align-items: center;
 
-    gap: 11px;
+    gap: 12px;
 
     margin-bottom: 18px;
 }
 
 .step-number {
-    width: 29px;
+    width: 32px;
 
-    height: 29px;
+    height: 32px;
 
     display: flex;
 
@@ -438,7 +446,7 @@ textarea {
 
     border-radius: 50%;
 
-    font-size: 11px;
+    font-size: 13px;
 
     font-weight: 800;
 }
@@ -446,15 +454,17 @@ textarea {
 .form-section-heading h2 {
     margin: 0;
 
-    font-size: 14px;
+    font-size: 17px;
+
+    font-weight: 800;
 }
 
 .form-section-heading p {
     margin: 3px 0 0;
 
-    color: #8a98a4;
+    color: #64748b;
 
-    font-size: 10px;
+    font-size: 13px;
 }
 
 
@@ -467,7 +477,7 @@ textarea {
 
     grid-template-columns: repeat(3, 1fr);
 
-    gap: 10px;
+    gap: 12px;
 }
 
 .pet-option {
@@ -475,9 +485,9 @@ textarea {
 
     border: 1px solid #dfe9e6;
 
-    border-radius: 12px;
+    border-radius: 14px;
 
-    padding: 11px;
+    padding: 14px;
 
     cursor: pointer;
 
@@ -495,13 +505,13 @@ textarea {
 
     align-items: center;
 
-    gap: 9px;
+    gap: 10px;
 }
 
 .pet-mini-avatar {
-    width: 38px;
+    width: 42px;
 
-    height: 38px;
+    height: 42px;
 
     display: flex;
 
@@ -511,9 +521,9 @@ textarea {
 
     background: #e5f5ef;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .pet-mini-avatar.cat {
@@ -527,31 +537,35 @@ textarea {
 .pet-option strong {
     display: block;
 
-    color: #29465e;
+    color: #1e293b;
 
-    font-size: 11px;
+    font-size: 14px;
+
+    font-weight: 700;
 }
 
 .pet-option span:not(.radio-check) {
     display: block;
 
-    color: #8997a2;
+    color: #64748b;
 
-    font-size: 9px;
+    font-size: 12px;
 
     margin-top: 3px;
+
+    font-weight: 500;
 }
 
 .radio-check {
     position: absolute;
 
-    top: 9px;
+    top: 10px;
 
-    right: 9px;
+    right: 10px;
 
-    width: 17px;
+    width: 20px;
 
-    height: 17px;
+    height: 20px;
 
     display: flex;
 
@@ -565,7 +579,7 @@ textarea {
 
     color: transparent;
 
-    font-size: 9px;
+    font-size: 11px;
 }
 
 .pet-option:has(input:checked) {
@@ -592,7 +606,7 @@ textarea {
 
     grid-template-columns: repeat(5, 1fr);
 
-    gap: 9px;
+    gap: 10px;
 }
 
 .date-option {
@@ -606,13 +620,13 @@ textarea {
 
     justify-content: center;
 
-    gap: 3px;
+    gap: 4px;
 
-    min-height: 82px;
+    min-height: 88px;
 
     border: 1px solid #dfe9e6;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
     cursor: pointer;
 }
@@ -624,23 +638,27 @@ textarea {
 }
 
 .date-option span {
-    color: #8b99a4;
+    color: #64748b;
 
-    font-size: 8px;
+    font-size: 11px;
 
     font-weight: 800;
 }
 
 .date-option strong {
-    color: #29465e;
+    color: #1e293b;
 
-    font-size: 22px;
+    font-size: 24px;
+
+    font-weight: 800;
 }
 
 .date-option small {
-    color: #8b99a4;
+    color: #64748b;
 
-    font-size: 9px;
+    font-size: 12px;
+
+    font-weight: 600;
 }
 
 .date-option:has(input:checked) {
@@ -663,7 +681,7 @@ textarea {
 
     grid-template-columns: repeat(3, 1fr);
 
-    gap: 9px;
+    gap: 10px;
 }
 
 .time-option {
@@ -671,19 +689,19 @@ textarea {
 
     border: 1px solid #dfe9e6;
 
-    border-radius: 9px;
+    border-radius: 12px;
 
-    padding: 11px;
+    padding: 13px;
 
     text-align: center;
 
     cursor: pointer;
 
-    color: #506b80;
+    color: #334155;
 
-    font-size: 10px;
+    font-size: 13.5px;
 
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .time-option input {
@@ -710,7 +728,7 @@ textarea {
 
     grid-template-columns: repeat(2, 1fr);
 
-    gap: 9px;
+    gap: 10px;
 
     margin-bottom: 14px;
 }
@@ -730,17 +748,17 @@ textarea {
 .reason-options label span {
     display: block;
 
-    padding: 11px 13px;
+    padding: 13px 15px;
 
     border: 1px solid #dfe9e6;
 
-    border-radius: 9px;
+    border-radius: 12px;
 
-    color: #506b80;
+    color: #334155;
 
-    font-size: 10px;
+    font-size: 13.5px;
 
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .reason-options label:has(input:checked) span {
@@ -758,15 +776,17 @@ textarea {
 
     border: 1px solid #dfe9e6;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
-    padding: 12px;
+    padding: 14px;
 
     outline: none;
 
-    color: #29465e;
+    color: #1e293b;
 
-    font-size: 11px;
+    font-size: 13.5px;
+
+    font-weight: 500;
 }
 
 textarea:focus {
@@ -774,7 +794,7 @@ textarea:focus {
 }
 
 textarea::placeholder {
-    color: #a1adb5;
+    color: #94a3b8;
 }
 
 
@@ -785,7 +805,7 @@ textarea::placeholder {
 .confirm-button {
     width: 100%;
 
-    height: 50px;
+    height: 52px;
 
     border: none;
 
@@ -793,9 +813,9 @@ textarea::placeholder {
 
     color: white;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
-    font-size: 12px;
+    font-size: 15px;
 
     font-weight: 800;
 
@@ -840,7 +860,9 @@ textarea::placeholder {
 .summary-card h2 {
     margin: 0 0 18px;
 
-    font-size: 16px;
+    font-size: 19px;
+
+    font-weight: 800;
 }
 
 .summary-vet {
@@ -848,35 +870,39 @@ textarea::placeholder {
 
     align-items: center;
 
-    gap: 10px;
+    gap: 12px;
 }
 
 .summary-vet img {
-    width: 45px;
+    width: 52px;
 
-    height: 45px;
+    height: 52px;
 
     object-fit: cover;
 
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .summary-vet strong {
     display: block;
 
-    color: #29465e;
+    color: #1e293b;
 
-    font-size: 11px;
+    font-size: 14.5px;
+
+    font-weight: 700;
 }
 
 .summary-vet span {
     display: block;
 
-    color: #8a98a4;
+    color: #64748b;
 
-    font-size: 9px;
+    font-size: 12.5px;
 
     margin-top: 4px;
+
+    font-weight: 500;
 }
 
 .summary-divider {
@@ -904,15 +930,19 @@ textarea::placeholder {
 }
 
 .summary-row span {
-    color: #84939e;
+    color: #64748b;
 
-    font-size: 10px;
+    font-size: 13.5px;
+
+    font-weight: 500;
 }
 
 .summary-row strong {
-    color: #29465e;
+    color: #1e293b;
 
-    font-size: 10px;
+    font-size: 13.5px;
+
+    font-weight: 700;
 
     text-align: right;
 }
@@ -926,15 +956,19 @@ textarea::placeholder {
 }
 
 .total-row span {
-    color: #6f8490;
+    color: #475569;
 
-    font-size: 11px;
+    font-size: 14px;
+
+    font-weight: 600;
 }
 
 .total-row strong {
     color: #138a75;
 
-    font-size: 19px;
+    font-size: 23px;
+
+    font-weight: 800;
 }
 
 .payment-note {
@@ -946,9 +980,9 @@ textarea::placeholder {
 
     border-radius: 8px;
 
-    color: #8a98a4;
+    color: #64748b;
 
-    font-size: 9px;
+    font-size: 12px;
 
     line-height: 1.5;
 }
@@ -961,19 +995,19 @@ textarea::placeholder {
 .help-card {
     display: flex;
 
-    gap: 10px;
+    gap: 12px;
 
     margin-top: 14px;
 
-    padding: 15px;
+    padding: 16px;
 
     background: #eef8f5;
 
-    border-radius: 13px;
+    border-radius: 14px;
 }
 
 .help-card > span {
-    font-size: 19px;
+    font-size: 22px;
 }
 
 .help-card strong {
@@ -981,15 +1015,17 @@ textarea::placeholder {
 
     color: #147d6c;
 
-    font-size: 11px;
+    font-size: 13.5px;
+
+    font-weight: 800;
 }
 
 .help-card p {
     margin: 4px 0 0;
 
-    color: #728d88;
+    color: #475569;
 
-    font-size: 9px;
+    font-size: 12.5px;
 
     line-height: 1.5;
 }

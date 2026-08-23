@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSync Admin Panel | Veterinarian Verification System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <!-- Admin Application Root -->
+  <div id="adminApp">
+    <!-- Rendered dynamically by admin.js -->
+  </div>
+
+  <!-- Detailed Vet Modal -->
+  <div id="vetDetailModal" class="admin-modal" style="display: none;">
+    <div class="admin-modal-content">
+      <div class="admin-modal-header">
+        <h3>🩺 Veterinarian Verification Profile</h3>
+        <button type="button" class="close-modal-btn" onclick="PawSyncAdmin.closeModal('vetDetailModal')">✕</button>
+      </div>
+      <div class="admin-modal-body" id="vetDetailModalBody">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Approve Confirmation Modal -->
+  <div id="approveModal" class="admin-modal" style="display: none;">
+    <div class="admin-modal-content" style="max-width: 480px;">
+      <div class="admin-modal-header" style="border-bottom: 1px solid #d1fae5;">
+        <h3 style="color: #059669;">🟢 Approve Veterinarian</h3>
+        <button type="button" class="close-modal-btn" onclick="PawSyncAdmin.closeModal('approveModal')">✕</button>
+      </div>
+      <div class="admin-modal-body" style="padding: 24px;">
+        <p style="margin: 0 0 12px 0; color: #334155; font-size: 15px; font-weight: 600;">
+          Are you sure you want to approve this veterinarian?
+        </p>
+        <p style="margin: 0 0 20px 0; color: #64748b; font-size: 13.5px;">
+          Once approved, the doctor will receive "PawSync Verified" status and will be visible in public listings for appointment bookings.
+        </p>
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn-secondary" onclick="PawSyncAdmin.closeModal('approveModal')" style="padding: 9px 18px; border: 1px solid #cbd5e1; background: #fff; border-radius: 8px; font-weight: 600; cursor: pointer;">Cancel</button>
+          <button type="button" id="confirmApproveBtn" class="btn-success" style="padding: 9px 18px; background: #059669; color: #fff; border: 0; border-radius: 8px; font-weight: 700; cursor: pointer;">Approve</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rejection Modal -->
+  <div id="rejectModal" class="admin-modal" style="display: none;">
+    <div class="admin-modal-content" style="max-width: 480px;">
+      <div class="admin-modal-header" style="border-bottom: 1px solid #fee2e2;">
+        <h3 style="color: #dc2626;">🔴 Reject Veterinarian Application</h3>
+        <button type="button" class="close-modal-btn" onclick="PawSyncAdmin.closeModal('rejectModal')">✕</button>
+      </div>
+      <div class="admin-modal-body" style="padding: 24px;">
+        <p style="margin: 0 0 12px 0; color: #475569; font-size: 14px;">
+          Reason for rejection:
+        </p>
+        <textarea id="rejectionReasonInput" placeholder="e.g. Invalid registration license number or missing state veterinary council document..." style="width: 100%; height: 100px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-family: inherit; font-size: 14px; outline: none; resize: vertical;"></textarea>
+        <div style="margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn-secondary" onclick="PawSyncAdmin.closeModal('rejectModal')" style="padding: 9px 18px; border: 1px solid #cbd5e1; background: #fff; border-radius: 8px; font-weight: 600; cursor: pointer;">Cancel</button>
+          <button type="button" id="confirmRejectBtn" class="btn-danger" style="padding: 9px 18px; background: #dc2626; color: #fff; border: 0; border-radius: 8px; font-weight: 700; cursor: pointer;">Reject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin JS -->
+  <script src="admin.js"></script>
+</body>
+</html>

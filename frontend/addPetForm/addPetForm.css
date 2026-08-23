@@ -1,28 +1,32 @@
-/* ==========================================================================
-   COLOR SYSTEM & VARIABLES
-   ========================================================================== */
+/* =========================================================
+   PAWSYNC - MODERN LIGHT PASTEL THEME
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
 :root {
-  --card-background: #FFFFFF;
-  --page-background: #F7F5FF;
-  --primary-text: #1D2F63;
-  --secondary-text: #667595;
-  --accent: #7657FF;
-  --accent-hover: #6342E8;
-  --accent-soft: #F3F0FF;
-  --border: #E8E5F2;
-  --input-background: #FFFFFF;
-  --error-color: #E53935;
-  --error-bg: #FFEBEE;
-  --placeholder: #9AA4BC;
+  --page-bg: #f4f2fa;
+  --card-bg: #ffffff;
+  --card-border: #e3dcf0;
   
-  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.25s ease;
+  --primary-text: #221a38;
+  --secondary-text: #6e6485;
+  --placeholder-text: #a097b8;
+  
+  --accent-purple: #7047eb;
+  --accent-purple-hover: #5d38d6;
+  --accent-purple-soft: #eeeafe;
+  
+  --input-bg: #f9f8fc;
+  --input-border: #dcd4ec;
+  --input-focus-bg: #ffffff;
+  
+  --accent-coral: #ff5271;
+  --error-color: #e53935;
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ==========================================================================
-   RESET & BASE STYLES
-   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -31,107 +35,131 @@
 
 body {
   font-family: var(--font-main);
-  background-color: var(--page-background);
+  background-color: var(--page-bg);
+  background-image: 
+    radial-gradient(circle at 12% 15%, #ffe6ec 0%, transparent 45%),
+    radial-gradient(circle at 88% 85%, #e8e0ff 0%, transparent 45%);
   color: var(--primary-text);
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Page Layout */
-.page-wrapper {
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 48px 20px;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Main Form Card */
+.page-wrapper {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 36px 20px 80px;
+}
+
+/* =========================================================
+   CARD & HEADERS
+   ========================================================= */
+
 .pet-form-card {
-  background-color: var(--card-background);
-  width: 100%;
-  max-width: 850px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 24px;
-  border: 1px solid rgba(118, 87, 255, 0.08);
-  box-shadow: 0 12px 40px rgba(45, 38, 100, 0.08);
-  padding: 44px;
+  padding: 40px;
+  box-shadow: 0 16px 40px rgba(112, 71, 235, 0.07);
 }
 
-/* ==========================================================================
-   HEADER
-   ========================================================================== */
 .form-header {
-  margin-bottom: 36px;
+  margin-bottom: 32px;
+}
+
+/* Back Link & Fixed SVG Sizing */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-purple);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 18px;
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  color: var(--accent-purple-hover);
+  text-decoration: underline;
+}
+
+.back-arrow {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px;
+  min-height: 18px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.back-link:hover .back-arrow {
+  transform: translateX(-3px);
 }
 
 .header-title-group {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 6px;
 }
 
 .header-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent-purple) 0%, #9e82ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: var(--accent-soft);
-  color: var(--accent);
-  border-radius: 10px;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(112, 71, 235, 0.28);
 }
 
 .header-icon svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 }
 
 .form-header h1 {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--primary-text);
 }
 
-.form-header .subtitle {
-  font-size: 15px;
+.subtitle {
+  font-size: 14px;
   color: var(--secondary-text);
-}
-
-/* ==========================================================================
-   FORM SECTIONS & GRID
-   ========================================================================== */
-.form-section {
-  margin-bottom: 32px;
+  font-weight: 500;
 }
 
 .section-title {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
   color: var(--primary-text);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  margin-bottom: 20px;
 }
 
-.required-star, .req {
-  color: var(--accent);
-  font-weight: 700;
+.req {
+  color: var(--accent-coral);
 }
 
 .section-divider {
   height: 1px;
-  background-color: var(--border);
-  margin: 36px 0;
+  background: var(--card-border);
+  margin: 32px 0;
 }
+
+/* =========================================================
+   FORM GRID & INPUTS
+   ========================================================= */
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
 }
 
 .form-group {
@@ -140,26 +168,17 @@ body {
 }
 
 .form-group.full-width {
-  grid-column: span 2;
+  grid-column: 1 / -1;
 }
 
-/* Labels */
 label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--primary-text);
-  margin-bottom: 8px;
-}
-
-.input-hint {
   font-size: 12px;
+  font-weight: 700;
   color: var(--secondary-text);
-  margin-top: 6px;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
 }
 
-/* ==========================================================================
-   FORM CONTROLS & INPUTS
-   ========================================================================== */
 input[type="text"],
 input[type="number"],
 input[type="date"],
@@ -167,64 +186,39 @@ select {
   width: 100%;
   height: 48px;
   padding: 0 16px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 12px;
-  border: 1px solid var(--border);
-  background-color: var(--input-background);
   color: var(--primary-text);
-  font-family: var(--font-main);
-  font-size: 15px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
   outline: none;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-  -webkit-appearance: none;
-  appearance: none;
+  transition: var(--transition);
 }
 
 input::placeholder {
-  color: var(--placeholder);
+  color: var(--placeholder-text);
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus,
+input:focus,
 select:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(118, 87, 255, 0.12);
+  background: var(--input-focus-bg);
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 3px rgba(112, 71, 235, 0.16);
 }
 
-/* Inputs with Icons */
-.input-with-icon {
-  position: relative;
-  display: flex;
-  align-items: center;
+input:disabled {
+  background: #f0ebfa;
+  color: #a097b8;
+  cursor: not-allowed;
 }
 
-.input-with-icon input {
-  padding-right: 44px;
-}
-
-.input-icon {
-  position: absolute;
-  right: 14px;
-  width: 18px;
-  height: 18px;
-  color: var(--secondary-text);
-  pointer-events: none;
-}
-
-.date-icon {
-  pointer-events: none;
-}
-
-/* Select Dropdown Wrapper */
+/* Select Wrappers */
 .select-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-}
-
-.select-wrapper select {
-  padding-right: 40px;
-  cursor: pointer;
 }
 
 .select-icon {
@@ -236,38 +230,66 @@ select:focus {
   pointer-events: none;
 }
 
-/* Weight Input Group */
-.weight-input-group {
-  display: flex;
-  gap: 10px;
+.select-wrapper select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 40px;
 }
 
-.weight-input-group input[type="number"] {
-  flex: 1;
+/* =========================================================
+   FLOATING SEARCHABLE BREED DROPDOWN OVERLAY
+   ========================================================= */
+
+.searchable-select {
+  position: relative;
+  width: 100%;
 }
 
-.unit-select {
-  width: 100px;
-  flex-shrink: 0;
+.dropdown-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid var(--input-border);
+  border-radius: 14px;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 10px 28px rgba(34, 26, 56, 0.12);
+  padding: 6px;
 }
 
-/* Remove Number Spinner */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type="number"] {
-  -moz-appearance: textfield;
-  appearance: textfield;
+.dropdown-item {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary-text);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-/* ==========================================================================
-   SEGMENTED CONTROL (RADIO BUTTONS)
-   ========================================================================== */
+.dropdown-item:hover {
+  background: var(--accent-purple-soft);
+  color: var(--accent-purple);
+}
+
+.dropdown-empty {
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--secondary-text);
+  text-align: center;
+}
+
+/* =========================================================
+   GENDER & SEGMENTED CONTROLS
+   ========================================================= */
+
 .segmented-control {
   display: flex;
-  background-color: var(--accent-soft);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   padding: 4px;
   border-radius: 12px;
   height: 48px;
@@ -277,101 +299,61 @@ input[type="number"] {
 .segmented-option {
   flex: 1;
   position: relative;
-  margin-bottom: 0;
   cursor: pointer;
 }
 
-.segmented-option input[type="radio"] {
+.segmented-option input {
   position: absolute;
   opacity: 0;
-  width: 0;
-  height: 0;
+  pointer-events: none;
 }
 
 .segmented-label {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   height: 100%;
   border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--secondary-text);
-  transition: all var(--transition-fast);
-  user-select: none;
+  transition: var(--transition);
 }
 
-.segmented-label svg {
-  width: 16px;
-  height: 16px;
+.segmented-option input:checked + .segmented-label {
+  background: var(--accent-purple);
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(112, 71, 235, 0.25);
 }
 
-.segmented-option input[type="radio"]:checked + .segmented-label {
-  background-color: var(--card-background);
-  color: var(--accent);
-  box-shadow: 0 2px 8px rgba(118, 87, 255, 0.12);
+/* Weight Group */
+.weight-input-group {
+  display: flex;
+  gap: 10px;
 }
 
-/* ==========================================================================
-   SEARCHABLE DROPDOWN (BREED)
-   ========================================================================== */
-.searchable-select {
-  position: relative;
+.weight-input-group input {
+  flex: 1;
 }
 
-.dropdown-list {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  right: 0;
-  max-height: 220px;
-  overflow-y: auto;
-  background: var(--card-background);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(29, 47, 99, 0.1);
-  z-index: 100;
-  padding: 6px;
+.unit-select {
+  width: 92px;
 }
 
-.dropdown-item {
-  padding: 10px 14px;
-  font-size: 14px;
-  color: var(--primary-text);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color var(--transition-fast);
-}
+/* =========================================================
+   PHOTO UPLOAD BOX
+   ========================================================= */
 
-.dropdown-item:hover,
-.dropdown-item.highlighted {
-  background-color: var(--accent-soft);
-  color: var(--accent);
-  font-weight: 500;
-}
-
-.dropdown-empty {
-  padding: 12px;
-  font-size: 14px;
-  color: var(--secondary-text);
-  text-align: center;
-}
-
-/* ==========================================================================
-   FILE UPLOAD COMPONENT
-   ========================================================================== */
 .upload-container {
-  border: 2px dashed var(--border);
+  border: 2px dashed var(--input-border);
   border-radius: 16px;
-  background-color: var(--accent-soft);
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
-  overflow: hidden;
+  background: var(--input-bg);
+  transition: var(--transition);
 }
 
 .upload-container.drag-over {
-  border-color: var(--accent);
-  background-color: #EAE5FF;
+  border-color: var(--accent-purple);
+  background: var(--accent-purple-soft);
 }
 
 .upload-dropzone {
@@ -381,116 +363,92 @@ input[type="number"] {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  text-align: center;
 }
 
 .upload-icon-circle {
-  width: 48px;
-  height: 48px;
-  background-color: var(--card-background);
-  color: var(--accent);
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
+  background: var(--accent-purple-soft);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--accent-purple);
   margin-bottom: 10px;
-  box-shadow: 0 4px 12px rgba(118, 87, 255, 0.1);
-}
-
-.upload-icon-circle svg {
-  width: 22px;
-  height: 22px;
 }
 
 .upload-text {
   font-size: 14px;
   color: var(--primary-text);
-  margin-bottom: 2px;
 }
 
 .upload-subtext {
   font-size: 12px;
   color: var(--secondary-text);
+  margin-top: 2px;
 }
 
+/* Upload Preview State */
 .upload-preview {
-  padding: 20px;
+  padding: 16px;
   display: flex;
   align-items: center;
-  gap: 20px;
-}
-
-.preview-avatar-wrapper {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--accent);
-  flex-shrink: 0;
-  background-color: var(--card-background);
+  gap: 16px;
 }
 
 .preview-avatar-wrapper img {
-  width: 100%;
-  height: 100%;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
   object-fit: cover;
 }
 
 .preview-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .btn-change-photo,
 .btn-remove-photo {
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all var(--transition-fast);
   border: none;
+  transition: var(--transition);
 }
 
 .btn-change-photo {
-  background-color: var(--card-background);
-  color: var(--primary-text);
-  border: 1px solid var(--border);
-}
-
-.btn-change-photo:hover {
-  background-color: #F8F9FC;
-  border-color: #D1D5DB;
+  background: var(--accent-purple-soft);
+  color: var(--accent-purple);
 }
 
 .btn-remove-photo {
-  background-color: transparent;
+  background: #ffebee;
   color: var(--error-color);
 }
 
-.btn-remove-photo:hover {
-  background-color: var(--error-bg);
-}
+/* =========================================================
+   TAG CHIPS
+   ========================================================= */
 
-/* ==========================================================================
-   TAGS / CHIPS INPUT (ALLERGIES & MEDICAL)
-   ========================================================================== */
 .tag-input-container {
   min-height: 48px;
   padding: 6px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background-color: var(--input-background);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  gap: 8px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
 }
 
 .tag-input-container:focus-within {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(118, 87, 255, 0.12);
+  background: #ffffff;
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 3px rgba(112, 71, 235, 0.16);
 }
 
 .tags-wrapper {
@@ -503,51 +461,51 @@ input[type="number"] {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: var(--accent-soft);
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 600;
   padding: 4px 10px;
+  background: var(--accent-purple-soft);
   border-radius: 20px;
-  animation: fadeIn 0.15s ease-in-out;
+  color: var(--accent-purple);
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .tag-chip-remove {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: none;
-  background: transparent;
-  color: var(--accent);
-  cursor: pointer;
-  padding: 0;
-  border-radius: 50%;
-  opacity: 0.7;
-  transition: opacity var(--transition-fast);
-}
-
-.tag-chip-remove:hover {
-  opacity: 1;
-}
-
-.tag-chip-remove svg {
-  width: 14px;
-  height: 14px;
 }
 
 .tag-input-container input {
   flex: 1;
-  min-width: 160px;
-  height: 34px;
-  padding: 0 4px;
+  min-width: 140px;
+  height: 32px;
+  padding: 0;
   border: none !important;
+  background: transparent !important;
   box-shadow: none !important;
-  background: transparent;
 }
 
-/* ==========================================================================
-   VALIDATION ERROR STATES
-   ========================================================================== */
+.input-hint {
+  font-size: 12px;
+  color: var(--placeholder-text);
+  margin-top: 6px;
+}
+
+/* =========================================================
+   BUTTONS & ERRORS
+   ========================================================= */
+
+.error-message {
+  font-size: 12px;
+  color: var(--error-color);
+  min-height: 16px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
 .form-group.has-error input,
 .form-group.has-error select,
 .form-group.has-error .tag-input-container,
@@ -556,117 +514,85 @@ input[type="number"] {
   border-color: var(--error-color) !important;
 }
 
-.form-group.has-error input:focus,
-.form-group.has-error select:focus {
-  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.12) !important;
-}
-
-.error-message {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--error-color);
-  margin-top: 6px;
-  min-height: 16px;
-  display: block;
-}
-
-/* ==========================================================================
-   BUTTONS & ACTIONS
-   ========================================================================== */
 .form-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 14px;
-  margin-top: 40px;
+  gap: 12px;
+  margin-top: 36px;
   padding-top: 24px;
-  border-top: 1px solid var(--border);
-}
-
-button {
-  font-family: var(--font-main);
-  border: none;
-  outline: none;
+  border-top: 1px solid var(--card-border);
 }
 
 .btn-primary,
 .btn-secondary {
-  height: 50px;
+  height: 48px;
   padding: 0 28px;
   border-radius: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  transition: all var(--transition-fast);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .btn-primary {
-  background-color: var(--accent);
-  color: #FFFFFF;
+  background: var(--accent-purple);
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(112, 71, 235, 0.35);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
+  background: var(--accent-purple-hover);
   transform: translateY(-1px);
 }
 
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-.btn-primary svg {
-  width: 18px;
-  height: 18px;
-}
-
 .btn-secondary {
-  background-color: transparent;
+  background: var(--accent-purple-soft);
+  border: 1px solid var(--input-border);
   color: var(--secondary-text);
-  border: 1px solid var(--border);
 }
 
 .btn-secondary:hover {
-  background-color: #F8F9FC;
+  background: #e2d9f7;
   color: var(--primary-text);
-  border-color: #D1D5DB;
 }
 
-/* ==========================================================================
-   TOAST NOTIFICATION
-   ========================================================================== */
+/* =========================================================
+   FLOATING TOAST NOTIFICATION
+   ========================================================= */
+
 .toast-container {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 1000;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
   pointer-events: none;
 }
 
 .toast {
-  background-color: var(--primary-text);
-  color: #FFFFFF;
-  padding: 14px 22px;
-  border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 14px 20px;
+  background: #221a38;
+  color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(100px);
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .toast.show {
-  opacity: 1;
   transform: translateY(0);
-  pointer-events: auto;
+  opacity: 1;
 }
 
 .toast-icon {
-  color: #4ADE80;
+  color: #4ade80;
   display: flex;
   align-items: center;
 }
@@ -678,60 +604,19 @@ button {
 
 .toast-message {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-/* Keyframe Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* ==========================================================================
-   RESPONSIVE DESIGN
-   ========================================================================== */
 @media (max-width: 768px) {
-  .page-wrapper {
-    padding: 20px 12px;
-  }
-
-  .pet-form-card {
-    padding: 28px 20px;
-    border-radius: 20px;
-    width: 95%;
-  }
-
-  .form-header h1 {
-    font-size: 24px;
-  }
-
   .form-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
   }
-
-  .form-group.full-width {
-    grid-column: span 1;
+  .pet-form-card {
+    padding: 24px 18px;
   }
-
-  .form-actions {
-    flex-direction: column-reverse;
-    gap: 10px;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-  }
-
   .toast-container {
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-  }
-
-  .toast {
-    width: 100%;
-    justify-content: center;
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
   }
 }

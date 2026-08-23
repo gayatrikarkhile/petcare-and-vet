@@ -3,7 +3,7 @@
 
             <div class="topbar-left">
                 <div class="greeting">
-                    <h1>Good Morning, <span id="ownerName">Gayatri</span> 👋</h1>
+                    <h1>Good Morning, <span id="ownerName">User</span> 👋</h1>
                     <span class="managing-pill">Managing <strong id="managingPetName">Bruno</strong></span>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                     <kbd>⌘K</kbd>
                 </div>
                 
-<button class="icon-button notification-button" id="notificationButton" aria-label="Notifications">
+<button class="icon-button notification-button" id="notificationButton" aria-label="Notifications" onclick="window.location.href='/frontend/notifications/notifications.html'">
     <svg
         class="notification-icon"
         width="22"
@@ -51,10 +51,17 @@
         aria-label="Open profile menu"
     >
 
-        <span
-            class="profile-avatar"
-            id="profileAvatar"
-        >G</span>
+   <span class="profile-avatar" id="profileAvatar">
+
+    <img
+        id="navbarProfileImage"
+        src=""
+        alt="Profile Photo"
+    >
+
+    <span id="navbarProfileInitial">G</span>
+
+</span>
 
         <span
             class="profile-name"
@@ -89,7 +96,7 @@
     type="button"
     id="profileMenuItem"
 >
-    👤 Profile
+    ✏️ Edit Profile
 </button>
 
         <button

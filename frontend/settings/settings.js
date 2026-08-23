@@ -8,10 +8,11 @@
 // ========================================
 
 function goBack() {
-
-    window.location.href =
-        "../owner/dashboard/ownerdashboard.html";
-
+    if (document.referrer && document.referrer.includes("/frontend/")) {
+        window.history.back();
+    } else {
+        window.location.href = "../owner/dashboard/ownerdashboard.html";
+    }
 }
 
 
@@ -19,44 +20,11 @@ function goBack() {
 // PROFILE BUTTON
 // ========================================
 
-const profileButton =
-    document.getElementById("profileButton");
-
+const profileButton = document.getElementById("profileButton");
 if (profileButton) {
-
-    profileButton.addEventListener(
-        "click",
-        function () {
-
-            window.location.href =
-                "../profile/profile.html";
-
-        }
-    );
-
-}
-
-
-// ========================================
-// CHANGE PASSWORD
-// ========================================
-
-const passwordButton =
-    document.getElementById("passwordButton");
-
-if (passwordButton) {
-
-    passwordButton.addEventListener(
-        "click",
-        function () {
-
-            alert(
-                "Password change feature will be added next."
-            );
-
-        }
-    );
-
+    profileButton.addEventListener("click", function () {
+        window.location.href = "../profile/profile.html";
+    });
 }
 
 

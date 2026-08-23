@@ -3,616 +3,286 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activity | PawSync</title>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Shared CSS -->
-    <link
-        rel="stylesheet"
-        href="../shared/css/variables.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../shared/css/common.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../shared/css/responsive.css"
-    >
+    <link rel="stylesheet" href="../shared/css/variables.css">
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <link rel="stylesheet" href="../shared/css/responsive.css">
 
     <!-- Activity CSS -->
-    <link
-        rel="stylesheet"
-        href="activity.css"
-    >
-
+    <link rel="stylesheet" href="activity.css">
 </head>
-
 
 <body data-shared-path="../shared">
 
-    <!-- =====================================================
-         SHARED NAVBAR
-    ====================================================== -->
-
+    <!-- SHARED NAVBAR -->
     <div id="navbar-container"></div>
 
-
-    <!-- =====================================================
-         PAGE LAYOUT
-    ====================================================== -->
-
+    <!-- PAGE LAYOUT -->
     <div class="page-layout">
 
-        <!-- =================================================
-             SHARED SIDEBAR
-        ================================================== -->
-
+        <!-- SHARED SIDEBAR -->
         <div id="sidebar-container"></div>
 
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
 
-        <!-- =================================================
-             ACTIVITY MAIN CONTENT
-        ================================================== -->
+            <!-- PAGE HEADER -->
+            <section class="activity-page-header">
+                <div class="header-title-block">
+                    <span class="eyebrow-label">PET WELLNESS</span>
+                    <h1>🏃 Activity</h1>
+                    <p>Personalized exercise, play, and mental stimulation plan for your pet.</p>
+                </div>
 
-        <main class="activity-main">
+                <!-- PET SELECTOR -->
+                <div class="pet-selector-card">
+                    <div class="pet-selector-header-row">
+                        <div class="pet-avatar-circle" id="selectedPetAvatar">🐾</div>
+                        <div class="pet-select-wrapper">
+                            <span class="selector-label">SELECTED PET</span>
+                            <select id="petSelector" class="pet-dropdown"></select>
+                        </div>
+                    </div>
+                    <div class="pet-meta-row" id="selectedPetMeta">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
 
-            <div class="activity-page">
+            <!-- LOADING / EMPTY / CONTENT CONTAINERS -->
+            <div id="activityLoading" class="state-container" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading activity plan...</p>
+            </div>
 
+            <!-- MAIN ACTIVITY CONTENT -->
+            <div id="activityContent">
 
-                <!-- =================================================
-                     PAGE HEADER
-                ================================================== -->
-
-                <section class="activity-header">
-
-                    <div class="activity-heading">
-
-                        <span class="page-label">
-                            PET WELLNESS
-                        </span>
-
-                        <h1>
-                            Activity
-                        </h1>
-
-                        <p>
-                            Track your pet's movement,
-                            exercise and daily wellness.
+                <!-- INCOMPLETE PROFILE CARD -->
+                <div id="activityIncompleteCard" style="display: none;">
+                    <section class="activity-overview-card" style="padding: 48px; text-align: center;">
+                        <div style="font-size: 54px; margin-bottom: 16px;">🏃</div>
+                        <h2 id="incompletePetTitle" style="color: #173b5f; margin: 0 0 12px 0;">Complete Pet's Activity Profile</h2>
+                        <p id="incompletePetMsg" style="color: #64748b; max-width: 500px; margin: 0 auto 24px; line-height: 1.5;">
+                            Activity profile is not completed yet. Please complete the Activity information before generating a personalized activity plan.
                         </p>
-
-                    </div>
-
-
-                    <div class="activity-actions">
-
-                        <!-- Pet Selector -->
-
-                        <select
-                            id="petSelector"
-                            class="pet-selector"
-                        >
-
-                            <option value="bruno">
-                                Bruno (Dog)
-                            </option>
-
-                            <option value="kitty">
-                                Kitty (Cat)
-                            </option>
-
-                            <option value="coco">
-                                Coco (Bird)
-                            </option>
-
-                        </select>
-
-
-                        <!-- Log Activity -->
-
-                        <button
-                            id="logActivityBtn"
-                            class="activity-btn"
-                            type="button"
-                        >
-                            <span>+</span>
-                            Log Activity
+                        <button type="button" class="action-btn btn-primary" onclick="openActivityModal()">
+                            Complete Activity Profile
                         </button>
+                    </section>
+                </div>
 
+                <!-- PLAN VIEW -->
+                <div id="activityPlanView">
+
+                    <!-- 1. ACTIVITY OVERVIEW -->
+                    <section class="activity-overview-card">
+                        <div class="overview-header">
+                            <h2>🏃 ACTIVITY OVERVIEW</h2>
+                        </div>
+                        <div class="overview-grid">
+                            <div class="overview-stat">
+                                <span class="stat-label">Activity Level</span>
+                                <strong id="overviewActivityLevel" class="stat-val">Moderate</strong>
+                            </div>
+                            <div class="overview-stat">
+                                <span class="stat-label">Energy Level</span>
+                                <strong id="overviewEnergyLevel" class="stat-val">High</strong>
+                            </div>
+                            <div class="overview-stat">
+                                <span class="stat-label">Daily Activity</span>
+                                <strong id="overviewDailyActivity" class="stat-val">45 min</strong>
+                            </div>
+                            <div class="overview-stat">
+                                <span class="stat-label">Monthly Progress</span>
+                                <strong id="overviewMonthlyProgress" class="stat-val">0%</strong>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 2. TODAY'S ACTIVITY -->
+                    <section class="todays-activity-card">
+                        <div class="card-heading-row">
+                            <div>
+                                <h2>🤖 TODAY'S ACTIVITY</h2>
+                                <p id="todayDateLabel" class="today-date-text">Loading date...</p>
+                            </div>
+                            <div class="progress-badge" id="todayProgressBadge">0 / 0 Completed</div>
+                        </div>
+
+                        <div id="todaysActivityList" class="todays-list">
+                            <!-- JS renders today's tasks -->
+                        </div>
+                    </section>
+
+                    <!-- 3. MONTHLY PLAN -->
+                    <section class="monthly-plan-section">
+                        <div class="plan-header-row">
+                            <h2>📅 MONTHLY ACTIVITY PLAN</h2>
+                            <div class="week-tabs" id="weekNavTabs">
+                                <button type="button" class="tab-btn" data-week="all">All Month</button>
+                                <button type="button" class="tab-btn active" data-week="1">Week 1</button>
+                                <button type="button" class="tab-btn" data-week="2">Week 2</button>
+                                <button type="button" class="tab-btn" data-week="3">Week 3</button>
+                                <button type="button" class="tab-btn" data-week="4">Week 4</button>
+                            </div>
+                        </div>
+
+                        <div id="monthlyPlanGrid" class="plan-grid">
+                            <!-- JS renders weekly schedule cards -->
+                        </div>
+                    </section>
+
+                    <!-- 4. CREDITS OVERVIEW -->
+                    <section class="credits-section-card">
+                        <div class="credits-left">
+                            <div class="trophy-icon">🏆</div>
+                            <div>
+                                <h2>ACTIVITY CREDITS</h2>
+                                <p>Complete daily activities to build your pet's wellness credit score.</p>
+                            </div>
+                        </div>
+                        <div class="credits-values-row">
+                            <div class="credit-metric">
+                                <span class="metric-label">This Week</span>
+                                <strong id="weekCreditsVal">0.0</strong>
+                            </div>
+                            <div class="credit-metric">
+                                <span class="metric-label">This Month</span>
+                                <strong id="monthCreditsVal">0.0</strong>
+                            </div>
+                            <div class="credit-bar-block">
+                                <div class="credit-track">
+                                    <div id="creditProgressBar" class="credit-fill" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 5. ACTIVITY HISTORY -->
+                    <section class="history-section-card">
+                        <div class="card-heading-row">
+                            <h2>📜 ACTIVITY HISTORY</h2>
+                        </div>
+                        <div id="activityHistoryList" class="history-list">
+                            <!-- JS renders history items -->
+                        </div>
+                    </section>
+
+                    <!-- PAGE BOTTOM ACTIONS -->
+                    <div class="page-bottom-actions">
+                        <button type="button" id="openActivityModalBtn" class="action-btn btn-secondary">
+                            ✏️ Update Activity Information
+                        </button>
+                        <button type="button" id="regeneratePlanBtn" class="action-btn btn-primary">
+                            ✨ Generate New Monthly Plan
+                        </button>
                     </div>
 
-                </section>
-
-
-
-                <!-- =================================================
-                     SUMMARY CARDS
-                ================================================== -->
-
-                <section class="activity-summary">
-
-
-                    <!-- Activity Score -->
-
-                    <article class="activity-card score-card">
-
-                        <div class="card-icon blue-icon">
-                            🎯
-                        </div>
-
-                        <div class="card-info">
-
-                            <span class="card-label">
-                                Activity Score
-                            </span>
-
-                            <strong>
-                                <span id="activityScore">
-                                    78
-                                </span>
-                                <small>/100</small>
-                            </strong>
-
-                            <div class="mini-progress">
-
-                                <div
-                                    id="activityScoreBar"
-                                    style="width:78%"
-                                ></div>
-
-                            </div>
-
-                            <p>
-                                Good activity level
-                            </p>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Sleep -->
-
-                    <article class="activity-card">
-
-                        <div class="card-icon purple-icon">
-                            🌙
-                        </div>
-
-                        <div class="card-info">
-
-                            <span class="card-label">
-                                Sleep
-                            </span>
-
-                            <strong id="sleepValue">
-                                11h 20m
-                            </strong>
-
-                            <p>
-                                Good rest
-                            </p>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Water -->
-
-                    <article class="activity-card">
-
-                        <div class="card-icon teal-icon">
-                            💧
-                        </div>
-
-                        <div class="card-info">
-
-                            <span class="card-label">
-                                Water Intake
-                            </span>
-
-                            <strong id="waterValue">
-                                1.70 L
-                            </strong>
-
-                            <p>
-                                <span id="waterPercentage">
-                                    85%
-                                </span>
-                                of daily goal
-                            </p>
-
-                        </div>
-
-                    </article>
-
-                </section>
-
-
-
-                <!-- =================================================
-                     MAIN ACTIVITY GRID
-                ================================================== -->
-
-                <section class="activity-grid">
-
-
-                    <!-- =================================================
-                         ACTIVITY TREND
-                    ================================================== -->
-
-                    <article class="activity-panel trend-panel">
-
-                        <div class="panel-header">
-
-                            <div>
-
-                                <h2>
-                                    Activity Trend
-                                </h2>
-
-                                <p>
-                                    Daily activity over time
-                                </p>
-
-                            </div>
-
-
-                            <div
-                                class="range-buttons"
-                                id="rangeButtons"
-                            >
-
-                                <button
-                                    class="range-btn active"
-                                    data-range="7"
-                                >
-                                    7 Days
-                                </button>
-
-                                <button
-                                    class="range-btn"
-                                    data-range="30"
-                                >
-                                    30 Days
-                                </button>
-
-                                <button
-                                    class="range-btn"
-                                    data-range="90"
-                                >
-                                    3 Months
-                                </button>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Chart -->
-
-                        <div class="chart-container">
-
-                            <canvas
-                                id="activityChart"
-                            ></canvas>
-
-                        </div>
-
-                    </article>
-
-
-
-                    <!-- =================================================
-                         TODAY'S GOALS
-                    ================================================== -->
-
-                    <article class="activity-panel goals-panel">
-
-                        <div class="panel-header">
-
-                            <div>
-
-                                <h2>
-                                    Today's Goals
-                                </h2>
-
-                                <p>
-                                    Daily activity targets
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            id="goalsList"
-                            class="goals-list"
-                        ></div>
-
-
-                        <!-- Overall Progress -->
-
-                        <div class="overall-goal">
-
-                            <div class="overall-header">
-
-                                <span>
-                                    Daily Goal
-                                </span>
-
-                                <strong id="overallPercentage">
-                                    79% Complete
-                                </strong>
-
-                            </div>
-
-
-                            <div class="overall-progress">
-
-                                <div
-                                    id="overallProgressBar"
-                                    style="width:79%"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-                </section>
-
-
-
-                <!-- =================================================
-                     RECENT ACTIVITIES
-                ================================================== -->
-
-                <section class="activity-panel recent-panel">
-
-                    <div class="panel-header">
-
-                        <div>
-
-                            <h2>
-                                Recent Activities
-                            </h2>
-
-                            <p>
-                                Your pet's latest activities
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        id="recentActivities"
-                        class="recent-list"
-                    ></div>
-
-                </section>
+                </div>
 
             </div>
 
         </main>
-
     </div>
 
-
-
-    <!-- =====================================================
-         LOG ACTIVITY MODAL
-    ====================================================== -->
-
-    <div
-        id="activityModal"
-        class="modal-overlay"
-    >
-
-        <div class="activity-modal">
-
-            <div class="modal-header">
-
-                <div>
-
-                    <h2>
-                        Log Activity
-                    </h2>
-
-                    <p>
-                        Add today's activity for your pet.
-                    </p>
-
-                </div>
-
-                <button
-                    id="closeModal"
-                    class="close-modal"
-                    type="button"
-                >
-                    ×
-                </button>
-
+    <!-- ACTIVITY PROFILE MODAL FORM -->
+    <div id="activityModal" class="modal-backdrop" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-top">
+                <h2>🏃 Complete Activity Profile</h2>
+                <button id="closeActivityModalBtn" class="modal-close-icon" type="button">&times;</button>
             </div>
 
-
-            <form id="activityForm">
-
-                <div class="form-group">
-
-                    <label for="activityType">
-                        Activity Type
-                    </label>
-
-                    <select
-                        id="activityType"
-                        required
-                    >
-
-                        <option value="">
-                            Select activity
-                        </option>
-
-                        <option value="Walking">
-                            Walking
-                        </option>
-
-                        <option value="Playing">
-                            Playing
-                        </option>
-
-                        <option value="Outdoor Time">
-                            Outdoor Time
-                        </option>
-
-                        <option value="Running">
-                            Running
-                        </option>
-
-                        <option value="Training">
-                            Training
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label for="activityDuration">
-                            Duration
-                        </label>
-
-                        <input
-                            type="number"
-                            id="activityDuration"
-                            min="1"
-                            placeholder="Minutes"
-                            required
-                        >
-
+            <form id="activityProfileForm">
+                <div class="inputs-grid">
+                    <div class="input-block">
+                        <label for="actActivityLevel">Activity Level *</label>
+                        <select id="actActivityLevel" name="activityLevel" required>
+                            <option value="Very Low">Very Low</option>
+                            <option value="Low">Low</option>
+                            <option value="Moderate" selected>Moderate</option>
+                            <option value="High">High</option>
+                            <option value="Very High">Very High</option>
+                        </select>
                     </div>
 
-
-                    <div class="form-group">
-
-                        <label for="activityTime">
-                            Time
-                        </label>
-
-                        <input
-                            type="time"
-                            id="activityTime"
-                            required
-                        >
-
+                    <div class="input-block">
+                        <label for="actEnergyLevel">Energy Level *</label>
+                        <select id="actEnergyLevel" name="energyLevel" required>
+                            <option value="Low">Low</option>
+                            <option value="Moderate" selected>Moderate</option>
+                            <option value="High">High</option>
+                        </select>
                     </div>
 
+                    <div class="input-block">
+                        <label for="actLifestyle">Lifestyle *</label>
+                        <select id="actLifestyle" name="lifestyle" required>
+                            <option value="Mostly Indoor">Mostly Indoor</option>
+                            <option value="Mostly Outdoor">Mostly Outdoor</option>
+                            <option value="Mixed" selected>Mixed</option>
+                        </select>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="actEnvironment">Available Environment</label>
+                        <select id="actEnvironment" name="environment">
+                            <option value="Small indoor space">Small indoor space</option>
+                            <option value="Large indoor space">Large indoor space</option>
+                            <option value="Yard">Yard</option>
+                            <option value="Park access & outdoor walking" selected>Park access & outdoor walking</option>
+                        </select>
+                    </div>
+
+                    <div class="input-block full-width-block">
+                        <label>Current Exercise Routine</label>
+                        <div class="checkbox-group-row">
+                            <label class="cb-label"><input type="checkbox" name="currentRoutine" value="Walking" checked> Walking</label>
+                            <label class="cb-label"><input type="checkbox" name="currentRoutine" value="Running"> Running</label>
+                            <label class="cb-label"><input type="checkbox" name="currentRoutine" value="Playing" checked> Playing</label>
+                            <label class="cb-label"><input type="checkbox" name="currentRoutine" value="Training"> Training</label>
+                            <label class="cb-label"><input type="checkbox" name="currentRoutine" value="Mental stimulation" checked> Mental Stimulation</label>
+                        </div>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="actFavorites">Favorite Activities</label>
+                        <input type="text" id="actFavorites" name="favoriteActivities" placeholder="e.g. Fetch, Swimming, Sniff walks">
+                    </div>
+
+                    <div class="input-block">
+                        <label for="actDisliked">Disliked Activities</label>
+                        <input type="text" id="actDisliked" name="dislikedActivities" placeholder="e.g. Loud parks, Fast running">
+                    </div>
+
+                    <div class="input-block full-width-block">
+                        <label for="actRestrictions">Activity Restrictions / Medical Considerations</label>
+                        <textarea id="actRestrictions" name="activityRestrictions" rows="3" placeholder="Add any joint issues, stamina limits, or special activity instructions..."></textarea>
+                    </div>
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="activityNotes">
-                        Notes
-                    </label>
-
-                    <textarea
-                        id="activityNotes"
-                        rows="3"
-                        placeholder="Add notes..."
-                    ></textarea>
-
+                <div class="modal-actions-row" style="margin-top: 24px;">
+                    <button type="button" id="cancelActivityModalBtn" class="action-btn btn-secondary">Cancel</button>
+                    <button type="submit" id="saveActivityModalBtn" class="action-btn btn-primary">Save Profile & Generate Plan</button>
                 </div>
-
-
-                <div class="modal-actions">
-
-                    <button
-                        type="button"
-                        id="cancelModal"
-                        class="cancel-btn"
-                    >
-                        Cancel
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="save-btn"
-                    >
-                        Save Activity
-                    </button>
-
-                </div>
-
             </form>
-
         </div>
-
     </div>
 
-
-
-    <!-- =====================================================
-         TOAST
-    ====================================================== -->
-
-    <div
-        id="activityToast"
-        class="activity-toast"
-    >
-        Activity added successfully.
-    </div>
-
-
-
-    <!-- =====================================================
-         CHART.JS
-    ====================================================== -->
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/chart.js"
-    ></script>
-
-
-    <!-- =====================================================
-         SHARED JS
-    ====================================================== -->
-
+    <!-- SHARED JAVASCRIPT -->
     <script src="../shared/js/shared.js"></script>
 
-
-    <!-- =====================================================
-         ACTIVITY JS
-    ====================================================== -->
-
+    <!-- ACTIVITY JAVASCRIPT -->
     <script src="activity.js"></script>
-
-
 </body>
 
 </html>

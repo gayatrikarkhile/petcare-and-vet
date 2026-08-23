@@ -32,8 +32,8 @@
 
                 <h2>Welcome to PawSync</h2>
 
-                <p>
-                    How would you like to continue?
+                <p style="font-weight: 600; color: #334155;">
+                    Who are you logging in as?
                 </p>
 
             </div>
@@ -58,9 +58,7 @@
                         <h3>Pet Owner</h3>
 
                         <p>
-                            Manage your pets, health records,
-                            nutrition, vaccinations, grooming
-                            and more.
+                            Manage your pets, health and care.
                         </p>
 
                     </div>
@@ -89,8 +87,7 @@
                         <h3>Veterinarian</h3>
 
                         <p>
-                            Manage consultations, pet health
-                            information and veterinary services.
+                            Manage your patients, appointments and records.
                         </p>
 
                     </div>
@@ -101,6 +98,21 @@
 
                 </button>
 
+            </div>
+
+            <!-- ADMIN LOGIN DIVIDER -->
+            <div class="admin-login-divider" style="margin-top: 28px; border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
+                <p style="margin: 0 0 10px; font-size: 13.5px; color: #64748b;">
+                    Are you a PawSync administrator?
+                </p>
+                <button
+                    type="button"
+                    id="go-to-admin-login-card"
+                    class="btn-admin-login-link"
+                    style="background: transparent; border: 1px solid #cbd5e1; color: #475569; padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 13.5px; cursor: pointer; transition: all 0.2s;"
+                >
+                    Admin Login
+                </button>
             </div>
 
         </section>
@@ -657,6 +669,107 @@
                 </p>
 
             </div>
+
+        </section>
+
+
+        <!-- ==========================
+             ADMINISTRATOR LOGIN
+        ========================== -->
+
+        <section
+            id="admin-login-section"
+            class="auth-section hidden"
+        >
+
+            <div class="top-bar">
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    id="admin-login-back-btn"
+                >
+                    ← Back to User Login
+                </button>
+
+            </div>
+
+
+            <div class="auth-header">
+
+                <div class="admin-icon" style="font-size: 36px; margin-bottom: 6px;">
+                    🔐
+                </div>
+
+                <h2>PawSync Administration</h2>
+
+                <p style="font-weight: 600; color: #475569;">
+                    Administrator Login
+                </p>
+
+            </div>
+
+
+            <form id="admin-login-form">
+
+                <div class="form-group">
+
+                    <label for="admin-login-email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="admin-login-email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="admin-login-password">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="admin-login-password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    style="background: #9333ea; margin-top: 10px;"
+                >
+                    Admin Login
+                </button>
+
+
+                <p
+                    id="admin-login-message"
+                    class="form-message"
+                ></p>
+
+            </form>
 
         </section>
 

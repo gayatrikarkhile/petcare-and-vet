@@ -1,393 +1,90 @@
-/* =========================================
-   PAWSYNC - MEDICAL VAULT
-   PAGE-SPECIFIC JAVASCRIPT
+// =========================================================
+// PAWSYNC — MEDICAL VAULT
+// DYNAMIC VERSION
+// =========================================================
 
-   Shared Navbar + Sidebar:
-   ../shared/js/shared.js
-========================================= */
+let pets = [];
+let documents = [];
 
+let selectedPetId = null;
+let selectedDocumentType = "all";
+let searchTerm = "";
 
-/* =========================================
-   PET DATA
-========================================= */
 
-const pets = [
-
-    {
-        id: 1,
-
-        name: "Bruno",
-
-        breed: "Labrador Retriever",
-
-        age: "2 Years",
-
-        image:
-            "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=300&q=80"
-    },
-
-
-    {
-        id: 2,
-
-        name: "Kitty",
-
-        breed: "Persian Cat",
-
-        age: "3 Years",
-
-        image:
-            "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=300&q=80"
-    },
-
-
-    {
-        id: 3,
-
-        name: "Coco",
-
-        breed: "Eclectus Parrot",
-
-        age: "1 Year",
-
-        image:
-            "https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=300&q=80"
-    }
-
-];
-
-
-/* =========================================
-   DOCUMENT DATA
-========================================= */
-
-let documents = [
-
-    {
-        id: 1,
-
-        petId: 1,
-
-        title:
-            "Rabies Vaccination Certificate",
-
-        type:
-            "vaccination",
-
-        date:
-            "2026-07-18",
-
-        doctor:
-            "Dr. Anjali Sharma",
-
-        fileType:
-            "PDF",
-
-        fileSize:
-            "1.2 MB",
-
-        icon:
-            "💉"
-    },
-
-
-    {
-        id: 2,
-
-        petId: 1,
-
-        title:
-            "General Health Checkup",
-
-        type:
-            "medical",
-
-        date:
-            "2026-06-10",
-
-        doctor:
-            "Dr. Rahul Patil",
-
-        fileType:
-            "PDF",
-
-        fileSize:
-            "2.4 MB",
-
-        icon:
-            "🩺"
-    },
-
-
-    {
-        id: 3,
-
-        petId: 1,
-
-        title:
-            "Blood Test Report",
-
-        type:
-            "lab",
-
-        date:
-            "2026-05-22",
-
-        doctor:
-            "PawCare Diagnostics",
-
-        fileType:
-            "PDF",
-
-        fileSize:
-            "890 KB",
-
-        icon:
-            "🧪"
-    },
-
-
-    {
-        id: 4,
-
-        petId: 2,
-
-        title:
-            "Vaccination Record",
-
-        type:
-            "vaccination",
-
-        date:
-            "2026-07-05",
-
-        doctor:
-            "Dr. Neha Kulkarni",
-
-        fileType:
-            "PDF",
-
-        fileSize:
-            "1.1 MB",
-
-        icon:
-            "💉"
-    },
-
-
-    {
-        id: 5,
-
-        petId: 2,
-
-        title:
-            "Skin Treatment Prescription",
-
-        type:
-            "prescription",
-
-        date:
-            "2026-06-14",
-
-        doctor:
-            "Dr. Neha Kulkarni",
-
-        fileType:
-            "JPG",
-
-        fileSize:
-            "620 KB",
-
-        icon:
-            "💊"
-    },
-
-
-    {
-        id: 6,
-
-        petId: 3,
-
-        title:
-            "Annual Health Report",
-
-        type:
-            "medical",
-
-        date:
-            "2026-05-29",
-
-        doctor:
-            "Dr. Priya Mehta",
-
-        fileType:
-            "PDF",
-
-        fileSize:
-            "1.8 MB",
-
-        icon:
-            "🩺"
-    }
-
-];
-
-
-/* =========================================
-   STATE
-========================================= */
-
-let selectedPetId =
-    pets.length > 0
-        ? pets[0].id
-        : null;
-
-
-let selectedDocumentType =
-    "all";
-
-
-let searchTerm =
-    "";
-
-
-/* =========================================
-   DOM ELEMENTS
-========================================= */
+// =========================================================
+// DOM ELEMENTS
+// =========================================================
 
 const petCategoryGrid =
-    document.getElementById(
-        "petCategoryGrid"
-    );
-
+    document.getElementById("petCategoryGrid");
 
 const selectedPetName =
-    document.getElementById(
-        "selectedPetName"
-    );
-
+    document.getElementById("selectedPetName");
 
 const selectedPetInfo =
-    document.getElementById(
-        "selectedPetInfo"
-    );
-
+    document.getElementById("selectedPetInfo");
 
 const documentCount =
-    document.getElementById(
-        "documentCount"
-    );
-
+    document.getElementById("documentCount");
 
 const documentTabs =
-    document.getElementById(
-        "documentTabs"
-    );
-
+    document.getElementById("documentTabs");
 
 const documentSearch =
-    document.getElementById(
-        "documentSearch"
-    );
-
+    document.getElementById("documentSearch");
 
 const documentList =
-    document.getElementById(
-        "documentList"
-    );
-
+    document.getElementById("documentList");
 
 const emptyDocumentState =
-    document.getElementById(
-        "emptyDocumentState"
-    );
-
+    document.getElementById("emptyDocumentState");
 
 const openUploadModal =
-    document.getElementById(
-        "openUploadModal"
-    );
-
+    document.getElementById("openUploadModal");
 
 const uploadModal =
-    document.getElementById(
-        "uploadModal"
-    );
-
+    document.getElementById("uploadModal");
 
 const closeUploadModal =
-    document.getElementById(
-        "closeUploadModal"
-    );
-
+    document.getElementById("closeUploadModal");
 
 const cancelUpload =
-    document.getElementById(
-        "cancelUpload"
-    );
-
+    document.getElementById("cancelUpload");
 
 const uploadDocumentForm =
-    document.getElementById(
-        "uploadDocumentForm"
-    );
-
+    document.getElementById("uploadDocumentForm");
 
 const documentPet =
-    document.getElementById(
-        "documentPet"
-    );
-
+    document.getElementById("documentPet");
 
 const documentType =
-    document.getElementById(
-        "documentType"
-    );
-
+    document.getElementById("documentType");
 
 const documentTitle =
-    document.getElementById(
-        "documentTitle"
-    );
-
+    document.getElementById("documentTitle");
 
 const documentDate =
-    document.getElementById(
-        "documentDate"
-    );
-
+    document.getElementById("documentDate");
 
 const documentDoctor =
-    document.getElementById(
-        "documentDoctor"
-    );
-
+    document.getElementById("documentDoctor");
 
 const documentFile =
-    document.getElementById(
-        "documentFile"
-    );
-
+    document.getElementById("documentFile");
 
 const documentDescription =
-    document.getElementById(
-        "documentDescription"
-    );
+    document.getElementById("documentDescription");
 
 
-/* =========================================
-   INITIALIZE
-========================================= */
+// =========================================================
+// INITIALIZE
+// =========================================================
 
 document.addEventListener(
     "DOMContentLoaded",
-    () => {
+    async () => {
 
-        renderPetCategories();
-
-        populatePetSelect();
-
-        updateSelectedPet();
+        await loadPets();
 
         setupDocumentTabs();
 
@@ -401,9 +98,469 @@ document.addEventListener(
 );
 
 
-/* =========================================
-   RENDER PET CATEGORIES
-========================================= */
+// =========================================================
+// GET AUTH TOKEN
+// =========================================================
+
+function getToken() {
+
+    return localStorage.getItem(
+        "pawsyncToken"
+    );
+
+}
+
+
+// =========================================================
+// API REQUEST HELPER
+// =========================================================
+
+async function apiRequest(
+    url,
+    options = {}
+) {
+
+    const token =
+        getToken();
+
+    if (!token) {
+
+        alert(
+            "Please login first."
+        );
+
+        return null;
+
+    }
+
+
+    options.headers =
+        options.headers || {};
+
+
+    options.headers.Authorization =
+        `Bearer ${token}`;
+
+
+    const response =
+        await fetch(
+            url,
+            options
+        );
+
+
+    const data =
+        await response.json();
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            "Request failed"
+        );
+
+    }
+
+
+    return data;
+
+}
+
+
+// =========================================================
+// LOAD PETS FROM BACKEND
+// =========================================================
+
+async function loadPets() {
+
+    try {
+
+        console.log(
+            "Loading pets from backend..."
+        );
+
+
+        const data =
+            await apiRequest(
+                "http://localhost:5000/api/pets"
+            );
+
+
+        if (!data) {
+            return;
+        }
+
+
+        console.log(
+            "PETS FROM BACKEND:",
+            data
+        );
+
+
+        pets =
+            (data.pets || []).map(
+                normalizePet
+            );
+
+
+        console.log(
+            "NORMALIZED PETS:",
+            pets
+        );
+
+
+        if (
+            pets.length === 0
+        ) {
+
+            renderPetCategories();
+
+            showNoPetsMessage();
+
+            return;
+
+        }
+
+
+        selectedPetId =
+            pets[0].id;
+
+
+        populatePetSelect();
+
+        renderPetCategories();
+
+        await loadDocumentsForSelectedPet();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "LOAD PETS ERROR:",
+            error
+        );
+
+
+        if (petCategoryGrid) {
+
+            petCategoryGrid.innerHTML = `
+
+                <div class="empty-document-state">
+
+                    <div class="empty-document-icon">
+                        ⚠️
+                    </div>
+
+                    <h3>
+                        Unable to load pets
+                    </h3>
+
+                    <p>
+                        ${error.message}
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+}
+
+
+// =========================================================
+// NORMALIZE PET DATA
+// =========================================================
+
+function normalizePet(pet) {
+
+    const weightValue =
+        pet.currentWeight?.value ??
+        pet.weight ??
+        0;
+
+
+    const weightUnit =
+        pet.currentWeight?.unit ??
+        pet.weightUnit ??
+        "kg";
+
+
+    return {
+
+        id:
+            pet._id,
+
+        name:
+            pet.petName ||
+            pet.name ||
+            "Unnamed Pet",
+
+        species:
+            pet.species ||
+            "Pet",
+
+        breed:
+            pet.breed ||
+            "Unknown breed",
+
+        gender:
+            pet.gender ||
+            "",
+
+        dateOfBirth:
+            pet.dateOfBirth ||
+            pet.dob ||
+            "",
+
+        weight:
+            weightValue,
+
+        weightUnit:
+            weightUnit,
+
+        image:
+            pet.petPhoto ||
+            "",
+
+        age:
+            calculateAge(
+                pet.dateOfBirth ||
+                pet.dob
+            )
+
+    };
+
+}
+
+
+// =========================================================
+// CALCULATE PET AGE
+// =========================================================
+
+function calculateAge(
+    dateOfBirth
+) {
+
+    if (!dateOfBirth) {
+
+        return "Age not available";
+
+    }
+
+
+    const dob =
+        new Date(
+            dateOfBirth
+        );
+
+
+    if (
+        Number.isNaN(
+            dob.getTime()
+        )
+    ) {
+
+        return "Age not available";
+
+    }
+
+
+    const today =
+        new Date();
+
+
+    let years =
+        today.getFullYear() -
+        dob.getFullYear();
+
+
+    let months =
+        today.getMonth() -
+        dob.getMonth();
+
+
+    if (
+        months < 0 ||
+        (
+            months === 0 &&
+            today.getDate() <
+            dob.getDate()
+        )
+    ) {
+
+        years--;
+
+        months += 12;
+
+    }
+
+
+    if (years > 0) {
+
+        return `${years} ${
+            years === 1
+                ? "Year"
+                : "Years"
+        }`;
+
+    }
+
+
+    if (months > 0) {
+
+        return `${months} ${
+            months === 1
+                ? "Month"
+                : "Months"
+        }`;
+
+    }
+
+
+    return "Less than 1 Month";
+
+}
+
+
+// =========================================================
+// LOAD DOCUMENTS FOR SELECTED PET
+// =========================================================
+
+async function loadDocumentsForSelectedPet() {
+
+    if (!selectedPetId) {
+        return;
+    }
+
+
+    try {
+
+        console.log(
+            "Loading documents for pet:",
+            selectedPetId
+        );
+
+
+        const data =
+            await apiRequest(
+                `http://localhost:5000/api/medical-documents/pet/${selectedPetId}`
+            );
+
+
+        if (!data) {
+            return;
+        }
+
+
+        console.log(
+            "MEDICAL DOCUMENTS:",
+            data
+        );
+
+
+        documents =
+            (data.documents || []).map(
+                normalizeDocument
+            );
+
+
+        updateSelectedPet();
+
+        renderPetCategories();
+
+        renderDocuments();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "LOAD DOCUMENTS ERROR:",
+            error
+        );
+
+
+        documents = [];
+
+        updateSelectedPet();
+
+        renderDocuments();
+
+    }
+
+}
+
+
+// =========================================================
+// NORMALIZE DOCUMENT
+// =========================================================
+
+function normalizeDocument(
+    document
+) {
+
+    return {
+
+        id:
+            document._id,
+
+        petId:
+            document.petId?._id ||
+            document.petId,
+
+        title:
+            document.title ||
+            "Untitled Document",
+
+        type:
+            document.type ||
+            "other",
+
+        date:
+            document.documentDate ||
+            document.date ||
+            document.createdAt,
+
+        doctor:
+            document.doctor ||
+            "Not specified",
+
+        fileType:
+            getFileType(
+                document.fileType
+            ),
+
+        fileSize:
+            formatFileSize(
+                document.fileSize
+            ),
+
+        fileUrl:
+            document.fileUrl ||
+            "",
+
+        description:
+            document.description ||
+            "",
+
+        icon:
+            getDocumentIcon(
+                document.type
+            )
+
+    };
+
+}
+
+
+// =========================================================
+// RENDER PET CARDS
+// =========================================================
 
 function renderPetCategories() {
 
@@ -415,113 +572,158 @@ function renderPetCategories() {
     petCategoryGrid.innerHTML = "";
 
 
-    pets.forEach(pet => {
+    pets.forEach(
+        pet => {
 
-        const card =
-            document.createElement("button");
-
-
-        card.type =
-            "button";
-
-
-        card.className =
-            "pet-category-card";
+            const card =
+                document.createElement(
+                    "button"
+                );
 
 
-        if (
-            pet.id === selectedPetId
-        ) {
+            card.type =
+                "button";
 
-            card.classList.add(
-                "active"
+
+            card.className =
+                "pet-category-card";
+
+
+            if (
+                pet.id ===
+                selectedPetId
+            ) {
+
+                card.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            card.dataset.petId =
+                pet.id;
+
+
+            const imageHTML =
+                pet.image
+
+                    ? `
+                        <img
+                            src="${pet.image}"
+                            alt="${escapeHTML(
+                                pet.name
+                            )}"
+                            onerror="
+                                this.style.display='none'
+                            "
+                        >
+                      `
+
+                    : `
+                        <div class="pet-placeholder">
+                            🐾
+                        </div>
+                      `;
+
+
+            card.innerHTML = `
+
+                <div class="pet-category-image">
+
+                    ${imageHTML}
+
+                </div>
+
+
+                <div class="pet-category-info">
+
+                    <h3>
+                        ${escapeHTML(
+                            pet.name
+                        )}
+                    </h3>
+
+
+                    <p>
+                        ${escapeHTML(
+                            pet.breed
+                        )}
+                        •
+                        ${escapeHTML(
+                            pet.age
+                        )}
+                    </p>
+
+
+                    <span>
+
+                        ${getPetDocumentCount(
+                            pet.id
+                        )}
+
+                        ${
+                            getPetDocumentCount(
+                                pet.id
+                            ) === 1
+                                ? "Document"
+                                : "Documents"
+                        }
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            card.addEventListener(
+                "click",
+                async () => {
+
+                    selectedPetId =
+                        pet.id;
+
+
+                    selectedDocumentType =
+                        "all";
+
+
+                    searchTerm =
+                        "";
+
+
+                    if (documentSearch) {
+
+                        documentSearch.value =
+                            "";
+
+                    }
+
+
+                    resetDocumentTabs();
+
+                    renderPetCategories();
+
+                    await loadDocumentsForSelectedPet();
+
+                }
+            );
+
+
+            petCategoryGrid.appendChild(
+                card
             );
 
         }
-
-
-        card.dataset.petId =
-            pet.id;
-
-
-        card.innerHTML = `
-
-            <div class="pet-category-image">
-
-                <img
-                    src="${pet.image}"
-                    alt="${pet.name}"
-                >
-
-            </div>
-
-
-            <div class="pet-category-info">
-
-                <h3>
-                    ${pet.name}
-                </h3>
-
-                <p>
-                    ${pet.breed} • ${pet.age}
-                </p>
-
-                <span>
-                    ${getPetDocumentCount(pet.id)}
-                    Documents
-                </span>
-
-            </div>
-
-        `;
-
-
-        card.addEventListener(
-            "click",
-            () => {
-
-                selectedPetId =
-                    pet.id;
-
-
-                selectedDocumentType =
-                    "all";
-
-
-                searchTerm =
-                    "";
-
-
-                if (documentSearch) {
-
-                    documentSearch.value =
-                        "";
-
-                }
-
-
-                resetDocumentTabs();
-
-                renderPetCategories();
-
-                updateSelectedPet();
-
-            }
-        );
-
-
-        petCategoryGrid.appendChild(
-            card
-        );
-
-    });
+    );
 
 }
 
 
-/* =========================================
-   PET DOCUMENT COUNT
-========================================= */
+// =========================================================
+// DOCUMENT COUNT
+// =========================================================
 
 function getPetDocumentCount(
     petId
@@ -529,15 +731,16 @@ function getPetDocumentCount(
 
     return documents.filter(
         document =>
-            document.petId === petId
+            document.petId ===
+            petId
     ).length;
 
 }
 
 
-/* =========================================
-   POPULATE PET SELECT
-========================================= */
+// =========================================================
+// POPULATE PET SELECT
+// =========================================================
 
 function populatePetSelect() {
 
@@ -549,27 +752,29 @@ function populatePetSelect() {
     documentPet.innerHTML = "";
 
 
-    pets.forEach(pet => {
+    pets.forEach(
+        pet => {
 
-        const option =
-            document.createElement(
-                "option"
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                pet.id;
+
+
+            option.textContent =
+                pet.name;
+
+
+            documentPet.appendChild(
+                option
             );
 
-
-        option.value =
-            pet.id;
-
-
-        option.textContent =
-            pet.name;
-
-
-        documentPet.appendChild(
-            option
-        );
-
-    });
+        }
+    );
 
 
     if (selectedPetId) {
@@ -579,19 +784,42 @@ function populatePetSelect() {
 
     }
 
+
+    documentPet.addEventListener(
+        "change",
+        async () => {
+
+            selectedPetId =
+                documentPet.value;
+
+
+            selectedDocumentType =
+                "all";
+
+
+            resetDocumentTabs();
+
+            renderPetCategories();
+
+            await loadDocumentsForSelectedPet();
+
+        }
+    );
+
 }
 
 
-/* =========================================
-   UPDATE SELECTED PET
-========================================= */
+// =========================================================
+// UPDATE SELECTED PET
+// =========================================================
 
 function updateSelectedPet() {
 
     const pet =
         pets.find(
             item =>
-                item.id === selectedPetId
+                item.id ===
+                selectedPetId
         );
 
 
@@ -613,8 +841,6 @@ function updateSelectedPet() {
         }
 
 
-        renderDocuments([]);
-
         return;
 
     }
@@ -631,7 +857,7 @@ function updateSelectedPet() {
     if (selectedPetInfo) {
 
         selectedPetInfo.textContent =
-            `${pet.breed} • ${pet.age}`;
+            `${pet.breed} • ${pet.age} • ${pet.gender} • ${pet.weight} ${pet.weightUnit}`;
 
     }
 
@@ -644,14 +870,19 @@ function updateSelectedPet() {
     }
 
 
-    renderDocuments();
+    if (documentCount) {
+
+        documentCount.textContent =
+            documents.length;
+
+    }
 
 }
 
 
-/* =========================================
-   RENDER DOCUMENTS
-========================================= */
+// =========================================================
+// RENDER DOCUMENTS
+// =========================================================
 
 function renderDocuments() {
 
@@ -668,9 +899,9 @@ function renderDocuments() {
         );
 
 
-    /* -------------------------------
-       DOCUMENT TYPE FILTER
-    -------------------------------- */
+    // -------------------------------------------------------
+    // TYPE FILTER
+    // -------------------------------------------------------
 
     if (
         selectedDocumentType !==
@@ -687,44 +918,66 @@ function renderDocuments() {
     }
 
 
-    /* -------------------------------
-       SEARCH FILTER
-    -------------------------------- */
+    // -------------------------------------------------------
+    // SEARCH
+    // -------------------------------------------------------
 
     if (searchTerm) {
 
-        const search =
-            searchTerm.toLowerCase();
-
-
         filteredDocuments =
             filteredDocuments.filter(
-                document =>
+                document => {
 
-                    document.title
-                        .toLowerCase()
-                        .includes(search)
+                    const title =
+                        (
+                            document.title ||
+                            ""
+                        ).toLowerCase();
 
-                    ||
 
-                    document.doctor
-                        .toLowerCase()
-                        .includes(search)
+                    const doctor =
+                        (
+                            document.doctor ||
+                            ""
+                        ).toLowerCase();
 
-                    ||
 
-                    document.fileType
-                        .toLowerCase()
-                        .includes(search)
+                    const fileType =
+                        (
+                            document.fileType ||
+                            ""
+                        ).toLowerCase();
 
+
+                    return (
+
+                        title.includes(
+                            searchTerm
+                        )
+
+                        ||
+
+                        doctor.includes(
+                            searchTerm
+                        )
+
+                        ||
+
+                        fileType.includes(
+                            searchTerm
+                        )
+
+                    );
+
+                }
             );
 
     }
 
 
-    /* -------------------------------
-       UPDATE COUNT
-    -------------------------------- */
+    // -------------------------------------------------------
+    // COUNT
+    // -------------------------------------------------------
 
     if (documentCount) {
 
@@ -737,9 +990,9 @@ function renderDocuments() {
     documentList.innerHTML = "";
 
 
-    /* -------------------------------
-       EMPTY STATE
-    -------------------------------- */
+    // -------------------------------------------------------
+    // EMPTY
+    // -------------------------------------------------------
 
     if (
         filteredDocuments.length === 0
@@ -765,21 +1018,17 @@ function renderDocuments() {
     }
 
 
-    /* -------------------------------
-       CREATE DOCUMENT CARDS
-    -------------------------------- */
+    // -------------------------------------------------------
+    // CREATE CARDS
+    // -------------------------------------------------------
 
     filteredDocuments.forEach(
         document => {
 
-            const card =
+            documentList.appendChild(
                 createDocumentCard(
                     document
-                );
-
-
-            documentList.appendChild(
-                card
+                )
             );
 
         }
@@ -788,54 +1037,71 @@ function renderDocuments() {
 }
 
 
-/* =========================================
-   CREATE DOCUMENT CARD
-========================================= */
+// =========================================================
+// CREATE DOCUMENT CARD
+// =========================================================
 
 function createDocumentCard(
     document
 ) {
 
     const card =
+        document.createElement
+            ? null
+            : null;
+
+    const element =
         documentElement(
             "div"
         );
 
 
-    card.className =
+    element.className =
         "document-card";
 
 
-    card.dataset.documentId =
+    element.dataset.documentId =
         document.id;
 
 
-    card.innerHTML = `
+    element.innerHTML = `
 
         <div class="document-icon">
+
             ${document.icon}
+
         </div>
 
 
         <div class="document-info">
 
             <h3>
-                ${document.title}
+                ${escapeHTML(
+                    document.title
+                )}
             </h3>
 
+
             <p>
-                ${document.doctor}
+                ${escapeHTML(
+                    document.doctor
+                )}
             </p>
 
 
             <div class="document-meta">
 
                 <span>
-                    ${formatDate(document.date)}
+                    ${formatDate(
+                        document.date
+                    )}
                 </span>
 
+
                 <span>
-                    ${capitalizeType(document.type)}
+                    ${capitalizeType(
+                        document.type
+                    )}
                 </span>
 
             </div>
@@ -849,6 +1115,7 @@ function createDocumentCard(
                 ${document.fileType}
             </span>
 
+
             <span class="file-size">
                 ${document.fileSize}
             </span>
@@ -861,7 +1128,6 @@ function createDocumentCard(
             <button
                 type="button"
                 class="view-document-button"
-                data-document-id="${document.id}"
             >
                 View
             </button>
@@ -870,7 +1136,6 @@ function createDocumentCard(
             <button
                 type="button"
                 class="delete-document-button"
-                data-document-id="${document.id}"
                 aria-label="Delete document"
             >
                 ×
@@ -882,13 +1147,13 @@ function createDocumentCard(
 
 
     const viewButton =
-        card.querySelector(
+        element.querySelector(
             ".view-document-button"
         );
 
 
     const deleteButton =
-        card.querySelector(
+        element.querySelector(
             ".delete-document-button"
         );
 
@@ -925,14 +1190,14 @@ function createDocumentCard(
     }
 
 
-    return card;
+    return element;
 
 }
 
 
-/* =========================================
-   CREATE ELEMENT HELPER
-========================================= */
+// =========================================================
+// CREATE ELEMENT
+// =========================================================
 
 function documentElement(
     tagName
@@ -945,9 +1210,9 @@ function documentElement(
 }
 
 
-/* =========================================
-   DOCUMENT TABS
-========================================= */
+// =========================================================
+// DOCUMENT TABS
+// =========================================================
 
 function setupDocumentTabs() {
 
@@ -962,43 +1227,45 @@ function setupDocumentTabs() {
         );
 
 
-    tabs.forEach(tab => {
+    tabs.forEach(
+        tab => {
 
-        tab.addEventListener(
-            "click",
-            () => {
+            tab.addEventListener(
+                "click",
+                () => {
 
-                tabs.forEach(
-                    item =>
-                        item.classList.remove(
-                            "active"
-                        )
-                );
-
-
-                tab.classList.add(
-                    "active"
-                );
+                    tabs.forEach(
+                        item =>
+                            item.classList.remove(
+                                "active"
+                            )
+                    );
 
 
-                selectedDocumentType =
-                    tab.dataset.type ||
-                    "all";
+                    tab.classList.add(
+                        "active"
+                    );
 
 
-                renderDocuments();
+                    selectedDocumentType =
+                        tab.dataset.type ||
+                        "all";
 
-            }
-        );
 
-    });
+                    renderDocuments();
+
+                }
+            );
+
+        }
+    );
 
 }
 
 
-/* =========================================
-   RESET DOCUMENT TABS
-========================================= */
+// =========================================================
+// RESET TABS
+// =========================================================
 
 function resetDocumentTabs() {
 
@@ -1013,32 +1280,34 @@ function resetDocumentTabs() {
         );
 
 
-    tabs.forEach(tab => {
+    tabs.forEach(
+        tab => {
 
-        tab.classList.remove(
-            "active"
-        );
-
-
-        if (
-            tab.dataset.type ===
-            "all"
-        ) {
-
-            tab.classList.add(
+            tab.classList.remove(
                 "active"
             );
 
-        }
 
-    });
+            if (
+                tab.dataset.type ===
+                "all"
+            ) {
+
+                tab.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
 
 }
 
 
-/* =========================================
-   SEARCH
-========================================= */
+// =========================================================
+// SEARCH
+// =========================================================
 
 function setupSearch() {
 
@@ -1065,9 +1334,9 @@ function setupSearch() {
 }
 
 
-/* =========================================
-   VIEW DOCUMENT
-========================================= */
+// =========================================================
+// VIEW DOCUMENT
+// =========================================================
 
 function viewDocument(
     documentId
@@ -1076,7 +1345,8 @@ function viewDocument(
     const documentItem =
         documents.find(
             item =>
-                item.id === documentId
+                item.id ===
+                documentId
         );
 
 
@@ -1085,43 +1355,40 @@ function viewDocument(
     }
 
 
+    if (
+        documentItem.fileUrl
+    ) {
+
+        window.open(
+            documentItem.fileUrl,
+            "_blank"
+        );
+
+        return;
+
+    }
+
+
     alert(
-
-        `${documentItem.title}\n\n` +
-
-        `Type: ${capitalizeType(
-            documentItem.type
-        )}\n` +
-
-        `Date: ${formatDate(
-            documentItem.date
-        )}\n` +
-
-        `Doctor/Clinic: ${
-            documentItem.doctor
-        }\n` +
-
-        `File: ${
-            documentItem.fileType
-        } (${documentItem.fileSize})`
-
+        "Document file is not available."
     );
 
 }
 
 
-/* =========================================
-   DELETE DOCUMENT
-========================================= */
+// =========================================================
+// DELETE DOCUMENT
+// =========================================================
 
-function deleteDocument(
+async function deleteDocument(
     documentId
 ) {
 
     const documentItem =
         documents.find(
             item =>
-                item.id === documentId
+                item.id ===
+                documentId
         );
 
 
@@ -1141,23 +1408,53 @@ function deleteDocument(
     }
 
 
-    documents =
-        documents.filter(
-            item =>
-                item.id !== documentId
+    try {
+
+        const data =
+            await apiRequest(
+                `http://localhost:5000/api/medical-documents/${documentId}`,
+                {
+                    method:
+                        "DELETE"
+                }
+            );
+
+
+        if (!data) {
+            return;
+        }
+
+
+        alert(
+            "Document deleted successfully."
         );
 
 
-    renderPetCategories();
+        await loadDocumentsForSelectedPet();
 
-    renderDocuments();
+    }
+
+    catch (error) {
+
+        console.error(
+            "DELETE DOCUMENT ERROR:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Unable to delete document."
+        );
+
+    }
 
 }
 
 
-/* =========================================
-   UPLOAD MODAL
-========================================= */
+// =========================================================
+// UPLOAD MODAL
+// =========================================================
 
 function setupUploadModal() {
 
@@ -1244,9 +1541,9 @@ function setupUploadModal() {
 }
 
 
-/* =========================================
-   OPEN MODAL
-========================================= */
+// =========================================================
+// OPEN MODAL
+// =========================================================
 
 function openModal() {
 
@@ -1274,9 +1571,9 @@ function openModal() {
 }
 
 
-/* =========================================
-   CLOSE MODAL
-========================================= */
+// =========================================================
+// CLOSE MODAL
+// =========================================================
 
 function closeModal() {
 
@@ -1296,9 +1593,9 @@ function closeModal() {
 }
 
 
-/* =========================================
-   UPLOAD FORM
-========================================= */
+// =========================================================
+// UPLOAD DOCUMENT TO BACKEND
+// =========================================================
 
 function setupUploadForm() {
 
@@ -1309,33 +1606,13 @@ function setupUploadForm() {
 
     uploadDocumentForm.addEventListener(
         "submit",
-        event => {
+        async event => {
 
             event.preventDefault();
 
 
             const petId =
-                Number(
-                    documentPet.value
-                );
-
-
-            const pet =
-                pets.find(
-                    item =>
-                        item.id === petId
-                );
-
-
-            if (!pet) {
-
-                alert(
-                    "Please select a pet."
-                );
-
-                return;
-
-            }
+                documentPet.value;
 
 
             const type =
@@ -1351,24 +1628,27 @@ function setupUploadForm() {
 
 
             const doctor =
-                documentDoctor.value.trim()
-                ||
-                "Not specified";
+                documentDoctor.value.trim();
+
+
+            const description =
+                documentDescription
+                    ? documentDescription.value.trim()
+                    : "";
 
 
             const file =
                 documentFile.files[0];
 
 
-            if (
-                !type ||
-                !title ||
-                !date ||
-                !file
-            ) {
+            // ------------------------------------------------
+            // VALIDATION
+            // ------------------------------------------------
+
+            if (!petId) {
 
                 alert(
-                    "Please complete all required fields."
+                    "Please select a pet."
                 );
 
                 return;
@@ -1376,87 +1656,211 @@ function setupUploadForm() {
             }
 
 
-            const fileExtension =
-                getFileExtension(
-                    file.name
+            if (!type) {
+
+                alert(
+                    "Please select document type."
                 );
 
-
-            const newDocument = {
-
-                id:
-                    Date.now(),
-
-                petId:
-                    petId,
-
-                title:
-                    title,
-
-                type:
-                    type,
-
-                date:
-                    date,
-
-                doctor:
-                    doctor,
-
-                fileType:
-                    fileExtension,
-
-                fileSize:
-                    formatFileSize(
-                        file.size
-                    ),
-
-                icon:
-                    getDocumentIcon(
-                        type
-                    )
-
-            };
-
-
-            documents.push(
-                newDocument
-            );
-
-
-            selectedPetId =
-                petId;
-
-
-            selectedDocumentType =
-                "all";
-
-
-            searchTerm =
-                "";
-
-
-            if (documentSearch) {
-
-                documentSearch.value =
-                    "";
+                return;
 
             }
 
 
-            resetDocumentTabs();
+            if (!title) {
 
-            renderPetCategories();
+                alert(
+                    "Please enter document name."
+                );
 
-            updateSelectedPet();
+                return;
 
-            uploadDocumentForm.reset();
-
-            closeModal();
+            }
 
 
-            alert(
-                "Document uploaded successfully."
+            if (!date) {
+
+                alert(
+                    "Please select document date."
+                );
+
+                return;
+
+            }
+
+
+            if (!file) {
+
+                alert(
+                    "Please select a file."
+                );
+
+                return;
+
+            }
+
+
+            // ------------------------------------------------
+            // CREATE FORMDATA
+            // ------------------------------------------------
+
+            const formData =
+                new FormData();
+
+
+            formData.append(
+                "petId",
+                petId
             );
+
+
+            formData.append(
+                "type",
+                type
+            );
+
+
+            formData.append(
+                "title",
+                title
+            );
+
+
+            formData.append(
+                "documentDate",
+                date
+            );
+
+
+            formData.append(
+                "doctor",
+                doctor
+            );
+
+
+            formData.append(
+                "description",
+                description
+            );
+
+
+            formData.append(
+                "document",
+                file
+            );
+
+
+            console.log(
+                "Uploading medical document..."
+            );
+
+
+            // ------------------------------------------------
+            // DISABLE BUTTON
+            // ------------------------------------------------
+
+            const submitButton =
+                uploadDocumentForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            const originalText =
+                submitButton
+                    ? submitButton.textContent
+                    : "";
+
+
+            if (submitButton) {
+
+                submitButton.disabled =
+                    true;
+
+                submitButton.textContent =
+                    "Uploading...";
+
+            }
+
+
+            try {
+
+                const data =
+                    await apiRequest(
+                        "http://localhost:5000/api/medical-documents",
+                        {
+                            method:
+                                "POST",
+
+                            body:
+                                formData
+                        }
+                    );
+
+
+                if (!data) {
+                    return;
+                }
+
+
+                console.log(
+                    "DOCUMENT UPLOAD RESPONSE:",
+                    data
+                );
+
+
+                alert(
+                    "Document uploaded successfully!"
+                );
+
+
+                uploadDocumentForm.reset();
+
+                closeModal();
+
+
+                selectedPetId =
+                    petId;
+
+
+                selectedDocumentType =
+                    "all";
+
+
+                resetDocumentTabs();
+
+
+                await loadDocumentsForSelectedPet();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "UPLOAD DOCUMENT ERROR:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "Unable to upload document."
+                );
+
+            }
+
+            finally {
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        originalText;
+
+                }
+
+            }
 
         }
     );
@@ -1464,44 +1868,67 @@ function setupUploadForm() {
 }
 
 
-/* =========================================
-   FILE EXTENSION
-========================================= */
+// =========================================================
+// FILE TYPE
+// =========================================================
 
-function getFileExtension(
-    fileName
+function getFileType(
+    fileType
 ) {
 
-    const parts =
-        fileName.split(".");
+    if (!fileType) {
+        return "FILE";
+    }
 
 
     if (
-        parts.length < 2
+        fileType.includes("/")
     ) {
 
-        return "FILE";
+        const parts =
+            fileType.split("/");
+
+
+        return (
+            parts[1] ||
+            "FILE"
+        ).toUpperCase();
 
     }
 
 
-    return parts[
-        parts.length - 1
-    ]
-        .toUpperCase();
+    return fileType.toUpperCase();
 
 }
 
 
-/* =========================================
-   FILE SIZE
-========================================= */
+// =========================================================
+// FILE SIZE
+// =========================================================
 
 function formatFileSize(
     bytes
 ) {
 
-    if (bytes < 1024) {
+    if (
+        !bytes ||
+        Number.isNaN(
+            Number(bytes)
+        )
+    ) {
+
+        return "";
+
+    }
+
+
+    bytes =
+        Number(bytes);
+
+
+    if (
+        bytes < 1024
+    ) {
 
         return `${bytes} B`;
 
@@ -1528,9 +1955,9 @@ function formatFileSize(
 }
 
 
-/* =========================================
-   DOCUMENT ICON
-========================================= */
+// =========================================================
+// DOCUMENT ICON
+// =========================================================
 
 function getDocumentIcon(
     type
@@ -1538,21 +1965,29 @@ function getDocumentIcon(
 
     const icons = {
 
-        vaccination: "💉",
+        vaccination:
+            "💉",
 
-        medical: "🩺",
+        medical:
+            "🩺",
 
-        prescription: "💊",
+        prescription:
+            "💊",
 
-        lab: "🧪",
+        lab:
+            "🧪",
 
-        discharge: "📋",
+        discharge:
+            "📋",
 
-        xray: "🩻",
+        xray:
+            "🩻",
 
-        history: "📑",
+        history:
+            "📑",
 
-        other: "📄"
+        other:
+            "📄"
 
     };
 
@@ -1565,9 +2000,9 @@ function getDocumentIcon(
 }
 
 
-/* =========================================
-   FORMAT DATE
-========================================= */
+// =========================================================
+// FORMAT DATE
+// =========================================================
 
 function formatDate(
     dateString
@@ -1598,18 +2033,23 @@ function formatDate(
     return date.toLocaleDateString(
         "en-IN",
         {
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
+            day:
+                "2-digit",
+
+            month:
+                "short",
+
+            year:
+                "numeric"
         }
     );
 
 }
 
 
-/* =========================================
-   CAPITALIZE DOCUMENT TYPE
-========================================= */
+// =========================================================
+// CAPITALIZE TYPE
+// =========================================================
 
 function capitalizeType(
     type
@@ -1621,14 +2061,86 @@ function capitalizeType(
 
 
     return type
+        .charAt(0)
+        .toUpperCase()
+        +
+        type.slice(1);
+
+}
+
+
+// =========================================================
+// ESCAPE HTML
+// =========================================================
+
+function escapeHTML(
+    value
+) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(value)
         .replace(
-            /-/g,
-            " "
+            /&/g,
+            "&amp;"
         )
         .replace(
-            /\b\w/g,
-            character =>
-                character.toUpperCase()
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
         );
+
+}
+
+
+// =========================================================
+// NO PETS MESSAGE
+// =========================================================
+
+function showNoPetsMessage() {
+
+    if (!petCategoryGrid) {
+        return;
+    }
+
+
+    petCategoryGrid.innerHTML = `
+
+        <div class="empty-document-state">
+
+            <div class="empty-document-icon">
+                🐾
+            </div>
+
+            <h3>
+                No pets added yet
+            </h3>
+
+            <p>
+                Add a pet first to manage medical documents.
+            </p>
+
+        </div>
+
+    `;
 
 }

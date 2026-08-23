@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vaccinations | PawSync Vet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../vet-assets/vet-style.css">
+</head>
+<body data-vetpage="vaccinations">
+  <header class="vet-topbar" id="vet-topbar"></header>
+  <aside class="vet-sidebar" id="vet-sidebar"></aside>
+
+  <main class="vet-main">
+    <div class="vet-page-head">
+      <div>
+        <div class="vet-eyebrow">💉 Immunization Logs</div>
+        <h1>Vaccinations</h1>
+        <p class="vet-subtitle">Track and add vaccination history for your patients.</p>
+      </div>
+    </div>
+
+    <div class="vet-card">
+      <div class="vet-table-wrap">
+        <table class="vet-table">
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Species & Breed</th>
+              <th>Owner</th>
+              <th>Immunization History</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="vet-records-list">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="../vet-assets/vet-app.js"></script>
+</body>
+</html>

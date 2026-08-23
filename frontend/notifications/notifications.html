@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications | PawSync</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="../shared/css/variables.css">
+    <link rel="stylesheet" href="../shared/css/common.css">
+    <link rel="stylesheet" href="../shared/css/responsive.css">
+
+    <!-- Notifications CSS -->
+    <link rel="stylesheet" href="notifications.css">
+</head>
+
+<body data-shared-path="../shared">
+
+    <!-- Shared Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Page Layout -->
+    <div class="page-layout">
+
+        <!-- Shared Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <div class="page-container">
+
+                <!-- Header -->
+                <header class="page-header">
+                    <div>
+                        <span class="eyebrow">VETERINARY CARE</span>
+                        <h1>Notifications 🔔</h1>
+                        <p class="subtitle">Important appointment & veterinarian updates</p>
+                    </div>
+
+                    <div class="header-actions">
+                        <button id="markAllReadBtn" class="mark-read-btn">
+                            ✓ Mark All as Read
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Notifications Container -->
+                <div class="notifications-card">
+                    <div id="notificationsList" class="notifications-list">
+                        <div class="loading-state">
+                            <span>⏳ Loading appointment notifications...</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Shared JS -->
+    <script src="../shared/js/shared.js"></script>
+
+    <!-- Page JS -->
+    <script src="notifications.js"></script>
+
+</body>
+</html>

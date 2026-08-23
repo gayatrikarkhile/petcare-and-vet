@@ -337,9 +337,28 @@
 
             </section>
 
+            <!-- MY BOOKED APPOINTMENTS SECTION -->
+            <section class="my-booked-appointments-section" style="margin-top: 36px;">
+                <div class="section-heading">
+                    <div>
+                        <h2>My Scheduled Appointments 📅</h2>
+                        <p>Track your upcoming and recent veterinarian appointments.</p>
+                    </div>
+                </div>
+                <div class="booked-appointments-grid" id="bookedAppointmentsGrid"></div>
+            </section>
+
 
         </main>
 
+    </div>
+
+    <!-- VET PROFILE MODAL -->
+    <div id="vetProfileModal" class="modal-backdrop" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.6); backdrop-filter:blur(4px); z-index:9999; align-items:center; justify-content:center;">
+        <div class="modal-card" style="background:#ffffff; border-radius:20px; max-width:540px; width:90%; padding:28px; box-shadow:0 20px 25px -5px rgba(0,0,0,0.1); position:relative; max-height:90vh; overflow-y:auto;">
+            <button id="closeVetProfileModal" type="button" style="position:absolute; top:20px; right:20px; background:#f1f5f9; border:none; width:32px; height:32px; border-radius:50%; font-size:16px; font-weight:bold; cursor:pointer; color:#64748b;">✕</button>
+            <div id="vetProfileModalContent"></div>
+        </div>
     </div>
 
 

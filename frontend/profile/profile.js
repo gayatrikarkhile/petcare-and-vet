@@ -2,7 +2,85 @@
 // PAWSYNC PROFILE PAGE
 // ========================================
 
-const API_BASE_URL = "http://localhost:5000/api/auth";
+const API_BASE_URL =
+    "http://localhost:5000/api/auth";
+
+
+// ========================================
+// PROFILE PHOTO ELEMENTS
+// ========================================
+
+const profileAvatarImage =
+    document.getElementById(
+        "profileAvatarImage"
+    );
+
+const profileAvatarInitial =
+    document.getElementById(
+        "profileAvatarInitial"
+    );
+
+
+// ========================================
+// EDIT PROFILE ELEMENTS
+// ========================================
+
+const editProfileButton =
+    document.getElementById(
+        "editProfileButton"
+    );
+
+const editProfileModal =
+    document.getElementById(
+        "editProfileModal"
+    );
+
+const closeProfileModal =
+    document.getElementById(
+        "closeProfileModal"
+    );
+
+const cancelProfileEdit =
+    document.getElementById(
+        "cancelProfileEdit"
+    );
+
+const editProfileForm =
+    document.getElementById(
+        "editProfileForm"
+    );
+
+
+// ========================================
+// PROFILE PHOTO - EDIT MODAL ELEMENTS
+// ========================================
+
+const profilePhotoInput =
+    document.getElementById(
+        "profilePhotoInput"
+    );
+
+const editProfilePhotoPreview =
+    document.getElementById(
+        "editProfilePhotoPreview"
+    );
+
+const editProfilePhotoInitial =
+    document.getElementById(
+        "editProfilePhotoInitial"
+    );
+
+const removeProfilePhoto =
+    document.getElementById(
+        "removeProfilePhoto"
+    );
+
+
+// ========================================
+// SELECTED PHOTO
+// ========================================
+
+let selectedProfilePhoto = null;
 
 
 // ========================================
@@ -10,12 +88,12 @@ const API_BASE_URL = "http://localhost:5000/api/auth";
 // ========================================
 
 function goBack() {
-
-    window.location.href =
-        "../owner/dashboard/ownerdashboard.html";
-
+    if (document.referrer && document.referrer.includes("/frontend/")) {
+        window.history.back();
+    } else {
+        window.location.href = "../owner/dashboard/ownerdashboard.html";
+    }
 }
-
 
 // ========================================
 // LOAD USER PROFILE
@@ -25,15 +103,17 @@ async function loadProfile() {
 
     try {
 
-        // Get JWT token
         const token =
-            localStorage.getItem("pawsyncToken");
+            localStorage.getItem(
+                "pawsyncToken"
+            );
 
 
-        // If no token, user is not logged in
         if (!token) {
 
-            alert("Please login first.");
+            alert(
+                "Please login first."
+            );
 
             window.location.href =
                 "../auth/login/login.html";
@@ -42,28 +122,27 @@ async function loadProfile() {
         }
 
 
-        // Get profile from backend
-        const response = await fetch(
-            `${API_BASE_URL}/profile`,
-            {
-                method: "GET",
+        const response =
+            await fetch(
+                `${API_BASE_URL}/profile`,
+                {
+                    method: "GET",
 
-                headers: {
-                    "Authorization":
-                        `Bearer ${token}`,
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`,
 
-                    "Content-Type":
-                        "application/json"
+                        "Content-Type":
+                            "application/json"
+                    }
                 }
-            }
-        );
+            );
 
 
         const data =
             await response.json();
 
 
-        // Backend error
         if (!response.ok) {
 
             console.error(
@@ -86,30 +165,27 @@ async function loadProfile() {
         );
 
 
-        // ========================================
-        // GET USER OBJECT
-        // ========================================
-
         const user =
             data.user || data;
 
 
         // ========================================
-        // USER NAME
+        // NAME (First Name Only)
         // ========================================
 
-        const name =
-            user.name || "User";
-
+        const rawName = (user.name || "User").trim().replace(/^Dr\.\s*/i, "");
+        const firstName = rawName ? rawName.split(/\s+/)[0] : "User";
 
         document.getElementById(
             "profileName"
-        ).textContent = name;
+        ).textContent =
+            firstName;
 
 
         document.getElementById(
             "fullName"
-        ).textContent = name;
+        ).textContent =
+            firstName;
 
 
         // ========================================
@@ -119,13 +195,15 @@ async function loadProfile() {
         document.getElementById(
             "profileEmail"
         ).textContent =
-            user.email || "Not available";
+            user.email ||
+            "Not available";
 
 
         document.getElementById(
             "emailAddress"
         ).textContent =
-            user.email || "Not available";
+            user.email ||
+            "Not available";
 
 
         // ========================================
@@ -135,7 +213,8 @@ async function loadProfile() {
         document.getElementById(
             "phoneNumber"
         ).textContent =
-            user.phone || "Not added";
+            user.phone ||
+            "Not added";
 
 
         // ========================================
@@ -143,7 +222,8 @@ async function loadProfile() {
         // ========================================
 
         const role =
-            user.role || "owner";
+            user.role ||
+            "owner";
 
 
         document.getElementById(
@@ -155,13 +235,13 @@ async function loadProfile() {
 
 
         // ========================================
-        // PROFILE AVATAR
+        // PROFILE PHOTO
         // ========================================
 
-        document.getElementById(
-            "profileAvatar"
-        ).textContent =
-            name.charAt(0).toUpperCase();
+        displayProfilePhoto(
+            user.profilePhoto,
+            user.name || firstName
+        );
 
 
         // ========================================
@@ -190,6 +270,24 @@ async function loadProfile() {
             loginMethod;
 
 
+        // ========================================
+        // LOAD PHOTO INTO EDIT MODAL
+        // ========================================
+
+        if (user.profilePhoto) {
+
+            editProfilePhotoPreview.src =
+                user.profilePhoto;
+
+            editProfilePhotoPreview.style.display =
+                "block";
+
+            editProfilePhotoInitial.style.display =
+                "none";
+
+        }
+
+
     }
     catch (error) {
 
@@ -201,6 +299,55 @@ async function loadProfile() {
         alert(
             "Unable to connect to PawSync server."
         );
+
+    }
+
+}
+
+
+// ========================================
+// DISPLAY PROFILE PHOTO
+// ========================================
+
+function displayProfilePhoto(
+    photoURL,
+    name
+) {
+
+    if (
+        photoURL &&
+        profileAvatarImage &&
+        profileAvatarInitial
+    ) {
+
+        profileAvatarImage.src =
+            photoURL;
+
+        profileAvatarImage.style.display =
+            "block";
+
+        profileAvatarInitial.style.display =
+            "none";
+
+    }
+    else if (
+        profileAvatarImage &&
+        profileAvatarInitial
+    ) {
+
+        profileAvatarImage.src =
+            "";
+
+        profileAvatarImage.style.display =
+            "none";
+
+        profileAvatarInitial.textContent =
+            (name || "U")
+                .charAt(0)
+                .toUpperCase();
+
+        profileAvatarInitial.style.display =
+            "flex";
 
     }
 
@@ -221,27 +368,7 @@ document.addEventListener(
 );
 
 // ========================================
-// EDIT PROFILE MODAL
-// ========================================
-
-const editProfileButton =
-    document.getElementById("editProfileButton");
-
-const editProfileModal =
-    document.getElementById("editProfileModal");
-
-const closeProfileModal =
-    document.getElementById("closeProfileModal");
-
-const cancelProfileEdit =
-    document.getElementById("cancelProfileEdit");
-
-const editProfileForm =
-    document.getElementById("editProfileForm");
-
-
-// ========================================
-// OPEN MODAL
+// OPEN EDIT PROFILE MODAL
 // ========================================
 
 if (editProfileButton) {
@@ -255,10 +382,12 @@ if (editProfileButton) {
                     "fullName"
                 ).textContent;
 
+
             const currentPhone =
                 document.getElementById(
                     "phoneNumber"
                 ).textContent;
+
 
             const currentEmail =
                 document.getElementById(
@@ -301,7 +430,7 @@ if (editProfileButton) {
 
 
 // ========================================
-// CLOSE MODAL
+// CLOSE EDIT MODAL
 // ========================================
 
 function closeEditProfileModal() {
@@ -317,10 +446,6 @@ function closeEditProfileModal() {
 }
 
 
-// ========================================
-// CLOSE BUTTON
-// ========================================
-
 if (closeProfileModal) {
 
     closeProfileModal.addEventListener(
@@ -330,10 +455,6 @@ if (closeProfileModal) {
 
 }
 
-
-// ========================================
-// CANCEL BUTTON
-// ========================================
 
 if (cancelProfileEdit) {
 
@@ -452,68 +573,70 @@ if (editProfileForm) {
 
             try {
 
-// ========================================
-// CREATE FORM DATA
-// ========================================
+                // ========================================
+                // CREATE FORM DATA
+                // ========================================
 
-const formData =
-    new FormData();
-
-
-formData.append(
-    "name",
-    name
-);
+                const formData =
+                    new FormData();
 
 
-formData.append(
-    "phone",
-    phone
-);
+                formData.append(
+                    "name",
+                    name
+                );
 
 
-// ========================================
-// ADD PROFILE PHOTO
-// ========================================
-
-if (selectedProfilePhoto) {
-
-    formData.append(
-        "profilePhoto",
-        selectedProfilePhoto
-    );
-
-}
+                formData.append(
+                    "phone",
+                    phone
+                );
 
 
-// ========================================
-// SEND PROFILE UPDATE
-// ========================================
+                // ========================================
+                // ADD PROFILE PHOTO
+                // ========================================
 
-const response =
-    await fetch(
-        "http://localhost:5000/api/auth/profile",
-        {
+                if (selectedProfilePhoto) {
 
-            method: "PUT",
+                    formData.append(
+                        "profilePhoto",
+                        selectedProfilePhoto
+                    );
 
-            headers: {
+                }
 
-                "Authorization":
-                    `Bearer ${token}`
 
-            },
+                // ========================================
+                // SEND UPDATE
+                // ========================================
 
-            body: formData
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/profile`,
+                        {
+                            method: "PUT",
 
-        }
-    );
+                            headers: {
+                                "Authorization":
+                                    `Bearer ${token}`
+                            },
+
+                            body: formData
+                        }
+                    );
+
 
                 const data =
                     await response.json();
 
 
                 if (!response.ok) {
+
+                    console.error(
+                        "Update profile error:",
+                        data
+                    );
 
                     alert(
                         data.message ||
@@ -531,7 +654,10 @@ const response =
                 );
 
 
-                // Update the profile page
+                // ========================================
+                // UPDATE NAME
+                // ========================================
+
                 document.getElementById(
                     "profileName"
                 ).textContent =
@@ -543,6 +669,10 @@ const response =
                 ).textContent =
                     data.user.name;
 
+
+                // ========================================
+                // UPDATE EMAIL
+                // ========================================
 
                 document.getElementById(
                     "profileEmail"
@@ -556,6 +686,10 @@ const response =
                     data.user.email;
 
 
+                // ========================================
+                // UPDATE PHONE
+                // ========================================
+
                 document.getElementById(
                     "phoneNumber"
                 ).textContent =
@@ -563,15 +697,40 @@ const response =
                     "Not added";
 
 
-                document.getElementById(
-                    "profileAvatar"
-                ).textContent =
+                // ========================================
+                // UPDATE PROFILE PHOTO
+                // ========================================
+
+                displayProfilePhoto(
+                    data.user.profilePhoto,
                     data.user.name
-                        .charAt(0)
-                        .toUpperCase();
+                );
 
 
-                // Update stored user data
+                // ========================================
+                // UPDATE EDIT MODAL PHOTO
+                // ========================================
+
+                if (
+                    data.user.profilePhoto
+                ) {
+
+                    editProfilePhotoPreview.src =
+                        data.user.profilePhoto;
+
+                    editProfilePhotoPreview.style.display =
+                        "block";
+
+                    editProfilePhotoInitial.style.display =
+                        "none";
+
+                }
+
+
+                // ========================================
+                // UPDATE STORED USER DATA
+                // ========================================
+
                 const storedUser =
                     localStorage.getItem(
                         "pawsyncUser"
@@ -591,8 +750,14 @@ const response =
                         user.name =
                             data.user.name;
 
+
                         user.phone =
                             data.user.phone;
+
+
+                        user.profilePhoto =
+                            data.user.profilePhoto ||
+                            "";
 
 
                         localStorage.setItem(
@@ -613,7 +778,22 @@ const response =
                 }
 
 
+                // Clear selected photo
+
+                selectedProfilePhoto =
+                    null;
+
+
+                if (profilePhotoInput) {
+
+                    profilePhotoInput.value =
+                        "";
+
+                }
+
+
                 // Close modal
+
                 closeEditProfileModal();
 
 
@@ -630,7 +810,6 @@ const response =
                     error
                 );
 
-
                 alert(
                     "Unable to connect to PawSync server."
                 );
@@ -642,37 +821,9 @@ const response =
 
 }
 
-// ========================================
-// PROFILE PHOTO - PREVIEW
-// ========================================
-
-const profilePhotoInput =
-    document.getElementById(
-        "profilePhotoInput"
-    );
-
-const editProfilePhotoPreview =
-    document.getElementById(
-        "editProfilePhotoPreview"
-    );
-
-const editProfilePhotoInitial =
-    document.getElementById(
-        "editProfilePhotoInitial"
-    );
-
-const removeProfilePhoto =
-    document.getElementById(
-        "removeProfilePhoto"
-    );
-
-
-// Store selected photo
-let selectedProfilePhoto = null;
-
 
 // ========================================
-// SELECT PHOTO
+// SELECT PROFILE PHOTO
 // ========================================
 
 if (profilePhotoInput) {
@@ -689,8 +840,6 @@ if (profilePhotoInput) {
                 return;
             }
 
-
-            // Allowed image types
 
             const allowedTypes = [
                 "image/jpeg",
@@ -712,6 +861,7 @@ if (profilePhotoInput) {
                 this.value = "";
 
                 return;
+
             }
 
 
@@ -729,6 +879,7 @@ if (profilePhotoInput) {
                 this.value = "";
 
                 return;
+
             }
 
 
@@ -764,7 +915,7 @@ if (profilePhotoInput) {
 
 
 // ========================================
-// REMOVE SELECTED PHOTO
+// REMOVE PROFILE PHOTO
 // ========================================
 
 if (removeProfilePhoto) {

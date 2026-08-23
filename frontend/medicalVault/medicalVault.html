@@ -75,7 +75,7 @@
 
         <main class="main-content">
 
-            <main class="medical-vault-page">
+            <div class="medical-vault-page">
 
 
                 <!-- =================================
@@ -121,7 +121,7 @@
 
 
                 <!-- =================================
-                     PET CATEGORIES
+                     YOUR PETS
                 ================================== -->
 
                 <section class="pet-category-section">
@@ -149,10 +149,9 @@
                         id="petCategoryGrid"
                     >
 
-                        <!--
-                            Pet cards are generated
-                            by medicalVault.js
-                        -->
+                        <div class="loading-pets">
+                            Loading your pets...
+                        </div>
 
                     </div>
 
@@ -175,11 +174,11 @@
                             </span>
 
                             <h2 id="selectedPetName">
-                                Bruno
+                                Loading...
                             </h2>
 
                             <p id="selectedPetInfo">
-                                Labrador Retriever • 2 Years
+                                Please wait...
                             </p>
 
                         </div>
@@ -280,11 +279,6 @@
                         id="documentList"
                     >
 
-                        <!--
-                            Documents are generated
-                            by medicalVault.js
-                        -->
-
                     </div>
 
 
@@ -303,12 +297,13 @@
                         </div>
 
                         <h3>
-                            No documents found
+                            No medical documents yet
                         </h3>
 
                         <p>
-                            This pet doesn't have any documents
-                            matching your selection.
+                            Medical documents for this pet
+                            will appear here once they
+                            are added.
                         </p>
 
                     </div>
@@ -317,14 +312,13 @@
                 </section>
 
 
-            </main>
+            </div>
 
         </main>
 
     </div>
 
-
-    <!-- =========================================
+        <!-- =========================================
          UPLOAD DOCUMENT MODAL
     ========================================== -->
 
@@ -340,6 +334,11 @@
             aria-modal="true"
             aria-labelledby="uploadModalTitle"
         >
+
+
+            <!-- =================================
+                 MODAL HEADER
+            ================================== -->
 
             <div class="modal-header">
 
@@ -368,13 +367,17 @@
             </div>
 
 
+            <!-- =================================
+                 UPLOAD FORM
+            ================================== -->
+
             <form
                 id="uploadDocumentForm"
                 class="upload-form"
             >
 
 
-                <!-- PET -->
+                <!-- SELECT PET -->
 
                 <div class="form-group">
 
@@ -386,6 +389,7 @@
                         id="documentPet"
                         required
                     >
+
                     </select>
 
                 </div>
@@ -467,6 +471,7 @@
 
                 <div class="form-row">
 
+
                     <div class="form-group">
 
                         <label for="documentDate">
@@ -496,6 +501,7 @@
 
                     </div>
 
+
                 </div>
 
 
@@ -506,6 +512,7 @@
                     <label for="documentFile">
                         Upload File
                     </label>
+
 
                     <label
                         class="file-upload-area"
@@ -523,6 +530,7 @@
                         <small>
                             PDF, JPG, PNG up to 10 MB
                         </small>
+
 
                         <input
                             type="file"
@@ -553,7 +561,7 @@
                 </div>
 
 
-                <!-- ACTIONS -->
+                <!-- MODAL BUTTONS -->
 
                 <div class="modal-actions">
 
@@ -565,11 +573,12 @@
                         Cancel
                     </button>
 
+
                     <button
                         type="submit"
                         class="submit-upload-button"
                     >
-                        Upload Document
+                        Save Document
                     </button>
 
                 </div>
